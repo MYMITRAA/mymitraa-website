@@ -1,14 +1,12 @@
-import "./Megamenu.css";
 import { useState } from "react";
-
-
-import MidMenu from "./Midmenu";
-
+import "./Megamenu.css";
+import MidMenu from "./MidMenu";
 
 import ServicesContent from "../MegaContent/ServicesContent";
 import PortfolioContent from "../MegaContent/PortfolioContent";
 import CaseStudiesContent from "../MegaContent/CaseStudiesContent";
 import ResourcesContent from "../MegaContent/ResourcesContent";
+import { Import } from "lucide-react";
 
 export default function MegaMenu({ closeMenu }) {
 
