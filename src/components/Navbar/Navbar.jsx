@@ -9,7 +9,7 @@ import contact from "../../assets/images/contact.svg";
 import search from "../../assets/images/search.svg";
 
 import Signinmodel from "../Signinmodel/Signinmodel";
-import MegaMenu from "../MegaMenu/MegaMenu";
+import MegaMenu from "../MegaMenu/MegaMenu.jsx";
 
 
 function Navbar() {
