@@ -10,7 +10,7 @@ import search from "../../assets/images/search.svg";
 
 import Signinmodel from "../Signinmodel/Signinmodel";
 
-import MegaMenu  from "../Megamenu/MegaMenu"; 
+import MegaMenu  from "../Megamenu/Megamenu"; 
 
 function Navbar() {
 
