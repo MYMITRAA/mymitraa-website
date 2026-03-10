@@ -1,26 +1,26 @@
 import "./MegaMenu.css";
 import { useState } from "react";
 
+import MidMenu from "./MidMenu";
+
 import ServicesContent from "../MegaContent/ServicesContent";
 import PortfolioContent from "../MegaContent/PortfolioContent";
 import CaseStudiesContent from "../MegaContent/CaseStudiesContent";
 import ResourcesContent from "../MegaContent/ResourcesContent";
 
-export default function MegaMenu() {
+export default function MegaMenu({ closeMenu }) {
 
   const [active, setActive] = useState("services");
+  const [service, setService] = useState("genai");
 
   const renderContent = () => {
-    switch (active) {
-      case "portfolio":
-        return <PortfolioContent />;
-      case "casestudies":
-        return <CaseStudiesContent />;
-      case "resources":
-        return <ResourcesContent />;
-      default:
-        return <ServicesContent />;
-    }
+
+    if (active === "portfolio") return <PortfolioContent closeMenu={closeMenu} />;
+    if (active === "casestudies") return <CaseStudiesContent closeMenu={closeMenu} />;
+    if (active === "resources") return <ResourcesContent closeMenu={closeMenu} />;
+
+    return <ServicesContent service={service} closeMenu={closeMenu} />;
+
   };
 
   return (
@@ -30,34 +30,39 @@ export default function MegaMenu() {
       <div className="mega-left">
 
         <div
-          className={`mega-left-item ${active==="services"?"active":""}`}
-          onMouseEnter={()=>setActive("services")}
+          className={`mega-left-item ${active === "services" ? "active" : ""}`}
+          onMouseEnter={() => setActive("services")}
         >
           Our Services
         </div>
 
         <div
-          className={`mega-left-item ${active==="portfolio"?"active":""}`}
-          onMouseEnter={()=>setActive("portfolio")}
+          className={`mega-left-item ${active === "portfolio" ? "active" : ""}`}
+          onMouseEnter={() => setActive("portfolio")}
         >
           Our Portfolio
         </div>
 
         <div
-          className={`mega-left-item ${active==="casestudies"?"active":""}`}
-          onMouseEnter={()=>setActive("casestudies")}
+          className={`mega-left-item ${active === "casestudies" ? "active" : ""}`}
+          onMouseEnter={() => setActive("casestudies")}
         >
           Case Studies
         </div>
 
         <div
-          className={`mega-left-item ${active==="resources"?"active":""}`}
-          onMouseEnter={()=>setActive("resources")}
+          className={`mega-left-item ${active === "resources" ? "active" : ""}`}
+          onMouseEnter={() => setActive("resources")}
         >
           Resource Argumentation
         </div>
 
       </div>
+
+      {/* MID MENU (ONLY FOR SERVICES) */}
+      {active === "services" && (
+        <MidMenu setService={setService} />
+      )}
 
       {/* RIGHT CONTENT */}
       <div className="mega-right">

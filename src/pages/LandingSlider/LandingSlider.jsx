@@ -1,3 +1,4 @@
+import Navbar from "../../components/Navbar/Navbar";
 import { useState, useEffect } from "react";
 
 import Landing1 from "../../components/LandingSlide1/LandingSlide1";
@@ -26,7 +27,12 @@ export default function Landing() {
 
   return (
     <div>
+
+      {/* Landing Navbar */}
+      <Navbar variant="landing" />
+
       {slides[slide]}
+
     </div>
   );
 }

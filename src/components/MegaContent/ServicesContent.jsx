@@ -1,22 +1,23 @@
-import brain from "../../assets/images/brain.svg";
-import "./ServicesContent.css";
+import GenAI from "./GenAIContent";
+import Web from "./WebMobileContent";
+import Blockchain from "./BlockchainContent";
+import Agile from "./AgileContent";
+import CyberSecurity from "./CyberSecurityContent";
+import Enterprise from "./EnterpriseContent";
 
-export default function ServicesContent() {
-  return (
-    <>
-      <img src={brain} alt="" />
+export default function ServicesContent({ service, closeMenu }) {
 
-      <div className="mega-text">
-        <h2>Generative AI Solutions</h2>
+  if(service === "genai") return <GenAI closeMenu={closeMenu} />;
 
-        <p>
-          From intelligent assistants to business-specific AI workflows,
-          we use generative AI to reduce manual work, improve decision-making
-          and create smarter interactions.
-        </p>
+  if(service === "web") return <Web closeMenu={closeMenu} />;
 
-        <button>View More</button>
-      </div>
-    </>
-  );
+  if(service === "blockchain") return <Blockchain closeMenu={closeMenu} />;
+
+  if(service === "agile") return <Agile closeMenu={closeMenu} />;
+
+  if(service === "security") return <CyberSecurity closeMenu={closeMenu} />;
+
+  if(service === "enterprise") return <Enterprise closeMenu={closeMenu} />;
+
+  return <GenAI closeMenu={closeMenu} />;
 }
