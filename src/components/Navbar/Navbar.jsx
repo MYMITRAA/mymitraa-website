@@ -11,6 +11,7 @@ import search from "../../assets/images/search.svg";
 import Signinmodel from "../Signinmodel/Signinmodel";
 import MegaMenu from "../MegaMenu/MegaMenu";
 
+
 function Navbar() {
   const [showModal, setShowModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
