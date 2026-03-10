@@ -1,7 +1,9 @@
 import "./MegaMenu.css";
 import { useState } from "react";
 
-import MidMenu from "./MidMenu";
+
+import MidMenu from "./Midmenu";
+
 
 import ServicesContent from "../MegaContent/ServicesContent";
 import PortfolioContent from "../MegaContent/PortfolioContent";
