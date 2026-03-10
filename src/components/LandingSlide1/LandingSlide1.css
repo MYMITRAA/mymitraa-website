@@ -1,0 +1,137 @@
+.mitraa-landing1{
+    height:100vh;
+    width:100%;
+    background: linear-gradient(270deg, #5133CC 0%, #6549E7 100%);
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+/* HERO CONTAINER */
+
+.mitraa-landing1-container{
+    height:100%;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 80px;
+    position:relative;
+}
+
+/* LEFT TEXT */
+
+.mitraa-landing1-text{
+    max-width:900px;
+    z-index:3;
+}
+
+.mitraa-landing1-text h2{
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.mitraa-landing1-text h1{
+    font-family:'Roboto', sans-serif;
+    font-weight:700;
+    font-size:72px;
+    white-space:nowrap;
+    margin-bottom:20px;
+}
+
+.mitraa-landing1-text p{
+    font-size:20px;
+    letter-spacing:1px;
+}
+
+/* BUTTON */
+
+.mitraa-landing1-btn{
+    margin-top:40px;
+    padding:14px 36px;
+    border:1px solid white;
+    background:transparent;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.mitraa-landing1-btn:hover{
+    background:white;
+    color:#5133CC;
+}
+
+/* ROBOT IMAGE */
+
+.mitraa-landing1-image{
+    position:absolute;
+    right:80px;
+    bottom:0;
+    z-index:3;
+}
+
+.mitraa-landing1-image img{
+    height:700px;
+}
+
+/* SMALL GLOW CIRCLE */
+
+.mitraa-landing1-circle{
+    position:absolute;
+    right:-120px;
+    bottom:-120px;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 40%, transparent 70%);
+    z-index:1;
+}
+
+/* BIG BACKGROUND ARC */
+
+.mitraa-landing1-bigcircle{
+    position:absolute;
+    right:-250px;
+    bottom:-200px;
+    width:900px;
+    height:900px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 40%, transparent 70%);
+    z-index:0;
+}
+
+/* SLIDER DOTS */
+
+.mitraa-landing1-dots{
+    position:absolute;
+    bottom:30px;
+    left:70px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.mitraa-landing1-dot{
+    width:10px;
+    height:10px;
+    background:#a395f6;
+    border-radius:50%;
+}
+
+.mitraa-landing1-dot.active{
+    width:40px;
+    height:10px;
+    border-radius:10px;
+    background:white;
+}
+
+.mitraa-landing1-pill{
+    margin-left:20px;
+    padding:6px 18px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.2);
+    font-size:14px;
+}

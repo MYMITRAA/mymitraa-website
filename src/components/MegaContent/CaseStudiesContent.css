@@ -1,0 +1,76 @@
+.casestudies-content{
+  display:flex;
+  align-items:center;
+  gap:90px;
+
+  padding:40px 0;      /* give space instead of forcing height */
+}
+
+/* IMAGE BOX */
+
+.casestudies-image{
+  width:300px;
+  height:360px;        /* increase only image box height */
+
+  background:linear-gradient(135deg,#5c54d6,#7a72e6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+}
+
+.casestudies-image img{
+  width:220px;
+}
+
+/* TEXT */
+
+.casestudies-text{
+  max-width:560px;
+}
+
+/* HEADING */
+
+.casestudies-text h2{
+  font-size:32px;
+  font-weight:600;
+  margin-bottom:18px;
+}
+
+/* PURPLE UNDERLINE */
+
+.heading-underline{
+  display:block;
+  width:120px;
+  height:4px;
+  background:#514AD7;
+  margin-top:6px;
+  border-radius:2px;
+}
+
+/* PARAGRAPHS */
+
+.casestudies-text p{
+  font-size:15px;
+  line-height:1.7;
+  color:#555;
+  margin-bottom:16px;
+}
+
+/* BUTTON */
+
+.view-more-btn{
+  margin-top:20px;
+  padding:10px 24px;
+  border:1px solid #514AD7;
+  background:transparent;
+  color:#514AD7;
+  border-radius:8px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.view-more-btn:hover{
+  background:#514AD7;
+  color:white;
+}

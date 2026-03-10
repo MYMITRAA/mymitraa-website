@@ -6,6 +6,7 @@ import Explore from "../../components/Explore/Explore";
 import ContactSection from "../../components/Contactsection/Contactsection";
 import Footer from "../../components/Footer/Footer";
 
+
 function Home() {
   return (
     <>
