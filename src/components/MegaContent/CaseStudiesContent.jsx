@@ -1,5 +1,6 @@
 import caseImg from "../../assets/images/casestudy.svg";
-import "./CasestudiesContent.css";
+import "./CaseStudiesContent.css";
+
 
 export default function CaseStudiesContent() {
   return (
