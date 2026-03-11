@@ -1,5 +1,5 @@
 import React from "react";
-import "./allservicemid.css";
+import "./AllServiceMid.css";
 
 import bird from "../../assets/images/birdimage.svg";
 import team1 from "../../assets/images/team1image.svg";
