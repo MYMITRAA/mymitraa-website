@@ -5,7 +5,7 @@ import bird from "../../assets/images/birdimage.svg";
 import team1 from "../../assets/images/team1image.svg";
 import team2 from "../../assets/images/team1image.svg";
 import team3 from "../../assets/images/team1image.svg";
-import team4 from "../../assets/images/team1image.svg";
+// import team4 from "../../assets/images/team1image.svg";
 
 const AllServiceMid = () => {
   return (
