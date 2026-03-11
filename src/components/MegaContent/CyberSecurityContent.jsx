@@ -1,4 +1,4 @@
-import security from "../../assets/images/brain.svg";
+import security from "../../assets/images/cybersecurity.png";
 import "./ServicesContent.css";
 
 export default function CyberSecurity() {

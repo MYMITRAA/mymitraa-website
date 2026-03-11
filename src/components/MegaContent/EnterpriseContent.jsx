@@ -1,4 +1,4 @@
-import enterprise from "../../assets/images/brain.svg";
+import enterprise from "../../assets/images/enterpriseimage.png";
 import "./ServicesContent.css";
 
 export default function EnterpriseTechnology() {

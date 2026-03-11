@@ -1,4 +1,4 @@
-import blockchain from "../../assets/images/brain.svg";
+import blockchain from "../../assets/images/blockchainimage.png";
 import "./ServicesContent.css";
 
 export default function Blockchain() {

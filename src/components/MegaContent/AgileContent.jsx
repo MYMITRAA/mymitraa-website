@@ -1,4 +1,4 @@
-import agile from "../../assets/images/brain.svg";
+import agile from "../../assets/images/agileimage.png";
 import "./ServicesContent.css";
 
 export default function Agile() {

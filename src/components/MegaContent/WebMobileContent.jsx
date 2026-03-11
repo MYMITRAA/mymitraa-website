@@ -1,4 +1,4 @@
-import mobile from "../../assets/images/brain.svg";
+import mobile from "../../assets/images/webandappimage1.png";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

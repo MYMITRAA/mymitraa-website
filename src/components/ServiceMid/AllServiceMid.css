@@ -1,0 +1,291 @@
+.allservicemid{
+padding:80px 8%;
+background:#f5f6fb;
+font-family:'Inter',sans-serif;
+}
+
+
+/* HEADER */
+
+.why-header h2{
+font-weight:700;
+font-size:50px;
+line-height:100%;
+color:#000;
+margin-bottom:20px;
+}
+
+.why-header p{
+font-weight:400;
+font-size:26px;
+line-height:40px;
+color:#000;
+max-width:800px;
+margin-bottom:60px;
+}
+
+
+/* GRID LAYOUT */
+
+.why-grid{
+display:grid;
+grid-template-columns:420px 1fr;
+gap:30px;
+align-items:flex-start;
+}
+
+
+/* LEFT CARD */
+
+.zenix-card{
+position:relative;
+top:100px;
+
+background: linear-gradient(180deg, #737AFF 0%, #514AD7 100%);
+box-shadow: 0px 0px 8px 0px #DFDDFF;
+
+
+border-radius:40px;
+
+padding:120px 40px 50px;
+
+color:white;
+
+text-align:center;
+
+width:420px;
+height:628px;
+
+}
+
+
+/* BIRD CIRCLE */
+
+.bird-circle{
+position:absolute;
+
+top:-70px;
+left:50%;
+
+transform:translateX(-50%);
+
+width:163px;
+height:182px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+box-shadow:
+0 0 0 10px rgba(255,255,255,0.35),
+0 20px 30px rgba(0,0,0,0.08);
+}
+
+.bird-circle img{
+width:90px;
+}
+
+
+/* TEXT */
+
+.zenix-card h3{
+font-size:32px;
+margin-top:10px;
+}
+
+.bot-tag{
+margin-top:10px;
+
+display:inline-block;
+
+background:rgba(255,255,255,0.25);
+
+padding:8px 18px;
+
+border-radius:20px;
+
+font-size:12px;
+
+letter-spacing:.3px;
+}
+
+
+/* STATS */
+
+.stats{
+margin-top:80px;
+
+display:grid;
+
+grid-template-columns:1fr 1px 1fr;
+
+row-gap:70px;
+
+align-items:center;
+}
+
+.divider{
+width:1px;
+height:60px;
+background:rgba(255,255,255,0.5);
+margin:auto;
+}
+
+.stat h2{
+font-size:48px;
+margin-bottom:6px;
+font-weight:700;
+}
+
+.stat p{
+font-size:16px;
+opacity:.9;
+}
+
+
+/* RIGHT SIDE */
+
+.why-right{
+display:flex;
+flex-direction:column;
+gap:18px;
+position: relative;
+top:13px;
+}
+
+
+/* RIGHT CARD 1 */
+
+.right-card-1{
+background:white;
+
+border-radius:32px;
+
+padding:32px 36px;
+
+border: 1px solid #514AD7;
+box-shadow: 0px 0px 8px 0px #DFDDFF;
+height:187px;
+width:822px;
+}
+
+.right-card-1 h4{
+font-size:22px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.right-card-1 p{
+font-size:16px;
+color:#6b6b6b;
+line-height:28px;
+}
+
+
+/* RIGHT CARD 2 */
+
+.right-card-2{
+background:white;
+
+border-radius:32px;
+
+padding:32px 36px;
+
+border: 1px solid #514AD7;
+box-shadow: 0px 0px 8px 0px #DFDDFF;
+height:187px;
+width:822px;
+}
+
+.right-card-2 h4{
+font-size:22px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.right-card-2 p{
+font-size:16px;
+color:#6b6b6b;
+line-height:28px;
+}
+
+
+/* RIGHT CARD 3 */
+
+.right-card-3{
+background:white;
+
+border-radius:34px;
+
+padding:36px 40px;
+
+border: 1px solid #514AD7;
+box-shadow: 0px 0px 8px 0px #DFDDFF;
+height:308px;
+width:822px;
+
+
+}
+
+.right-card-3 h4{
+font-size:22px;
+font-weight:600;
+margin-bottom:10px;
+color: #000000;
+
+}
+
+.right-card-3 p{
+font-size:16px;
+color: #636363;
+
+line-height:28px;
+margin-bottom:16px;
+
+}
+
+
+/* TEAM AVATARS */
+
+.team-row{
+display:flex;
+align-items:center;
+margin-top:20px;
+}
+
+.team-row img{
+width:42px;
+height:42px;
+
+border-radius:50%;
+
+border:3px solid white;
+
+margin-left:-14px;
+}
+
+.team-row img:first-child{
+margin-left:0;
+}
+
+.team-count{
+width:42px;
+height:42px;
+
+border-radius:50%;
+
+background:#5d63ff;
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:13px;
+
+margin-left:-14px;
+}

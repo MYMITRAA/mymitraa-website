@@ -1,5 +1,5 @@
 import "./LandingSlide1.css";
-import robot from "../../assets/images/landingrobot.png";
+import robot from "../../assets/images/landing1robot.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingSlide1() {

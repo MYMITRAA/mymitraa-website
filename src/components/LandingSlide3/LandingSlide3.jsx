@@ -1,8 +1,9 @@
 import "./LandingSlide3.css";
-import eagle from "../../assets/images/landingeagle.png";
 import { useNavigate } from "react-router-dom";
+import EagleAnimation from "../../components/EagleAnimation/EagleAnimation";
 
 export default function LandingSlide3() {
+
   const navigate = useNavigate();
 
   return (
@@ -33,7 +34,6 @@ export default function LandingSlide3() {
 
         </div>
 
-
         {/* RIGHT DESIGN */}
         <div className="mitraa-landing3-design">
 
@@ -41,16 +41,12 @@ export default function LandingSlide3() {
 
           <div className="mitraa-landing3-bar"></div>
 
-          <img
-            src={eagle}
-            alt="Eagle"
-            className="mitraa-landing3-eagle"
-          />
+          {/* Animated Eagle */}
+          <EagleAnimation />
 
         </div>
 
       </div>
-
 
       {/* SLIDER INDICATOR */}
       <div className="mitraa-landing3-dots">
