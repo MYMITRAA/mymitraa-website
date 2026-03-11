@@ -11,10 +11,8 @@ export default function Landing() {
 
   const slides = [
     <Landing1 />,
-     <Landing1 />,
-      <Landing1 />
-    // <Landing2 />,
-    // <Landing3 />
+    <Landing2 />,
+    <Landing3 />
    
   ];
 
