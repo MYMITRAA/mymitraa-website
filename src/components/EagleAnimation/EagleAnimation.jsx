@@ -1,5 +1,5 @@
 import React from "react";
-import "./eagleanimation.css";
+import "./EagleAnimation.css";
 
 import leftWing from "../../assets/eagle/eagleleftwing.svg";
 import rightWing from "../../assets/eagle/eaglerightwing.svg";
