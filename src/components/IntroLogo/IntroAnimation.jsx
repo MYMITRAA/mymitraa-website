@@ -4,7 +4,7 @@ import "./IntroAnimation.css";
 import iconWhite from "../../assets/logo/icon-white.svg";
 import iconBlue from "../../assets/logo/icon-blue.svg";
 
-import Mwhite from "../../assets/logo/M-white.svg";
+// import Mwhite from "../../assets/logo/M-white.svg";
 import Mblue from "../../assets/logo/M-blue.svg";
 
 import Iwhite from "../../assets/logo/I-white.svg";
