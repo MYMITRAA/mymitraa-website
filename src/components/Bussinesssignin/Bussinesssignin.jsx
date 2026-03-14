@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Bussinesssignin.css";
 import bird from "../../assets/images/birdimage.svg"; 
-import logo from "../../assets/images/logologo.svg";
-import mitra from "../../assets/images/mitraa.svg";
+import logo from "../../assets/logo/icon-blue.svg";
+import mitra from "../../assets/logo/mitraa.svg";
 
 function Bussinesssignin({ onClose }) {
   const [isSignup, setIsSignup] = useState(false);

@@ -19,7 +19,17 @@ body {
   display: flex;
   align-items: center;
   z-index: 1000;
+  transition: opacity .5s ease;
 }
+
+/* hide navbar during intro */
+
+.navbar-hidden{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* container */
 
 .navbar-container {
   width: 100%;
@@ -34,15 +44,12 @@ body {
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
-.logo-icon {
-  height: 42px;
-}
-
-.logo-text {
-  height: 20px;
+.logo-full{
+  height:42px;
+  width:auto;
+  display:block;
 }
 
 /* Nav Links */
@@ -221,16 +228,13 @@ body {
   }
 }
 
-
-/* NAV ITEM FOR MEGA MENU */
+/* Mega menu bridge */
 
 .nav-item{
   position:relative;
   display:flex;
   align-items:center;
 }
-
-/* invisible hover bridge */
 
 .nav-item::after{
   content:"";

@@ -1,7 +1,7 @@
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import logologo from "../../assets/images/logologo.svg";
-import mitra from "../../assets/images/mitraa.svg";
+import logologo from "../../assets/logo/icon-blue.svg";
+import mitra from "../../assets/logo/mitraa.svg";
 import bigLogo from "../../assets/images/footerlogo.svg";
 
 import instagram from "../../assets/images/instagram.svg";

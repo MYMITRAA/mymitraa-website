@@ -44,7 +44,6 @@ top:100px;
 background: linear-gradient(180deg, #737AFF 0%, #514AD7 100%);
 box-shadow: 0px 0px 8px 0px #DFDDFF;
 
-
 border-radius:40px;
 
 padding:120px 40px 50px;
@@ -63,30 +62,30 @@ height:628px;
 
 .bird-circle{
 position:absolute;
-
 top:-70px;
 left:50%;
-
 transform:translateX(-50%);
 
-width:163px;
-height:182px;
+width:180px;
+height:180px;
 
 border-radius:50%;
-
-background:white;
+background:#ffffff;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-box-shadow:
-0 0 0 10px rgba(255,255,255,0.35),
-0 20px 30px rgba(0,0,0,0.08);
+/* white circular outline */
+border:12px solid #ffffff;
+
+/* soft shadow */
+box-shadow:0px 10px 25px rgba(0,0,0,0.08);
 }
 
 .bird-circle img{
-width:90px;
+width:130px;
+height:auto;
 }
 
 
@@ -228,7 +227,6 @@ box-shadow: 0px 0px 8px 0px #DFDDFF;
 height:308px;
 width:822px;
 
-
 }
 
 .right-card-3 h4{
@@ -236,7 +234,6 @@ font-size:22px;
 font-weight:600;
 margin-bottom:10px;
 color: #000000;
-
 }
 
 .right-card-3 p{
@@ -245,7 +242,6 @@ color: #636363;
 
 line-height:28px;
 margin-bottom:16px;
-
 }
 
 

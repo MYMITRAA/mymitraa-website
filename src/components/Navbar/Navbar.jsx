@@ -2,17 +2,16 @@ import "./Navbar.css";
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import logologo from "../../assets/images/logologo.svg";
-import mitra from "../../assets/images/mitraa.svg";
+import mitraaLogo from "../../assets/logo/fulllogo.svg";
+
 import globe from "../../assets/images/globe.svg";
 import contact from "../../assets/images/contact.svg";
 import search from "../../assets/images/search.svg";
 
 import Signinmodel from "../Signinmodel/Signinmodel";
+import MegaMenu from "../Megamenu/MegaMenu";
 
-import MegaMenu from "../Megamenu/MegaMenu"; 
-
-function Navbar() {
+function Navbar({ hidden }) {
 
   const [showModal, setShowModal] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,35 +19,34 @@ function Navbar() {
 
   const location = useLocation();
 
-  // Detect landing page
   const isLandingPage = location.pathname === "/";
 
-  /* Close mobile menu automatically on page change */
   useEffect(() => {
     setMenuOpen(false);
   }, [location]);
 
-  /* Close MegaMenu when route changes */
   useEffect(() => {
     setShowMegaMenu(false);
   }, [location]);
 
   return (
     <>
-      <header className="navbar">
+      <header className={`navbar ${hidden ? "navbar-hidden" : ""}`}>
         <div className="navbar-container">
 
           {/* Logo */}
           <div className="navbar-left">
-            <img src={logologo} alt="Logo Icon" className="logo-icon" />
-            <img src={mitra} alt="Mitraa Text" className="logo-text" />
+            <img
+              src={mitraaLogo}
+              alt="MiTRAA Logo"
+              className="logo-full"
+            />
           </div>
 
-          {/* Nav Links (HIDDEN on Landing Page) */}
+          {/* Nav Links */}
           {!isLandingPage && (
             <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
 
-              {/* WHAT WE DO WITH MEGA MENU */}
               <div
                 className="nav-item"
                 onMouseEnter={() => setShowMegaMenu(true)}
@@ -67,7 +65,6 @@ function Navbar() {
               <NavLink to="/portfolio">Portfolio</NavLink>
               <NavLink to="/contact">Contact Us</NavLink>
 
-              {/* Mobile Sign In Button */}
               <div
                 className="mobile-sign-btn"
                 onClick={() => {
@@ -103,7 +100,7 @@ function Navbar() {
 
           </div>
 
-          {/* Hamburger (HIDDEN on landing page) */}
+          {/* Hamburger */}
           {!isLandingPage && (
             <div
               className={`menu-toggle ${menuOpen ? "open" : ""}`}

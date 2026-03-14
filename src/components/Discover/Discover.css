@@ -112,7 +112,7 @@
   color: #ffffff;
   text-align: center;
   position: relative;
-  top:50px;
+  top:25px;
 }
 
 .top-card-text p {
@@ -155,6 +155,8 @@
 .bottom-card-content {
   margin-top: auto;
   text-align: center;
+  position: relative;
+  bottom:20px;
 }
 
 .bottom-card-content h3 {
