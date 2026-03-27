@@ -185,6 +185,7 @@
 }
 
 /* ── Tablets (max 900px) ── */
+/* ── Tablets (max 900px) ── */
 @media (max-width: 900px) {
   .mitraa-landing1 {
     height: auto;
@@ -194,7 +195,7 @@
   .mitraa-landing1-container {
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;          /* ✅ already centers children */
     padding: 100px 32px 120px;
     gap: 40px;
     text-align: center;
@@ -205,16 +206,16 @@
   }
 
   .mitraa-landing1-text h2 {
-    font-size: 28px;
+    font-size: 32px;              /* ⬆️ was 28px */
   }
 
   .mitraa-landing1-text h1 {
-    font-size: 42px;
+    font-size: 50px;              /* ⬆️ was 42px */
     white-space: normal;
   }
 
   .mitraa-landing1-text p {
-    font-size: 15px;
+    font-size: 17px;              /* ⬆️ was 15px */
     letter-spacing: 0.5px;
   }
 
@@ -222,14 +223,22 @@
     margin-top: 28px;
   }
 
-  /* Robot — below text, centered */
+  /* Robot — centered */
   .mitraa-landing1-image {
     position: relative;
     right: auto;
     bottom: auto;
     display: flex;
     justify-content: center;
+    align-items: center;          /* ✅ added */
     width: 100%;
+  }
+
+  /* Force the RobotAnimation wrapper to center */
+  .mitraa-landing1-image > * {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
 
   .mitraa-landing1-image img {
@@ -237,7 +246,6 @@
     width: auto;
   }
 
-  /* Shrink glow circles so they don't overflow badly */
   .mitraa-landing1-circle {
     width: 400px;
     height: 400px;
@@ -266,15 +274,15 @@
   }
 
   .mitraa-landing1-text h2 {
-    font-size: 22px;
+    font-size: 26px;              /* ⬆️ was 22px */
   }
 
   .mitraa-landing1-text h1 {
-    font-size: 32px;
+    font-size: 38px;              /* ⬆️ was 32px */
   }
 
   .mitraa-landing1-text p {
-    font-size: 13px;
+    font-size: 15px;              /* ⬆️ was 13px */
     letter-spacing: 0.3px;
   }
 
@@ -282,6 +290,17 @@
     padding: 12px 28px;
     font-size: 14px;
     margin-top: 20px;
+  }
+
+  .mitraa-landing1-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .mitraa-landing1-image > * {
+    margin: 0 auto;
   }
 
   .mitraa-landing1-image img {
@@ -311,7 +330,6 @@
     margin-left: 12px;
   }
 }
-
 /* ── Small mobile (max 400px) ── */
 @media (max-width: 400px) {
   .mitraa-landing1-text h1 {

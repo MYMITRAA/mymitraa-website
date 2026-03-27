@@ -178,17 +178,57 @@
   }
 
   .mitraa-landing2-container {
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 32px 120px;
-    gap: 40px;
-    text-align: center;
+    flex-direction: column;          /* text on top, visual below */
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 80px 0 100px;
+    gap: 0;
   }
 
+  /* TEXT — top, centered */
+  .mitraa-landing2-text {
+    max-width: 100%;
+    text-align: center;
+    padding: 0 28px;
+    order: 1;
+  }
+
+  .mitraa-landing2-text h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  .mitraa-landing2-text h3 {
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: #444;
+    font-weight: 400;
+  }
+
+  .mitraa-landing2-text p {
+    font-size: 14px;
+    max-width: 100%;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  /* EXPLORE button — right-aligned like the screenshot */
+  .mitraa-landing2-btn {
+    display: block;
+    margin: 20px 28px 0 auto;
+    padding: 10px 28px;
+    font-size: 14px;
+    width: fit-content;
+  }
+
+  /* VISUAL — below text, left-anchored so circle bleeds off left */
   .mitraa-landing2-visual {
-    width: 320px;
-    height: 320px;
+    order: 2;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 24px;
+    flex-shrink: 0;
   }
 
   .mitraa-landing2-circle-bg {
@@ -205,39 +245,44 @@
     top: 20px;
   }
 
-  .mitraa-landing2-text {
-    max-width: 100%;
-  }
-
-  .mitraa-landing2-text h1 {
-    font-size: 40px;
-  }
-
-  .mitraa-landing2-text h3 {
-    font-size: 20px;
-  }
-
-  .mitraa-landing2-text p {
-    font-size: 15px;
-    max-width: 100%;
-  }
-
   .mitraa-landing2-dots {
-    left: 32px;
-    bottom: 24px;
+    left: 28px;
+    bottom: 20px;
   }
 }
 
 /* ── Mobile (max 600px) ── */
 @media (max-width: 600px) {
   .mitraa-landing2-container {
-    padding: 90px 24px 100px;
-    gap: 28px;
+    padding: 72px 0 90px;
+  }
+
+  .mitraa-landing2-text {
+    padding: 0 20px;
+  }
+
+  .mitraa-landing2-text h1 {
+    font-size: 28px;
+  }
+
+  .mitraa-landing2-text h3 {
+    font-size: 16px;
+  }
+
+  .mitraa-landing2-text p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .mitraa-landing2-btn {
+    margin-right: 20px;
+    padding: 10px 24px;
+    font-size: 13px;
   }
 
   .mitraa-landing2-visual {
-    width: 260px;
     height: 260px;
+    margin-top: 20px;
   }
 
   .mitraa-landing2-circle-bg {
@@ -254,29 +299,9 @@
     top: 16px;
   }
 
-  .mitraa-landing2-text h1 {
-    font-size: 32px;
-  }
-
-  .mitraa-landing2-text h3 {
-    font-size: 17px;
-    margin-bottom: 14px;
-  }
-
-  .mitraa-landing2-text p {
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  .mitraa-landing2-btn {
-    padding: 12px 30px;
-    font-size: 14px;
-    margin-top: 20px;
-  }
-
   .mitraa-landing2-dots {
     left: 20px;
-    bottom: 20px;
+    bottom: 16px;
     gap: 8px;
   }
 
@@ -300,15 +325,14 @@
 /* ── Small mobile (max 400px) ── */
 @media (max-width: 400px) {
   .mitraa-landing2-text h1 {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .mitraa-landing2-text h3 {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .mitraa-landing2-visual {
-    width: 220px;
     height: 220px;
   }
 
