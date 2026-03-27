@@ -1,6 +1,6 @@
 import "./LandingSlide2.css";
 import { useNavigate } from "react-router-dom";
-import ButterflyAnimation from "../../components/ButterflyAnimation/ButterflyAnimation";
+import ButterflyAnimation from "../../components/Butterflyanimation/ButterflyAnimation";
 
 export default function LandingSlide2() {
 
