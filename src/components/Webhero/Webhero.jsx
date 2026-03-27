@@ -1,5 +1,5 @@
 import "./Webhero.css";
-import WebBg from "../../assets/images/webheroimg.svg"; 
+import WebBg from "../../assets/images/webhero.jpg"; 
 
 function Webhero() {
   return (

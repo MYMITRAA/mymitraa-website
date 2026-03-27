@@ -1,0 +1,60 @@
+<svg width="200" height="290" viewBox="0 0 200 290" xmlns="http://www.w3.org/2000/svg">
+  <!-- Thruster glow -->
+  <ellipse cx="100" cy="266" rx="30" ry="11" fill="#2196F3" opacity="0.3"/>
+  <!-- Thruster pod -->
+  <ellipse cx="100" cy="248" rx="36" ry="17" fill="#1E88E5"/>
+  <ellipse cx="100" cy="258" rx="20" ry="9" fill="#42A5F5"/>
+  <!-- Body -->
+  <rect x="52" y="140" width="96" height="90" rx="22" fill="white" stroke="#BBDEFB" stroke-width="2.5"/>
+  <rect x="60" y="148" width="80" height="74" rx="16" fill="#F0F8FF" stroke="#DDEEFF" stroke-width="1"/>
+  <circle cx="100" cy="162" r="14" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <circle cx="100" cy="162" r="8" fill="#2196F3"/>
+  <circle cx="100" cy="162" r="4" fill="#64B5F6"/>
+  <text x="100" y="209" text-anchor="middle" font-size="30" font-weight="800" fill="#1565C0" font-family="Arial, sans-serif">AI</text>
+  <circle cx="52" cy="160" r="7" fill="#90CAF9" stroke="#BBDEFB" stroke-width="1.5"/>
+  <circle cx="148" cy="160" r="7" fill="#90CAF9" stroke="#BBDEFB" stroke-width="1.5"/>
+  <rect x="84" y="136" width="32" height="12" rx="6" fill="#E3F2FD" stroke="#BBDEFB" stroke-width="1.5"/>
+  <!-- Head tilted (thinking) -->
+  <g transform="rotate(10, 100, 100)">
+    <rect x="46" y="54" width="108" height="88" rx="24" fill="white" stroke="#BBDEFB" stroke-width="2.5"/>
+    <rect x="56" y="64" width="88" height="68" rx="14" fill="#0D47A1"/>
+    <rect x="58" y="66" width="30" height="10" rx="5" fill="white" opacity="0.08"/>
+    <!-- Eyes looking up-right -->
+    <circle cx="76" cy="92" r="14" fill="#1565C0" stroke="#1976D2" stroke-width="1"/>
+    <circle cx="76" cy="86" r="9" fill="#42A5F5"/>
+    <circle cx="76" cy="86" r="5" fill="#90CAF9"/>
+    <circle cx="73" cy="84" r="2.5" fill="white" opacity="0.9"/>
+    <circle cx="124" cy="92" r="14" fill="#1565C0" stroke="#1976D2" stroke-width="1"/>
+    <circle cx="124" cy="86" r="9" fill="#42A5F5"/>
+    <circle cx="124" cy="86" r="5" fill="#90CAF9"/>
+    <circle cx="121" cy="84" r="2.5" fill="white" opacity="0.9"/>
+    <!-- Hmm mouth (small o) -->
+    <ellipse cx="100" cy="114" rx="8" ry="7" fill="none" stroke="#64B5F6" stroke-width="2.5"/>
+    <!-- Ear left -->
+    <rect x="28" y="76" width="20" height="32" rx="9" fill="#1E88E5" stroke="#90CAF9" stroke-width="1.5"/>
+    <rect x="32" y="84" width="8" height="16" rx="4" fill="#42A5F5"/>
+    <!-- Ear right -->
+    <rect x="152" y="76" width="20" height="32" rx="9" fill="#1E88E5" stroke="#90CAF9" stroke-width="1.5"/>
+    <rect x="160" y="84" width="8" height="16" rx="4" fill="#42A5F5"/>
+  </g>
+  <!-- Antenna with spinner -->
+  <line x1="108" y1="54" x2="120" y2="32" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="122" cy="28" r="8" fill="#2196F3" stroke="#90CAF9" stroke-width="1.5"/>
+  <circle cx="122" cy="28" r="4" fill="#64B5F6"/>
+  <line x1="114" y1="28" x2="130" y2="28" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="122" y1="20" x2="122" y2="36" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <!-- Left arm raised to chin (thinking gesture) -->
+  <rect x="148" y="138" width="22" height="48" rx="11" fill="white" stroke="#BBDEFB" stroke-width="2" transform="rotate(15,159,162)"/>
+  <circle cx="168" cy="130" r="13" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <line x1="162" y1="124" x2="162" y2="136" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="168" y1="121" x2="168" y2="137" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="174" y1="124" x2="174" y2="136" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Right arm down -->
+  <rect x="30" y="152" width="22" height="56" rx="11" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <circle cx="41" cy="216" r="13" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <!-- Thought bubbles -->
+  <circle cx="148" cy="52" r="5" fill="#BBDEFB" opacity="0.7"/>
+  <circle cx="158" cy="40" r="7" fill="#BBDEFB" opacity="0.7"/>
+  <circle cx="170" cy="26" r="10" fill="#BBDEFB" opacity="0.7"/>
+  <text x="170" y="30" text-anchor="middle" font-size="10" fill="#1565C0" font-family="Arial">?</text>
+</svg>

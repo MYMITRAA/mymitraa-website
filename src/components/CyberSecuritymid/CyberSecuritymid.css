@@ -1,0 +1,386 @@
+/* ============================================================
+   CyberSecuritymid — fully scoped BEM classes
+   ============================================================ */
+
+.cybermid__section {
+  padding: 100px 0;
+  background: #f6f7fb;
+}
+
+.cybermid__container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+.cybermid__header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.cybermid__header-title {
+  font-size: 34px;
+  font-weight: 600;
+  color: rgba(30, 30, 30, 1);
+  margin: 0 0 16px 0;
+  font-family: "Inter", sans-serif;
+}
+
+.cybermid__header-desc {
+  font-size: 15px;
+  color: #6b6b75;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 24px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Rows ── */
+.cybermid__row {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+/* ── Base Card ── */
+.cybermid__card {
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cybermid__card--large {
+  flex: 2;
+  height: 413px;
+}
+
+.cybermid__card--small {
+  flex: 1;
+  height: 413px;
+}
+
+/* ── Image Card ── */
+.cybermid__card--image .cybermid__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cybermid__card--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.80),
+    rgba(0, 0, 0, 0.15)
+  );
+  pointer-events: none;
+}
+
+.cybermid__card-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  color: white;
+  z-index: 2;
+}
+
+.cybermid__overlay-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.cybermid__overlay-desc {
+  font-size: 15px;
+  line-height: 22px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Purple Card (Core Capabilities) ── */
+.cybermid__card--purple {
+  background: rgba(115, 122, 255, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px;
+  box-sizing: border-box;
+}
+
+.cybermid__purple-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 24px 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+.cybermid__offer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cybermid__offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Inter", sans-serif;
+}
+
+.cybermid__offer-dot {
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
+
+/* ── Dark Card (Business Value) ── */
+.cybermid__card--dark {
+  background: rgba(5, 15, 60, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px;
+  box-sizing: border-box;
+}
+
+.cybermid__dark-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 28px 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+.cybermid__value-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cybermid__value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cybermid__value-stat {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(115, 122, 255, 1);
+  flex-shrink: 0;
+  min-width: 42px;
+  line-height: 1.3;
+}
+
+.cybermid__value-label {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================================================
+   Overview Banner
+   ============================================================ */
+
+.cybermid__banner {
+  display: flex;
+  gap: 80px;
+  align-items: stretch;
+  background: white;
+  border-radius: 22px;
+  padding: 52px 56px;
+  border: 0.5px solid rgba(5, 15, 60, 0.08);
+  box-sizing: border-box;
+}
+
+.cybermid__banner-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 40px;
+  border-right: 0.5px solid rgba(5, 15, 60, 0.08);
+}
+
+.cybermid__banner-tag {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(115, 122, 255, 1);
+  margin-bottom: 18px;
+  font-family: "Inter", sans-serif;
+}
+
+.cybermid__banner-heading {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(30, 30, 30, 1);
+  line-height: 1.35;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.cybermid__banner-right {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cybermid__banner-desc {
+  font-size: 15px;
+  color: #6b6b75;
+  line-height: 1.75;
+  margin: 0 0 36px 0;
+  font-family: "Inter", sans-serif;
+}
+
+.cybermid__banner-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.cybermid__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 24px;
+  background: #f6f7fb;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.cybermid__stat-num {
+  font-size: 34px;
+  font-weight: 700;
+  color: rgba(30, 30, 30, 1);
+  line-height: 1;
+  font-family: "Inter", sans-serif;
+}
+
+.cybermid__stat-num--accent {
+  color: rgba(115, 122, 255, 1);
+}
+
+.cybermid__stat-label {
+  font-size: 12px;
+  color: #6b6b75;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .cybermid__container {
+    padding: 0 28px;
+  }
+
+  .cybermid__row {
+    flex-direction: column;
+  }
+
+  .cybermid__card--large,
+  .cybermid__card--small {
+    flex: unset;
+    width: 100%;
+  }
+
+  .cybermid__card--large {
+    height: 360px;
+  }
+
+  .cybermid__card--small {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .cybermid__banner {
+    flex-direction: column;
+    gap: 36px;
+    padding: 40px 32px;
+  }
+
+  .cybermid__banner-left {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 0.5px solid rgba(5, 15, 60, 0.08);
+    padding-bottom: 32px;
+  }
+
+  .cybermid__banner-right {
+    gap: 24px;
+  }
+
+  .cybermid__banner-stats {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cybermid__container {
+    padding: 0 16px;
+  }
+
+  .cybermid__section {
+    padding: 60px 0;
+  }
+
+  .cybermid__header-title {
+    font-size: 26px;
+  }
+
+  .cybermid__banner {
+    padding: 32px 24px;
+  }
+
+  .cybermid__banner-heading {
+    font-size: 22px;
+  }
+
+  .cybermid__banner-stats {
+    flex-wrap: wrap;
+  }
+
+  .cybermid__stat {
+    flex: 1 1 calc(50% - 6px);
+    padding: 16px 20px;
+  }
+
+  .cybermid__stat-num {
+    font-size: 28px;
+  }
+
+  .cybermid__card--purple,
+  .cybermid__card--dark {
+    padding: 32px 28px;
+  }
+}

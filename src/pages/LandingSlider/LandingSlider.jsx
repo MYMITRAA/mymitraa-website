@@ -41,8 +41,8 @@ export default function Landing() {
   return (
     <div>
 
-      {/* Navbar exists but hidden during intro */}
-      <Navbar variant="landing" hidden={showIntro} />
+      {/* Pass slide index so navbar can tint itself accordingly */}
+      <Navbar variant="landing" hidden={showIntro} slideIndex={slide} />
 
       {showIntro && (
         <IntroAnimation onFinish={() => setShowIntro(false)} />

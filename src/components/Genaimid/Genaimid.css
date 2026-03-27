@@ -1,99 +1,90 @@
+/* ============================================================
+   Genaimid — fully scoped BEM classes to prevent CSS conflicts
+   ============================================================ */
 
-
-.genaimid-section {
+.genaimid__section {
   padding: 100px 0;
   background: #f6f7fb;
 }
-
-.genaimid-container {
-  width: 95%;
+ 
+.genaimid__container {
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
-  
+  padding: 0 48px;
+  box-sizing: border-box;
 }
-
-
-
-.genaimid-header {
+ 
+/* ── Header ── */
+.genaimid__header {
   text-align: center;
   margin-bottom: 70px;
 }
-
-.genaimid-header h2 {
+ 
+.genaimid__header-title {
   font-size: 34px;
   font-weight: 600;
-  color:rgba(30, 30, 30, 1);
-
-  margin-bottom: 16px;
+  color: rgba(30, 30, 30, 1);
+  margin: 0 0 16px 0;
+  font-family: "Inter", sans-serif;
 }
-
-.genaimid-header p {
-  font-size: 16px;
+ 
+.genaimid__header-desc {
+  font-size: 15px;
   color: #6b6b75;
-  max-width: 720px;
+  max-width: 560px;
   margin: 0 auto;
-  line-height: 26px;
+  line-height: 24px;
+  font-family: "Inter", sans-serif;
 }
+ 
 
 
-.genaimid-row {
+/* ── Rows ── */
+.genaimid__row {
   display: flex;
   gap: 28px;
   margin-bottom: 28px;
 }
 
-
-.card {
+/* ── Base Card ── */
+.genaimid__card {
   border-radius: 22px;
   overflow: hidden;
   position: relative;
-  padding: 0;                 
-  background: none;           
-
 }
 
-
-
-.large {
+.genaimid__card--large {
   flex: 2;
   height: 413px;
-  padding: 0;   
 }
 
-
-
-.small {
+.genaimid__card--small {
   flex: 1;
   height: 413px;
-  padding: 50px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-
-
-.image-card img {
+/* ── Image Card ── */
+.genaimid__card--image .genaimid__card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-
 }
 
-
-.image-card::after {
+.genaimid__card--image::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.2)
+    rgba(0, 0, 0, 0.80),
+    rgba(0, 0, 0, 0.15)
   );
+  pointer-events: none;
 }
 
-
-.overlay {
+.genaimid__card-overlay {
   position: absolute;
   bottom: 30px;
   left: 30px;
@@ -102,60 +93,291 @@
   z-index: 2;
 }
 
-.overlay h3 {
+.genaimid__overlay-title {
   font-size: 22px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
+  font-family: "Inter", sans-serif;
+  color: white;
 }
 
-.overlay p {
+.genaimid__overlay-desc {
   font-size: 15px;
   line-height: 22px;
-}
-
-
-
-.purple-card {
- background: rgba(115, 122, 255, 1);
- color:rgba(255, 255, 255, 1);
-
-}
-
-.purple-card h3 {
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  font-style: semi-bold;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
   font-family: "Inter", sans-serif;
-  line-height: 100%;
-  position: relative;
-  top: 100px;
 }
 
-.purple-card p {
-  font-size: 22px;
-  line-height: 100%;
+/* ── Purple Card (What We Offer) ── */
+.genaimid__card--purple {
+  background: rgba(115, 122, 255, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px;
+  box-sizing: border-box;
+}
+
+.genaimid__purple-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 24px 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+.genaimid__offer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.genaimid__offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
   font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
   font-family: "Inter", sans-serif;
-  position: relative;
-  top: 100px;
-
 }
 
-/* ================= RESPONSIVE ================= */
+.genaimid__offer-dot {
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
 
+/* ── Dark Card (Business Value) ── */
+.genaimid__card--dark {
+  background: rgba(5, 15, 60, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px;
+  box-sizing: border-box;
+}
+
+.genaimid__dark-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 28px 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+.genaimid__value-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.genaimid__value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.genaimid__value-stat {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(115, 122, 255, 1);
+  flex-shrink: 0;
+  min-width: 42px;
+  line-height: 1.3;
+}
+
+.genaimid__value-label {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================================================
+   Overview Banner — Redesigned
+   ============================================================ */
+
+.genaimid__banner {
+  display: flex;
+  gap: 80px;
+  align-items: stretch;
+  background: white;
+  border-radius: 22px;
+  padding: 52px 56px;
+  border: 0.5px solid rgba(5, 15, 60, 0.08);
+  box-sizing: border-box;
+}
+
+/* Left half — tag + heading */
+.genaimid__banner-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 40px;
+  border-right: 0.5px solid rgba(5, 15, 60, 0.08);
+}
+
+.genaimid__banner-tag {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(115, 122, 255, 1);
+  margin-bottom: 18px;
+  font-family: "Inter", sans-serif;
+}
+
+.genaimid__banner-heading {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(30, 30, 30, 1);
+  line-height: 1.35;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* Right half — desc + stat pills */
+.genaimid__banner-right {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.genaimid__banner-desc {
+  font-size: 15px;
+  color: #6b6b75;
+  line-height: 1.75;
+  margin: 0 0 36px 0;
+  font-family: "Inter", sans-serif;
+}
+
+.genaimid__banner-stats {
+  display: flex;
+  gap: 12px;
+}
+
+/* Individual stat pill */
+.genaimid__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 24px;
+  background: #f6f7fb;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.genaimid__stat-num {
+  font-size: 34px;
+  font-weight: 700;
+  color: rgba(30, 30, 30, 1);
+  line-height: 1;
+  font-family: "Inter", sans-serif;
+}
+
+.genaimid__stat-num--accent {
+  color: rgba(115, 122, 255, 1);
+}
+
+.genaimid__stat-label {
+  font-size: 12px;
+  color: #6b6b75;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Responsive ── */
 @media (max-width: 1100px) {
-  .genaimid-container {
-    width: 95%;
-  }
-
-  .genaimid-row {
+  .genaimid__row {
     flex-direction: column;
   }
 
-  .large,
-  .small {
+  .genaimid__card--large,
+  .genaimid__card--small {
     flex: unset;
     width: 100%;
+  }
+
+  .genaimid__card--large {
+    height: 360px;
+  }
+
+  .genaimid__card--small {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .genaimid__banner {
+    flex-direction: column;
+    gap: 36px;
+    padding: 40px 32px;
+  }
+
+  .genaimid__banner-left {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 0.5px solid rgba(5, 15, 60, 0.08);
+    padding-bottom: 32px;
+  }
+
+  .genaimid__banner-right {
+    gap: 24px;
+  }
+
+  .genaimid__banner-stats {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .genaimid__section {
+    padding: 60px 0;
+  }
+
+  .genaimid__header-title {
+    font-size: 26px;
+  }
+
+  .genaimid__banner {
+    padding: 32px 24px;
+  }
+
+  .genaimid__banner-heading {
+    font-size: 22px;
+  }
+
+  .genaimid__banner-stats {
+    flex-wrap: wrap;
+  }
+
+  .genaimid__stat {
+    flex: 1 1 calc(50% - 6px);
+    padding: 16px 20px;
+  }
+
+  .genaimid__stat-num {
+    font-size: 28px;
+  }
+
+  .genaimid__card--purple,
+  .genaimid__card--dark {
+    padding: 32px 28px;
   }
 }

@@ -1,5 +1,6 @@
 import "./LandingSlide1.css";
-import robot from "../../assets/images/landing1robot.svg";
+import RobotAnimation from "../../components/RobotAnimation/RobotAnimation.jsx";   
+
 import { useNavigate } from "react-router-dom";
 
 export default function LandingSlide1() {
@@ -35,9 +36,9 @@ export default function LandingSlide1() {
 
         </div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT — ANIMATED ROBOT */}
         <div className="mitraa-landing1-image">
-          <img src={robot} alt="AI Robot" />
+          <RobotAnimation />
         </div>
 
       </div>

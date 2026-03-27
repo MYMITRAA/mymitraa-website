@@ -1,0 +1,386 @@
+/* ============================================================
+   AIforSmallBusinessmid — fully scoped BEM classes
+   ============================================================ */
+
+.aism__section {
+  padding: 100px 0;
+  background: #f6f7fb;
+}
+
+.aism__container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+.aism__header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.aism__header-title {
+  font-size: 34px;
+  font-weight: 600;
+  color: rgba(30, 30, 30, 1);
+  margin: 0 0 16px 0;
+  font-family: "Inter", sans-serif;
+}
+
+.aism__header-desc {
+  font-size: 15px;
+  color: #6b6b75;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 24px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Rows ── */
+.aism__row {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+/* ── Base Card ── */
+.aism__card {
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+}
+
+.aism__card--large {
+  flex: 2;
+  height: 413px;
+}
+
+.aism__card--small {
+  flex: 1;
+  height: 413px;
+}
+
+/* ── Image Card ── */
+.aism__card--image .aism__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.aism__card--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.80),
+    rgba(0, 0, 0, 0.15)
+  );
+  pointer-events: none;
+}
+
+.aism__card-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  color: white;
+  z-index: 2;
+}
+
+.aism__overlay-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+.aism__overlay-desc {
+  font-size: 15px;
+  line-height: 22px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Purple Card (Our Solutions) ── */
+.aism__card--purple {
+  background: rgba(115, 122, 255, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px;
+  box-sizing: border-box;
+}
+
+.aism__purple-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 24px 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+.aism__offer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.aism__offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Inter", sans-serif;
+}
+
+.aism__offer-dot {
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
+
+/* ── Dark Card (Why It Matters) ── */
+.aism__card--dark {
+  background: rgba(5, 15, 60, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px;
+  box-sizing: border-box;
+}
+
+.aism__dark-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 28px 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.2;
+}
+
+.aism__value-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aism__value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.aism__value-stat {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(115, 122, 255, 1);
+  flex-shrink: 0;
+  min-width: 42px;
+  line-height: 1.3;
+}
+
+.aism__value-label {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================================================
+   Overview Banner
+   ============================================================ */
+
+.aism__banner {
+  display: flex;
+  gap: 80px;
+  align-items: stretch;
+  background: white;
+  border-radius: 22px;
+  padding: 52px 56px;
+  border: 0.5px solid rgba(5, 15, 60, 0.08);
+  box-sizing: border-box;
+}
+
+.aism__banner-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 40px;
+  border-right: 0.5px solid rgba(5, 15, 60, 0.08);
+}
+
+.aism__banner-tag {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(115, 122, 255, 1);
+  margin-bottom: 18px;
+  font-family: "Inter", sans-serif;
+}
+
+.aism__banner-heading {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(30, 30, 30, 1);
+  line-height: 1.35;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.aism__banner-right {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aism__banner-desc {
+  font-size: 15px;
+  color: #6b6b75;
+  line-height: 1.75;
+  margin: 0 0 36px 0;
+  font-family: "Inter", sans-serif;
+}
+
+.aism__banner-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.aism__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 24px;
+  background: #f6f7fb;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.aism__stat-num {
+  font-size: 34px;
+  font-weight: 700;
+  color: rgba(30, 30, 30, 1);
+  line-height: 1;
+  font-family: "Inter", sans-serif;
+}
+
+.aism__stat-num--accent {
+  color: rgba(115, 122, 255, 1);
+}
+
+.aism__stat-label {
+  font-size: 12px;
+  color: #6b6b75;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .aism__container {
+    padding: 0 28px;
+  }
+
+  .aism__row {
+    flex-direction: column;
+  }
+
+  .aism__card--large,
+  .aism__card--small {
+    flex: unset;
+    width: 100%;
+  }
+
+  .aism__card--large {
+    height: 360px;
+  }
+
+  .aism__card--small {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .aism__banner {
+    flex-direction: column;
+    gap: 36px;
+    padding: 40px 32px;
+  }
+
+  .aism__banner-left {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 0.5px solid rgba(5, 15, 60, 0.08);
+    padding-bottom: 32px;
+  }
+
+  .aism__banner-right {
+    gap: 24px;
+  }
+
+  .aism__banner-stats {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .aism__container {
+    padding: 0 16px;
+  }
+
+  .aism__section {
+    padding: 60px 0;
+  }
+
+  .aism__header-title {
+    font-size: 26px;
+  }
+
+  .aism__banner {
+    padding: 32px 24px;
+  }
+
+  .aism__banner-heading {
+    font-size: 22px;
+  }
+
+  .aism__banner-stats {
+    flex-wrap: wrap;
+  }
+
+  .aism__stat {
+    flex: 1 1 calc(50% - 6px);
+    padding: 16px 20px;
+  }
+
+  .aism__stat-num {
+    font-size: 28px;
+  }
+
+  .aism__card--purple,
+  .aism__card--dark {
+    padding: 32px 28px;
+  }
+}

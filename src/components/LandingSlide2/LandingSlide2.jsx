@@ -1,6 +1,6 @@
 import "./LandingSlide2.css";
-import butterfly from "../../assets/images/landingpage2butterfly.svg";
 import { useNavigate } from "react-router-dom";
+import ButterflyAnimation from "../../components/ButterflyAnimation/ButterflyAnimation";
 
 export default function LandingSlide2() {
 
@@ -19,11 +19,8 @@ export default function LandingSlide2() {
 
           <div className="mitraa-landing2-vertical-bar"></div>
 
-          <img
-            src={butterfly}
-            alt="Butterfly"
-            className="mitraa-landing2-butterfly"
-          />
+          {/* BUTTERFLY ANIMATION — replaces static butterfly img */}
+          <ButterflyAnimation />
 
         </div>
 

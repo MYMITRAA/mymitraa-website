@@ -1,20 +1,24 @@
 import "./Genaihero.css";
-import genaiBg from "../../assets/images/genaiheroimg.svg"; 
+import genaiBg from "../../assets/images/genaiheroimg.svg";
 
 function Genaihero() {
   return (
     <section
-      className="genai-hero"
+      className="genaihero__section"
       style={{ backgroundImage: `url(${genaiBg})` }}
     >
-      <div className="genai-overlay"></div>
+      <div className="genaihero__overlay"></div>
 
-      <div className="genai-content">
-        <div className="genai-line"></div>
+      <div className="genaihero__content">
+        <div className="genaihero__line"></div>
 
-        <div className="genai-text">
-          <h1>Generative AI Solutions</h1>
-          <p>Turning data and ideas into intelligent outcomes</p>
+        <div className="genaihero__text">
+          <span className="genaihero__tag">AI &amp; Automation</span>
+          <h1 className="genaihero__title">Generative AI Solutions</h1>
+          <p className="genaihero__subtitle">
+            Unlock the next generation of intelligent automation — turning
+            data and ideas into intelligent outcomes at scale.
+          </p>
         </div>
       </div>
     </section>

@@ -56,10 +56,10 @@ function Footer() {
             <ul>
               <li><Link to="/genai">Generative AI Solutions</Link></li>
               <li><Link to="/web">Web & Application Development</Link></li>
-              <li>Blockchain (Web3)</li>
-              <li>Enterprise Agile Development</li>
-              <li>Cyber Security</li>
-              <li>Enterprise Technology & Performance</li>
+               <li><Link to="/blockchain">Blockchain (Web3)</Link></li>
+               <li><Link to="/enterpriseagiledevelopment">Enterprise Agile Development</Link></li>
+               <li><Link to="/cybersecurity">Cyber Security</Link></li>
+               <li><Link to="/enterprisetech">Enterprise Technology & Performance</Link></li>
             </ul>
           </div>
 
@@ -67,9 +67,9 @@ function Footer() {
           <div className="footer-column">
             <h4>Quick Links</h4>
             <ul>
-              <li>Portfolio</li>
-              <li>Case Study</li>
-              <li>Resource Argumentation</li>
+                <li><Link to="/portfolio">Portfolio</Link></li>
+               <li><Link to="/casestudy">Case Study</Link></li>
+               <li><Link to="/careers">Resource Argumentation</Link></li>
               <li><Link to="/careers">Careers</Link></li>
               <li><Link to="/news">News & Events</Link></li>
             </ul>

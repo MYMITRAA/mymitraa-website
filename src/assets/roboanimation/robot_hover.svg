@@ -1,0 +1,50 @@
+<svg width="200" height="280" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Thruster glow -->
+  <ellipse cx="100" cy="262" rx="32" ry="12" fill="#2196F3" opacity="0.35"/>
+  <!-- Thruster pod -->
+  <ellipse cx="100" cy="244" rx="36" ry="18" fill="#1E88E5"/>
+  <ellipse cx="100" cy="255" rx="22" ry="10" fill="#42A5F5"/>
+  <!-- Body -->
+  <rect x="52" y="138" width="96" height="90" rx="22" fill="white" stroke="#BBDEFB" stroke-width="2.5"/>
+  <rect x="60" y="146" width="80" height="74" rx="16" fill="#F0F8FF" stroke="#DDEEFF" stroke-width="1"/>
+  <!-- Chest ring -->
+  <circle cx="100" cy="160" r="14" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+  <circle cx="100" cy="160" r="8" fill="#2196F3"/>
+  <circle cx="100" cy="160" r="4" fill="#64B5F6"/>
+  <text x="100" y="207" text-anchor="middle" font-size="30" font-weight="800" fill="#1565C0" font-family="Arial, sans-serif">AI</text>
+  <circle cx="52" cy="158" r="7" fill="#90CAF9" stroke="#BBDEFB" stroke-width="1.5"/>
+  <circle cx="148" cy="158" r="7" fill="#90CAF9" stroke="#BBDEFB" stroke-width="1.5"/>
+  <rect x="84" y="134" width="32" height="12" rx="6" fill="#E3F2FD" stroke="#BBDEFB" stroke-width="1.5"/>
+  <!-- Head - straight on, neutral -->
+  <rect x="46" y="50" width="108" height="92" rx="24" fill="white" stroke="#BBDEFB" stroke-width="2.5"/>
+  <rect x="56" y="60" width="88" height="72" rx="14" fill="#0D47A1"/>
+  <rect x="58" y="62" width="34" height="12" rx="6" fill="white" opacity="0.08"/>
+  <!-- Neutral forward-facing eyes -->
+  <circle cx="76" cy="90" r="14" fill="#1565C0" stroke="#1976D2" stroke-width="1"/>
+  <circle cx="76" cy="90" r="9" fill="#42A5F5"/>
+  <circle cx="76" cy="90" r="5" fill="#90CAF9"/>
+  <circle cx="72" cy="87" r="2.5" fill="white" opacity="0.9"/>
+  <circle cx="124" cy="90" r="14" fill="#1565C0" stroke="#1976D2" stroke-width="1"/>
+  <circle cx="124" cy="90" r="9" fill="#42A5F5"/>
+  <circle cx="124" cy="90" r="5" fill="#90CAF9"/>
+  <circle cx="120" cy="87" r="2.5" fill="white" opacity="0.9"/>
+  <!-- Gentle smile -->
+  <path d="M80 116 Q100 126 120 116" fill="none" stroke="#64B5F6" stroke-width="3" stroke-linecap="round"/>
+  <!-- Ear left -->
+  <rect x="28" y="72" width="20" height="32" rx="9" fill="#1E88E5" stroke="#90CAF9" stroke-width="1.5"/>
+  <rect x="32" y="80" width="8" height="16" rx="4" fill="#42A5F5"/>
+  <!-- Ear right -->
+  <rect x="152" y="72" width="20" height="32" rx="9" fill="#1E88E5" stroke="#90CAF9" stroke-width="1.5"/>
+  <rect x="160" y="80" width="8" height="16" rx="4" fill="#42A5F5"/>
+  <!-- Both arms at sides (neutral) -->
+  <rect x="22" y="148" width="22" height="58" rx="11" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <circle cx="33" cy="214" r="13" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <line x1="27" y1="208" x2="27" y2="220" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="33" y1="205" x2="33" y2="221" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="39" y1="208" x2="39" y2="220" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="156" y="148" width="22" height="58" rx="11" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <circle cx="167" cy="214" r="13" fill="white" stroke="#BBDEFB" stroke-width="2"/>
+  <line x1="161" y1="208" x2="161" y2="220" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="167" y1="205" x2="167" y2="221" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="173" y1="208" x2="173" y2="220" stroke="#90CAF9" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

@@ -62,7 +62,8 @@ function Services() {
                 for up to 300 employees.
               </p>
 
-              <button className="feature-btn">
+              <button className="feature-btn" 
+              onClick={() => navigate("/aiforsmallbusiness")}>
                 Learn more
               </button>
             </div>
@@ -106,7 +107,7 @@ function Services() {
               </p>
             </div>
 
-            <button className="service-btn">
+            <button className="service-btn" onClick={() => navigate("/enterpriseagiledevelopment")}>
               Learn more
             </button>
           </div>
@@ -126,7 +127,10 @@ function Services() {
               </p>
             </div>
 
-            <button className="service-btn">
+             <button
+              className="service-btn"
+              onClick={() => navigate("/cybersecurity")}
+            >
               Learn more
             </button>
           </div>
@@ -146,7 +150,7 @@ function Services() {
               </p>
             </div>
 
-            <button className="service-btn">
+            <button className="service-btn"  onClick={() => navigate("/blockchain")}>
               Learn more
             </button>
           </div>
@@ -165,8 +169,7 @@ function Services() {
                 scale smarter, and run lighter.
               </p>
             </div>
-
-            <button className="service-btn">
+            <button className="service-btn"   onClick={() => navigate("/enterprisetech")}  >
               Learn more
             </button>
           </div>

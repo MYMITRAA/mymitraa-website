@@ -1,0 +1,163 @@
+/* RESET */
+body {
+  margin: 0;
+}
+
+/* PAGE BACKGROUND — exact lavender from screenshot */
+.cs-page {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    180deg,
+    #cdd5f3 0%,
+    #d8dff5 40%,
+    #dce3f8 100%
+  );
+}
+
+/* HERO */
+.cs-hero {
+  text-align: center;
+  padding: 90px 20px 50px;
+}
+
+.cs-subtitle {
+  font-size: 20px;
+  color: #4a4a6a;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.cs-title {
+  font-size: 90px;
+  font-weight: 900;
+  color: #111827;
+  margin: 10px 0 24px;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.cs-desc {
+  max-width: 640px;
+  margin: auto;
+  font-size: 17px;
+  color: #4a4e6a;
+  line-height: 1.7;
+}
+
+/* GRID — reduced horizontal gap */
+.cs-grid {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 30px 16px 60px;
+  box-sizing: border-box;
+}
+
+/* ITEM */
+.cs-item {
+  width: 100%;
+}
+
+/* CARD — outer lavender card */
+.cs-card {
+  width: 100%;
+  background: rgba(220, 228, 255, 0.6);
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid rgba(180, 195, 255, 0.5);
+  box-shadow: 0 2px 12px rgba(100, 120, 220, 0.06);
+}
+
+/* IMAGE BOX — inner white box, image fills it */
+.cs-image-box {
+  width: 100%;
+  height: 300px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(200, 210, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.cs-image-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(100, 120, 220, 0.15);
+}
+
+/* IMAGE — fills the box */
+.cs-image-box img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.cs-image-box:hover img {
+  transform: scale(1.04);
+}
+
+/* TITLE — bold, left-aligned, outside card */
+.cs-title-text {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 18px 0 14px;
+  color: #111827;
+  line-height: 1.5;
+}
+
+/* BUTTON — solid blue, rounded */
+.cs-download-btn {
+  padding: 12px 34px;
+  background: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 14px rgba(74, 108, 247, 0.35);
+  transition: all 0.25s ease;
+}
+
+.cs-download-btn:hover {
+  background: #3a5ae8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(74, 108, 247, 0.45);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .cs-title {
+    font-size: 65px;
+  }
+
+  .cs-grid {
+    gap: 20px;
+    padding: 20px 12px 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 12px 40px;
+  }
+
+  .cs-title {
+    font-size: 48px;
+  }
+
+  .cs-image-box {
+    height: 240px;
+  }
+}

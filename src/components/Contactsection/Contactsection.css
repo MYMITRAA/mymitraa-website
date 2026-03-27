@@ -1,3 +1,5 @@
+/* ================= CONTACT SECTION ================= */
+
 .contact-section {
   width: 100%;
   padding: 120px 0;
@@ -13,14 +15,14 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 120px;
- 
-
+  box-sizing: border-box;
 }
 
-
+/* ================= LEFT ================= */
 
 .contact-left {
   width: 50%;
+  flex-shrink: 0;
 }
 
 .contact-title {
@@ -53,18 +55,31 @@
   gap: 14px;
   font-size: 16px;
   color: #0e1726;
+  font-family: "Inter", sans-serif;
 }
 
+.info-item img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
 
+/* ================= RIGHT ================= */
 
 .contact-right {
   width: 45%;
+  flex-shrink: 0;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
@@ -87,8 +102,16 @@
   border-radius: 12px;
   border: 1px solid #E0E0E0;
   background: #FFFFFF;
-
   font-size: 14px;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #514AD7;
 }
 
 .form-group textarea {
@@ -97,10 +120,16 @@
   resize: none;
 }
 
+/* ================= PHONE GROUP ================= */
 
 .phone-group {
   display: flex;
   gap: 12px;
+  align-items: center;
+}
+
+.phone-group input {
+  flex: 1;
 }
 
 .country-code {
@@ -111,9 +140,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   cursor: pointer;
+  flex-shrink: 0;
+  font-size: 14px;
 }
 
+.country-code img {
+  width: 20px;
+  height: 14px;
+}
+
+/* ================= FORM BOTTOM ================= */
 
 .form-bottom {
   display: flex;
@@ -126,6 +164,10 @@
   font-size: 14px;
   cursor: pointer;
   color: #1c1c1c;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .attach span {
@@ -135,7 +177,7 @@
 .proposal-btn {
   width: 155.56px;
   height: 40px;
-  padding: 0px;
+  padding: 0;
   border-radius: 44px;
   border: none;
   background: #514AD7;
@@ -146,142 +188,178 @@
   letter-spacing: -0.6px;
   font-family: "Inter", sans-serif;
   cursor: pointer;
-  font-style: medium;
   transition: 0.3s;
+  white-space: nowrap;
 }
 
 .proposal-btn:hover {
   opacity: 0.9;
 }
 
-
 /* ================= TABLET ================= */
 
-@media (max-width:1024px){
-
-.contact-container{
-  padding:0 30px;
-  gap:60px;
+@media (max-width: 1280px) {
+  .contact-container {
+    gap: 80px;
+    padding: 0 40px;
+  }
 }
 
-.contact-title{
-  font-size:36px;
-  line-height:46px;
-}
+@media (max-width: 1024px) {
+  .contact-section {
+    padding: 80px 0;
+  }
 
-.contact-left{
-  width:50%;
-}
+  .contact-container {
+    padding: 0 30px;
+    gap: 48px;
+  }
 
-.contact-right{
-  width:50%;
-}
+  .contact-title {
+    font-size: 34px;
+    line-height: 44px;
+  }
 
+  .contact-left {
+    width: 48%;
+  }
+
+  .contact-right {
+    width: 52%;
+  }
 }
 
 /* ================= MOBILE ================= */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 64px 0;
+  }
 
-.contact-section{
-  padding:80px 0;
+  .contact-container {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 44px;
+    box-sizing: border-box;
+  }
+
+  .contact-left,
+  .contact-right {
+    width: 100%;
+  }
+
+  .contact-left {
+    text-align: left;
+  }
+
+  .contact-title {
+    font-size: 26px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+
+  .contact-subtext {
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 28px;
+    max-width: 100%;
+  }
+
+  .contact-info {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .info-item {
+    font-size: 15px;
+  }
+
+  .contact-form {
+    gap: 18px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .form-group textarea {
+    height: 110px;
+  }
+
+  .phone-group {
+    gap: 10px;
+  }
+
+  .country-code {
+    width: 70px;
+    height: 48px;
+  }
+
+  .form-bottom {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .attach {
+    justify-content: flex-start;
+  }
+
+  .proposal-btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 44px;
+  }
 }
 
-.contact-container{
-  flex-direction:column;
-  padding:0 24px;
-  gap:50px;
-}
+/* ================= SMALL MOBILE ================= */
 
-/* FULL WIDTH */
-.contact-left,
-.contact-right{
-  width:100%;
-}
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 52px 0;
+  }
 
-/* CENTER TEXT */
-.contact-left{
-  text-align:center;
-}
+  .contact-container {
+    padding: 0 16px;
+  }
 
-.contact-title{
-  font-size:28px;
-  line-height:38px;
-}
+  .contact-title {
+    font-size: 22px;
+    line-height: 30px;
+  }
 
-.contact-subtext{
-  margin:0 auto 30px auto;
-}
+  .contact-subtext {
+    font-size: 14px;
+    line-height: 22px;
+  }
 
-/* CONTACT INFO */
-.contact-info{
-  align-items:center;
-}
+  .info-item {
+    font-size: 14px;
+  }
 
-/* FORM */
-.contact-form{
-  gap:20px;
-}
+  .form-group label {
+    font-size: 13px;
+  }
 
-.form-group input,
-.form-group textarea{
-  height:48px;
-}
+  .form-group input,
+  .form-group textarea {
+    font-size: 13px;
+    height: 46px;
+  }
 
-.form-group textarea{
-  height:110px;
-}
+  .form-group textarea {
+    height: 100px;
+  }
 
-/* PHONE INPUT */
-.phone-group{
-  gap:10px;
-}
+  .country-code {
+    width: 64px;
+    height: 46px;
+    font-size: 13px;
+  }
 
-.country-code{
-  width:70px;
-}
-
-/* BUTTON + ATTACH */
-.form-bottom{
-  flex-direction:column;
-  gap:20px;
-  align-items:flex-start;
-}
-
-.proposal-btn{
-  width:100%;
-  height:44px;
-}
-
-}
-
-@media (max-width:480px){
-
-.contact-container{
-  padding:0 20px;
-}
-
-.contact-title{
-  font-size:24px;
-  line-height:32px;
-}
-
-.contact-subtext{
-  font-size:14px;
-  line-height:22px;
-}
-
-.info-item{
-  font-size:14px;
-}
-
-.form-group label{
-  font-size:13px;
-}
-
-.form-group input,
-.form-group textarea{
-  font-size:13px;
-}
-
+  .proposal-btn {
+    font-size: 13px;
+  }
 }

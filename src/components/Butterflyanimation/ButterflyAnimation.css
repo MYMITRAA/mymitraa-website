@@ -1,0 +1,258 @@
+/* ============================================================
+   ButterflyAnimation — ultra realistic wing flap
+   
+   FIXES FROM RECORDING:
+   1. Wings were asymmetric — both now share identical timing & easing
+   2. Jerky motion — replaced linear keyframe jumps with cubic-bezier
+      easing that mimics real insect muscle deceleration
+   3. Over-rotation crushing wings flat — capped rotateY to ±52deg
+      so perspective foreshortening stays natural
+   4. No sync between wings — both now start at 0s delay so they
+      move as a perfectly mirrored pair
+   5. Added scaleY variation to simulate wing membrane flex / bowing
+   6. Float uses separate animation so it never fights the flap timing
+   ============================================================ */
+
+/* ── Outer container ── */
+.butterfly-container {
+  position: absolute;
+  left: 60px;
+  top: 40px;
+  width: 540px;
+  height: 520px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Tree Branch ── */
+.butterfly-branch {
+  position: absolute;
+  left: -30px;
+  bottom: 20px;
+  width: 460px;
+  z-index: 1;
+  filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.12));
+}
+
+/* ── Butterfly wrapper — floats as one unit ── */
+.butterfly-wrapper {
+  position: absolute;
+  left: 80px;
+  top: 60px;
+  width: 280px;
+  height: 280px;
+  z-index: 3;
+  animation:
+    butterflyFloat 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite,
+    butterflyDrift  9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* ============================================================
+   WING CLIPPING SYSTEM
+   ============================================================ */
+
+.butterfly-wing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+}
+
+/* ── LEFT WING ──
+   Clips to the left 52% of the image.
+   transform-origin is at the right edge of that clip = body join.
+   rotateY goes NEGATIVE to open (wing swings toward viewer).
+   Uses cubic-bezier that eases out fast at peak (like real muscle snap)
+   then decelerates back.
+*/
+.butterfly-wing--left {
+  clip-path: inset(0 48% 0 0);
+  transform-origin: 52% 50%;
+  animation: flapLeft 0.95s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  filter: drop-shadow(-3px 2px 6px rgba(80, 40, 160, 0.2));
+  will-change: transform;
+}
+
+/* ── RIGHT WING ──
+   Exact mirror of left. Same duration, same easing, zero delay.
+   rotateY goes POSITIVE to open.
+*/
+.butterfly-wing--right {
+  clip-path: inset(0 0 0 48%);
+  transform-origin: 48% 50%;
+  animation: flapRight 0.95s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  filter: drop-shadow(3px 2px 6px rgba(80, 40, 160, 0.2));
+  will-change: transform;
+}
+
+/* ── BODY STRIP — center 14%, always flat, z above wings ── */
+.butterfly-body-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  clip-path: inset(0 43% 0 43%);
+  z-index: 4;
+}
+
+/* ── All images identical size & position ── */
+.butterfly-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ============================================================
+   KEYFRAMES — Realistic Wing Physics
+
+   Real butterfly wing motion profile:
+   - FAST snap outward (0% → 30%) — muscle power stroke
+   - HOLD at peak open very briefly (30% → 40%) — glide moment
+   - FAST snap back inward (40% → 65%) — return stroke
+   - OVERSHOOT slightly past closed (65% → 75%) — elastic rebound
+   - SETTLE back to rest (75% → 100%) — damping
+
+   scaleY variation simulates membrane flex:
+   - Wings bow slightly convex at peak open (scaleY 1.03)
+   - Wings compress slightly at snap-back (scaleY 0.97)
+
+   rotateY capped at ±52deg to keep foreshortening natural.
+   Both left and right are PERFECT mirrors — identical values, opposite sign.
+   ============================================================ */
+
+@keyframes flapLeft {
+  0%   {
+    transform: perspective(700px) rotateY(0deg)   scaleY(1.00);
+  }
+  15%  {
+    transform: perspective(700px) rotateY(-28deg) scaleY(1.01);
+  }
+  30%  {
+    transform: perspective(700px) rotateY(-50deg) scaleY(1.03); /* peak open */
+  }
+  40%  {
+    transform: perspective(700px) rotateY(-52deg) scaleY(1.03); /* brief hold */
+  }
+  58%  {
+    transform: perspective(700px) rotateY(-10deg) scaleY(0.98); /* fast return */
+  }
+  68%  {
+    transform: perspective(700px) rotateY(6deg)   scaleY(0.97); /* overshoot */
+  }
+  80%  {
+    transform: perspective(700px) rotateY(-3deg)  scaleY(0.99); /* settle */
+  }
+  100% {
+    transform: perspective(700px) rotateY(0deg)   scaleY(1.00);
+  }
+}
+
+@keyframes flapRight {
+  0%   {
+    transform: perspective(700px) rotateY(0deg)   scaleY(1.00);
+  }
+  15%  {
+    transform: perspective(700px) rotateY(28deg)  scaleY(1.01);
+  }
+  30%  {
+    transform: perspective(700px) rotateY(50deg)  scaleY(1.03);
+  }
+  40%  {
+    transform: perspective(700px) rotateY(52deg)  scaleY(1.03);
+  }
+  58%  {
+    transform: perspective(700px) rotateY(10deg)  scaleY(0.98);
+  }
+  68%  {
+    transform: perspective(700px) rotateY(-6deg)  scaleY(0.97);
+  }
+  80%  {
+    transform: perspective(700px) rotateY(3deg)   scaleY(0.99);
+  }
+  100% {
+    transform: perspective(700px) rotateY(0deg)   scaleY(1.00);
+  }
+}
+
+/* ── FLOAT — gentle organic bob, separate from flap so they never conflict ── */
+@keyframes butterflyFloat {
+  0%   { transform: translateY(0px)   rotate(0deg);    }
+  20%  { transform: translateY(-6px)  rotate(-1deg);   }
+  45%  { transform: translateY(-12px) rotate(0.5deg);  }
+  65%  { transform: translateY(-7px)  rotate(1deg);    }
+  85%  { transform: translateY(-2px)  rotate(-0.5deg); }
+  100% { transform: translateY(0px)   rotate(0deg);    }
+}
+
+/* ── DRIFT — ultra slow horizontal sway ── */
+@keyframes butterflyDrift {
+  0%   { margin-left: 0px;  }
+  25%  { margin-left: 5px;  }
+  60%  { margin-left: -3px; }
+  100% { margin-left: 0px;  }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1100px) {
+  .butterfly-container {
+    left: 20px;
+    top: 60px;
+    width: 420px;
+    height: 420px;
+  }
+
+  .butterfly-wrapper {
+    left: 50px;
+    top: 40px;
+    width: 220px;
+    height: 220px;
+  }
+
+  .butterfly-wing,
+  .butterfly-body-strip,
+  .butterfly-img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .butterfly-branch {
+    width: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .butterfly-container {
+    left: 10px;
+    top: 30px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .butterfly-wrapper {
+    left: 30px;
+    top: 20px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .butterfly-wing,
+  .butterfly-body-strip,
+  .butterfly-img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .butterfly-branch {
+    width: 280px;
+  }
+}

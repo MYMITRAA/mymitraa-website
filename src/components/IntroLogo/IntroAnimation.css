@@ -1,99 +1,158 @@
-.intro-screen{
+/* ================= INTRO SCREEN ================= */
 
-  position:fixed;
-  top:0;
-  left:0;
-
-  width:100%;
-  height:100vh;
-
-  background:#2b0c63;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  z-index:5000;
-
-  transition:background 0.8s ease;
-
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #2b0c63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  transition: background 0.8s ease;
 }
 
-.logo-row{
+/* ================= LOGO ROW ================= */
 
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  transform:scale(1.9);
-
-  transition:transform 1.3s cubic-bezier(.7,0,.2,1);
-
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: scale(1.9);
+  transition: transform 1.3s cubic-bezier(.7, 0, .2, 1);
 }
 
-/* ICON */
+/* ================= ICON ================= */
 
-.logo-icon{
-
-  height:70px;
-
-  opacity:0;
-  transform:translateX(-40px);
-
-  transition:all .5s ease;
-
+.logo-icon {
+  height: 70px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all .5s ease;
 }
 
-.logo-icon.show{
-
-  opacity:1;
-  transform:translateX(0);
-
+.logo-icon.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* LETTERS */
+/* ================= LETTERS ================= */
 
-.logo-letter{
-
-  height:45px;
-
-  opacity:0;
-  transform:translateX(-30px);
-
-  transition:all .5s ease;
-
+.logo-letter {
+  height: 45px;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all .5s ease;
 }
 
-.logo-letter.show{
-
-  opacity:1;
-  transform:translateX(0);
-
+.logo-letter.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* MOVE TO NAVBAR */
+/* ================= MOVE TO NAVBAR (DESKTOP) ================= */
 
-.intro-screen.move .logo-row{
-
-  transform:
-  translate(-43vw,-40vh)
-  scale(0.42);
-
+.intro-screen.move .logo-row {
+  transform: translate(-43vw, -40vh) scale(0.42);
 }
 
-/* FADE OUT ANIMATION LOGO */
+/* ================= FADE OUT ================= */
 
-.intro-screen.fade .logo-row{
-
-  opacity:0;
-  transition:opacity .5s ease;
-
+.intro-screen.fade .logo-row {
+  opacity: 0;
+  transition: opacity .5s ease;
 }
 
-/* REMOVE BACKGROUND AFTER MOVE */
+/* ================= REMOVE BG AFTER MOVE ================= */
 
-.intro-screen.move{
+.intro-screen.move {
+  background: transparent;
+}
 
-  background:transparent;
+/* ================= TABLET ================= */
 
+@media (max-width: 1024px) {
+  .logo-row {
+    transform: scale(1.6);
+    gap: 8px;
+  }
+
+  .logo-icon {
+    height: 60px;
+  }
+
+  .logo-letter {
+    height: 38px;
+  }
+
+  .intro-screen.move .logo-row {
+    transform: translate(-40vw, -42vh) scale(0.44);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .logo-row {
+    transform: scale(1.3);
+    gap: 6px;
+  }
+
+  .logo-icon {
+    height: 48px;
+  }
+
+  .logo-letter {
+    height: 30px;
+  }
+
+  /* On mobile the navbar logo sits top-left —
+     translate it there from center */
+  .intro-screen.move .logo-row {
+    transform: translate(-36vw, -44vh) scale(0.52);
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+  .logo-row {
+    transform: scale(1.1);
+    gap: 5px;
+  }
+
+  .logo-icon {
+    height: 40px;
+  }
+
+  .logo-letter {
+    height: 26px;
+  }
+
+  .intro-screen.move .logo-row {
+    transform: translate(-32vw, -44vh) scale(0.55);
+  }
+}
+
+/* ================= VERY SMALL MOBILE ================= */
+
+@media (max-width: 360px) {
+  .logo-row {
+    transform: scale(1);
+    gap: 4px;
+  }
+
+  .logo-icon {
+    height: 36px;
+  }
+
+  .logo-letter {
+    height: 22px;
+  }
+
+  .intro-screen.move .logo-row {
+    transform: translate(-30vw, -44vh) scale(0.58);
+  }
 }
