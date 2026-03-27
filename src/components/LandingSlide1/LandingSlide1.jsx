@@ -1,5 +1,5 @@
 import "./LandingSlide1.css";
-import RobotAnimation from "../../components/RobotAnimation/RobotAnimation.jsx";   
+import RobotAnimation from "../../components/Robotanimation/RobotAnimation.jsx";   
 
 import { useNavigate } from "react-router-dom";
 
