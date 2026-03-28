@@ -1,287 +1,512 @@
-.allservicemid{
-padding:80px 8%;
-background:#f5f6fb;
-font-family:'Inter',sans-serif;
+/* =====================
+   BASE STYLES
+   ===================== */
+
+.allservicemid {
+  padding: 80px 8%;
+  background: #f5f6fb;
+  font-family: 'Inter', sans-serif;
 }
 
 
 /* HEADER */
 
-.why-header h2{
-font-weight:700;
-font-size:50px;
-line-height:100%;
-color:#000;
-margin-bottom:20px;
+.why-header h2 {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 100%;
+  color: #000;
+  margin-bottom: 20px;
 }
 
-.why-header p{
-font-weight:400;
-font-size:26px;
-line-height:40px;
-color:#000;
-max-width:800px;
-margin-bottom:60px;
+.why-header p {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 40px;
+  color: #000;
+  max-width: 800px;
+  margin-bottom: 60px;
 }
 
 
 /* GRID LAYOUT */
 
-.why-grid{
-display:grid;
-grid-template-columns:420px 1fr;
-gap:30px;
-align-items:flex-start;
+.why-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 30px;
+  align-items: flex-start;
 }
 
 
 /* LEFT CARD */
 
-.zenix-card{
-position:relative;
-top:100px;
+.zenix-card {
+  position: relative;
+  top: 100px;
 
-background: linear-gradient(180deg, #737AFF 0%, #514AD7 100%);
-box-shadow: 0px 0px 8px 0px #DFDDFF;
+  background: linear-gradient(180deg, #737AFF 0%, #514AD7 100%);
+  box-shadow: 0px 0px 8px 0px #DFDDFF;
 
-border-radius:40px;
+  border-radius: 40px;
 
-padding:120px 40px 50px;
+  padding: 120px 40px 50px;
 
-color:white;
+  color: white;
 
-text-align:center;
+  text-align: center;
 
-width:420px;
-height:628px;
-
+  width: 420px;
+  height: 628px;
 }
 
 
 /* BIRD CIRCLE */
 
-.bird-circle{
-position:absolute;
-top:-70px;
-left:50%;
-transform:translateX(-50%);
+.bird-circle {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
 
-width:180px;
-height:180px;
+  width: 180px;
+  height: 180px;
 
-border-radius:50%;
-background:#ffffff;
+  border-radius: 50%;
+  background: #ffffff;
 
-display:flex;
-align-items:center;
-justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-/* white circular outline */
-border:12px solid #ffffff;
+  border: 12px solid #ffffff;
 
-/* soft shadow */
-box-shadow:0px 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-.bird-circle img{
-width:130px;
-height:auto;
+.bird-circle img {
+  width: 130px;
+  height: auto;
 }
 
 
 /* TEXT */
 
-.zenix-card h3{
-font-size:32px;
-margin-top:10px;
+.zenix-card h3 {
+  font-size: 32px;
+  margin-top: 10px;
 }
 
-.bot-tag{
-margin-top:10px;
+.bot-tag {
+  margin-top: 10px;
 
-display:inline-block;
+  display: inline-block;
 
-background:rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
 
-padding:8px 18px;
+  padding: 8px 18px;
 
-border-radius:20px;
+  border-radius: 20px;
 
-font-size:12px;
+  font-size: 12px;
 
-letter-spacing:.3px;
+  letter-spacing: .3px;
 }
 
 
 /* STATS */
 
-.stats{
-margin-top:80px;
+.stats {
+  margin-top: 80px;
 
-display:grid;
+  display: grid;
 
-grid-template-columns:1fr 1px 1fr;
+  grid-template-columns: 1fr 1px 1fr;
 
-row-gap:70px;
+  row-gap: 70px;
 
-align-items:center;
+  align-items: center;
 }
 
-.divider{
-width:1px;
-height:60px;
-background:rgba(255,255,255,0.5);
-margin:auto;
+.divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: auto;
 }
 
-.stat h2{
-font-size:48px;
-margin-bottom:6px;
-font-weight:700;
+.stat h2 {
+  font-size: 48px;
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
-.stat p{
-font-size:16px;
-opacity:.9;
+.stat p {
+  font-size: 16px;
+  opacity: .9;
 }
 
 
 /* RIGHT SIDE */
 
-.why-right{
-display:flex;
-flex-direction:column;
-gap:18px;
-position: relative;
-top:13px;
+.why-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  top: 13px;
 }
 
 
 /* RIGHT CARD 1 */
 
-.right-card-1{
-background:white;
+.right-card-1 {
+  background: white;
 
-border-radius:32px;
+  border-radius: 32px;
 
-padding:32px 36px;
+  padding: 32px 36px;
 
-border: 1px solid #514AD7;
-box-shadow: 0px 0px 8px 0px #DFDDFF;
-height:187px;
-width:822px;
+  border: 1px solid #514AD7;
+  box-shadow: 0px 0px 8px 0px #DFDDFF;
+  height: 187px;
+  width: 822px;
 }
 
-.right-card-1 h4{
-font-size:22px;
-font-weight:600;
-margin-bottom:10px;
+.right-card-1 h4 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.right-card-1 p{
-font-size:16px;
-color:#6b6b6b;
-line-height:28px;
+.right-card-1 p {
+  font-size: 16px;
+  color: #6b6b6b;
+  line-height: 28px;
 }
 
 
 /* RIGHT CARD 2 */
 
-.right-card-2{
-background:white;
+.right-card-2 {
+  background: white;
 
-border-radius:32px;
+  border-radius: 32px;
 
-padding:32px 36px;
+  padding: 32px 36px;
 
-border: 1px solid #514AD7;
-box-shadow: 0px 0px 8px 0px #DFDDFF;
-height:187px;
-width:822px;
+  border: 1px solid #514AD7;
+  box-shadow: 0px 0px 8px 0px #DFDDFF;
+  height: 187px;
+  width: 822px;
 }
 
-.right-card-2 h4{
-font-size:22px;
-font-weight:600;
-margin-bottom:10px;
+.right-card-2 h4 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.right-card-2 p{
-font-size:16px;
-color:#6b6b6b;
-line-height:28px;
+.right-card-2 p {
+  font-size: 16px;
+  color: #6b6b6b;
+  line-height: 28px;
 }
 
 
 /* RIGHT CARD 3 */
 
-.right-card-3{
-background:white;
+.right-card-3 {
+  background: white;
 
-border-radius:34px;
+  border-radius: 34px;
 
-padding:36px 40px;
+  padding: 36px 40px;
 
-border: 1px solid #514AD7;
-box-shadow: 0px 0px 8px 0px #DFDDFF;
-height:308px;
-width:822px;
-
+  border: 1px solid #514AD7;
+  box-shadow: 0px 0px 8px 0px #DFDDFF;
+  height: 308px;
+  width: 822px;
 }
 
-.right-card-3 h4{
-font-size:22px;
-font-weight:600;
-margin-bottom:10px;
-color: #000000;
+.right-card-3 h4 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #000000;
 }
 
-.right-card-3 p{
-font-size:16px;
-color: #636363;
+.right-card-3 p {
+  font-size: 16px;
+  color: #636363;
 
-line-height:28px;
-margin-bottom:16px;
+  line-height: 28px;
+  margin-bottom: 16px;
 }
 
 
 /* TEAM AVATARS */
 
-.team-row{
-display:flex;
-align-items:center;
-margin-top:20px;
+.team-row {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.team-row img{
-width:42px;
-height:42px;
+.team-row img {
+  width: 42px;
+  height: 42px;
 
-border-radius:50%;
+  border-radius: 50%;
 
-border:3px solid white;
+  border: 3px solid white;
 
-margin-left:-14px;
+  margin-left: -14px;
 }
 
-.team-row img:first-child{
-margin-left:0;
+.team-row img:first-child {
+  margin-left: 0;
 }
 
-.team-count{
-width:42px;
-height:42px;
+.team-count {
+  width: 42px;
+  height: 42px;
 
-border-radius:50%;
+  border-radius: 50%;
 
-background:#5d63ff;
-color:white;
+  background: #5d63ff;
+  color: white;
 
-display:flex;
-align-items:center;
-justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-font-size:13px;
+  font-size: 13px;
 
-margin-left:-14px;
+  margin-left: -14px;
+}
+
+
+/* =====================
+   TABLET — ≤1200px
+   ===================== */
+
+@media (max-width: 1200px) {
+  .why-grid {
+    grid-template-columns: 360px 1fr;
+  }
+
+  .zenix-card {
+    width: 360px;
+    height: auto;
+    padding: 110px 30px 40px;
+  }
+
+  .right-card-1,
+  .right-card-2,
+  .right-card-3 {
+    width: 100%;
+    height: auto;
+  }
+
+  .stat h2 {
+    font-size: 38px;
+  }
+}
+
+
+/* =====================
+   SMALL TABLET — ≤960px
+   ===================== */
+
+@media (max-width: 960px) {
+  .allservicemid {
+    padding: 60px 6%;
+  }
+
+  .why-header h2 {
+    font-size: 38px;
+  }
+
+  .why-header p {
+    font-size: 20px;
+    line-height: 34px;
+    margin-bottom: 80px;    /* extra room for bird circle overlap */
+  }
+
+  /* Stack grid vertically */
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Left card: reset fixed position offset, full width */
+  .zenix-card {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    margin: 0 auto 30px;
+    padding: 110px 30px 44px;
+  }
+
+  /* Right side: reset offset */
+  .why-right {
+    top: 0;
+  }
+
+  .right-card-1,
+  .right-card-2,
+  .right-card-3 {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* =====================
+   MOBILE — ≤600px
+   ===================== */
+
+@media (max-width: 600px) {
+  .allservicemid {
+    padding: 48px 5%;
+  }
+
+  /* Header */
+  .why-header h2 {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .why-header p {
+    font-size: 16px;
+    line-height: 28px;
+    margin-bottom: 90px;    /* bird pokes up above card, keep space */
+  }
+
+  /* Left card */
+  .zenix-card {
+    border-radius: 28px;
+    padding: 100px 24px 36px;
+    max-width: 100%;
+  }
+
+  .bird-circle {
+    width: 140px;
+    height: 140px;
+    top: -60px;
+  }
+
+  .bird-circle img {
+    width: 100px;
+  }
+
+  .zenix-card h3 {
+    font-size: 26px;
+  }
+
+  .bot-tag {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+
+  /* Stats grid: collapse to 2 columns */
+  .stats {
+    margin-top: 48px;
+    grid-template-columns: 1fr 1px 1fr;
+    row-gap: 40px;
+  }
+
+  .stat h2 {
+    font-size: 32px;
+  }
+
+  .stat p {
+    font-size: 13px;
+  }
+
+  .divider {
+    height: 48px;
+  }
+
+  /* Right cards */
+  .right-card-1,
+  .right-card-2 {
+    border-radius: 22px;
+    padding: 24px 22px;
+  }
+
+  .right-card-3 {
+    border-radius: 22px;
+    padding: 24px 22px;
+  }
+
+  .right-card-1 h4,
+  .right-card-2 h4,
+  .right-card-3 h4 {
+    font-size: 18px;
+  }
+
+  .right-card-1 p,
+  .right-card-2 p,
+  .right-card-3 p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  /* Team row */
+  .team-row img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .team-count {
+    width: 36px;
+    height: 36px;
+    font-size: 11px;
+  }
+}
+
+
+/* =====================
+   TINY MOBILE — ≤380px
+   ===================== */
+
+@media (max-width: 380px) {
+  .why-header h2 {
+    font-size: 24px;
+  }
+
+  .why-header p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .zenix-card {
+    padding: 90px 18px 28px;
+  }
+
+  .bird-circle {
+    width: 120px;
+    height: 120px;
+    top: -50px;
+  }
+
+  .bird-circle img {
+    width: 84px;
+  }
+
+  .zenix-card h3 {
+    font-size: 22px;
+  }
+
+  .stat h2 {
+    font-size: 26px;
+  }
+
+  .stat p {
+    font-size: 11px;
+  }
 }

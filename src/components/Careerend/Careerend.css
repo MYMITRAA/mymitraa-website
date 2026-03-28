@@ -21,7 +21,6 @@
   margin-bottom: 20px;
 }
 
-
 .career-end-desc {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 15px;
@@ -31,26 +30,23 @@
   opacity: 0.95;
 }
 
-
 .career-end-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
 
-
 .career-end-card {
   display: flex;
   flex-direction: column;
 }
-
 
 .career-image-wrapper {
   width: 100%;
   height: 300px;
   border-radius: 20px;
   overflow: hidden;
-  background: #ffffff10; 
+  background: #ffffff10;
 }
 
 .career-image-wrapper img {
@@ -59,7 +55,6 @@
   object-fit: cover;
 }
 
-
 .career-end-card h3 {
   margin-top: 20px;
   font-size: 18px;
@@ -67,14 +62,13 @@
   color: white;
 }
 
-
 .career-btn {
   margin-top: 10px;
   width: fit-content;
   padding: 8px 16px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -88,4 +82,117 @@
 .career-btn:hover {
   background: white;
   color: #514AD7;
+}
+
+
+/* =====================
+   TABLET — ≤960px
+   ===================== */
+
+@media (max-width: 960px) {
+  .career-end {
+    padding: 70px 32px;
+  }
+
+  .career-end-title {
+    font-size: 28px;
+  }
+
+  .career-end-desc {
+    font-size: 14px;
+    margin-bottom: 44px;
+  }
+
+  .career-end-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  /* Center the lone third card */
+  .career-end-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .career-image-wrapper {
+    height: 240px;
+  }
+}
+
+
+/* =====================
+   MOBILE — ≤600px
+   ===================== */
+
+@media (max-width: 600px) {
+  .career-end {
+    padding: 56px 20px;
+  }
+
+  .career-end-title {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .career-end-desc {
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 36px;
+  }
+
+  .career-end-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  /* Reset tablet centering trick */
+  .career-end-card:last-child {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .career-image-wrapper {
+    height: 210px;
+    border-radius: 16px;
+  }
+
+  .career-end-card h3 {
+    font-size: 16px;
+    margin-top: 14px;
+  }
+
+  .career-btn {
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+}
+
+
+/* =====================
+   TINY MOBILE — ≤380px
+   ===================== */
+
+@media (max-width: 380px) {
+  .career-end {
+    padding: 44px 16px;
+  }
+
+  .career-end-title {
+    font-size: 19px;
+  }
+
+  .career-end-desc {
+    font-size: 13px;
+  }
+
+  .career-image-wrapper {
+    height: 180px;
+  }
+
+  .career-end-card h3 {
+    font-size: 15px;
+  }
 }

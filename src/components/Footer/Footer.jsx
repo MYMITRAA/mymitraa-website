@@ -32,16 +32,7 @@ function Footer() {
               pick a time that works for you, and let's connect!
             </p>
 
-            {/* Desktop Follow Us — hidden on mobile via CSS */}
-            <div className="footer-social">
-              <h4>Follow Us</h4>
-              <div className="social-icons">
-                <img src={instagram} alt="Instagram" />
-                <img src={linkedin} alt="LinkedIn" />
-                <img src={facebook} alt="Facebook" />
-                <img src={twitter} alt="Twitter" />
-              </div>
-            </div>
+           
           </div>
 
           {/* ROW 2 col 1 — Services */}

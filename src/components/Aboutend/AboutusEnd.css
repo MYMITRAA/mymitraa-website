@@ -14,7 +14,6 @@
 }
 
 
-
 .about-end-header {
   display: flex;
   justify-content: space-between;
@@ -27,24 +26,21 @@
   font-family: "Inter", sans-serif;
   font-size: 40px;
   font-weight: 700;
-  font-style: bold;
   color: #14131a;
   line-height: 100%;
   max-width: 50%;
 }
 
 .about-end-header p {
-  font-family: "inter", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 19px;
   line-height: 30px;
   font-weight: 400;
-  font-style: regular;
   color: rgba(0, 0, 0, 1);
   max-width: 40%;
   position: relative;
   left: -5px;
 }
-
 
 
 .about-end-content {
@@ -63,6 +59,7 @@
   border-radius: 24px;
   display: block;
   height: 575px;
+  object-fit: cover;
 }
 
 
@@ -82,11 +79,9 @@
   width: 498px;
 }
 
-
 .vision {
   background: linear-gradient(135deg, #6f7cff, #5c63d6);
 }
-
 
 .mission {
   background: linear-gradient(135deg, #5a60d8, #4a4fc9);
@@ -107,7 +102,6 @@
 }
 
 
-
 .about-distinction {
   margin-top: 120px;
 }
@@ -115,4 +109,191 @@
 .about-distinction img {
   width: 100%;
   display: block;
+}
+
+
+/* =====================
+   TABLET — ≤1100px
+   ===================== */
+
+@media (max-width: 1100px) {
+  .about-end-container {
+    padding: 0 32px;
+  }
+
+  .about-end-header h2 {
+    font-size: 32px;
+  }
+
+  .about-end-header p {
+    font-size: 16px;
+    line-height: 27px;
+  }
+
+  .about-card {
+    width: 100%;
+    height: auto;
+    min-height: 220px;
+  }
+
+  .about-end-left img {
+    height: 460px;
+  }
+}
+
+
+/* =====================
+   SMALL TABLET — ≤860px
+   ===================== */
+
+@media (max-width: 860px) {
+  .about-end {
+    padding-top: 70px;
+    top: 60px;
+  }
+
+  .about-end-container {
+    padding: 0 28px;
+  }
+
+  /* Stack header vertically */
+  .about-end-header {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+
+  .about-end-header h2 {
+    font-size: 28px;
+    max-width: 100%;
+  }
+
+  .about-end-header p {
+    font-size: 15px;
+    max-width: 100%;
+    left: 0;
+  }
+
+  /* Stack content vertically */
+  .about-end-content {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .about-end-left img {
+    height: 340px;
+    border-radius: 20px;
+  }
+
+  .about-card {
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .about-distinction {
+    margin-top: 72px;
+  }
+}
+
+
+/* =====================
+   MOBILE — ≤600px
+   ===================== */
+
+@media (max-width: 600px) {
+  .about-end {
+    padding-top: 52px;
+    top: 40px;
+  }
+
+  .about-end-container {
+    padding: 0 20px;
+  }
+
+  .about-end-header {
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .about-end-header h2 {
+    font-size: 22px;
+    line-height: 130%;
+  }
+
+  .about-end-header p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .about-end-left img {
+    height: 260px;
+    border-radius: 16px;
+  }
+
+  .about-card {
+    padding: 24px;
+    border-radius: 16px;
+    min-height: auto;
+  }
+
+  .about-card h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  .about-card p {
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+  .about-distinction {
+    margin-top: 52px;
+  }
+}
+
+
+/* =====================
+   TINY MOBILE — ≤380px
+   ===================== */
+
+@media (max-width: 380px) {
+  .about-end {
+    padding-top: 40px;
+    top: 28px;
+  }
+
+  .about-end-container {
+    padding: 0 16px;
+  }
+
+  .about-end-header h2 {
+    font-size: 19px;
+  }
+
+  .about-end-header p {
+    font-size: 13px;
+  }
+
+  .about-end-left img {
+    height: 210px;
+  }
+
+  .about-card {
+    padding: 20px;
+  }
+
+  .about-card h3 {
+    font-size: 15px;
+  }
+
+  .about-card p {
+    font-size: 13px;
+  }
+
+  .about-distinction {
+    margin-top: 40px;
+  }
 }

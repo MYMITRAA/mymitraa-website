@@ -1,13 +1,14 @@
 .about-mid-section {
   width: 100%;
   padding: 100px 80px;
-  background:white;
+  background: white;
   display: flex;
   flex-direction: column;
   gap: 80px;
 }
 
 
+/* TOP */
 
 .about-top {
   max-width: 1200px;
@@ -28,13 +29,13 @@
   font-size: 20px;
   line-height: 36px;
   color: rgba(133, 132, 135, 1);
-
   max-width: 1351px;
-    position: relative; 
-    top: 40px;  
+  position: relative;
+  top: 40px;
 }
 
 
+/* CREATIVE IMAGE */
 
 .about-creative-image {
   width: 100%;
@@ -44,16 +45,15 @@
   width: 100%;
   border-radius: 24px;
   display: block;
-  
   object-fit: cover;
   overflow: hidden;
   position: relative;
-  top:30px;
-  left:5px;
-
+  top: 30px;
+  left: 5px;
 }
 
 
+/* BOTTOM */
 
 .about-bottom {
   display: flex;
@@ -66,7 +66,6 @@
 
 .about-quote {
   flex: 1;
-
 }
 
 .about-quote img {
@@ -85,4 +84,143 @@
   max-width: 480px;
   border-radius: 20px;
   object-fit: cover;
+}
+
+
+/* =====================
+   TABLET — ≤1024px
+   ===================== */
+
+@media (max-width: 1024px) {
+  .about-mid-section {
+    padding: 80px 48px;
+    gap: 60px;
+  }
+
+  .about-top h1 {
+    font-size: 40px;
+  }
+
+  .about-top p {
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  .about-bottom {
+    gap: 48px;
+    top: 60px;
+  }
+}
+
+
+/* =====================
+   SMALL TABLET — ≤768px
+   ===================== */
+
+@media (max-width: 768px) {
+  .about-mid-section {
+    padding: 60px 32px;
+    gap: 48px;
+  }
+
+  .about-top h1 {
+    font-size: 32px;
+    letter-spacing: 1px;
+    top: 0;
+  }
+
+  .about-top p {
+    font-size: 16px;
+    line-height: 28px;
+    top: 16px;
+  }
+
+  .about-creative-image img {
+    border-radius: 18px;
+    top: 0;
+    left: 0;
+  }
+
+  /* Stack bottom section vertically */
+  .about-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    top: 0;
+  }
+
+  .about-quote img {
+    max-width: 100%;
+  }
+
+  .about-image {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .about-image img {
+    max-width: 100%;
+  }
+}
+
+
+/* =====================
+   MOBILE — ≤600px
+   ===================== */
+
+@media (max-width: 600px) {
+  .about-mid-section {
+    padding: 48px 20px;
+    gap: 36px;
+  }
+
+  .about-top h1 {
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    top: 0;
+  }
+
+  .about-top p {
+    font-size: 15px;
+    line-height: 26px;
+    top: 12px;
+  }
+
+  .about-creative-image img {
+    border-radius: 14px;
+  }
+
+  .about-bottom {
+    gap: 28px;
+  }
+
+  .about-image img {
+    border-radius: 14px;
+  }
+}
+
+
+/* =====================
+   TINY MOBILE — ≤380px
+   ===================== */
+
+@media (max-width: 380px) {
+  .about-mid-section {
+    padding: 36px 16px;
+    gap: 28px;
+  }
+
+  .about-top h1 {
+    font-size: 22px;
+  }
+
+  .about-top p {
+    font-size: 14px;
+    line-height: 24px;
+    top: 8px;
+  }
+
+  .about-creative-image img {
+    border-radius: 12px;
+  }
 }

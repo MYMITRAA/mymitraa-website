@@ -64,3 +64,112 @@
   background: linear-gradient(90deg, #6C63FF, #514AD7);
   border-radius: 4px;
 }
+
+
+/* =====================
+   TABLET — ≤960px
+   ===================== */
+
+@media (max-width: 960px) {
+  .careers-mid {
+    padding: 70px 32px;
+  }
+
+  .careers-mid-title {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+
+  .careers-mid-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  /* Make the third card span full width so it doesn't sit alone */
+  .career-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .career-card img {
+    height: 220px;
+  }
+}
+
+
+/* =====================
+   MOBILE — ≤600px
+   ===================== */
+
+@media (max-width: 600px) {
+  .careers-mid {
+    padding: 56px 20px;
+  }
+
+  .careers-mid-title {
+    font-size: 24px;
+    margin-bottom: 36px;
+  }
+
+  .careers-mid-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Reset the last-child override from tablet */
+  .career-card:last-child {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .career-card img {
+    height: 200px;
+    border-radius: 16px;
+  }
+
+  .career-card h3 {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+
+  .career-card p {
+    font-size: 13px;
+    line-height: 21px;
+  }
+
+  .career-line {
+    margin-top: 16px;
+    height: 3px;
+  }
+}
+
+
+/* =====================
+   TINY MOBILE — ≤380px
+   ===================== */
+
+@media (max-width: 380px) {
+  .careers-mid {
+    padding: 44px 16px;
+  }
+
+  .careers-mid-title {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
+
+  .career-card img {
+    height: 180px;
+  }
+
+  .career-card h3 {
+    font-size: 16px;
+  }
+
+  .career-card p {
+    font-size: 13px;
+  }
+}

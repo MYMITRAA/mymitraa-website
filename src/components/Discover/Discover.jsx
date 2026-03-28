@@ -10,11 +10,11 @@ import birdinicon from "../../assets/images/birdinicon.svg";
 function Discover() {
   return (
     <section className="discover">
-      <img
+      {/* <img
         src={birdinicon}
         alt="Floating Bird"
         className="discover-floating-bird"
-      />
+      /> */}
 
       <div className="discover-content">
         <h2 className="discover-title">

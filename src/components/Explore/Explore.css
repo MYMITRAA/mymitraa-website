@@ -138,63 +138,110 @@
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
+
+  /* Half-height section — tree as backdrop */
   .explore-section {
+    min-height: 50svh;
     padding: 0;
-    min-height: 480px;
-    align-items: flex-end;
-    background-position: bottom center;
+    align-items: center;
+    justify-content: center;
+    background-position: 20% center;
     background-size: cover;
   }
 
   .explore-container {
-    padding: 0;
-    box-sizing: border-box;
+    padding: 24px 20px;
     width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50svh;
   }
 
+  /* Centered frosted glass card — more opaque for readability */
   .explore-content {
     max-width: 100%;
+    width: 100%;
     margin: 0;
     text-align: left;
     right: 0;
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    border-radius: 0;
-    padding: 28px 24px 24px 24px;
+
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 24px;
+
+    padding: 28px 24px 24px;
     box-sizing: border-box;
+
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
   }
 
   .explore-title {
-    font-size: 24px;
-    line-height: 34px;
-    margin-bottom: 14px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #0a0818;
+    letter-spacing: -0.3px;
+  }
+
+  /* Remove hardcoded <br> breaks */
+  .explore-title br,
+  .explore-description br {
+    display: none;
   }
 
   .explore-description {
-    font-size: 14px;
-    line-height: 23px;
+    font-size: 13px;
+    line-height: 22px;
+    color: #1e1e22;
     top: 0;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
+    font-weight: 500;
   }
 
   .explore-btn {
     top: 0;
-    width: 130px;
+    width: auto;
+    padding: 0 28px;
     height: 42px;
+    border-radius: 10px;
     font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    background: #514AD7;
+    box-shadow: 0 4px 18px rgba(81, 74, 215, 0.35);
+    margin-bottom: 0;
   }
 
+  /* Quote card — slightly more opaque too */
   .explore-quote {
     position: static;
-    margin-top: 0;
-    padding: 20px 24px 28px 24px;
-    text-align: left;
-    font-size: 14px;
-    line-height: 23px;
-    max-width: 100%;
+    margin: 12px 0 0;
+    width: 100%;
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.78);
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 20px;
+    font-style: italic;
+    font-weight: 500;
+    color: #1e1e28;
+    max-width: 100%;
+
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -202,36 +249,40 @@
 
 @media (max-width: 480px) {
   .explore-section {
-    padding: 48px 0 0 0;
+    min-height: 50svh;
   }
 
   .explore-container {
-    padding: 0 14px;
+    padding: 20px 16px;
+    min-height: 50svh;
   }
 
   .explore-content {
-    padding: 24px 16px 20px 16px;
+    padding: 26px 20px 22px;
+    border-radius: 20px;
   }
 
   .explore-title {
-    font-size: 21px;
+    font-size: 20px;
     line-height: 30px;
   }
 
   .explore-description {
     font-size: 13px;
-    line-height: 21px;
+    line-height: 22px;
+    margin-bottom: 20px;
   }
 
   .explore-btn {
-    width: 120px;
-    height: 40px;
+    height: 42px;
     font-size: 13px;
+    padding: 0 22px;
   }
 
   .explore-quote {
-    font-size: 13px;
-    line-height: 21px;
-    padding: 20px 14px 36px 14px;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 14px 18px;
+    border-radius: 14px;
   }
 }

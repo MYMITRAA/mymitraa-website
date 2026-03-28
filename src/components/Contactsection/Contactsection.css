@@ -233,159 +233,234 @@
 
 @media (max-width: 768px) {
   .contact-section {
-    padding: 56px 0 64px;
+    padding: 0;
+    background-color: #F6F7FB;
   }
 
-  /* Single column, full width, generous side padding */
   .contact-container {
     flex-direction: column;
-    padding: 0 24px;
-    gap: 40px;
+    padding: 0;
+    gap: 0;
     box-sizing: border-box;
   }
 
-  /* Both sides take full width */
-  .contact-left,
-  .contact-right {
+  /* ── LEFT PANEL: hero-style with gradient ── */
+  .contact-left {
     width: 100%;
     flex-shrink: unset;
+    background: linear-gradient(135deg, #6C63FF 0%, #514AD7 100%);
+    padding: 52px 28px 44px;
+    box-sizing: border-box;
   }
 
   .contact-title {
     font-size: 26px;
-    line-height: 36px;
+    line-height: 38px;
+    font-weight: 600;
+    color: #ffffff;
     margin-bottom: 14px;
   }
 
+  /* Remove the <br> effect on small screens */
+  .contact-title br {
+    display: none;
+  }
+
   .contact-subtext {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 24px;
-    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 36px;
     max-width: 100%;
   }
 
+  /* Info items on the purple banner */
   .contact-info {
-    gap: 16px;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
   }
 
   .info-item {
-    font-size: 15px;
+    font-size: 14px;
+    color: #ffffff;
+    gap: 14px;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
-  /* Form */
+  .info-item:last-child {
+    border-bottom: none;
+  }
+
+  .info-item p {
+    margin: 0;
+  }
+
+  .info-item img {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* ── RIGHT PANEL: clean white card ── */
+  .contact-right {
+    width: 100%;
+    flex-shrink: unset;
+    background: #ffffff;
+    padding: 36px 24px 48px;
+    box-sizing: border-box;
+  }
+
+  /* Section label above the form */
+  .contact-right::before {
+    content: "Send us a message";
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0e1726;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+  }
+
   .contact-form {
-    gap: 16px;
+    gap: 20px;
   }
 
   .form-group label {
-    font-size: 14px;
-    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 7px;
+    letter-spacing: 0.1px;
   }
 
   .form-group input,
   .form-group textarea {
-    height: 48px;
+    height: 52px;
     font-size: 14px;
-    border-radius: 10px;
+    border-radius: 12px;
+    border: 1.5px solid #EBEBEB;
+    background: #FAFAFA;
+    color: #0e1726;
+    padding: 0 16px;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #b0b0b0;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #514AD7;
+    background: #ffffff;
   }
 
   .form-group textarea {
-    height: 110px;
+    height: 120px;
+    padding-top: 14px;
   }
 
+  /* Phone row */
   .phone-group {
     gap: 10px;
   }
 
   .country-code {
-    width: 70px;
-    height: 48px;
-    border-radius: 10px;
+    width: 72px;
+    height: 52px;
+    border-radius: 12px;
+    background: #EBEBEB;
     font-size: 13px;
+    gap: 5px;
   }
 
-  /* Attach + button stack vertically */
+  .country-code img {
+    width: 20px;
+    height: 14px;
+  }
+
+  /* Attach + button */
   .form-bottom {
     flex-direction: column;
     align-items: stretch;
-    gap: 14px;
+    gap: 16px;
     margin-top: 4px;
   }
 
   .attach {
-    justify-content: flex-start;
-    font-size: 14px;
+    justify-content: center;
+    font-size: 13px;
+    color: #666;
+    padding: 13px 0;
+    border: 1.5px dashed #D0D0D0;
+    border-radius: 12px;
+    background: #FAFAFA;
+    gap: 8px;
   }
 
-  /* Button full width on mobile */
+  .attach span {
+    text-decoration: none;
+    font-weight: 500;
+    color: #514AD7;
+  }
+
   .proposal-btn {
     width: 100%;
-    height: 48px;
-    border-radius: 44px;
+    height: 54px;
+    border-radius: 14px;
     font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    background: linear-gradient(135deg, #6C63FF 0%, #514AD7 100%);
+    box-shadow: 0 6px 24px rgba(81, 74, 215, 0.28);
+  }
+
+  .proposal-btn:hover {
+    opacity: 0.92;
+    box-shadow: 0 8px 28px rgba(81, 74, 215, 0.36);
   }
 }
 
 /* ================= SMALL MOBILE ================= */
 
 @media (max-width: 480px) {
-  .contact-section {
-    padding: 48px 0 56px;
-  }
-
-  .contact-container {
-    padding: 0 16px;
-    gap: 32px;
+  .contact-left {
+    padding: 44px 20px 38px;
   }
 
   .contact-title {
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 23px;
+    line-height: 34px;
   }
 
-  .contact-subtext {
-    font-size: 14px;
-    line-height: 22px;
-    margin-bottom: 20px;
-  }
-
-  .info-item {
-    font-size: 14px;
-    gap: 10px;
-  }
-
-  .info-item img {
-    width: 20px;
-    height: 20px;
+  .contact-right {
+    padding: 30px 20px 44px;
   }
 
   .contact-form {
-    gap: 14px;
-  }
-
-  .form-group label {
-    font-size: 13px;
+    gap: 18px;
   }
 
   .form-group input,
   .form-group textarea {
-    height: 46px;
-    font-size: 13px;
-    border-radius: 10px;
+    height: 50px;
+    font-size: 14px;
   }
 
   .form-group textarea {
-    height: 100px;
+    height: 110px;
   }
 
   .country-code {
-    width: 64px;
-    height: 46px;
-    font-size: 12px;
+    width: 68px;
+    height: 50px;
   }
 
   .proposal-btn {
-    height: 46px;
-    font-size: 14px;
+    height: 52px;
+    font-size: 15px;
   }
 }
