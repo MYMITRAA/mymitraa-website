@@ -18,6 +18,7 @@ import EnterpriseAgileDevelopment from "./pages/EnterpriseAgileDevelopment/Enter
 import EnterpriseTech from "./pages/EnterpriseTech/EnterpriseTech";
 import CaseStudy from "./pages/CaseStudy/CaseStudy";
 import Portfolio from "./pages/Portfolio/Portfolio";
+import ResourceAugmentation from "./pages/Resourcepage/ResourceAugmentation";
 
 
 
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/enterprisetech" element={<EnterpriseTech />} />
                 <Route path="/casestudy" element={<CaseStudy />} />
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/resourceaugmentation" element={<ResourceAugmentation />} />
 
                 <Route path="/service" element={<Service />} />
                 <Route path="/execution" element={<Execution />} />

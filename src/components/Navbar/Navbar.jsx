@@ -69,6 +69,8 @@ function Navbar({ hidden, slideIndex }) {
               <NavLink to="/aboutus">Who We Are</NavLink>
               <NavLink to="/careers">Careers</NavLink>
               <NavLink to="/news">News &amp; Events</NavLink>
+              <NavLink to="/resourceaugmentation">Resource Augmentation</NavLink>
+              <NavLink to="/casestudy">Case Study</NavLink>
               <NavLink to="/portfolio">Portfolio</NavLink>
               <NavLink to="/contact">Contact Us</NavLink>
 
