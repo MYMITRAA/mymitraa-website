@@ -1,0 +1,254 @@
+/* ================= INTRO SCREEN ================= */
+
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #2b0c63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  transition: background 0.8s ease;
+}
+
+/* ================= LOGO ROW ================= */
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: scale(1.9);
+  transition: transform 1.3s cubic-bezier(.7, 0, .2, 1);
+}
+
+/* ================= ICON ================= */
+
+.logo-icon {
+  height: 70px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all .5s ease;
+}
+
+.logo-icon.show {
+  opacity: 1;
+  transform: translateX(0);
+} 
+
+/* ================= LETTERS ================= */
+
+.logo-letter {
+  height: 45px;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all .5s ease;
+}
+
+.logo-letter.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ================= MOVE TO NAVBAR (DESKTOP) ================= */
+
+.intro-screen.move .logo-row {
+  transform: translate(-43vw, -40vh) scale(0.42);
+}
+
+/* ================= FADE OUT ================= */
+
+.intro-screen.fade .logo-row {
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+/* ================= REMOVE BG AFTER MOVE ================= */
+
+.intro-screen.move {
+  background: transparent;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1024px) {
+  .logo-row {
+    transform: scale(1.6);
+    gap: 8px;
+  }
+
+  .logo-icon {
+    height: 60px;
+  }
+
+  .logo-letter {
+    height: 38px;
+  }
+
+  .intro-screen.move .logo-row {
+    transform: translate(-40vw, -42vh) scale(0.44);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+ @media (max-width: 768px) {
+  .logo-row {
+    transform: scale(1.3);
+    gap: 6px;
+  }
+
+  .logo-icon {
+    height: 48px;
+  }
+
+  .logo-letter {
+    height: 30px;
+  }
+
+  /* On mobile the navbar logo sits top-left —
+     translate it there from center */
+  .intro-screen.move .logo-row {
+    transform: translate(-36vw, -44vh) scale(0.52);
+  }
+} 
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+  .logo-row {
+    transform: scale(1.1);
+    gap: 5px;
+  }
+
+  .logo-icon {
+    height: 40px;
+  }
+
+  .logo-letter {
+    height: 26px;
+  }
+
+  .intro-screen.move .logo-row {
+    transform: translate(-32vw, -44vh) scale(0.55);
+  }
+} 
+
+/* ================= VERY SMALL MOBILE ================= */
+
+ @media (max-width: 360px) {
+  .logo-row {
+    transform: scale(1);
+    gap: 4px;
+  }
+
+  .logo-icon {
+    height: 36px;
+  }
+
+  .logo-letter {
+    height: 22px;
+  }
+
+  .intro-screen.move .logo-row {
+    transform: translate(-30vw, -44vh) scale(0.58);
+  }
+} 
+
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: #0e0728;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  transition: background 0.7s ease;
+}
+
+.glow {
+  position: absolute;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(110,70,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.particle {
+  position: absolute; bottom: 0;
+  width: 2px; height: 2px; border-radius: 50%;
+  background: rgba(160,120,255,0.6);
+  animation: rise linear infinite; opacity: 0;
+}
+@keyframes rise {
+  0%  { transform: translateY(0); opacity: 0; }
+  8%  { opacity: 1; }
+  92% { opacity: 0.3; }
+  100%{ transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Bird */
+.bird-wrap {
+  position: absolute;
+  top: 12%; right: -140px;
+  width: 88px; opacity: 0;
+  filter: brightness(0) invert(1);
+  transform: rotate(-5deg);
+  transition: right 1.6s cubic-bezier(.3,0,.2,1), opacity 0.6s ease, transform 1.6s ease;
+}
+.bird-wrap.fly-in  { opacity: 0.82; right: 6%; transform: rotate(-3deg); }
+.bird-wrap.fly-out {
+  opacity: 0; right: 108%; transform: translateY(-28px) rotate(7deg);
+  transition: right 0.85s ease, opacity 0.45s ease, transform 0.85s ease;
+}
+
+Logo container — starts at scale(1.7) centered, then moves
+.logo-container {
+  transform: scale(1.7);
+  transform-origin: center center;
+  position: relative; z-index: 2;
+}
+
+.logo-row {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.logo-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  background: white;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateX(-20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  overflow: hidden; flex-shrink: 0;
+}
+.logo-icon img { width: 26px; height: 26px; object-fit: contain; }
+.logo-icon.show { opacity: 1; transform: none; }
+
+ .logo-letter {
+  height: 36px; opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.38s ease, transform 0.38s ease;
+  filter: brightness(0) invert(1);
+} 
+.logo-letter.blue { filter: none; }
+
+/* Tagline */
+.tagline {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); font-weight: 300;
+  margin-top: 16px; opacity: 0; transform: translateY(8px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  position: relative; z-index: 2;
+}
+.tagline.show { opacity: 1; transform: none; }
+.tagline.gone { opacity: 0; transition: opacity 0.3s ease; }
+
+
+
+

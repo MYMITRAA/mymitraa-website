@@ -123,14 +123,26 @@
   gap: 10px;
 }
 
-/* ─── Icon ───────────────────────────────────────────────────── */
+/* ─── Icon Box ───────────────────────────────────────────────── */
 .logo-icon {
-  height: 40px;
-  width: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transform: translateX(-24px) scale(0.8);
   transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.34,1.56,.64,1);
+  overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(140,80,255,0.45);
+}
+.logo-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 .logo-icon.show {
   opacity: 1;
@@ -176,123 +188,4 @@
 .tagline.show {
   opacity: 1;
   transform: none;
-}
-
-/* ─── Mobile Responsive ──────────────────────────────────────── */
-
-/* Tablet — 768px */
-@media (max-width: 768px) {
-  .logo-container {
-    transform: scale(1.1);
-  }
-
-  .logo-icon {
-    height: 32px;
-  }
-
-  .logo-letter {
-    height: 28px;
-  }
-
-  .logo-row {
-    gap: 7px;
-  }
-
-  .bird-wrap {
-    width: 100px;
-    right: -120px;
-    top: 5%;
-  }
-  .bird-wrap.fly-in {
-    right: 2%;
-    top: 5%;
-  }
-
-  .tagline {
-    font-size: 8px;
-    letter-spacing: 2.5px;
-    max-width: 280px;
-    padding: 0 16px;
-  }
-
-  .glow {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-/* Mobile — 480px */
-@media (max-width: 480px) {
-  .logo-container {
-    transform: scale(0.95);
-  }
-
-  .logo-icon {
-    height: 40px;
-  }
-
-  .logo-letter {
-    height: 30px;
-  }
-
-  .logo-row {
-    gap: 5px;
-  }
-
-  .bird-wrap {
-    width: 100px;
-    right: -110px;
-    top: 4%;
-  }
-  .bird-wrap.fly-in {
-    right: 1%;
-    top: 4%;
-  }
-
-  .tagline {
-    font-size: 7px;
-    letter-spacing: 2px;
-    max-width: 240px;
-    margin-top: 14px;
-  }
-
-  .glow {
-    width: 240px;
-    height: 240px;
-  }
-}
-
-/* Small mobile — 360px */
-@media (max-width: 360px) {
-  .logo-container {
-    transform: scale(0.85);
-  }
-
-  .logo-icon {
-    height: 30px;
-  }
-
-  .logo-letter {
-    height: 20px;
-  }
-
-  .logo-row {
-    gap: 4px;
-  }
-
-  .bird-wrap {
-    width: 100px;
-    right: -100px;
-    top: 3%;
-  }
-  .bird-wrap.fly-in {
-    right: 1%;
-    top: 3%;
-  }
-
-  .tagline {
-    font-size: 6.5px;
-    letter-spacing: 1.8px;
-    max-width: 200px;
-  }
 }

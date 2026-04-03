@@ -1,24 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./IntroAnimation.css";
 
-import iconWhite from "../../assets/logo/icon-white.svg";
-import iconBlue  from "../../assets/logo/icon-blue.svg";
-import birdImage from "../../assets/images/birdimage.svg";
+import iconSrc from "../../assets/logo/icon-blue.svg";
 
-import Mwhite from "../../assets/logo/M-white.svg";
-import Mblue  from "../../assets/logo/M-blue.svg";
-import Iwhite from "../../assets/logo/I-white.svg";
-import Iblue  from "../../assets/logo/I-blue.svg";
-import Twhite from "../../assets/logo/T-white.svg";
-import Tblue  from "../../assets/logo/T-blue.svg";
-import Rwhite from "../../assets/logo/R-white.svg";
-import Rblue  from "../../assets/logo/R-blue.svg";
-import Awhite from "../../assets/logo/A-white.svg";
-import Ablue  from "../../assets/logo/A-blue.svg";
-
-const LETTERS_WHITE = [Mwhite, Iwhite, Twhite, Rwhite, Awhite, Awhite];
-const LETTERS_BLUE  = [Mblue,  Iblue,  Tblue,  Rblue,  Ablue,  Ablue];
-
+const LETTERS   = ["M", "i", "T", "R", "A", "A"];
 const FINAL_SCALE = 0.42;
 const NAVBAR_H    = 56;
 const LOGO_LEFT   = 24;
@@ -30,8 +15,6 @@ export default function IntroAnimation({ onFinish }) {
   const taglineRef = useRef();
   const birdRef    = useRef();
   const lettersRef = useRef([]);
-
-  const [isBlue, setIsBlue] = useState(false);
 
   useEffect(() => {
     const timers = [];
@@ -55,11 +38,13 @@ export default function IntroAnimation({ onFinish }) {
     // 4. Bird flies in
     at(() => birdRef.current?.classList.add("fly-in"), 850);
 
-    // 5. Swap white SVGs → blue SVGs
-    at(() => setIsBlue(true), 1700);
+    // 5. Letters go brand colour
+    at(() => {
+      lettersRef.current.forEach(el => el?.classList.add("brand"));
+    }, 1700);
 
     // 6. Bird flap burst
-    at(() => birdRef.current?.classList.add("flap"),    1150);
+    at(() => birdRef.current?.classList.add("flap"), 1150);
     at(() => birdRef.current?.classList.remove("flap"), 1650);
 
     // 7. Bird flies out
@@ -81,14 +66,8 @@ export default function IntroAnimation({ onFinish }) {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
 
-      // Responsive scale — smaller on mobile
-      const isMobile  = vw <= 480;
-      const isTablet  = vw <= 768;
-      const finalScale = isMobile ? 0.55 : isTablet ? 0.48 : FINAL_SCALE;
-
-      // Logo natural width matches the CSS scale applied
-      const logoNaturalW = isMobile ? 160 : isTablet ? 185 : 220;
-      const finalW = logoNaturalW * finalScale;
+      const logoNaturalW = 220;
+      const finalW = logoNaturalW * FINAL_SCALE;
 
       const cx = vw / 2;
       const cy = vh / 2;
@@ -100,7 +79,7 @@ export default function IntroAnimation({ onFinish }) {
       const dy = targetY - cy;
 
       logo.style.transition = "transform 1.1s cubic-bezier(.65,0,.2,1)";
-      logo.style.transform  = `translateX(${dx}px) translateY(${dy}px) scale(${finalScale})`;
+      logo.style.transform  = `translateX(${dx}px) translateY(${dy}px) scale(${FINAL_SCALE})`;
 
       if (screenRef.current) {
         screenRef.current.style.background    = "transparent";
@@ -121,8 +100,6 @@ export default function IntroAnimation({ onFinish }) {
 
     return () => timers.forEach(clearTimeout);
   }, []);
-
-  const LETTERS = isBlue ? LETTERS_BLUE : LETTERS_WHITE;
 
   return (
     <div className="intro-screen" ref={screenRef}>
@@ -145,38 +122,62 @@ export default function IntroAnimation({ onFinish }) {
       {/* Glow */}
       <div className="glow" />
 
-      {/* Bird */}
-      <img
-        className="bird-wrap"
-        ref={birdRef}
-        src={birdImage}
-        alt=""
-        aria-hidden="true"
-      />
+      {/* Bird — inline SVG */}
+      <div className="bird-wrap" ref={birdRef}>
+        <svg viewBox="0 0 140 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Body */}
+          <ellipse cx="70" cy="40" rx="24" ry="10" fill="white" opacity="0.95"/>
+          {/* Tail */}
+          <path d="M46 40 Q34 46 26 54 Q36 42 47 44Z" fill="white" opacity="0.8"/>
+          {/* Head */}
+          <ellipse cx="91" cy="34" rx="10" ry="8" fill="white" opacity="0.95"/>
+          {/* Beak */}
+          <path d="M100 33 L112 35 L100 37Z" fill="rgba(200,170,255,0.95)"/>
+          {/* Eye */}
+          <circle cx="93" cy="32" r="2" fill="#0e0728"/>
+          <circle cx="93.7" cy="31.4" r="0.7" fill="white"/>
+          {/* Wing left */}
+          <path
+            className="wing wing-left"
+            d="M70 36 Q50 12 24 22 Q46 28 68 40Z"
+            fill="white" opacity="0.92"
+          />
+          {/* Wing right */}
+          <path
+            className="wing wing-right"
+            d="M72 36 Q92 12 118 20 Q96 28 73 40Z"
+            fill="white" opacity="0.92"
+          />
+          {/* Feather lines */}
+          <path d="M52 26 Q61 33 68 39" stroke="rgba(180,150,255,0.4)" strokeWidth="0.9"/>
+          <path d="M57 21 Q65 30 69 37" stroke="rgba(180,150,255,0.3)" strokeWidth="0.7"/>
+          <path d="M88 24 Q80 31 73 38" stroke="rgba(180,150,255,0.4)" strokeWidth="0.9"/>
+          {/* Trail lines */}
+          <line x1="22" y1="24" x2="6"  y2="24" stroke="rgba(160,110,255,0.5)" strokeWidth="1.2" strokeLinecap="round" className="trail"/>
+          <line x1="26" y1="33" x2="8"  y2="35" stroke="rgba(160,110,255,0.35)" strokeWidth="0.9" strokeLinecap="round" className="trail"/>
+          <line x1="28" y1="41" x2="12" y2="44" stroke="rgba(160,110,255,0.2)" strokeWidth="0.7" strokeLinecap="round" className="trail"/>
+        </svg>
+      </div>
 
       {/* Logo — animates to navbar */}
       <div className="logo-container" ref={logoRef}>
         <div className="logo-row">
 
           {/* Icon box */}
-          <img
-            src={isBlue ? iconBlue : iconWhite}
-            className="logo-icon"
-            ref={iconRef}
-            alt="MiTRAA"
-          />
+          <div className="logo-icon" ref={iconRef}>
+            <img src={iconSrc} alt="MiTRAA" />
+          </div>
 
-          {/* SVG letter images */}
+          {/* Text letters */}
           <div className="logo-wordmark">
-            {LETTERS.map((src, i) => (
-              <img
+            {LETTERS.map((char, i) => (
+              <span
                 key={i}
-                src={src}
-                className="logo-letter"
+                className={`logo-letter${char === "i" ? " letter-i" : ""}`}
                 ref={el => { lettersRef.current[i] = el; }}
-                alt=""
-                aria-hidden="true"
-              />
+              >
+                {char}
+              </span>
             ))}
           </div>
 

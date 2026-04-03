@@ -53,58 +53,64 @@
 /* ─── Bird ───────────────────────────────────────────────────── */
 .bird-wrap {
   position: absolute;
-  top: 8%;
-  right: -180px;
-  width: 80px;
-  height: auto;
+  top: 12%;
+  right: -200px;
+  width: 130px;
   opacity: 0;
-  filter: drop-shadow(0 0 18px rgba(180,120,255,0.9));
-  transform: translateY(20px) rotate(-8deg) scale(0.85);
+  filter: drop-shadow(0 0 14px rgba(160,100,255,0.55));
+  transform: rotate(-6deg) scale(0.88);
   transition:
-    right     1.6s cubic-bezier(.22,1,.36,1),
-    top       1.6s cubic-bezier(.22,1,.36,1),
-    opacity   0.55s ease,
-    transform 1.6s cubic-bezier(.22,1,.36,1);
+    right    1.5s cubic-bezier(.25,0,.2,1),
+    top      1.5s cubic-bezier(.25,0,.2,1),
+    opacity  0.6s ease,
+    transform 1.5s ease;
 }
-
-/* Idle bob — plays once bird is in position */
-@keyframes bird-bob {
-  0%, 100% { transform: translateY(0px)   scale(1);    }
-  30%       { transform: translateY(-8px)  scale(1.03); }
-  60%       { transform: translateY(-3px)  scale(1.01); }
-}
-
 .bird-wrap.fly-in {
   opacity: 1;
-  right: 4%;
-  top: 8%;
-  transform: rotate(0deg) scale(1);
-  animation: bird-bob 1.8s ease-in-out infinite;
-  animation-delay: 0.5s;
+  right: 7%;
+  top: 11%;
+  transform: rotate(-3deg) scale(1);
 }
-
-/* Flap burst — quick bounce */
 .bird-wrap.flap {
-  animation: none;
-  top: 12%;
-  transform: scale(1.12) translateY(6px);
+  top: 15%;
+  transform: rotate(-9deg) scale(1.06);
   transition:
-    top       0.2s ease-in,
-    transform 0.2s ease-in;
+    top      0.22s ease-in-out,
+    transform 0.22s ease-in-out;
+}
+.bird-wrap.fly-out {
+  opacity: 0;
+  right: -15%;
+  top: 1%;
+  transform: rotate(12deg) scale(0.65);
+  transition:
+    right    0.75s cubic-bezier(.4,0,1,1),
+    top      0.75s cubic-bezier(.4,0,1,1),
+    opacity  0.45s 0.25s ease,
+    transform 0.75s ease;
 }
 
-/* Fly out — swoops up-right */
-.bird-wrap.fly-out {
-  animation: none;
-  opacity: 0;
-  right: -18%;
-  top: 0%;
-  transform: scale(0.4) translateY(-40px);
-  transition:
-    right     0.7s cubic-bezier(.55,0,1,.45),
-    top       0.7s cubic-bezier(.55,0,1,.45),
-    opacity   0.4s 0.2s ease,
-    transform 0.7s ease;
+/* Wing flap */
+.bird-wrap svg .wing {
+  transform-origin: 71px 39px;
+  animation: flap-idle 1.3s ease-in-out infinite;
+}
+.bird-wrap svg .wing-left  { animation-delay: 0s; }
+.bird-wrap svg .wing-right { animation-delay: 0.06s; }
+
+@keyframes flap-idle {
+  0%, 100% { transform: scaleY(1);    opacity: 0.92; }
+  40%       { transform: scaleY(0.3); opacity: 0.65; }
+  70%       { transform: scaleY(1.06);opacity: 1;    }
+}
+
+/* Trail pulse */
+.bird-wrap svg .trail {
+  animation: trail-pulse 1.3s ease-in-out infinite;
+}
+@keyframes trail-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(0);   }
+  50%       { opacity: 0.1; transform: translateX(-5px);}
 }
 
 /* ─── Logo Container ─────────────────────────────────────────── */
@@ -123,14 +129,26 @@
   gap: 10px;
 }
 
-/* ─── Icon ───────────────────────────────────────────────────── */
+/* ─── Icon Box ───────────────────────────────────────────────── */
 .logo-icon {
-  height: 40px;
-  width: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transform: translateX(-24px) scale(0.8);
   transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.34,1.56,.64,1);
+  overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(140,80,255,0.45);
+}
+.logo-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 .logo-icon.show {
   opacity: 1;
@@ -140,20 +158,37 @@
 /* ─── Wordmark ───────────────────────────────────────────────── */
 .logo-wordmark {
   display: flex;
-  align-items: center;
-  gap: 2px;
+  align-items: baseline;
 }
 
 .logo-letter {
-  height: 36px;
-  width: auto;
+  font-family: 'Syne', 'Trebuchet MS', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+  line-height: 1;
   opacity: 0;
   transform: translateY(16px) translateX(-6px);
   transition:
-    opacity   0.4s ease,
-    transform 0.4s cubic-bezier(.34,1.4,.64,1);
-  display: block;
-  flex-shrink: 0;
+    opacity    0.4s ease,
+    transform  0.4s cubic-bezier(.34,1.4,.64,1),
+    color      0.5s ease,
+    text-shadow 0.5s ease;
+  display: inline-block;
+}
+
+/* lowercase i */
+.logo-letter.letter-i {
+  font-weight: 300;
+  font-size: 34px;
+  margin: 0 1px;
+}
+
+/* Brand colour */
+.logo-letter.brand {
+  color: #c8aaff;
+  text-shadow: 0 0 20px rgba(160,100,255,0.65);
 }
 
 /* ─── Tagline ────────────────────────────────────────────────── */
@@ -176,123 +211,4 @@
 .tagline.show {
   opacity: 1;
   transform: none;
-}
-
-/* ─── Mobile Responsive ──────────────────────────────────────── */
-
-/* Tablet — 768px */
-@media (max-width: 768px) {
-  .logo-container {
-    transform: scale(1.1);
-  }
-
-  .logo-icon {
-    height: 32px;
-  }
-
-  .logo-letter {
-    height: 28px;
-  }
-
-  .logo-row {
-    gap: 7px;
-  }
-
-  .bird-wrap {
-    width: 100px;
-    right: -120px;
-    top: 5%;
-  }
-  .bird-wrap.fly-in {
-    right: 2%;
-    top: 5%;
-  }
-
-  .tagline {
-    font-size: 8px;
-    letter-spacing: 2.5px;
-    max-width: 280px;
-    padding: 0 16px;
-  }
-
-  .glow {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-/* Mobile — 480px */
-@media (max-width: 480px) {
-  .logo-container {
-    transform: scale(0.95);
-  }
-
-  .logo-icon {
-    height: 40px;
-  }
-
-  .logo-letter {
-    height: 30px;
-  }
-
-  .logo-row {
-    gap: 5px;
-  }
-
-  .bird-wrap {
-    width: 100px;
-    right: -110px;
-    top: 4%;
-  }
-  .bird-wrap.fly-in {
-    right: 1%;
-    top: 4%;
-  }
-
-  .tagline {
-    font-size: 7px;
-    letter-spacing: 2px;
-    max-width: 240px;
-    margin-top: 14px;
-  }
-
-  .glow {
-    width: 240px;
-    height: 240px;
-  }
-}
-
-/* Small mobile — 360px */
-@media (max-width: 360px) {
-  .logo-container {
-    transform: scale(0.85);
-  }
-
-  .logo-icon {
-    height: 30px;
-  }
-
-  .logo-letter {
-    height: 20px;
-  }
-
-  .logo-row {
-    gap: 4px;
-  }
-
-  .bird-wrap {
-    width: 100px;
-    right: -100px;
-    top: 3%;
-  }
-  .bird-wrap.fly-in {
-    right: 1%;
-    top: 3%;
-  }
-
-  .tagline {
-    font-size: 6.5px;
-    letter-spacing: 1.8px;
-    max-width: 200px;
-  }
 }

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./IntroAnimation.css";
 
-import iconWhite from "../../assets/logo/icon-white.svg";
-import iconBlue  from "../../assets/logo/icon-blue.svg";
+import iconSrc   from "../../assets/logo/icon-white.svg";
 import birdImage from "../../assets/images/birdimage.svg";
 
 import Mwhite from "../../assets/logo/M-white.svg";
@@ -81,14 +80,8 @@ export default function IntroAnimation({ onFinish }) {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
 
-      // Responsive scale — smaller on mobile
-      const isMobile  = vw <= 480;
-      const isTablet  = vw <= 768;
-      const finalScale = isMobile ? 0.55 : isTablet ? 0.48 : FINAL_SCALE;
-
-      // Logo natural width matches the CSS scale applied
-      const logoNaturalW = isMobile ? 160 : isTablet ? 185 : 220;
-      const finalW = logoNaturalW * finalScale;
+      const logoNaturalW = 220;
+      const finalW = logoNaturalW * FINAL_SCALE;
 
       const cx = vw / 2;
       const cy = vh / 2;
@@ -100,7 +93,7 @@ export default function IntroAnimation({ onFinish }) {
       const dy = targetY - cy;
 
       logo.style.transition = "transform 1.1s cubic-bezier(.65,0,.2,1)";
-      logo.style.transform  = `translateX(${dx}px) translateY(${dy}px) scale(${finalScale})`;
+      logo.style.transform  = `translateX(${dx}px) translateY(${dy}px) scale(${FINAL_SCALE})`;
 
       if (screenRef.current) {
         screenRef.current.style.background    = "transparent";
@@ -159,12 +152,9 @@ export default function IntroAnimation({ onFinish }) {
         <div className="logo-row">
 
           {/* Icon box */}
-          <img
-            src={isBlue ? iconBlue : iconWhite}
-            className="logo-icon"
-            ref={iconRef}
-            alt="MiTRAA"
-          />
+          <div className="logo-icon" ref={iconRef}>
+            <img src={iconSrc} alt="MiTRAA" />
+          </div>
 
           {/* SVG letter images */}
           <div className="logo-wordmark">
