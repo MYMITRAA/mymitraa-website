@@ -1,8 +1,13 @@
 import caseImg from "../../assets/images/casestudy.svg";
 import "./CaseStudiesContent.css";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 
 export default function CaseStudiesContent() {
+   const navigate = useNavigate();
   return (
     <div className="casestudies-content">
 
@@ -36,9 +41,7 @@ export default function CaseStudiesContent() {
           across industries.
         </p>
 
-        <button className="view-more-btn">
-          View More
-        </button>
+        <button onClick={() => navigate("/casestudy")}>View More</button>
 
       </div>
 

@@ -1,8 +1,9 @@
 import portfolioImg from "../../assets/images/casestudy.svg";
-
+import { useNavigate } from "react-router-dom";
 import "./PortfolioContent.css"
 
 export default function PortfolioContent() {
+  const navigate = useNavigate();
   return (
     <>
       <img src={portfolioImg} alt="" />
@@ -16,7 +17,7 @@ export default function PortfolioContent() {
           across industries.
         </p>
 
-        <button>View More</button>
+        <button onClick={() => navigate("/portfolio")}>View More</button>
       </div>
     </>
   );

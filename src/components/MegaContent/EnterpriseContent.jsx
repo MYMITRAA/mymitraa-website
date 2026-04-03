@@ -1,7 +1,9 @@
 import enterprise from "../../assets/images/enterpriseimage.png";
 import "./ServicesContent.css";
+import { useNavigate } from "react-router-dom";
 
 export default function EnterpriseTechnology() {
+  const navigate = useNavigate();
   return (
     <div className="service-container">
 
@@ -22,7 +24,7 @@ export default function EnterpriseTechnology() {
           supports growth instead of slowing it down.
         </p>
 
-        <button>View More</button>
+       <button onClick={() => navigate("/enterprisetech")}>View More</button>
 
       </div>
 

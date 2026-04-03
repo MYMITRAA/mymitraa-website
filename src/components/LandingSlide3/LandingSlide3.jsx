@@ -27,7 +27,7 @@ export default function LandingSlide3() {
 
           <button
             className="mitraa-landing3-btn"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/agi-countdown")}
           >
             EXPLORE
           </button>

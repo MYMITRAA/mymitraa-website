@@ -1,7 +1,12 @@
 import blockchain from "../../assets/images/blockchainimage.png";
 import "./ServicesContent.css";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 export default function Blockchain() {
+  const navigate = useNavigate();
   return (
     <div className="service-container">
 
@@ -21,7 +26,7 @@ export default function Blockchain() {
           simplify operations and strengthen digital trust.
         </p>
 
-        <button>View More</button>
+         <button onClick={() => navigate("/blockchain")}>View More</button>
 
       </div>
 

@@ -1,7 +1,12 @@
 import "./Explore.css";
 import treeBg from "../../assets/images/treebg.svg"; 
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 function Explore() {
+  const navigate = useNavigate();
   return (
     <section
       className="explore-section"
@@ -25,7 +30,7 @@ function Explore() {
             intelligence.
           </p>
 
-          <button className="explore-btn">Explore</button>
+          <button className="explore-btn"  onClick={() => navigate("/agi")}>Explore</button>
 
         </div>
 

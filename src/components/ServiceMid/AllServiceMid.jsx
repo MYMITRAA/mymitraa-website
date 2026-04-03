@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AllServiceMid.css";
 
 import bird from "../../assets/images/Mascot3.png";
@@ -7,7 +7,47 @@ import team2 from "../../assets/images/team1image.svg";
 import team3 from "../../assets/images/team1image.svg";
 import team4 from "../../assets/images/team1image.svg";
 
+function useCountUp(target, suffix, duration, started) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!started) return;
+    let current = 0;
+    const step = Math.ceil(target / (duration / 16));
+    const interval = setInterval(() => {
+      current = Math.min(current + step, target);
+      setValue(current);
+      if (current >= target) clearInterval(interval);
+    }, 16);
+    return () => clearInterval(interval);
+  }, [started, target, duration]);
+
+  return value + suffix;
+}
+
 const AllServiceMid = () => {
+  const [started, setStarted] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (cardRef.current) observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const projects = useCountUp(10, "+", 1000, started);
+  const clients  = useCountUp(8,  "+", 1200, started);
+  const repeat   = useCountUp(70, "%", 1400, started);
+  const delivery = useCountUp(100, "%", 1600, started);
+
   return (
     <section className="allservicemid">
 
@@ -23,7 +63,7 @@ const AllServiceMid = () => {
       <div className="why-grid">
 
         {/* LEFT CARD */}
-        <div className="zenix-card">
+        <div className="zenix-card" ref={cardRef}>
 
           <div className="bird-circle">
             <img src={bird} alt="bot" />
@@ -38,26 +78,26 @@ const AllServiceMid = () => {
           <div className="stats">
 
             <div className="stat">
-              <h2>10+</h2>
+              <h2>{projects}</h2>
               <p>Projects Delivered</p>
             </div>
 
             <div className="divider"></div>
 
             <div className="stat">
-              <h2>8+</h2>
+              <h2>{clients}</h2>
               <p>Active Clients</p>
             </div>
 
             <div className="stat">
-              <h2>70%</h2>
+              <h2>{repeat}</h2>
               <p>Repeat Engagements</p>
             </div>
 
             <div className="divider"></div>
 
             <div className="stat">
-              <h2>100%</h2>
+              <h2>{delivery}</h2>
               <p>Commitment to On-Time Delivery</p>
             </div>
 
@@ -99,11 +139,10 @@ const AllServiceMid = () => {
             </p>
 
             <div className="team-row">
-              <img src={team1} alt="team"/>
-              <img src={team2} alt="team"/>
-              <img src={team3} alt="team"/>
-              <img src={team4} alt="team"/>
-
+              <img src={team1} alt="team" />
+              <img src={team2} alt="team" />
+              <img src={team3} alt="team" />
+              <img src={team4} alt="team" />
               <div className="team-count">15+</div>
             </div>
 

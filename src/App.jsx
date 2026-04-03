@@ -13,12 +13,14 @@ import Web from "./pages/Web/Web";
 import CyberSecurity from "./pages/CyberSecurity/CyberSecurity";
 import AIforSmallBusinesshero from "./pages/Aiforsmallbussiness/Aiforsmallbussiness";
 import Blockchain from "./pages/BlockChain/Blockchain";
+import AGICountdown from "./pages/AgiCountdown/AGIEvolution";
 
 import EnterpriseAgileDevelopment from "./pages/EnterpriseAgileDevelopment/EnterpriseAgileDevelopment";
 import EnterpriseTech from "./pages/EnterpriseTech/EnterpriseTech";
 import CaseStudy from "./pages/CaseStudy/CaseStudy";
 import Portfolio from "./pages/Portfolio/Portfolio";
 import ResourceAugmentation from "./pages/Resourcepage/ResourceAugmentation";
+import Agi from "./pages/Agi/Agi";
 
 
 
@@ -62,6 +64,8 @@ function App() {
                 <Route path="/casestudy" element={<CaseStudy />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/resourceaugmentation" element={<ResourceAugmentation />} />
+                <Route path="/agi" element={<Agi />} />
+                <Route path="/agi-countdown" element={<AGICountdown />} />
 
                 <Route path="/service" element={<Service />} />
                 <Route path="/execution" element={<Execution />} />

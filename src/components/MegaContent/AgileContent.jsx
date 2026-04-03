@@ -1,7 +1,9 @@
 import agile from "../../assets/images/agileimage.png";
 import "./ServicesContent.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Agile() {
+  const navigate = useNavigate();
   return (
     <div className="service-container">
 
@@ -22,7 +24,7 @@ export default function Agile() {
           rather than managing overhead.
         </p>
 
-        <button>View More</button>
+        <button onClick={() => navigate("/enterpriseagiledevelopment")}>View More</button>
 
       </div>
 

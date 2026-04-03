@@ -510,3 +510,22 @@
     font-size: 11px;
   }
 }
+
+/* =====================
+   COUNTER ANIMATION
+   ===================== */
+
+@keyframes countFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat h2 {
+  animation: countFadeIn 0.5s ease forwards;
+}

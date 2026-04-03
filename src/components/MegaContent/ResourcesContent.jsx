@@ -1,7 +1,9 @@
 import resourceImg from "../../assets/images/resource.svg";
 import "./ResourcesContent.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ResourcesContent() {
+  const navigate = useNavigate();
   return (
     <div className="resources-content">
 
@@ -30,9 +32,8 @@ export default function ResourcesContent() {
           across your organization.
         </p>
 
-        <button className="view-more-btn">
-          View More
-        </button>
+         <button onClick={() => navigate("/resourcesaugmentation")}>View More</button>
+
 
       </div>
 

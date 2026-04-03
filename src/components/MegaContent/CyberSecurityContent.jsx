@@ -1,7 +1,9 @@
 import security from "../../assets/images/cybersecurity.png";
 import "./ServicesContent.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CyberSecurity() {
+  const navigate = useNavigate();
   return (
     <div className="service-container">
 
@@ -21,7 +23,7 @@ export default function CyberSecurity() {
           while keeping user experience smooth and uninterrupted.
         </p>
 
-        <button>View More</button>
+         <button onClick={() => navigate("/cybersecurity")}>View More</button>
 
       </div>
 
