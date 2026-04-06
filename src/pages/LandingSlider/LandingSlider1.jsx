@@ -1,38 +1,38 @@
 import Navbar from "../../components/Navbar/Navbar";
 import IntroAnimation from "../../components/IntroLogo/IntroAnimation";
-
 import { useState, useEffect, useRef } from "react";
 
 import Landing1 from "../../components/LandingSlide1/LandingSlide1";
 import Landing2 from "../../components/LandingSlide2/LandingSlide2";
 import Landing3 from "../../components/LandingSlide3/LandingSlide3";
 
-const SLIDE_DURATION = 9500;
-const TOTAL_SLIDES = 3;
-
 export default function Landing() {
-
-  const [slide, setSlide]           = useState(0);
-  const [showIntro, setShowIntro]   = useState(true);
+  const [slide, setSlide] = useState(0);
+  const [showIntro, setShowIntro] = useState(true);
   const [showSlides, setShowSlides] = useState(false);
-  const intervalRef                 = useRef(null);
+  const intervalRef = useRef(null);
 
+  const totalSlides = 3;
+
+  // ── Start / restart the auto-advance timer ──
   const startTimer = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      setSlide((prev) => (prev + 1) % TOTAL_SLIDES);
-    }, SLIDE_DURATION);
+      setSlide((prev) => (prev + 1) % totalSlides);
+    }, 5000);
   };
 
+  // ── Dot click — jump to slide AND restart timer ──
   const handleDotClick = (index) => {
-    if (index === slide) return;
     setSlide(index);
-    startTimer();
+    startTimer(); // reset so it doesn't immediately advance after clicking
   };
 
+  // ── Begin auto-advance once slides are visible ──
   useEffect(() => {
-    if (!showSlides) return;
-    startTimer();
+    if (showSlides) {
+      startTimer();
+    }
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
@@ -47,18 +47,15 @@ export default function Landing() {
 
   const sharedProps = {
     currentSlide: slide,
-    totalSlides: TOTAL_SLIDES,
+    totalSlides,
     onDotClick: handleDotClick,
   };
 
-  const renderSlide = () => {
-    switch (slide) {
-      case 0: return <Landing1 {...sharedProps} />;
-      case 1: return <Landing2 {...sharedProps} />;
-      case 2: return <Landing3 {...sharedProps} />;
-      default: return <Landing1 {...sharedProps} />;
-    }
-  };
+  const slides = [
+    <Landing1 {...sharedProps} />,
+    <Landing2 {...sharedProps} />,
+    <Landing3 {...sharedProps} />,
+  ];
 
   return (
     <div>
@@ -68,7 +65,7 @@ export default function Landing() {
         <IntroAnimation onFinish={() => setShowIntro(false)} />
       )}
 
-      {showSlides && renderSlide()}
+      {showSlides && slides[slide]}
     </div>
   );
 }

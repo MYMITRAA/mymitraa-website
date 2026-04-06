@@ -16,12 +16,6 @@
   width: 479px;
   object-fit: contain;
   transform-origin: center bottom;
-
-  /*
-    Long, slow opacity transition — the two images melt into each other.
-    animation-timing-function: ease-in-out on both keyframes ensures
-    they're always near the same vertical position when the swap happens.
-  */
   transition: opacity 1.2s ease-in-out;
 }
 
@@ -30,11 +24,10 @@
 .robot-anim-layer-top    { z-index: 2; }
 
 /*
-  KEY TRICK:
-  Both hover and thinking share the SAME vertical travel range and the
-  SAME animation duration (6s). This means both images are always at
-  roughly the same Y position when the crossfade kicks in — so the
-  robot appears to just "shift expression" without jumping.
+  Both animations use the SAME duration (6s) and start from rest (no delay).
+  The thinking class is only applied AFTER the crossfade completes
+  (via thinkingStarted flag in JSX), so it always begins its float from 0.
+  This guarantees both poses feel equally long visually.
 */
 
 .robot-anim-img--hover {
@@ -42,36 +35,26 @@
 }
 
 .robot-anim-img--thinking {
-  /*
-    animation-delay: -2s makes thinking start mid-cycle so it's already
-    in motion (not snapping from 0) when it fades in.
-    The Y range matches robotFloat so the crossfade is position-seamless.
-  */
+  /* No animation-delay — starts from rest, same as hover */
   animation: robotThink 6s ease-in-out infinite;
-  animation-delay: -2s;
 }
 
-/* =====================================================
-   KEYFRAMES
-   — Both animations share the same vertical range (-18px)
-     so the robot stays at roughly the same height during crossfade.
-   ===================================================== */
+/* ── KEYFRAMES ── */
 
 @keyframes robotFloat {
-  0%   { transform: translateY(0px);  }
+  0%   { transform: translateY(0px);   }
   50%  { transform: translateY(-18px); }
-  100% { transform: translateY(0px);  }
+  100% { transform: translateY(0px);   }
 }
 
 @keyframes robotThink {
-  0%   { transform: translateY(0px)   rotate(-1deg); }
-  50%  { transform: translateY(-18px) rotate(1.5deg); }
-  100% { transform: translateY(0px)   rotate(-1deg); }
+  0%   { transform: translateY(0px)    rotate(-1deg);  }
+  50%  { transform: translateY(-18px)  rotate(1.5deg); }
+  100% { transform: translateY(0px)    rotate(-1deg);  }
 }
 
-/* =====================================================
-   RESPONSIVE
-   ===================================================== */
+/* ── RESPONSIVE ── */
+
 @media (max-width: 1100px) {
   .robot-anim-wrapper { width: 374px; height: 480px; }
   .robot-anim-img     { height: 480px; width: 374px; }

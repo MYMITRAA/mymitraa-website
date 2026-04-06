@@ -4,55 +4,76 @@ import "./RobotAnimation.css";
 import robotHover    from "../../assets/roboanimation/robot_hover.svg";
 import robotThinking from "../../assets/roboanimation/robot_thinking.svg";
 
-const SEQUENCE = [
-  { key: "hover",    src: robotHover,    duration: 3500 },
-  { key: "thinking", src: robotThinking, duration: 3500 },
-];
+/*
+  EQUAL TIME GUARANTEE
+  ─────────────────────────────────────────────────────
+  SLIDE_DURATION  = 9500ms  (set in Landing.jsx)
+  FADE_MS         = 1200ms  (crossfade duration)
+  POSE_MS         = (9500 - 1200) / 2 = 4150ms each
 
-const FADE_MS = 1200; // long slow crossfade — they melt into each other
+  Timeline:
+    0ms          → hover starts floating from rest (delay: 0s)
+    4150ms       → crossfade begins (hover fades out / thinking fades in)
+    5350ms       → crossfade done, thinking fully visible, starts floating from rest
+    9500ms       → slide switches, component unmounts
+
+  Both poses float for exactly 4150ms. No animation-delay offset.
+  ─────────────────────────────────────────────────────
+*/
+
+const POSE_MS = 4150;
+const FADE_MS = 1200;
 
 export default function RobotAnimation() {
-  const [current, setCurrent] = useState(0);
-  const [fading,  setFading]  = useState(false);
-  const timerRef  = useRef(null);
-  const fadeRef   = useRef(null);
+  const [phase,  setPhase]  = useState(0); // 0 = hover, 1 = thinking
+  const [fading, setFading] = useState(false);
 
-  const next = (current + 1) % SEQUENCE.length;
+  // Track when thinking phase actually started so its float animation begins at 0
+  const [thinkingStarted, setThinkingStarted] = useState(false);
+
+  const timerRef = useRef(null);
+  const fadeRef  = useRef(null);
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      setFading(true);
+    if (phase === 0) {
+      // After POSE_MS of showing hover, start the crossfade
+      timerRef.current = setTimeout(() => {
+        setFading(true);
 
-      fadeRef.current = setTimeout(() => {
-        setCurrent(prev => (prev + 1) % SEQUENCE.length);
-        setFading(false);
-      }, FADE_MS);
+        // After FADE_MS the swap is done
+        fadeRef.current = setTimeout(() => {
+          setPhase(1);
+          setFading(false);
+          setThinkingStarted(true); // thinking float animation starts NOW from rest
+        }, FADE_MS);
 
-    }, SEQUENCE[current].duration);
+      }, POSE_MS);
+    }
+    // phase === 1: stay on thinking, no further timer
 
     return () => {
       clearTimeout(timerRef.current);
       clearTimeout(fadeRef.current);
     };
-  }, [current]);
+  }, [phase]);
 
   return (
     <div className="robot-anim-wrapper">
 
-      {/* BOTTOM — next image, invisible until crossfade */}
+      {/* BOTTOM — thinking: hidden until crossfade, then stays */}
       <img
-        src={SEQUENCE[next].src}
-        alt="AI Robot"
-        className={`robot-anim-img robot-anim-img--${SEQUENCE[next].key} robot-anim-layer-bottom`}
-        style={{ opacity: fading ? 1 : 0 }}
+        src={robotThinking}
+        alt="AI Robot Thinking"
+        className={`robot-anim-img robot-anim-layer-bottom ${thinkingStarted ? "robot-anim-img--thinking" : ""}`}
+        style={{ opacity: fading || phase === 1 ? 1 : 0 }}
       />
 
-      {/* TOP — current image, fades out during crossfade */}
+      {/* TOP — hover: visible from start, fades out, gone after */}
       <img
-        src={SEQUENCE[current].src}
+        src={robotHover}
         alt="AI Robot"
-        className={`robot-anim-img robot-anim-img--${SEQUENCE[current].key} robot-anim-layer-top`}
-        style={{ opacity: fading ? 0 : 1 }}
+        className="robot-anim-img robot-anim-img--hover robot-anim-layer-top"
+        style={{ opacity: phase === 0 && !fading ? 1 : 0 }}
       />
 
     </div>

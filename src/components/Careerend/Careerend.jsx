@@ -1,10 +1,11 @@
 import "./Careerend.css";
-
+import { useNavigate } from "react-router-dom";
 import internImg from "../../assets/images/imgintern.svg";
 import earlyImg from "../../assets/images/imgmid.svg";
 import expImg from "../../assets/images/imgend.svg";
 
 function CareerEnd() {
+  const navigate = useNavigate();
   return (
     <section className="career-end">
 
@@ -31,7 +32,7 @@ function CareerEnd() {
               <img src={internImg} alt="Internship" />
             </div>
             <h3>Internship</h3>
-            <button className="career-btn">
+            <button className="career-btn" onClick={() => navigate("/jobs")}>
               Find Jobs <span>↗</span>
             </button>
           </div>
@@ -42,7 +43,7 @@ function CareerEnd() {
               <img src={earlyImg} alt="Early Careers" />
             </div>
             <h3>Early careers</h3>
-            <button className="career-btn">
+            <button className="career-btn" onClick={() => navigate("/jobs")}>
               Find Jobs <span>↗</span>
             </button>
           </div>
@@ -53,7 +54,7 @@ function CareerEnd() {
               <img src={expImg} alt="Experienced" />
             </div>
             <h3>Experienced professionals</h3>
-            <button className="career-btn">
+            <button className="career-btn"  onClick={() => navigate("/jobs")}>
               Find Jobs <span>↗</span>
             </button>
           </div>

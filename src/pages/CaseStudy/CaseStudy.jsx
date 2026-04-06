@@ -1,30 +1,35 @@
 import "./CaseStudy.css";
 import Footer from "../../components/Footer/Footer.jsx";
+import AIVideConference from "../../assets/images/AIVideoConferencingPlatform.png";
+
+import AutonomousAIWebQuality from "../../assets/images/AutonomousAIWebQualityEngine.png";
+import PricingApprovalWorkflow from "../../assets/images/PricingApprovalWorkflowSystem.png";
+import AgenticRAGKnowledge from "../../assets/images/AgenticRagKnowledgeSystem1.png";
 
 const caseStudies = [
   {
     id: 1,
     title: "Autonomous AI Web Quality Engine",
     pdf: "/ai-crawl.pdf",
-    image: "/coin.png"
+    image: AutonomousAIWebQuality
   },
   {
     id: 2,
     title: "AI Video Conferencing Platform",
     pdf: "ai-video.pdf",
-    image: "/coin.png"
+    image: AIVideConference
   },
   {
     id: 3,
     title: "Pricing Approval Workflow System",
     pdf: "/pricing.pdf",
-    image: "/coin.png"
+    image: PricingApprovalWorkflow
   },
   {
     id: 4,
     title: "Agentic RAG Knowledge System",
     pdf: "/rag.pdf",
-    image: "/coin.png"
+    image: AgenticRAGKnowledge
   }
 ];
 
