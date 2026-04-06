@@ -4,7 +4,7 @@ import AIVideConference from "../../assets/images/AIVideoConferencingPlatform.pn
 
 import AutonomousAIWebQuality from "../../assets/images/AutonomousAIWebQualityEngine.png";
 import PricingApprovalWorkflow from "../../assets/images/PricingApprovalWorkflowSystem.png";
-import AgenticRAGKnowledge from "../../assets/images/AgenticRagKnowledgeSystem1.png";
+import AgenticRAGKnowledge from "../../assets/images/AgenticRAGKnowledgeSystem1.png";
 
 const caseStudies = [
   {
