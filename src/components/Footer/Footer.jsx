@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logologo from "../../assets/logo/icon-blue.svg";
 import mitra from "../../assets/logo/mitraa.svg";
 import bigLogo from "../../assets/images/footerlogo.svg";
-
 import instagram from "../../assets/images/instagram.svg";
 import linkedin from "../../assets/images/linkedin.svg";
 import facebook from "../../assets/images/facebook.svg";
@@ -20,19 +19,16 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-card">
 
-          {/* ROW 1 — Logo + Description (full width) */}
+          {/* ROW 1 — Logo + Description */}
           <div className="footer-left">
             <div className="footer-brand">
               <img src={logologo} alt="Logo Icon" className="footer-logo" />
               <img src={mitra} alt="MITRAA Text" className="footer-mitraa" />
             </div>
-
             <p className="footer-desc">
               Your big dreams deserve the right strategy. Fill out the form,
               pick a time that works for you, and let's connect!
             </p>
-
-           
           </div>
 
           {/* ROW 2 col 1 — Services */}
@@ -60,14 +56,27 @@ function Footer() {
             </ul>
           </div>
 
-          {/* ROW 3 — Follow Us centered (mobile only, shown via CSS) */}
+          {/* ROW 3 — Follow Us */}
           <div className="footer-social-mobile">
             <h4>Follow Us</h4>
             <div className="social-icons">
-              <img src={instagram} alt="Instagram" />
-              <img src={linkedin} alt="LinkedIn" />
-              <img src={facebook} alt="Facebook" />
-              <img src={twitter} alt="Twitter" />
+
+              <a href="https://www.instagram.com/mitra.technologypvtltd?igsh=ZGRuNjJhempzbnRv" target="_blank" rel="noopener noreferrer">
+                <img src={instagram} alt="Instagram" />
+              </a>
+
+              <a href="https://www.linkedin.com/company/mitra-technology-pvt-ltd/" target="_blank" rel="noopener noreferrer">
+                <img src={linkedin} alt="LinkedIn" />
+              </a>
+
+              <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
+                <img src={facebook} alt="Facebook" />
+              </a>
+
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src={twitter} alt="Twitter" />
+              </a>
+
             </div>
           </div>
 

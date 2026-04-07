@@ -324,3 +324,95 @@
 }
 
 }
+
+
+/* ============================= */
+/* ENTRANCE ANIMATIONS */
+/* ============================= */
+
+.services-title {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.services-title.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card,
+.service-feature {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.service-card.animate-in,
+.service-feature.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift */
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 28px rgba(0,0,0,0.10);
+}
+
+.service-feature:hover {
+  transform: translateY(-6px);
+}
+
+.service-feature img {
+  transition: transform 0.5s ease;
+}
+
+.service-feature:hover img {
+  transform: scale(1.04);
+}
+
+/* Icon bounce */
+.service-card:hover .service-icon {
+  animation: icon-bounce 0.4s ease;
+}
+
+@keyframes icon-bounce {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-6px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+/* Buttons */
+.service-btn {
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.service-btn:hover {
+  transform: scale(1.04);
+}
+
+.service-btn:active {
+  transform: scale(0.97);
+}
+
+.feature-btn {
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.feature-btn:hover {
+  background: #5a52e0;
+  transform: scale(1.04);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .services-title,
+  .service-card,
+  .service-feature {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

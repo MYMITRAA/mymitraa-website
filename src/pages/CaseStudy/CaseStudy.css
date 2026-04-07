@@ -64,10 +64,11 @@ body {
 
 /* CARD — outer lavender card */
 .cs-card {
-  width: 100%;
+   width: 400px;
+  height: 300px;
   background: rgba(220, 228, 255, 0.6);
   border-radius: 20px;
-  padding: 20px;
+  /* padding: 20px; */
   box-sizing: border-box;
   border: 1px solid rgba(180, 195, 255, 0.5);
   box-shadow: 0 2px 12px rgba(100, 120, 220, 0.06);
@@ -75,7 +76,7 @@ body {
 
 /* IMAGE BOX — inner white box, image fills it */
 .cs-image-box {
-  width: 100%;
+  width: 400px;
   height: 300px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.85);

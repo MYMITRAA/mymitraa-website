@@ -579,6 +579,7 @@
     border-radius: 20px;
     overflow: hidden;
     position: relative;
+    /* Reset desktop flex/align */
     display: block;
   }
 
@@ -622,8 +623,6 @@
 
   .top-card-text {
     width: 100%;
-    position: static;
-    padding: 0;
   }
 
   .top-card-text h3 {
@@ -682,9 +681,11 @@
     display: none;
   }
 
-  .discover-card.bottom-card .bottom-card-content {
+  /* Reset desktop positioning on bottom-card-content */
+  .bottom-card-content {
     text-align: left;
     position: static;
+    bottom: auto;
     margin-top: 0;
     padding: 0;
     width: 100%;
@@ -707,27 +708,43 @@
     color: #5a5a6e;
     text-align: left;
     position: static;
+    bottom: auto;
     font-weight: 400;
     margin: 0;
   }
 
-  /* ── TOP RIGHT CARD (How We Think) ── */
-  .discover-card.top-right {
-    grid-column: unset;
-    grid-row: unset;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: #ffffff;
-    border: 1.5px solid #ebebf5;
-    box-shadow: 0 4px 24px rgba(81, 74, 215, 0.07);
-    border-radius: 20px;
-    padding: 24px 24px 28px;
-    box-sizing: border-box;
-  }
+/* ── TOP RIGHT CARD (How We Think) ── */
+.discover-card.top-right {
+  grid-column: unset;
+  grid-row: unset;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1.5px solid #ebebf5;
+  box-shadow: 0 4px 24px rgba(81, 74, 215, 0.07);
+  border-radius: 20px;
+  padding: 24px 24px 28px;
+  box-sizing: border-box;
+}
 
+.discover-card.top-right .top-right-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.top-right-text {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  box-sizing: border-box;
+  position: static;
+  display: block;
+}
   .discover-card.top-right::before {
     content: "PHILOSOPHY";
     display: inline-block;
@@ -744,13 +761,7 @@
     flex-shrink: 0;
   }
 
-  .discover-card.top-right .top-right-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-  }
-
+  /* Reset desktop width/padding/height on text block */
   .top-right-text {
     width: 100%;
     height: auto;
@@ -789,6 +800,7 @@
     grid-row: unset;
     width: 100%;
     height: auto;
+    /* Reset desktop flex centering */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -816,13 +828,7 @@
     flex-shrink: 0;
   }
 
-  .discover-card.bottom-right .bottom-right-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-  }
-
+  /* Reset desktop width/padding on text block */
   .bottom-right-text {
     width: 100%;
     height: auto;

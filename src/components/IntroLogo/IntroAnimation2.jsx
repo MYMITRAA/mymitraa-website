@@ -23,14 +23,6 @@ const FINAL_SCALE = 0.42;
 const NAVBAR_H    = 56;
 const LOGO_LEFT   = 24;
 
-const BIRD_STATES = ["fly-in", "dive", "flap", "loop", "fly-out"];
-
-function setBirdState(el, state) {
-  if (!el) return;
-  BIRD_STATES.forEach(s => el.classList.remove(s));
-  if (state) el.classList.add(state);
-}
-
 export default function IntroAnimation({ onFinish }) {
   const screenRef  = useRef();
   const logoRef    = useRef();
@@ -45,83 +37,67 @@ export default function IntroAnimation({ onFinish }) {
     const timers = [];
     const at = (fn, ms) => timers.push(setTimeout(fn, ms));
 
-    // ── Phase 1: Bird + Logo appear together immediately ──────
-    // Bird slides in at 100ms — same time as logo starts building
-    at(() => setBirdState(birdRef.current, "fly-in"), 100);
-
-    // Icon appears
+    // 1. Icon appears
     at(() => iconRef.current?.classList.add("show"), 200);
 
-    // Letters stagger in
+    // 2. Letters stagger in
     lettersRef.current.forEach((el, i) =>
       at(() => {
         if (!el) return;
         el.style.opacity   = "1";
         el.style.transform = "translateY(0) translateX(0)";
-      }, 350 + i * 120)
+      }, 380 + i * 130)
     );
 
-    // Tagline fades in
-    at(() => taglineRef.current?.classList.add("show"), 1300);
+    // 3. Tagline
+    at(() => taglineRef.current?.classList.add("show"), 1400);
 
-    // ── Phase 2: Bird leans curiously at letters (900ms) ──────
-    at(() => setBirdState(birdRef.current, "dive"), 900);
+    // 4. Bird flies in from right
+    at(() => birdRef.current?.classList.add("fly-in"), 750);
 
-    // ── Phase 3: Bird stands back up (1350ms) ─────────────────
+    // 5. Bird does a dive-dip
     at(() => {
-      const bird = birdRef.current;
-      if (!bird) return;
-      BIRD_STATES.forEach(s => bird.classList.remove(s));
-      bird.style.animation = "bird-recover 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards";
+      birdRef.current?.classList.remove("fly-in");
+      birdRef.current?.classList.add("dive");
+    }, 1100);
+
+    // 6. Bird recovers back up
+    at(() => {
+      birdRef.current?.classList.remove("dive");
+      birdRef.current?.classList.add("fly-in");
     }, 1350);
 
+    // 7. Swap white SVGs → blue SVGs
+    at(() => setIsBlue(true), 1700);
+
+    // 8. Bird flap burst (excited shake)
+    at(() => birdRef.current?.classList.add("flap"),    1150);
+    at(() => birdRef.current?.classList.remove("flap"), 1700);
+
+    // 9. Bird spins/loops
     at(() => {
-      const bird = birdRef.current;
-      if (!bird) return;
-      bird.style.animation = "";
-      setBirdState(bird, "fly-in");
-    }, 1870);
+      birdRef.current?.classList.remove("fly-in");
+      birdRef.current?.classList.add("loop");
+    }, 1900);
 
-    // ── Phase 4: Color swap (1600ms) ──────────────────────────
-    at(() => setIsBlue(true), 1600);
-
-    // ── Phase 5: Excited wing flap (1900ms) ───────────────────
-    at(() => setBirdState(birdRef.current, "flap"), 1900);
-    at(() => setBirdState(birdRef.current, "fly-in"), 2650);
-
-    // ── Phase 6: Happy hop (2100ms) ───────────────────────────
-    at(() => setBirdState(birdRef.current, "loop"), 2150);
-    at(() => setBirdState(birdRef.current, "fly-in"), 2820);
-
-    // ── Phase 7: Second lean — still reading the tagline ──────
-    at(() => setBirdState(birdRef.current, "dive"), 2950);
-
+    // 10. Back to hover after loop
     at(() => {
-      const bird = birdRef.current;
-      if (!bird) return;
-      BIRD_STATES.forEach(s => bird.classList.remove(s));
-      bird.style.animation = "bird-recover 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards";
-    }, 3350);
+      birdRef.current?.classList.remove("loop");
+      birdRef.current?.classList.add("fly-in");
+    }, 2200);
 
+    // 11. Tagline out
     at(() => {
-      const bird = birdRef.current;
-      if (!bird) return;
-      bird.style.animation = "";
-      setBirdState(bird, "fly-in");
-    }, 3870);
+      if (taglineRef.current) taglineRef.current.style.opacity = "0";
+    }, 2300);
 
-    // ── Phase 8: Tagline fades out (3500ms) ───────────────────
+    // 12. Bird zooms out top-right
     at(() => {
-      if (taglineRef.current) {
-        taglineRef.current.style.transition = "opacity 0.55s ease";
-        taglineRef.current.style.opacity = "0";
-      }
-    }, 3500);
+      birdRef.current?.classList.remove("fly-in");
+      birdRef.current?.classList.add("fly-out");
+    }, 2500);
 
-    // ── Phase 9: Bird launches away after tagline gone ────────
-    at(() => setBirdState(birdRef.current, "fly-out"), 4050);
-
-    // ── Phase 10: Logo moves to navbar ────────────────────────
+    // 13. Logo moves to navbar top-left
     at(() => {
       const logo = logoRef.current;
       if (!logo) return;
@@ -129,8 +105,8 @@ export default function IntroAnimation({ onFinish }) {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
 
-      const isMobile   = vw <= 480;
-      const isTablet   = vw <= 768;
+      const isMobile  = vw <= 480;
+      const isTablet  = vw <= 768;
       const finalScale = isMobile ? 0.55 : isTablet ? 0.48 : FINAL_SCALE;
 
       const logoNaturalW = isMobile ? 160 : isTablet ? 185 : 220;
@@ -142,25 +118,28 @@ export default function IntroAnimation({ onFinish }) {
       const targetX = LOGO_LEFT + finalW / 2;
       const targetY = NAVBAR_H / 2;
 
+      const dx = targetX - cx;
+      const dy = targetY - cy;
+
       logo.style.transition = "transform 1.1s cubic-bezier(.65,0,.2,1)";
-      logo.style.transform  = `translateX(${targetX - cx}px) translateY(${targetY - cy}px) scale(${finalScale})`;
+      logo.style.transform  = `translateX(${dx}px) translateY(${dy}px) scale(${finalScale})`;
 
       if (screenRef.current) {
         screenRef.current.style.background    = "transparent";
         screenRef.current.style.pointerEvents = "none";
       }
-    }, 4100);
+    }, 2600);
 
-    // ── Phase 11: Fade logo out ────────────────────────────────
+    // 14. Fade logo out
     at(() => {
       if (logoRef.current) {
         logoRef.current.style.transition += ", opacity 0.4s ease";
         logoRef.current.style.opacity = "0";
       }
-    }, 4850);
+    }, 3300);
 
-    // ── Phase 12: Done ────────────────────────────────────────
-    at(() => onFinish?.(), 5250);
+    // 15. Done
+    at(() => onFinish?.(), 3700);
 
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -170,6 +149,7 @@ export default function IntroAnimation({ onFinish }) {
   return (
     <div className="intro-screen" ref={screenRef}>
 
+      {/* Particles */}
       <div className="particles">
         {Array.from({ length: 20 }).map((_, i) => (
           <span
@@ -184,8 +164,10 @@ export default function IntroAnimation({ onFinish }) {
         ))}
       </div>
 
+      {/* Glow */}
       <div className="glow" />
 
+      {/* Bird */}
       <img
         className="bird-wrap"
         ref={birdRef}
@@ -194,14 +176,19 @@ export default function IntroAnimation({ onFinish }) {
         aria-hidden="true"
       />
 
+      {/* Logo — animates to navbar */}
       <div className="logo-container" ref={logoRef}>
         <div className="logo-row">
+
+          {/* Icon box */}
           <img
             src={isBlue ? iconBlue : iconWhite}
             className="logo-icon"
             ref={iconRef}
             alt="MiTRAA"
           />
+
+          {/* SVG letter images */}
           <div className="logo-wordmark">
             {LETTERS.map((src, i) => (
               <img
@@ -214,9 +201,11 @@ export default function IntroAnimation({ onFinish }) {
               />
             ))}
           </div>
+
         </div>
       </div>
 
+      {/* Tagline */}
       <p className="tagline" ref={taglineRef}>
         Changing the behaviour of individuals through technology
       </p>

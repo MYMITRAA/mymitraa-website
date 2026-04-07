@@ -33,7 +33,7 @@ const LOGOS = [
   { src: khalifa,    alt: "Khalifa University" },
   { src: kingSaud,   alt: "King Saud University" },
   { src: mbzuai,     alt: "MBZUAI" },
-  { src: metaAI,     alt: "Meta AI" },
+  // { src: metaAI,     alt: "Meta AI" },
   { src: microsoft,  alt: "Microsoft" },
   { src: mit,        alt: "MIT" },
   { src: nvidia,     alt: "NVIDIA" },
