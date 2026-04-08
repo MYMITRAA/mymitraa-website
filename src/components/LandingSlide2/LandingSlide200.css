@@ -62,11 +62,13 @@
   );
   box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.45);
   will-change: transform, opacity;
+  /* two separate animations: fall (with breeze drift) + sway */
   animation-name: ml2-flake-fall, ml2-flake-sway;
   animation-timing-function: linear, ease-in-out;
   animation-iteration-count: infinite, infinite;
 }
 
+/* Fall: straight down + rightward breeze offset */
 @keyframes ml2-flake-fall {
   0% {
     transform: translateY(-10px) translateX(0px);
@@ -84,6 +86,7 @@
   }
 }
 
+/* Gentle horizontal sway — sinusoidal feel */
 @keyframes ml2-flake-sway {
   0%   { margin-left: 0; }
   25%  { margin-left: calc(var(--sway, 24px) * 0.6); }
@@ -124,21 +127,37 @@
   transform: translateY(-50%);
   width: 880px;
   height: 880px;
-  background: radial-gradient(circle at 55% 45%, #c9c0f5 0%, #b8b0ee 50%, transparent 82%);
+  background: radial-gradient(circle at 55% 45%, #e2dcf8 0%, #dddaf2 60%, transparent 90%);
   border-radius: 50%;
   z-index: 0;
   animation: ml2-circle-breathe 8s ease-in-out infinite alternate;
 }
 
 @keyframes ml2-circle-breathe {
-  0%   { transform: translateY(-50%) scale(1.00); opacity: 0.80; }
-  100% { transform: translateY(-50%) scale(1.03); opacity: 1.00; }
+  0%   { transform: translateY(-50%) scale(1.00); opacity: 0.55; }
+  100% { transform: translateY(-50%) scale(1.03); opacity: 0.70; }
+}
+
+.ml2__bar {
+  position: absolute;
+  left: 110px;
+  top: 30px;
+  width: 149px;
+  height: 549px;
+  background: linear-gradient(180deg, #9b8ae8 0%, #7b68d4 50%, #8b78e0 100%);
+  z-index: 1;
+  animation: ml2-bar-shimmer 6s ease-in-out infinite alternate;
+}
+
+@keyframes ml2-bar-shimmer {
+  0%   { filter: brightness(1.00); }
+  100% { filter: brightness(1.08); }
 }
 
 .ml2__branch-glow {
   position: absolute;
-  left: 500px;
-  bottom: 80px;
+  left: 50px;
+  bottom: 60px;
   width: 420px;
   height: 220px;
   background: radial-gradient(ellipse 70% 50% at 50% 80%, rgba(160, 130, 240, 0.28) 0%, transparent 75%);
@@ -153,11 +172,11 @@
   100% { opacity: 0.95; transform: scaleX(1.08); }
 }
 
-/* Branch — fixed to bottom of screen */
+/* Branch — cool gentle breeze (slightly stronger for wind feel) */
 .ml2__branch {
-  position: fixed;
-  bottom: 70px;
-  left: -5px;
+  position: absolute;
+  bottom: 0;
+  left: 80px;
   width: 500px;
   height: auto;
   object-fit: contain;
@@ -178,7 +197,7 @@
   100% { transform: rotate(0deg)    translateX(0px); }
 }
 
-/* Butterfly shadow */
+/* ── Butterfly shadow — scaled for 3× butterfly ── */
 .ml2__butterfly-shadow {
   position: absolute;
   bottom: 318px;
@@ -200,14 +219,14 @@
 }
 
 /* ══════════════════════════════════════════
-   BUTTERFLY
+   BUTTERFLY — 3× BIGGER (110 → 330px)
 ══════════════════════════════════════════ */
 
 .ml2__butterfly {
   position: absolute;
-  bottom: 340px;
+  bottom: 330px;
   left: 120px;
-  width: 330px;
+  width: 330px;           /* 3× the original 110px */
   height: auto;
   object-fit: contain;
   z-index: 4;
@@ -401,6 +420,7 @@
   .ml2__p               { font-size: 15px; max-width: 420px; }
   .ml2__circle          { width: 420px; height: 420px; left: 40px; }
   .ml2__visual          { width: 440px; }
+  .ml2__bar             { width: 110px; left: 100px; }
   .ml2__container       { padding-right: 60px; }
   .ml2__branch          { width: 360px; }
   .ml2__butterfly       { width: 240px; bottom: 268px; left: 90px; }
@@ -413,6 +433,7 @@
   .ml2__p               { font-size: 14px; max-width: 340px; }
   .ml2__circle          { width: 360px; height: 360px; left: 20px; }
   .ml2__visual          { width: 380px; }
+  .ml2__bar             { width: 90px; left: 80px; }
   .ml2__container       { padding-right: 40px; }
   .ml2__btn             { padding: 15px 50px; }
   .ml2__branch          { width: 300px; }
@@ -430,15 +451,17 @@
     min-height: 100svh;
   }
 
+  /* Full-screen column: text on top, visual below */
   .ml2__container {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    padding: 72px 32px 120px;
+    padding: 60px 32px 120px;
     gap: 0;
     height: auto;
   }
 
+  /* ── TEXT comes first (order 1) ── */
   .ml2__text {
     order: 1;
     align-items: flex-start;
@@ -447,13 +470,14 @@
     padding-bottom: 32px;
   }
 
-  .ml2__h1    { font-size: 38px; line-height: 1.15; margin-bottom: 18px; }
-  .ml2__h3    { font-size: 20px; margin-bottom: 20px; }
-  .ml2__p     { font-size: 14px; line-height: 1.80; max-width: 100%; text-align: left; margin-bottom: 36px; }
+  .ml2__h1    { font-size: 38px; line-height: 1.1; margin-bottom: 10px; }
+  .ml2__h3    { font-size: 20px; margin-bottom: 16px; }
+  .ml2__p     { font-size: 14px; line-height: 1.75; max-width: 100%; text-align: left; margin-bottom: 28px; }
 
   .ml2__btn-wrap { justify-content: flex-start; }
   .ml2__btn      { padding: 14px 44px; font-size: 13px; }
 
+  /* ── VISUAL comes second (order 2) ── */
   .ml2__visual {
     order: 2;
     width: 100%;
@@ -462,6 +486,16 @@
     position: relative;
   }
 
+  /* Bar: left edge, full height of visual */
+  .ml2__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 100%;
+  }
+
+  /* Circle: centered in visual */
   .ml2__circle {
     width: 380px;
     height: 380px;
@@ -470,15 +504,16 @@
     transform: translate(-50%, -50%);
   }
 
+  /* Branch: bottom-left, spans most of width */
   .ml2__branch {
-    position: fixed;
-    bottom: 0;
-    left: 50px;
     width: 360px;
+    left: 50px;
+    bottom: 0;
   }
 
   .ml2__branch-glow { width: 340px; left: 30px; bottom: 40px; }
 
+  /* Butterfly: sitting on branch top, centered */
   .ml2__butterfly {
     width: 200px;
     bottom: 210px;
@@ -503,12 +538,17 @@
     padding: 50px 22px 100px;
   }
 
-  .ml2__h1    { font-size: 32px; margin-bottom: 16px; }
-  .ml2__h3    { font-size: 18px; margin-bottom: 18px; }
-  .ml2__p     { font-size: 13.5px; line-height: 1.70; margin-bottom: 32px; }
+  .ml2__h1    { font-size: 32px; }
+  .ml2__h3    { font-size: 18px; }
+  .ml2__p     { font-size: 13.5px; line-height: 1.70; }
   .ml2__btn   { padding: 13px 36px; font-size: 12px; letter-spacing: 0.18em; }
 
   .ml2__visual { height: 360px; }
+
+  .ml2__bar   { width: 56px; 
+                  height: 300px;
+                  left: 20px;
+                  top: 100px; }
 
   .ml2__circle {
     width: 310px;
@@ -516,10 +556,8 @@
   }
 
   .ml2__branch {
-    position: fixed;
-    bottom: 0;
-    left: 7px;
     width: 300px;
+    left: 20px;
   }
 
   .ml2__branch-glow { width: 280px; left: 20px; }
@@ -549,12 +587,15 @@
 @media (max-width: 390px) {
   .ml2__container { padding: 44px 18px 90px; }
 
-  .ml2__h1   { font-size: 28px; margin-bottom: 14px; }
-  .ml2__h3   { font-size: 16px; margin-bottom: 16px; }
-  .ml2__p    { font-size: 13px; margin-bottom: 28px; }
+  .ml2__h1   { font-size: 28px; }
+  .ml2__h3   { font-size: 16px; }
+  .ml2__p    { font-size: 13px; }
   .ml2__btn  { padding: 12px 30px; font-size: 11px; }
 
   .ml2__visual { height: 310px; }
+
+  .ml2__bar    { width: 48px; 
+                  height: 300px; }
 
   .ml2__circle {
     width: 260px;
@@ -562,10 +603,8 @@
   }
 
   .ml2__branch {
-    position: fixed;
-    bottom: 0;
-    left: 34px;
     width: 250px;
+    left: 34px;
   }
 
   .ml2__branch-glow { width: 240px; left: 16px; }
@@ -589,6 +628,7 @@
   .ml2__branch,
   .ml2__bg,
   .ml2__circle,
+  .ml2__bar,
   .ml2__branch-glow,
   .ml2__butterfly-shadow,
   .ml2__flake,

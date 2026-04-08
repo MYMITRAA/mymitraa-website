@@ -1,0 +1,280 @@
+/* ══════════════════════════════════════════
+   LANDING SLIDE 2 — pixel-perfect Figma match
+══════════════════════════════════════════ */
+
+.mitraa-landing2 {
+  position: relative;
+  width: 100%;
+  height: 93vh;
+  min-height: 540px;
+  background: #ecedf6;
+  position: relative;
+  overflow: hidden;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ── MAIN LAYOUT ── */
+
+.mitraa-landing2-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px 0 0;
+}
+
+/* ══════════════════════════════════════════
+   LEFT — VISUAL
+══════════════════════════════════════════ */
+
+.mitraa-landing2-visual {
+  position: relative;
+  width: 560px;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* VERTICAL BAR — full viewport height, flush top, ~120px from left */
+.mitraa-landing2-vertical-bar {
+  position: absolute;
+  left: 110px;
+  top: 30px;
+  width: 149px;
+  height: 549px;
+  background: #8b78e0;
+  z-index: 1;
+}
+
+/* CIRCLE — large, vertically centered, extends right beyond bar */
+.mitraa-landing2-circle-bg {
+  position: absolute;
+  left: -210px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 880px;
+  height: 880px;
+  background: #dddaf2;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* ══════════════════════════════════════════
+   RIGHT — TEXT (right-aligned, vertically centered)
+══════════════════════════════════════════ */
+
+.mitraa-landing2-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  padding-left: 40px;
+}
+
+.mitraa-landing2-text h1 {
+  font-size: 76px;
+  font-weight: 800;
+  color: #4a3bbf;
+  margin: 0 0 12px 0;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+.mitraa-landing2-text h3 {
+  font-size: 32px;
+  font-weight: 500;
+  color: #111;
+  margin: 0 0 28px 0;
+  line-height: 1.3;
+}
+
+.mitraa-landing2-text p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #444;
+  max-width: 520px;
+  margin: 0 0 50px 0;
+  text-align: right;
+}
+
+/* ── BUTTON ── */
+.mitraa-landing2-btn-wrap {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.mitraa-landing2-btn {
+  padding: 18px 70px;
+  border: none;
+  background: #5c4cd3;
+  color: #ffffff;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.22s ease;
+}
+
+.mitraa-landing2-btn:hover {
+  background: #4a3bbf;
+}
+
+/* ══════════════════════════════════════════
+   BOTTOM — DOTS + PILL
+══════════════════════════════════════════ */
+
+.mitraa-landing2-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 5;
+}
+
+.mitraa-landing2-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(92, 76, 211, 0.40);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, width 0.2s ease;
+}
+
+.mitraa-landing2-dot:hover {
+  border-color: #5c4cd3;
+  background: rgba(92, 76, 211, 0.12);
+}
+
+.mitraa-landing2-dot.active {
+  width: 44px;
+  height: 11px;
+  border-radius: 8px;
+  background: #5c4cd3;
+  border-color: #5c4cd3;
+  cursor: default;
+  pointer-events: none;
+}
+
+.mitraa-landing2-pill {
+  margin-left: 6px;
+  padding: 5px 22px;
+  border-radius: 100px;
+  background: #c4bef5;
+  border: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #333;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+
+@media (max-width: 1400px) {
+  .mitraa-landing2-text h1      { font-size: 64px; }
+  .mitraa-landing2-text h3      { font-size: 28px; }
+  .mitraa-landing2-circle-bg    { width: 500px; height: 500px; }
+  .mitraa-landing2-visual       { width: 500px; }
+}
+
+@media (max-width: 1200px) {
+  .mitraa-landing2-text h1      { font-size: 54px; }
+  .mitraa-landing2-text h3      { font-size: 24px; }
+  .mitraa-landing2-text p       { font-size: 15px; max-width: 420px; }
+  .mitraa-landing2-circle-bg    { width: 420px; height: 420px; left: 40px; }
+  .mitraa-landing2-visual       { width: 440px; }
+  .mitraa-landing2-vertical-bar { width: 110px; left: 100px; }
+  .mitraa-landing2-container    { padding-right: 60px; }
+}
+
+@media (max-width: 1000px) {
+  .mitraa-landing2-text h1      { font-size: 44px; }
+  .mitraa-landing2-text h3      { font-size: 20px; }
+  .mitraa-landing2-text p       { font-size: 14px; max-width: 340px; }
+  .mitraa-landing2-circle-bg    { width: 360px; height: 360px; left: 20px; }
+  .mitraa-landing2-visual       { width: 380px; }
+  .mitraa-landing2-vertical-bar { width: 90px; left: 80px; }
+  .mitraa-landing2-container    { padding-right: 40px; }
+  .mitraa-landing2-btn          { padding: 15px 50px; }
+}
+
+@media (max-width: 900px) {
+  .mitraa-landing2              { height: auto; min-height: 100svh; }
+
+  .mitraa-landing2-container {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0 28px 140px;
+    gap: 32px;
+  }
+
+  .mitraa-landing2-visual {
+    width: 100%;
+    height: 340px;
+    order: 1;
+  }
+
+  .mitraa-landing2-vertical-bar {
+    left: 28px;
+    width: 90px;
+    height: 100%;
+    top: 0;
+  }
+
+  .mitraa-landing2-circle-bg {
+    width: 320px;
+    height: 320px;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .mitraa-landing2-text {
+    order: 2;
+    align-items: flex-end;
+    text-align: right;
+    padding-left: 0;
+  }
+
+  .mitraa-landing2-text h1  { font-size: 36px; }
+  .mitraa-landing2-text h3  { font-size: 18px; }
+  .mitraa-landing2-text p   { font-size: 13px; max-width: 100%; }
+  .mitraa-landing2-btn      { padding: 13px 40px; }
+  .mitraa-landing2-dots     { left: 28px; bottom: 22px; }
+}
+
+@media (max-width: 600px) {
+  .mitraa-landing2-container    { padding: 0 20px 120px; }
+  .mitraa-landing2-text h1      { font-size: 28px; }
+  .mitraa-landing2-text h3      { font-size: 16px; }
+  .mitraa-landing2-text p       { font-size: 12px; }
+  .mitraa-landing2-btn          { padding: 12px 32px; font-size: 12px; }
+  .mitraa-landing2-visual       { height: 260px; }
+  .mitraa-landing2-circle-bg    { width: 250px; height: 250px; }
+  .mitraa-landing2-vertical-bar { width: 68px; left: 20px; }
+  .mitraa-landing2-dots         { left: 20px; bottom: 16px; gap: 8px; }
+  .mitraa-landing2-dot          { width: 9px; height: 9px; }
+  .mitraa-landing2-dot.active   { width: 30px; height: 9px; }
+  .mitraa-landing2-pill         { font-size: 11px; padding: 3px 14px; }
+}
+
+@media (max-width: 400px) {
+  .mitraa-landing2-text h1      { font-size: 22px; }
+  .mitraa-landing2-text h3      { font-size: 14px; }
+  .mitraa-landing2-visual       { height: 220px; }
+  .mitraa-landing2-circle-bg    { width: 200px; height: 200px; }
+  .mitraa-landing2-vertical-bar { width: 54px; }
+}
+
+
+

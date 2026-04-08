@@ -3,24 +3,12 @@ import "./LandingSlide1.css";
 import { useNavigate } from "react-router-dom";
 import ellipse from "../../assets/images/Ellipse_4.svg";
 
-/* ── Robot images ── */
-import robotNormal  from "../../assets/roboanimation/robot_normal.png";
-import robotHappy   from "../../assets/roboanimation/robot_happy.png";
-import robotExcited from "../../assets/roboanimation/robot_exited.png";
+/* ── Hand frames ── */
+const HAND_FRAMES = ["../../assets/roboanimation/hand1.png", "../../assets/roboanimation/hand2.png", "../../assets/roboanimation/hand3.png", "../../assets/roboanimation/hand2.png", "../../assets/roboanimation/hand1.png"];
+const HAND_FRAME_MS = 120;
 
 /* ── Floating particles config ── */
 const PARTICLE_COUNT = 38;
-
-/* ── Auto mood cycle: [mood, duration(ms)] ── */
-const MOOD_CYCLE = [
-  ["normal",  1500],
-  ["happy",   2500],
-  ["normal",  2000],
-  ["excited", 1800],
-  ["normal",  2200],
-  ["happy",   2000],
-  ["normal",  1500],
-];
 
 function useParticles() {
   return useRef(
@@ -41,9 +29,13 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
   const navigate = useNavigate();
 
   /* ── Robot mood ── */
-  const [mood, setMood] = useState("normal");
-  const moodCycleRef    = useRef(null);
-  const cycleIndexRef   = useRef(0);
+  const [mood, setMood] = useState("normal"); // normal | happy | excited
+  const moodTimerRef = useRef(null);
+
+  /* ── Hand wave ── */
+  const [handFrame, setHandFrame] = useState(0);
+  const [showHand, setShowHand] = useState(false);
+  const handIntervalRef = useRef(null);
 
   /* ── Parallax ── */
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
@@ -52,20 +44,52 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
   /* ── Particles ── */
   const particles = useParticles();
 
-  /* ── Auto mood cycle ── */
-  useEffect(() => {
-    cycleIndexRef.current = 0;
+  /* ── Handlers ── */
+  const startHandWave = useCallback(() => {
+    setShowHand(true);
+    setHandFrame(0);
+    if (handIntervalRef.current) clearInterval(handIntervalRef.current);
+    let frameIdx = 0;
+    handIntervalRef.current = setInterval(() => {
+      frameIdx++;
+      if (frameIdx >= HAND_FRAMES.length) {
+        clearInterval(handIntervalRef.current);
+        handIntervalRef.current = null;
+        setShowHand(false);
+        setHandFrame(0);
+      } else {
+        setHandFrame(frameIdx);
+      }
+    }, HAND_FRAME_MS);
+  }, []);
 
-    const schedule = () => {
-      const [nextMood, duration] = MOOD_CYCLE[cycleIndexRef.current % MOOD_CYCLE.length];
-      setMood(nextMood);
-      cycleIndexRef.current++;
-      moodCycleRef.current = setTimeout(schedule, duration);
-    };
+  const handleRobotEnter = useCallback(() => {
+    if (mood === "excited") return;
+    setMood("happy");
+    startHandWave();
+  }, [mood, startHandWave]);
 
-    schedule();
+  const handleRobotLeave = useCallback(() => {
+    if (mood === "excited") return;
+    setMood("normal");
+    setShowHand(false);
+    if (handIntervalRef.current) {
+      clearInterval(handIntervalRef.current);
+      handIntervalRef.current = null;
+    }
+  }, [mood]);
 
-    return () => clearTimeout(moodCycleRef.current);
+  const handleRobotClick = useCallback(() => {
+    setMood("excited");
+    setShowHand(false);
+    if (handIntervalRef.current) {
+      clearInterval(handIntervalRef.current);
+      handIntervalRef.current = null;
+    }
+    if (moodTimerRef.current) clearTimeout(moodTimerRef.current);
+    moodTimerRef.current = setTimeout(() => {
+      setMood("normal");
+    }, 1800);
   }, []);
 
   /* ── Parallax mouse move ── */
@@ -83,11 +107,21 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
     setParallax({ x: 0, y: 0 });
   }, []);
 
+  /* ── Cleanup ── */
+  useEffect(() => {
+    return () => {
+      clearInterval(handIntervalRef.current);
+      clearTimeout(moodTimerRef.current);
+    };
+  }, []);
+
   /* ── Robot src ── */
   const robotSrc =
-    mood === "excited" ? robotExcited :
-    mood === "happy"   ? robotHappy   :
-                         robotNormal;
+    mood === "excited"
+      ? "../../assets/roboanimation/robot_excited.png"
+      : mood === "happy"
+      ? "../../assets/roboanimation/robot_happy.png"
+      : "../../assets/roboanimation/robot_normal.png";
 
   return (
     <section
@@ -173,7 +207,7 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
             {/* glow ring */}
             <div
               className={`ls1__robot-glow${
-                mood === "happy"   ? " ls1__robot-glow--happy"   : ""
+                mood === "happy" ? " ls1__robot-glow--happy" : ""
               }${mood === "excited" ? " ls1__robot-glow--excited" : ""}`}
             />
 
@@ -182,8 +216,22 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
               src={robotSrc}
               alt="AI Robot"
               className={`ls1__robot-img ls1__robot-img--${mood}`}
+              onMouseEnter={handleRobotEnter}
+              onMouseLeave={handleRobotLeave}
+              onClick={handleRobotClick}
               draggable={false}
             />
+
+            {/* hand wave */}
+            {showHand && (
+              <img
+                src={HAND_FRAMES[handFrame]}
+                alt=""
+                className="ls1__hand"
+                aria-hidden="true"
+                draggable={false}
+              />
+            )}
           </div>
         </div>
 

@@ -337,7 +337,7 @@
   width: auto;
   object-fit: contain;
   transform-origin: bottom center;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
   -webkit-user-drag: none;
   z-index: 3;
@@ -387,6 +387,31 @@
   75%  { transform: scale(0.98) translateY(0px) rotate(0.5deg); }
   90%  { transform: scale(1.01) translateY(-4px); }
   100% { transform: scale(1.00) translateY(0); }
+}
+
+/* ══════════════════════════════════════════
+   HAND WAVE
+══════════════════════════════════════════ */
+
+.ls1__hand {
+  position: absolute;
+  bottom: 52%;
+  right: 8%;
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: bottom left;
+  animation: ls1-hand-appear 0.12s ease-out forwards;
+  filter: drop-shadow(0 4px 12px rgba(80, 40, 200, 0.35));
+}
+
+@keyframes ls1-hand-appear {
+  from { opacity: 0; transform: scale(0.8) rotate(10deg); }
+  to   { opacity: 1; transform: scale(1)   rotate(0deg); }
 }
 
 /* ══════════════════════════════════════════
@@ -496,6 +521,7 @@
 
   .ls1__robot-img { max-height: 300px; }
   .ls1__dots      { left: 36px; bottom: 24px; }
+  .ls1__hand      { width: 60px; right: 15%; }
 }
 
 @media (max-width: 600px) {
@@ -509,6 +535,7 @@
   .ls1__robot-wrap   { height: 260px; }
   .ls1__ellipse      { width: 280px; height: 260px; }
   .ls1__robot-img    { max-height: 240px; }
+  .ls1__hand         { width: 48px; }
 
   .ls1__dots         { left: 20px; bottom: 18px; gap: 7px; }
   .ls1__dot          { width: 9px; height: 9px; }

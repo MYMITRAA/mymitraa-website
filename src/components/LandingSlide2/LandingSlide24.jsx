@@ -6,22 +6,21 @@ import butterfly1 from "../../assets/butterflyanimation/butterly1.png";
 import butterfly2 from "../../assets/butterflyanimation/butterfly2.png";
 import treeBranch  from "../../assets/images/treebranch.svg";
 
-/* ── Snowflake config ── */
-const SNOW_COUNT = 55;
+/* ── Particles ── */
+const PARTICLE_COUNT = 28;
 
-function useSnowflakes() {
+function useParticles() {
   return useRef(
-    Array.from({ length: SNOW_COUNT }, (_, i) => ({
-      id:       i,
-      x:        Math.random() * 110 - 5,
-      size:     1.2 + Math.random() * 2.2,       // tiny: 1.2–3.4px
-      opacity:  0.45 + Math.random() * 0.45,     // 0.45–0.90 — visible but not heavy
-      fallDur:  18 + Math.random() * 18,          // 18–36s — very slow drift
-      swayDur:  4  + Math.random() * 6,
-      swayAmp:  18 + Math.random() * 38,
-      delay:    -(Math.random() * 20),
-      blur:     Math.random() > 0.65 ? 0.6 + Math.random() * 1.2 : 0,
-      breezeX:  25 + Math.random() * 40,
+    Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
+      id: i,
+      x: 5 + Math.random() * 55,
+      y: 5 + Math.random() * 90,
+      size: 2 + Math.random() * 3.5,
+      opacity: 0.10 + Math.random() * 0.25,
+      duration: 4 + Math.random() * 6,
+      delay: Math.random() * 8,
+      drift: (Math.random() - 0.5) * 24,
+      color: Math.random() > 0.5 ? "rgba(255,255,255,0.9)" : "rgba(180,160,255,0.85)",
     }))
   ).current;
 }
@@ -29,7 +28,7 @@ function useSnowflakes() {
 export default function LandingSlide2({ currentSlide = 1, totalSlides = 3, onDotClick }) {
   const navigate   = useNavigate();
   const [frame, setFrame] = useState(0);
-  const snowflakes = useSnowflakes();
+  const particles  = useParticles();
 
   /* ── Butterfly frame flip ── */
   useEffect(() => {
@@ -45,22 +44,22 @@ export default function LandingSlide2({ currentSlide = 1, totalSlides = 3, onDot
       {/* ── Animated background ── */}
       <div className="ml2__bg" aria-hidden="true" />
 
-      {/* ── Snowfall + breeze layer ── */}
-      <div className="ml2__snow" aria-hidden="true">
-        {snowflakes.map(s => (
+      {/* ── Particles ── */}
+      <div className="ml2__particles" aria-hidden="true">
+        {particles.map(p => (
           <span
-            key={s.id}
-            className="ml2__flake"
+            key={p.id}
+            className="ml2__particle"
             style={{
-              left:              `${s.x}%`,
-              width:             `${s.size}px`,
-              height:            `${s.size}px`,
-              opacity:           s.opacity,
-              filter:            s.blur > 0 ? `blur(${s.blur}px)` : undefined,
-              animationDuration: `${s.fallDur}s, ${s.swayDur}s`,
-              animationDelay:    `${s.delay}s, ${s.delay * 0.6}s`,
-              "--sway":          `${s.swayAmp}px`,
-              "--breeze":        `${s.breezeX}px`,
+              left: `${p.x}%`,
+              top:  `${p.y}%`,
+              width:  `${p.size}px`,
+              height: `${p.size}px`,
+              background: p.color,
+              opacity: p.opacity,
+              animationDuration: `${p.duration}s`,
+              animationDelay:    `${p.delay}s`,
+              "--drift": `${p.drift}px`,
             }}
           />
         ))}
@@ -71,10 +70,16 @@ export default function LandingSlide2({ currentSlide = 1, totalSlides = 3, onDot
         {/* ══ LEFT VISUAL ══ */}
         <div className="ml2__visual">
 
+          {/* circle backdrop */}
           <div className="ml2__circle" />
+
+          {/* vertical bar */}
           <div className="ml2__bar" />
+
+          {/* branch glow halo */}
           <div className="ml2__branch-glow" aria-hidden="true" />
 
+          {/* branch */}
           <img
             src={treeBranch}
             alt=""
@@ -83,8 +88,10 @@ export default function LandingSlide2({ currentSlide = 1, totalSlides = 3, onDot
             draggable={false}
           />
 
+          {/* butterfly shadow */}
           <div className="ml2__butterfly-shadow" aria-hidden="true" />
 
+          {/* butterfly */}
           <img
             src={butterflySrc}
             alt="Butterfly"

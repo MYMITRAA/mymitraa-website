@@ -21,11 +21,11 @@
   z-index: 0;
   background: linear-gradient(
     135deg,
-    #dcd6f7 0%,
-    #cfc8f0 20%,
-    #e4dff8 45%,
-    #d8d2f2 70%,
-    #e8e4fa 100%
+    #f5ede4 0%,
+    #ece5f7 25%,
+    #e8ddf8 50%,
+    #fae8d8 75%,
+    #f0e6f5 100%
   );
   background-size: 300% 300%;
   animation: ml2-bg-drift 14s ease-in-out infinite alternate;
@@ -33,9 +33,9 @@
 
 @keyframes ml2-bg-drift {
   0%   { background-position: 0%   0%;   filter: brightness(1.00); }
-  33%  { background-position: 60%  40%;  filter: brightness(1.02); }
+  33%  { background-position: 60%  40%;  filter: brightness(1.03); }
   66%  { background-position: 30%  80%;  filter: brightness(0.98); }
-  100% { background-position: 100% 100%; filter: brightness(1.01); }
+  100% { background-position: 100% 100%; filter: brightness(1.02); }
 }
 
 /* ══════════════════════════════════════════
@@ -45,7 +45,7 @@
 .ml2__snow {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
 }
@@ -56,17 +56,18 @@
   border-radius: 50%;
   background: radial-gradient(
     circle at 35% 35%,
-    rgba(255, 255, 255, 1.0)  0%,
-    rgba(240, 235, 255, 0.80) 45%,
-    rgba(210, 200, 255, 0.20) 100%
+    rgba(255, 255, 255, 1.0) 0%,
+    rgba(220, 215, 255, 0.85) 40%,
+    rgba(200, 190, 255, 0.45) 100%
   );
-  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.45);
   will-change: transform, opacity;
+  /* two separate animations: fall (with breeze drift) + sway */
   animation-name: ml2-flake-fall, ml2-flake-sway;
   animation-timing-function: linear, ease-in-out;
   animation-iteration-count: infinite, infinite;
 }
 
+/* Fall: straight down + rightward breeze offset */
 @keyframes ml2-flake-fall {
   0% {
     transform: translateY(-10px) translateX(0px);
@@ -84,6 +85,7 @@
   }
 }
 
+/* Gentle horizontal sway — sinusoidal feel */
 @keyframes ml2-flake-sway {
   0%   { margin-left: 0; }
   25%  { margin-left: calc(var(--sway, 24px) * 0.6); }
@@ -124,21 +126,37 @@
   transform: translateY(-50%);
   width: 880px;
   height: 880px;
-  background: radial-gradient(circle at 55% 45%, #c9c0f5 0%, #b8b0ee 50%, transparent 82%);
+  background: radial-gradient(circle at 55% 45%, #e2dcf8 0%, #dddaf2 60%, transparent 90%);
   border-radius: 50%;
   z-index: 0;
   animation: ml2-circle-breathe 8s ease-in-out infinite alternate;
 }
 
 @keyframes ml2-circle-breathe {
-  0%   { transform: translateY(-50%) scale(1.00); opacity: 0.80; }
-  100% { transform: translateY(-50%) scale(1.03); opacity: 1.00; }
+  0%   { transform: translateY(-50%) scale(1.00); opacity: 0.85; }
+  100% { transform: translateY(-50%) scale(1.04); opacity: 1.00; }
+}
+
+.ml2__bar {
+  position: absolute;
+  left: 110px;
+  top: 30px;
+  width: 149px;
+  height: 549px;
+  background: linear-gradient(180deg, #9b8ae8 0%, #7b68d4 50%, #8b78e0 100%);
+  z-index: 1;
+  animation: ml2-bar-shimmer 6s ease-in-out infinite alternate;
+}
+
+@keyframes ml2-bar-shimmer {
+  0%   { filter: brightness(1.00); }
+  100% { filter: brightness(1.08); }
 }
 
 .ml2__branch-glow {
   position: absolute;
-  left: 500px;
-  bottom: 80px;
+  left: 50px;
+  bottom: 60px;
   width: 420px;
   height: 220px;
   background: radial-gradient(ellipse 70% 50% at 50% 80%, rgba(160, 130, 240, 0.28) 0%, transparent 75%);
@@ -153,11 +171,11 @@
   100% { opacity: 0.95; transform: scaleX(1.08); }
 }
 
-/* Branch — fixed to bottom of screen */
+/* Branch — cool gentle breeze (slightly stronger for wind feel) */
 .ml2__branch {
-  position: fixed;
-  bottom: 70px;
-  left: -5px;
+  position: absolute;
+  bottom: 0;
+  left: 80px;
   width: 500px;
   height: auto;
   object-fit: contain;
@@ -178,11 +196,11 @@
   100% { transform: rotate(0deg)    translateX(0px); }
 }
 
-/* Butterfly shadow */
+/* ── Butterfly shadow — scaled for 3× butterfly ── */
 .ml2__butterfly-shadow {
   position: absolute;
-  bottom: 318px;
-  left: 200px;
+  bottom: 232px;
+  left: 15%;
   transform: translateX(-50%);
   width: 260px;
   height: 28px;
@@ -200,14 +218,14 @@
 }
 
 /* ══════════════════════════════════════════
-   BUTTERFLY
+   BUTTERFLY — 3× BIGGER (110 → 330px)
 ══════════════════════════════════════════ */
 
 .ml2__butterfly {
   position: absolute;
-  bottom: 340px;
-  left: 120px;
-  width: 330px;
+  bottom: 250px;
+  left: 5%;
+  width: 330px;           /* 3× the original 110px */
   height: auto;
   object-fit: contain;
   z-index: 4;
@@ -391,8 +409,8 @@
   .ml2__circle          { width: 500px; height: 500px; }
   .ml2__visual          { width: 500px; }
   .ml2__branch          { width: 420px; }
-  .ml2__butterfly       { width: 280px; bottom: 295px; left: 100px; }
-  .ml2__butterfly-shadow{ width: 220px; bottom: 282px; left: 170px; }
+  .ml2__butterfly       { width: 280px; bottom: 230px; left: 4%; }
+  .ml2__butterfly-shadow{ width: 220px; bottom: 218px; }
 }
 
 @media (max-width: 1200px) {
@@ -401,10 +419,11 @@
   .ml2__p               { font-size: 15px; max-width: 420px; }
   .ml2__circle          { width: 420px; height: 420px; left: 40px; }
   .ml2__visual          { width: 440px; }
+  .ml2__bar             { width: 110px; left: 100px; }
   .ml2__container       { padding-right: 60px; }
   .ml2__branch          { width: 360px; }
-  .ml2__butterfly       { width: 240px; bottom: 268px; left: 90px; }
-  .ml2__butterfly-shadow{ width: 190px; bottom: 255px; left: 150px; }
+  .ml2__butterfly       { width: 240px; }
+  .ml2__butterfly-shadow{ width: 190px; }
 }
 
 @media (max-width: 1000px) {
@@ -413,174 +432,82 @@
   .ml2__p               { font-size: 14px; max-width: 340px; }
   .ml2__circle          { width: 360px; height: 360px; left: 20px; }
   .ml2__visual          { width: 380px; }
+  .ml2__bar             { width: 90px; left: 80px; }
   .ml2__container       { padding-right: 40px; }
   .ml2__btn             { padding: 15px 50px; }
   .ml2__branch          { width: 300px; }
-  .ml2__butterfly       { width: 200px; bottom: 240px; left: 75px; }
-  .ml2__butterfly-shadow{ width: 158px; bottom: 228px; left: 130px; }
+  .ml2__butterfly       { width: 200px; }
+  .ml2__butterfly-shadow{ width: 158px; }
 }
 
-/* ══════════════════════════════════════════
-   TABLET — stack vertically
-══════════════════════════════════════════ */
-
 @media (max-width: 900px) {
-  .ml2 {
-    height: auto;
-    min-height: 100svh;
-  }
+  .ml2               { height: auto; min-height: 100svh; }
 
   .ml2__container {
     flex-direction: column;
     align-items: stretch;
-    justify-content: flex-start;
-    padding: 72px 32px 120px;
-    gap: 0;
-    height: auto;
+    justify-content: center;
+    padding: 0 28px 140px;
+    gap: 32px;
   }
 
-  .ml2__text {
-    order: 1;
-    align-items: flex-start;
-    text-align: left;
-    padding-left: 0;
-    padding-bottom: 32px;
-  }
+  .ml2__visual { width: 100%; height: 380px; order: 1; }
 
-  .ml2__h1    { font-size: 38px; line-height: 1.15; margin-bottom: 18px; }
-  .ml2__h3    { font-size: 20px; margin-bottom: 20px; }
-  .ml2__p     { font-size: 14px; line-height: 1.80; max-width: 100%; text-align: left; margin-bottom: 36px; }
-
-  .ml2__btn-wrap { justify-content: flex-start; }
-  .ml2__btn      { padding: 14px 44px; font-size: 13px; }
-
-  .ml2__visual {
-    order: 2;
-    width: 100%;
-    height: 420px;
-    flex-shrink: 0;
-    position: relative;
+  .ml2__bar {
+    left: 28px;
+    width: 90px;
+    height: 100%;
+    top: 0;
   }
 
   .ml2__circle {
-    width: 380px;
-    height: 380px;
-    left: 50%;
+    width: 320px;
+    height: 320px;
+    left: -50px;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
   }
 
-  .ml2__branch {
-    position: fixed;
-    bottom: 0;
-    left: 50px;
-    width: 360px;
-  }
+  .ml2__text            { order: 2; align-items: flex-end; text-align: right; padding-left: 0; }
+  .ml2__h1              { font-size: 36px; }
+  .ml2__h3              { font-size: 18px; }
+  .ml2__p               { font-size: 13px; max-width: 100%; }
+  .ml2__btn             { padding: 13px 40px; }
+  .ml2__dots            { left: 28px; bottom: 22px; }
 
-  .ml2__branch-glow { width: 340px; left: 30px; bottom: 40px; }
-
-  .ml2__butterfly {
-    width: 200px;
-    bottom: 210px;
-    left: 100px;
-  }
-
-  .ml2__butterfly-shadow {
-    width: 160px;
-    bottom: 198px;
-    left: 160px;
-  }
-
-  .ml2__dots { left: 32px; bottom: 22px; }
+  .ml2__branch          { width: 280px; left: 20px; }
+  .ml2__butterfly       { width: 180px; bottom: 160px; left: 8%; }
+  .ml2__butterfly-shadow{ width: 144px; bottom: 148px; left: 14%; }
+  .ml2__branch-glow     { width: 300px; }
 }
 
-/* ══════════════════════════════════════════
-   MOBILE — 480px and below
-══════════════════════════════════════════ */
-
-@media (max-width: 480px) {
-  .ml2__container {
-    padding: 50px 22px 100px;
-  }
-
-  .ml2__h1    { font-size: 32px; margin-bottom: 16px; }
-  .ml2__h3    { font-size: 18px; margin-bottom: 18px; }
-  .ml2__p     { font-size: 13.5px; line-height: 1.70; margin-bottom: 32px; }
-  .ml2__btn   { padding: 13px 36px; font-size: 12px; letter-spacing: 0.18em; }
-
-  .ml2__visual { height: 360px; }
-
-  .ml2__circle {
-    width: 310px;
-    height: 310px;
-  }
-
-  .ml2__branch {
-    position: fixed;
-    bottom: 0;
-    left: 7px;
-    width: 300px;
-  }
-
-  .ml2__branch-glow { width: 280px; left: 20px; }
-
-  .ml2__butterfly {
-    width: 165px;
-    bottom: 185px;
-    left: 80px;
-  }
-
-  .ml2__butterfly-shadow {
-    width: 132px;
-    bottom: 174px;
-    left: 130px;
-  }
-
-  .ml2__dots  { left: 22px; bottom: 18px; gap: 8px; }
-  .ml2__dot   { width: 9px; height: 9px; }
-  .ml2__dot--active { width: 30px; height: 9px; }
-  .ml2__pill  { font-size: 11px; padding: 4px 14px; }
+@media (max-width: 600px) {
+  .ml2__container       { padding: 0 20px 120px; }
+  .ml2__h1              { font-size: 28px; }
+  .ml2__h3              { font-size: 16px; }
+  .ml2__p               { font-size: 12px; }
+  .ml2__btn             { padding: 12px 32px; font-size: 12px; }
+  .ml2__visual          { height: 300px; }
+  .ml2__circle          { width: 250px; height: 250px; }
+  .ml2__bar             { width: 68px; left: 20px; }
+  .ml2__branch          { width: 230px; left: 40px; }
+  .ml2__butterfly       { width: 140px; bottom: 130px; left: 5%; }
+  .ml2__butterfly-shadow{ width: 112px; bottom: 120px; left: 10%; }
+  .ml2__dots            { left: 20px; bottom: 16px; gap: 8px; }
+  .ml2__dot             { width: 9px; height: 9px; }
+  .ml2__dot--active     { width: 30px; height: 9px; }
+  .ml2__pill            { font-size: 11px; padding: 3px 14px; }
 }
 
-/* ══════════════════════════════════════════
-   MOBILE — small phones 375px
-══════════════════════════════════════════ */
-
-@media (max-width: 390px) {
-  .ml2__container { padding: 44px 18px 90px; }
-
-  .ml2__h1   { font-size: 28px; margin-bottom: 14px; }
-  .ml2__h3   { font-size: 16px; margin-bottom: 16px; }
-  .ml2__p    { font-size: 13px; margin-bottom: 28px; }
-  .ml2__btn  { padding: 12px 30px; font-size: 11px; }
-
-  .ml2__visual { height: 310px; }
-
-  .ml2__circle {
-    width: 260px;
-    height: 260px;
-  }
-
-  .ml2__branch {
-    position: fixed;
-    bottom: 0;
-    left: 34px;
-    width: 250px;
-  }
-
-  .ml2__branch-glow { width: 240px; left: 16px; }
-
-  .ml2__butterfly {
-    width: 140px;
-    bottom: 155px;
-    left: 62px;
-  }
-
-  .ml2__butterfly-shadow {
-    width: 112px;
-    bottom: 144px;
-    left: 105px;
-  }
+@media (max-width: 400px) {
+  .ml2__h1              { font-size: 22px; }
+  .ml2__h3              { font-size: 14px; }
+  .ml2__visual          { height: 260px; }
+  .ml2__circle          { width: 200px; height: 200px; }
+  .ml2__bar             { width: 54px; }
+  .ml2__branch          { width: 190px; }
+  .ml2__butterfly       { width: 110px; }
+  .ml2__butterfly-shadow{ width: 88px; }
 }
 
 /* ── Reduced motion ── */
@@ -589,6 +516,7 @@
   .ml2__branch,
   .ml2__bg,
   .ml2__circle,
+  .ml2__bar,
   .ml2__branch-glow,
   .ml2__butterfly-shadow,
   .ml2__flake,

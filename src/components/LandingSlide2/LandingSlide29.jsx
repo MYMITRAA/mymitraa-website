@@ -14,10 +14,10 @@ function useSnowflakes() {
     Array.from({ length: SNOW_COUNT }, (_, i) => ({
       id:       i,
       x:        Math.random() * 110 - 5,
-      size:     1.2 + Math.random() * 2.2,       // tiny: 1.2–3.4px
-      opacity:  0.45 + Math.random() * 0.45,     // 0.45–0.90 — visible but not heavy
-      fallDur:  18 + Math.random() * 18,          // 18–36s — very slow drift
-      swayDur:  4  + Math.random() * 6,
+      size:     1.5 + Math.random() * 2.5,       // tiny: 1.5–4px
+      opacity:  0.55 + Math.random() * 0.40,     // 0.55–0.95 — clearly visible
+      fallDur:  9  + Math.random() * 14,
+      swayDur:  3  + Math.random() * 5,
       swayAmp:  18 + Math.random() * 38,
       delay:    -(Math.random() * 20),
       blur:     Math.random() > 0.65 ? 0.6 + Math.random() * 1.2 : 0,

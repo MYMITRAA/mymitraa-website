@@ -119,22 +119,31 @@
 }
 
 /* ─── Flying Robot ─────────────────────────────────── */
+
 .flying-robot {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 160px;
   height: 160px;
   pointer-events: auto;
   z-index: 9999;
   cursor: grab;
   will-change: transform;
-  /* filter transitions handled by JS classList */
+  filter:
+    drop-shadow(0 0 28px rgba(0, 200, 255, 0.7))
+    drop-shadow(0 0 8px rgba(123, 120, 255, 0.5));
+  transition: filter 0.2s ease;
+}
+
+.flying-robot.dragging {
+  cursor: grabbing;
+  filter:
+    drop-shadow(0 0 44px rgba(0, 220, 255, 1))
+    drop-shadow(0 0 16px rgba(180, 160, 255, 0.95));
 }
 
 .flying-robot img {
-  width: 100%;
-  height: 100%;
+  width: 200%;
+  height: 200%;
   object-fit: contain;
   display: block;
   user-select: none;

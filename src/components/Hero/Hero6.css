@@ -9,6 +9,7 @@
   align-items: center;
 }
 
+/* dark tint */
 .hero::before {
   content: "";
   position: absolute;
@@ -17,6 +18,7 @@
   z-index: 0;
 }
 
+/* right side glow */
 .hero::after {
   content: "";
   position: absolute;
@@ -115,31 +117,6 @@
   justify-content: center;
   align-items: center;
   z-index: 3;
-  position: relative;
-}
-
-/* ─── Flying Robot ─────────────────────────────────── */
-.flying-robot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 160px;
-  height: 160px;
-  pointer-events: auto;
-  z-index: 9999;
-  cursor: grab;
-  will-change: transform;
-  /* filter transitions handled by JS classList */
-}
-
-.flying-robot img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: none;
 }
 
 /* STRIP */
@@ -209,7 +186,6 @@
   .hero-left { flex: none; max-width: 100%; align-items: center; display: flex; flex-direction: column; }
   .hero-right { flex: none; width: 100%; }
   .hero-title { font-size: 36px; }
-  .flying-robot { width: 130px; height: 130px; }
 }
 
 @media (max-width: 600px) {
@@ -217,5 +193,4 @@
   .hero-title { font-size: 28px; }
   .strip-container { padding: 0 20px; }
   .strip-tabs { gap: 16px; }
-  .flying-robot { width: 100px; height: 100px; }
 }
