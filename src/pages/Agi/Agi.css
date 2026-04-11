@@ -57,7 +57,7 @@ body {
   color: #5c6bc0;
 }
 
-.hero-desc {
+.agihero-desc {
   font-size: clamp(13px, 1.6vw, 15px);
   color: #555;
   max-width: 560px;

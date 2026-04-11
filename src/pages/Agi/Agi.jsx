@@ -12,7 +12,7 @@ export default function Agi() {
             Building Ethical Foundations for<br />
             <span className="highlight">AI in the Physical World</span>
           </h1>
-          <p className="hero-desc">
+          <p className="agihero-desc">
             As AI moves into the physical world, governing robots and autonomous systems, its ethics must
             be built collaboratively. We invite diverse voices to shape responsible, accountable, and
             context-aware embodied AI.
