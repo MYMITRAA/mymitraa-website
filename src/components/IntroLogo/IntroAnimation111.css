@@ -8,10 +8,7 @@
   justify-content: center;
   align-items: center;
   z-index: 5000;
-  /* NO background transition here — prevents the white-out flash.
-     Background is made transparent via JS only after the logo exits. */
-
-  --bird-x: 0px; /* Default: bird sits in dead center until logo is measured */
+  transition: background 0.7s ease;
 }
 
 /* ─── Glow ───────────────────────────────────────────────────── */
@@ -54,10 +51,9 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   BIRD WRAP
-   Default: centered on screen (--bird-x = 0px initially).
-   After logo is measured, JS sets --bird-x to the correct offset
-   so the bird's right edge sits 20px from the logo's left edge.
+   BIRD WRAP — base styles
+   Anchored at left:50%, top:50%.
+   Each phase class moves it into position via keyframe animation.
    ═══════════════════════════════════════════════════════════════ */
 .bird-wrap {
   position: absolute;
@@ -69,28 +65,31 @@
   z-index: 10;
   will-change: transform, opacity;
   transition: none;
+  /* smooth image swap — prevents harsh flash between poses */
   image-rendering: auto;
 }
 
 /* ───────────────────────────────────────────────────────────────
-   PHASE 1a — SLIDE IN  (enters dead center, --bird-x is 0px)
+   PHASE 1a — SLIDE IN
+   Bird enters fast from far left, belly-slide pose (bird_slide.png)
+   Ends at translateX(-200px) translateY(-50%) = left of logo center
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-slide-in {
   0% {
     opacity: 0;
-    transform: translateX(calc(var(--bird-x) - 620px)) translateY(-44%) rotate(-28deg) scaleY(0.58) scaleX(1.18);
+    transform: translateX(-620px) translateY(-44%) rotate(-28deg) scaleY(0.58) scaleX(1.18);
   }
   6% {
     opacity: 1;
-    transform: translateX(calc(var(--bird-x) - 560px)) translateY(-46%) rotate(-24deg) scaleY(0.60) scaleX(1.15);
+    transform: translateX(-560px) translateY(-46%) rotate(-24deg) scaleY(0.60) scaleX(1.15);
   }
   55% {
     opacity: 1;
-    transform: translateX(calc(var(--bird-x) - 240px)) translateY(-50%) rotate(-14deg) scaleY(0.64) scaleX(1.10);
+    transform: translateX(-240px) translateY(-50%) rotate(-14deg) scaleY(0.64) scaleX(1.10);
   }
   100% {
     opacity: 1;
-    transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg) scaleY(0.72) scaleX(1.06);
+    transform: translateX(-200px) translateY(-50%) rotate(0deg) scaleY(0.72) scaleX(1.06);
   }
 }
 
@@ -100,15 +99,17 @@
 }
 
 /* ───────────────────────────────────────────────────────────────
-   PHASE 1b — WOBBLE / STOP  (still centered)
+   PHASE 1b — WOBBLE / STOP
+   Bird skids to a halt, overshoots slightly then settles upright
+   (bird_stop_wobble.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-wobble {
-  0%   { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)   scaleX(1.06) scaleY(0.72); }
-  22%  { transform: translateX(calc(var(--bird-x) - 5px)) translateY(-38%) rotate(12deg)  scaleX(0.90) scaleY(1.10); }
-  42%  { transform: translateX(calc(var(--bird-x) + 4px)) translateY(-55%) rotate(-6deg)  scaleX(1.05) scaleY(0.95); }
-  62%  { transform: translateX(calc(var(--bird-x) - 1px)) translateY(-47%) rotate(3deg)   scaleX(0.98) scaleY(1.03); }
-  80%  { transform: translateX(var(--bird-x)) translateY(-51%) rotate(-1deg)  scaleX(1.01) scaleY(0.99); }
-  100% { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)   scaleX(1)    scaleY(1); }
+  0%   { transform: translateX(-200px) translateY(-50%) rotate(0deg)   scaleX(1.06) scaleY(0.72); }
+  22%  { transform: translateX(-205px) translateY(-38%) rotate(12deg)  scaleX(0.90) scaleY(1.10); }
+  42%  { transform: translateX(-196px) translateY(-55%) rotate(-6deg)  scaleX(1.05) scaleY(0.95); }
+  62%  { transform: translateX(-201px) translateY(-47%) rotate(3deg)   scaleX(0.98) scaleY(1.03); }
+  80%  { transform: translateX(-200px) translateY(-51%) rotate(-1deg)  scaleX(1.01) scaleY(0.99); }
+  100% { transform: translateX(-200px) translateY(-50%) rotate(0deg)   scaleX(1)    scaleY(1); }
 }
 
 .bird-wrap.wobble {
@@ -117,30 +118,15 @@
 }
 
 /* ───────────────────────────────────────────────────────────────
-   PHASE 1c — SHIFT LEFT
-   Bird smoothly glides from center (0px) to --bird-x offset,
-   making room for the logo reveal. Ends at the settled idle pose.
-   ─────────────────────────────────────────────────────────────── */
-@keyframes anim-shift-left {
-  0%   { transform: translateX(0px) translateY(-50%) rotate(0deg) scaleX(1) scaleY(1); }
-  60%  { transform: translateX(calc(var(--bird-x) - 8px)) translateY(-50%) rotate(-4deg) scaleX(1.04) scaleY(0.97); }
-  80%  { transform: translateX(calc(var(--bird-x) + 3px)) translateY(-50%) rotate(2deg) scaleX(0.98) scaleY(1.02); }
-  100% { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg) scaleX(1) scaleY(1); }
-}
-
-.bird-wrap.shift-left {
-  opacity: 1;
-  animation: anim-shift-left 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   PHASE 2 — CURIOUS LEAN  (now at --bird-x offset beside logo)
+   PHASE 2 — CURIOUS LEAN
+   Bird tilts forward to inspect the assembling logo letters
+   (bird_curious_lean.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-curious {
-  0%   { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
-  35%  { transform: translateX(calc(var(--bird-x) + 4px)) translateY(-50%) rotate(20deg) scaleX(0.93) scaleY(1.04); }
-  70%  { transform: translateX(calc(var(--bird-x) + 7px)) translateY(-48%) rotate(26deg) scaleX(0.91) scaleY(1.06); }
-  100% { transform: translateX(calc(var(--bird-x) + 6px)) translateY(-49%) rotate(24deg) scaleX(0.92) scaleY(1.05); }
+  0%   { transform: translateX(-200px) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
+  35%  { transform: translateX(-196px) translateY(-50%) rotate(20deg) scaleX(0.93) scaleY(1.04); }
+  70%  { transform: translateX(-193px) translateY(-48%) rotate(26deg) scaleX(0.91) scaleY(1.06); }
+  100% { transform: translateX(-194px) translateY(-49%) rotate(24deg) scaleX(0.92) scaleY(1.05); }
 }
 
 .bird-wrap.curious {
@@ -150,19 +136,22 @@
 
 /* ───────────────────────────────────────────────────────────────
    PHASE 3 — IDLE / PROUD STAND
+   Bird stands upright confidently beside the logo
+   Gentle bob loop keeps it alive
+   (bird_idle_stand.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-stand-up {
-  0%   { transform: translateX(calc(var(--bird-x) + 6px)) translateY(-49%) rotate(24deg) scaleX(0.92) scaleY(1.05); }
-  30%  { transform: translateX(calc(var(--bird-x) - 3px)) translateY(-62%) rotate(-6deg) scaleY(1.08) scaleX(1.02); }
-  58%  { transform: translateX(calc(var(--bird-x) + 1px)) translateY(-47%) rotate(3deg)  scaleY(0.97) scaleX(1.01); }
-  78%  { transform: translateX(var(--bird-x)) translateY(-52%) rotate(-1deg) scaleY(1.01) scaleX(0.99); }
-  100% { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
+  0%   { transform: translateX(-194px) translateY(-49%) rotate(24deg) scaleX(0.92) scaleY(1.05); }
+  30%  { transform: translateX(-203px) translateY(-62%) rotate(-6deg) scaleY(1.08) scaleX(1.02); }
+  58%  { transform: translateX(-199px) translateY(-47%) rotate(3deg)  scaleY(0.97) scaleX(1.01); }
+  78%  { transform: translateX(-200px) translateY(-52%) rotate(-1deg) scaleY(1.01) scaleX(0.99); }
+  100% { transform: translateX(-200px) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
 }
 
 @keyframes anim-idle-bob {
-  0%,100% { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
-  25%     { transform: translateX(var(--bird-x)) translateY(-53%) rotate(-3deg) scaleX(0.98) scaleY(1.02); }
-  75%     { transform: translateX(var(--bird-x)) translateY(-53%) rotate(3deg)  scaleX(0.98) scaleY(1.02); }
+  0%,100% { transform: translateX(-200px) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
+  25%     { transform: translateX(-200px) translateY(-53%) rotate(-3deg) scaleX(0.98) scaleY(1.02); }
+  75%     { transform: translateX(-200px) translateY(-53%) rotate(3deg)  scaleX(0.98) scaleY(1.02); }
 }
 
 .bird-wrap.idle {
@@ -174,16 +163,18 @@
 
 /* ───────────────────────────────────────────────────────────────
    PHASE 4 — WING FLAP CELEBRATION
+   Squash/stretch flap of joy
+   (bird_happy_flap.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-flap {
-  0%   { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
-  12%  { transform: translateX(var(--bird-x)) translateY(-60%) rotate(-5deg) scaleX(1.24) scaleY(0.78); }
-  24%  { transform: translateX(var(--bird-x)) translateY(-50%) rotate(5deg)  scaleX(0.78) scaleY(1.24); }
-  36%  { transform: translateX(var(--bird-x)) translateY(-62%) rotate(-6deg) scaleX(1.26) scaleY(0.76); }
-  50%  { transform: translateX(var(--bird-x)) translateY(-50%) rotate(6deg)  scaleX(0.76) scaleY(1.26); }
-  65%  { transform: translateX(var(--bird-x)) translateY(-55%) rotate(-3deg) scaleX(1.10) scaleY(0.92); }
-  80%  { transform: translateX(var(--bird-x)) translateY(-50%) rotate(2deg)  scaleX(0.95) scaleY(1.05); }
-  100% { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
+  0%   { transform: translateX(-200px) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
+  12%  { transform: translateX(-200px) translateY(-60%) rotate(-5deg) scaleX(1.24) scaleY(0.78); }
+  24%  { transform: translateX(-200px) translateY(-50%) rotate(5deg)  scaleX(0.78) scaleY(1.24); }
+  36%  { transform: translateX(-200px) translateY(-62%) rotate(-6deg) scaleX(1.26) scaleY(0.76); }
+  50%  { transform: translateX(-200px) translateY(-50%) rotate(6deg)  scaleX(0.76) scaleY(1.26); }
+  65%  { transform: translateX(-200px) translateY(-55%) rotate(-3deg) scaleX(1.10) scaleY(0.92); }
+  80%  { transform: translateX(-200px) translateY(-50%) rotate(2deg)  scaleX(0.95) scaleY(1.05); }
+  100% { transform: translateX(-200px) translateY(-50%) rotate(0deg)  scaleX(1)    scaleY(1); }
 }
 
 .bird-wrap.flap {
@@ -193,11 +184,13 @@
 
 /* ───────────────────────────────────────────────────────────────
    PHASE 5a — WIND-UP
+   Deep crouch compression before launch
+   (bird_launch_windup.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-windup {
-  0%   { transform: translateX(var(--bird-x)) translateY(-50%) rotate(0deg) scaleX(1)    scaleY(1); }
-  50%  { transform: translateX(calc(var(--bird-x) - 6px)) translateY(-36%) rotate(3deg) scaleX(1.30) scaleY(0.62); }
-  100% { transform: translateX(calc(var(--bird-x) - 8px)) translateY(-34%) rotate(4deg) scaleX(1.32) scaleY(0.60); }
+  0%   { transform: translateX(-200px) translateY(-50%) rotate(0deg) scaleX(1)    scaleY(1); }
+  50%  { transform: translateX(-206px) translateY(-36%) rotate(3deg) scaleX(1.30) scaleY(0.62); }
+  100% { transform: translateX(-208px) translateY(-34%) rotate(4deg) scaleX(1.32) scaleY(0.60); }
 }
 
 .bird-wrap.windup {
@@ -207,22 +200,24 @@
 
 /* ───────────────────────────────────────────────────────────────
    PHASE 5b — THRUST / LAUNCH
+   Explosive rightward streak
+   (bird_launch_thrust.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-thrust {
   0% {
-    transform: translateX(calc(var(--bird-x) - 8px)) translateY(-34%) rotate(4deg)   scaleX(1.32) scaleY(0.60);
+    transform: translateX(-208px) translateY(-34%) rotate(4deg)   scaleX(1.32) scaleY(0.60);
     opacity: 1;
   }
   30% {
-    transform: translateX(calc(var(--bird-x) + 80px))  translateY(-72%)  rotate(-28deg) scaleX(1.10) scaleY(0.86);
+    transform: translateX(-120px) translateY(-72%) rotate(-28deg) scaleX(1.10) scaleY(0.86);
     opacity: 1;
   }
   60% {
-    transform: translateX(calc(var(--bird-x) + 260px)) translateY(-96%)  rotate(-52deg) scaleX(0.70) scaleY(1.20);
+    transform: translateX(60px)   translateY(-96%) rotate(-52deg) scaleX(0.70) scaleY(1.20);
     opacity: 1;
   }
   100% {
-    transform: translateX(calc(var(--bird-x) + 480px)) translateY(-120%) rotate(-72deg) scaleX(0.40) scaleY(1.40);
+    transform: translateX(280px)  translateY(-120%) rotate(-72deg) scaleX(0.40) scaleY(1.40);
     opacity: 0.6;
   }
 }
@@ -234,18 +229,20 @@
 
 /* ───────────────────────────────────────────────────────────────
    PHASE 5c — BLUR EXIT
+   Near-invisible speed smear off right edge
+   (bird_blur_exit.png)
    ─────────────────────────────────────────────────────────────── */
 @keyframes anim-blur-exit {
   0% {
-    transform: translateX(calc(var(--bird-x) + 480px)) translateY(-120%) rotate(-72deg) scale(0.40);
+    transform: translateX(280px)  translateY(-120%) rotate(-72deg) scale(0.40);
     opacity: 0.6;
   }
   40% {
-    transform: translateX(calc(var(--bird-x) + 660px)) translateY(-138%) rotate(-82deg) scale(0.20);
+    transform: translateX(460px)  translateY(-138%) rotate(-82deg) scale(0.20);
     opacity: 0.3;
   }
   100% {
-    transform: translateX(calc(var(--bird-x) + 880px)) translateY(-160%) rotate(-90deg) scale(0.04);
+    transform: translateX(680px)  translateY(-160%) rotate(-90deg) scale(0.04);
     opacity: 0;
   }
 }
@@ -274,7 +271,7 @@
 .logo-icon {
   height: 40px;
   width: auto;
-  opacity: 0;   /* Hidden by default — JS adds .show */
+  opacity: 0;
   transform: translateX(-24px) scale(0.8);
   transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.34,1.56,.64,1);
   flex-shrink: 0;
@@ -290,11 +287,10 @@
   gap: 2px;
 }
 
-/* ── CRITICAL FIX: letters must start invisible ── */
 .logo-letter {
   height: 36px;
   width: auto;
-  opacity: 0;                                        /* default hidden */
+  opacity: 0;
   transform: translateY(16px) translateX(-6px);
   transition:
     opacity   0.4s ease,
@@ -302,7 +298,6 @@
   display: block;
   flex-shrink: 0;
 }
-/* .show is added by JS — no extra class needed, direct style works too */
 
 /* ─── Tagline ────────────────────────────────────────────────── */
 .tagline {

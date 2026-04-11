@@ -108,14 +108,12 @@
   box-shadow: 0 8px 32px rgba(81,74,215,0.65);
 }
 
-/* RIGHT - Globe */
+/* RIGHT — invisible anchor for robot orbit on desktop */
 .hero-right {
   flex: 0 0 52%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  pointer-events: none;
 }
 
 /* ─── Flying Robot ─────────────────────────────────── */
@@ -123,13 +121,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   pointer-events: auto;
   z-index: 9999;
   cursor: grab;
   will-change: transform;
-  /* filter transitions handled by JS classList */
+  touch-action: none;   /* prevents scroll interfering with drag */
+  -webkit-user-select: none;
+  user-select: none;
+  opacity: 1;                       
+  transition: opacity 0.4s ease; 
+
 }
 
 .flying-robot img {
@@ -199,23 +202,61 @@
 
 .strip-btn:hover { background: #6560e0; }
 
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — 1100px
+═══════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .hero-container {
     padding: 100px 40px 60px;
+    /* single column — text only, robot orbits bottom-right via JS */
     flex-direction: column;
     text-align: center;
     align-items: center;
+    justify-content: center;
   }
-  .hero-left { flex: none; max-width: 100%; align-items: center; display: flex; flex-direction: column; }
-  .hero-right { flex: none; width: 100%; }
+
+  /* hero-right is just an orbit anchor — hide visually */
+  .hero-right {
+    display: none;
+  }
+
+  .hero-left {
+    flex: none;
+    max-width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero-title { font-size: 36px; }
-  .flying-robot { width: 130px; height: 130px; }
+  .hero-desc  { font-size: 15px; }
+
+  /* Robot smaller on tablet */
+  .flying-robot { width: 140px; height: 140px; }
 }
 
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — 600px
+═══════════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .hero-container { padding: 80px 20px 40px; }
   .hero-title { font-size: 28px; }
+  .hero-desc  { font-size: 14px; }
+  .hero-tag   { font-size: 11px; padding: 7px 14px; }
+
   .strip-container { padding: 0 20px; }
   .strip-tabs { gap: 16px; }
-  .flying-robot { width: 100px; height: 100px; }
+  .strip-tabs button { font-size: 12px; }
+  .strip-btn { padding: 8px 18px; font-size: 12px; }
+
+  /* Robot smaller on phone — orbit is compact bottom-right */
+  .flying-robot { width: 150px; height: 150px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — 400px
+═══════════════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .hero-title { font-size: 24px; }
+  .flying-robot { width: 150px; height: 150px; }
 }

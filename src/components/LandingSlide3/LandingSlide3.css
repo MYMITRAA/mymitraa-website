@@ -1,300 +1,652 @@
-.mitraa-landing3 {
-  height: 94vh;
-  width: 100%;
-  background: #f2d5b5;
-  position: relative;
-  overflow: hidden;
+:root {
+  --ls3-amber:       #B96100;
+  --ls3-amber-hover: #9c5000;
+  --ls3-cream:       #f5e8d4;
+  --ls3-fog-w:       rgba(252, 238, 210, 0.72);
+  --ls3-fog-mid:     rgba(245, 220, 175, 0.48);
+  --ls3-fog-b:       rgba(235, 200, 145, 0.28);
+  --ls3-text-dk:     #2b1c0a;
+  --ls3-text-md:     #5c3d1e;
+  --ls3-font-h1:     "Roboto", sans-serif;
+  --ls3-font-body:   "DM Sans", sans-serif;
 }
 
-/* ── MAIN CONTAINER ── */
-.mitraa-landing3-container {
+/* ─── HERO ROOT ───────────────────────────────────────────── */
+.ls3-hero {
+  position: relative;
+  width: 100%;
+  height: 94vh;
+  min-height: 540px;
+  overflow: hidden;
+  font-family: var(--ls3-font-body);
+}
+
+/* ─── MOUNTAIN BACKGROUND ────────────────────────────────── */
+.ls3-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 38%;
+  background-repeat: no-repeat;
+  transform: scale(1.06);
+  filter: brightness(0.72) saturate(1.15);
+  z-index: 0;
+  will-change: transform;
+}
+
+/* ─── VIGNETTE ───────────────────────────────────────────── */
+.ls3-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 110%, rgba(0,0,0,0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 60%  80% at 0%   50%, rgba(0,0,0,0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 50%  60% at 100% 50%, rgba(0,0,0,0.20) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ─── BASE DARK SCRIM ────────────────────────────────────── */
+.ls3-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 6, 0, 0.22);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ─── WARM GRADIENT ──────────────────────────────────────── */
+.ls3-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    108deg,
+    rgba(248, 225, 190, 0.92) 0%,
+    rgba(242, 210, 160, 0.78) 28%,
+    rgba(215, 158,  72, 0.38) 54%,
+    rgba(140,  62,   0, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* ─── HORIZON HAZE ───────────────────────────────────────── */
+.ls3-haze {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  z-index: 4;
+  background: linear-gradient(
+    to top,
+    rgba(240, 205, 140, 0.32) 0%,
+    rgba(240, 205, 140, 0.14) 45%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOG — 3-layer pure CSS cinematic system
+═══════════════════════════════════════════════════════════ */
+.ls3-fog {
+  position: absolute;
+  left: -60%;
+  width: 220%;
+  pointer-events: none;
+}
+
+.ls3-fog--back {
+  top: 28%;
+  height: 22%;
+  z-index: 5;
+}
+.ls3-fog--back::before,
+.ls3-fog--back::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 55% at 50% 55%,
+    var(--ls3-fog-b) 0%,
+    transparent 100%
+  );
+}
+.ls3-fog--back::before {
+  animation: fogDriftBack 38s ease-in-out infinite;
+  opacity: 0.75;
+}
+.ls3-fog--back::after {
+  background: radial-gradient(
+    ellipse 60% 45% at 35% 60%,
+    rgba(230, 195, 130, 0.22) 0%,
+    transparent 100%
+  );
+  animation: fogDriftBack 52s ease-in-out infinite reverse;
+  opacity: 0.55;
+}
+@keyframes fogDriftBack {
+  0%   { transform: translateX(0%)  scaleY(1.00); opacity: 0.75; }
+  22%  { transform: translateX(6%)  scaleY(1.04); opacity: 0.80; }
+  50%  { transform: translateX(11%) scaleY(0.97); opacity: 0.70; }
+  78%  { transform: translateX(5%)  scaleY(1.02); opacity: 0.78; }
+  100% { transform: translateX(0%)  scaleY(1.00); opacity: 0.75; }
+}
+
+.ls3-fog--mid {
+  top: 46%;
+  height: 28%;
+  z-index: 6;
+  filter: blur(2.5px);
+}
+.ls3-fog--mid::before,
+.ls3-fog--mid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 78% 65% at 48% 60%,
+    var(--ls3-fog-mid) 0%,
+    transparent 100%
+  );
+}
+.ls3-fog--mid::before {
+  animation: fogDriftMid 28s ease-in-out infinite;
+}
+.ls3-fog--mid::after {
+  background: radial-gradient(
+    ellipse 55% 50% at 62% 45%,
+    rgba(248, 220, 160, 0.38) 0%,
+    transparent 100%
+  );
+  animation: fogDriftMid 40s ease-in-out infinite reverse;
+  opacity: 0.75;
+}
+@keyframes fogDriftMid {
+  0%   { transform: translateX(0%)   translateY(0%)    scaleX(1.00); opacity: 0.85; }
+  18%  { transform: translateX(4.5%) translateY(-0.4%) scaleX(1.03); opacity: 0.92; }
+  42%  { transform: translateX(9%)   translateY( 0.6%) scaleX(0.97); opacity: 0.78; }
+  65%  { transform: translateX(5.5%) translateY(-0.3%) scaleX(1.01); opacity: 0.88; }
+  100% { transform: translateX(0%)   translateY(0%)    scaleX(1.00); opacity: 0.85; }
+}
+
+.ls3-fog--front {
+  bottom: 0;
+  top: auto;
+  height: 32%;
+  z-index: 7;
+  filter: blur(5px);
+}
+.ls3-fog--front::before,
+.ls3-fog--front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 85% 70% at 50% 80%,
+    var(--ls3-fog-w) 0%,
+    transparent 100%
+  );
+}
+.ls3-fog--front::before {
+  animation: fogDriftFront 22s ease-in-out infinite;
+}
+.ls3-fog--front::after {
+  background: radial-gradient(
+    ellipse 65% 55% at 30% 75%,
+    rgba(252, 230, 185, 0.55) 0%,
+    transparent 100%
+  );
+  animation: fogDriftFront 34s ease-in-out infinite reverse;
+  opacity: 0.80;
+}
+@keyframes fogDriftFront {
+  0%   { transform: translateX(0%)   translateY(0%);    opacity: 0.80; }
+  15%  { transform: translateX(3.5%) translateY(-0.8%); opacity: 0.92; }
+  38%  { transform: translateX(7.5%) translateY( 0.5%); opacity: 0.76; }
+  60%  { transform: translateX(4%)   translateY(-0.6%); opacity: 0.86; }
+  82%  { transform: translateX(1.5%) translateY( 0.3%); opacity: 0.82; }
+  100% { transform: translateX(0%)   translateY(0%);    opacity: 0.80; }
+}
+
+/* ─── CANVAS MOTES ───────────────────────────────────────── */
+.ls3-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* ─── BREEZE GLYPHS ──────────────────────────────────────── */
+.ls3-breeze-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  overflow: hidden;
+}
+@keyframes ls3BreezeFloat {
+  0%   { transform: translateX(0)     translateY(0)     rotate(0deg);   opacity: 0; }
+  7%   { opacity: 1; }
+  70%  { opacity: 0.35; }
+  100% { transform: translateX(240px) translateY(-80px) rotate(420deg); opacity: 0; }
+}
+.ls3-breeze {
+  position: absolute;
+  animation: ls3BreezeFloat linear infinite;
+  will-change: transform, opacity;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ─── MAIN LAYOUT ────────────────────────────────────────── */
+.ls3-layout {
+  position: relative;
+  z-index: 10;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 100px;
-  position: relative;
+  padding: 0 96px;
 }
 
-/* ── LEFT TEXT ── */
-.mitraa-landing3-text {
-  max-width: 620px;
-  z-index: 4;
+/* ═══════════════════════════════════════════════════════════
+   LEFT TEXT PANEL — desktop defaults
+═══════════════════════════════════════════════════════════ */
+.ls3-text {
+  max-width: 600px;
+  z-index: 11;
 }
 
-.mitraa-landing3-text h2 {
-  font-size: 38px;
-  color: #2f2f2f;
+.ls3-eyebrow,
+.ls3-h2,
+.ls3-h1,
+.ls3-pipeline,
+.ls3-cta {
+  animation: ls3TextReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes ls3TextReveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ls3-eyebrow  { animation-delay: 0.10s; }
+.ls3-h2       { animation-delay: 0.22s; }
+.ls3-h1       { animation-delay: 0.34s; }
+.ls3-pipeline { animation-delay: 0.50s; }
+.ls3-cta      { animation-delay: 0.66s; }
+
+.ls3-eyebrow {
+  font-family: var(--ls3-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  color: var(--ls3-amber);
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+.ls3-h2 {
+  font-family: var(--ls3-font-body);
+  font-size: 30px;
   font-weight: 300;
+  color: var(--ls3-text-dk);
+  margin: 0 0 4px;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
 }
 
-.mitraa-landing3-text h1 {
-  font-size: 72px;
-  color: #b96100;
-  margin: 12px 0;
+.ls3-h1 {
+  font-family: var(--ls3-font-h1);
+  font-size: 70px;
   font-weight: 700;
-  line-height: 1.1;
+  color: #B96100;
+  line-height: normal;
+  letter-spacing: 0;
+  margin: 0 0 20px;
+  width: 678px;
+  max-width: 100%;
+  text-transform: uppercase;
+  opacity: 1;
 }
 
-.mitraa-landing3-text p {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #515151;
-}
-
-/* ── BUTTON ── */
-.mitraa-landing3-btn {
-  margin-top: 40px;
-  padding: 14px 38px;
-  border: 1.5px solid #ffb96c;
-  box-shadow: 0px 0px 4px 4px #ffffff1a;
-  background: #b96100;
-  color: #ffffff;
-  font-family: "Inter", sans-serif;
-  cursor: pointer;
+.ls3-pipeline {
+  font-family: var(--ls3-font-body);
+  font-size: 11.5px;
   font-weight: 400;
-  font-size: 22px;
-  line-height: 100%;
-  display: inline-block;
-  transition: 0.3s;
+  color: var(--ls3-text-md);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin: 0 0 44px;
+  opacity: 0.78;
+  line-height: 1.4;
 }
 
-.mitraa-landing3-btn:hover {
-  background: #9e5200;
+.ls3-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 44px 15px 38px;
+  background: var(--ls3-amber);
+  border: none;
+  color: #ffffff;
+  font-family: var(--ls3-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition:
+    background 0.28s ease,
+    transform  0.22s ease,
+    box-shadow 0.28s ease;
+  box-shadow: 0 4px 24px rgba(185, 97, 0, 0.28);
+}
+.ls3-cta:hover {
+  background: var(--ls3-amber-hover);
+  transform: scale(1.03);
+  box-shadow: 0 6px 32px rgba(185, 97, 0, 0.40);
+}
+.ls3-cta__arrow {
+  font-size: 16px;
+  font-weight: 300;
+  opacity: 0.85;
+  transition: transform 0.22s ease;
+}
+.ls3-cta:hover .ls3-cta__arrow {
+  transform: translateX(4px);
 }
 
-/* ── RIGHT SIDE DESIGN ── */
-.mitraa-landing3-design {
+/* ═══════════════════════════════════════════════════════════
+   RIGHT — EAGLE STAGE
+═══════════════════════════════════════════════════════════ */
+.ls3-stage {
   position: absolute;
   right: 0;
   top: 0;
   width: 60%;
   height: 100%;
   pointer-events: none;
+  z-index: 10;
 }
 
-/*
-  Circle: pushed so far right that its right ~40% is cut off by the screen.
-  This makes the left arc of the circle fill the right side of the viewport.
-  right: -320px means 320px of the circle bleeds off-screen to the right.
-*/
-.mitraa-landing3-circle {
+.ls3-circle-halo {
   position: absolute;
-  width: 860px;
-  height: 860px;
+  width: 780px;
+  height: 780px;
   border-radius: 50%;
-  background: rgba(255, 134, 0, 0.2);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(228, 150, 70, 0.28) 0%,
+    rgba(210, 120, 30, 0.12) 40%,
+    transparent 72%
+  );
   top: 50%;
-  right: -320px;
+  right: -260px;
   transform: translateY(-50%);
   z-index: 1;
+  animation: ls3HaloPulse 8s ease-in-out infinite;
+}
+@keyframes ls3HaloPulse {
+  0%, 100% { opacity: 0.80; transform: translateY(-50%) scale(1.00); }
+  50%       { opacity: 1.00; transform: translateY(-50%) scale(1.04); }
 }
 
-/*
-  Bar: sits inside the circle, near its right portion.
-  right: 0 aligns it to the screen's right edge — it bleeds off with the circle.
-  Width keeps it proportional to the circle.
-*/
-.mitraa-landing3-bar {
+@keyframes ls3EagleFloat {
+  0%,  100% { transform: translateY(-50%) rotate(0.0deg); }
+  20%        { transform: translateY(calc(-50% - 13px)) translateX( 6px) rotate(-1.2deg); }
+  45%        { transform: translateY(calc(-50% -  5px)) translateX(-5px) rotate( 0.7deg); }
+  68%        { transform: translateY(calc(-50% - 16px)) translateX( 4px) rotate(-0.8deg); }
+  85%        { transform: translateY(calc(-50% -  8px)) translateX(-3px) rotate( 0.5deg); }
+}
+.ls3-eagle-wrap {
   position: absolute;
-  width: 130px;
-  height: 110%;
-  background: #b96100;
-  right: 0;
-  top: -5%;
-  z-index: 2;
+  top: 50%;
+  right: 80px;
+  z-index: 3;
+  pointer-events: auto;
+  animation: ls3EagleFloat 7.5s ease-in-out infinite;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
 }
+.ls3-eagle-wrap[style*="translate"] { animation: none; }
 
-/*
-  Eagle: in front of everything, positioned so it flies
-  across the circle center and overlaps the bar's left edge.
-*/
-.mitraa-landing3-design .eagle-container {
-  position: absolute !important;
-  top: 50% !important;
-  right: 100px !important;
+.ls3-eagle-wrap .eagle-container {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
   left: auto !important;
-  transform: translateY(-50%) !important;
+  transform: none !important;
   width: 340px !important;
   height: 260px !important;
-  z-index: 3 !important;
-  pointer-events: auto;
 }
 
-/* ── DOTS ── */
-.mitraa-landing3-dots {
+/* ═══════════════════════════════════════════════════════════
+   DOT NAV
+═══════════════════════════════════════════════════════════ */
+.slide-dots {
   position: absolute;
-  bottom: 30px;
-  left: 60px;
+  bottom: 48px;
+  left: 80px;
   display: flex;
   align-items: center;
   gap: 12px;
-  z-index: 5;
+  z-index: 20;
 }
-
-.mitraa-landing3-dot {
+.slide-dot {
   width: 10px;
   height: 10px;
-  background: #e7a85e;
   border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    width         0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.30s ease,
+    background    0.25s ease,
+    transform     0.20s ease;
+  will-change: width, transform;
 }
-
-.mitraa-landing3-dot.active {
-  width: 40px;
+.slide-dots--warm .slide-dot { background: #e9a95f; }
+.slide-dots--warm .slide-dot:hover:not(.slide-dot--active) {
+  background: #c57c30;
+  transform: scale(1.28);
+}
+.slide-dots--warm .slide-dot--active {
+  width: 38px;
   height: 10px;
   border-radius: 10px;
-  background: #b45a00;
+  background: var(--ls3-amber);
+  cursor: default;
+  transform: none;
 }
 
-.mitraa-landing3-pill {
-  margin-left: 20px;
-  padding: 6px 18px;
-  border-radius: 14px;
-  background: #e4b78a;
-  font-size: 14px;
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — DESKTOP
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .ls3-layout { padding: 0 56px; }
+  .ls3-h1     { font-size: 60px; width: auto; }
+  .ls3-h2     { font-size: 25px; }
+  .ls3-circle-halo { width: 660px; height: 660px; right: -210px; }
+  .ls3-eagle-wrap .eagle-container { width: 300px !important; height: 228px !important; }
+  .ls3-eagle-wrap { right: 64px; }
 }
 
-/* =====================================================
-   RESPONSIVE
-   ===================================================== */
-
-@media (max-width: 1100px) {
-  .mitraa-landing3-container { padding: 0 48px; }
-  .mitraa-landing3-text h2   { font-size: 30px; }
-  .mitraa-landing3-text h1   { font-size: 56px; }
-  .mitraa-landing3-text p    { font-size: 15px; }
-  .mitraa-landing3-btn       { font-size: 18px; padding: 12px 32px; }
-
-  .mitraa-landing3-circle    { width: 700px; height: 700px; right: -260px; }
-  .mitraa-landing3-bar       { width: 105px; }
-
-  .mitraa-landing3-design .eagle-container {
-    width: 280px !important;
-    height: 210px !important;
-    right: 80px !important;
-  }
-
-  .mitraa-landing3-dots { left: 48px; }
+@media (max-width: 1024px) {
+  .ls3-h1 { font-size: 52px; }
+  .ls3-h2 { font-size: 22px; }
 }
 
-/* ── Tablet / Mobile (max 900px) ── */
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — 900px
+   ↑ More vertical gap between every text element
+═══════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .mitraa-landing3 {
-    height: 100svh;
-    overflow: hidden;
+  .ls3-hero {
+    height: auto;
+    min-height: 100svh;
   }
 
-  .mitraa-landing3-container {
-    padding: 0 24px;
+  .ls3-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 80px 28px 100px;
+    gap: 0;
+    height: auto;
+    min-height: 100svh;
   }
 
-  .mitraa-landing3-text {
-    max-width: 52%;
+  .ls3-text {
+    max-width: 100%;
+    width: 100%;
+    z-index: 12;
   }
 
-  .mitraa-landing3-text h2 {
-    font-size: 18px;
-    font-weight: 600;
+  /* ─── TEXT SPACING OVERRIDES (mobile only) ─── */
+  .ls3-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.8px;
+    line-height: 1.9;          /* taller line */
+    margin-bottom: 22px;       /* gap below eyebrow */
   }
-
-  .mitraa-landing3-text h1 {
-    font-size: 36px;
-    margin: 4px 0 8px;
-    line-height: 1.05;
+  .ls3-h2 {
+    font-size: 20px;
+    line-height: 1.55;         /* taller line */
+    margin-bottom: 16px;       /* gap below subheading */
   }
-
-  .mitraa-landing3-text p {
+  .ls3-h1 {
+    font-size: 46px;
+    width: auto;
+    line-height: 1.18;         /* taller line */
+    margin-bottom: 24px;       /* gap below main heading */
+  }
+  .ls3-pipeline {
+    font-size: 9px;
+    letter-spacing: 1px;
+    line-height: 2.2;          /* generous line height */
+    margin-bottom: 34px;       /* gap below pipeline before button */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 2px;
+  }
+  .ls3-cta {
     font-size: 12px;
-    line-height: 1.5;
+    padding: 13px 30px 13px 26px;
+    letter-spacing: 2px;
   }
 
-  .mitraa-landing3-btn {
-    margin-top: 16px;
-    font-size: 14px;
-    padding: 10px 24px;
+  /* ── STAGE ── */
+  .ls3-stage {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100%;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    pointer-events: none;
   }
 
-  .mitraa-landing3-circle {
-    width: 480px;
-    height: 480px;
-    right: -180px;
+  .ls3-circle-halo {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: ls3HaloPulseMobile 8s ease-in-out infinite;
+  }
+  @keyframes ls3HaloPulseMobile {
+    0%, 100% { opacity: 0.90; transform: translate(-50%, -50%) scale(1.00); }
+    50%       { opacity: 1.00; transform: translate(-50%, -50%) scale(1.06); }
   }
 
-  .mitraa-landing3-bar {
-    width: 60px;
+  .ls3-eagle-wrap {
+    position: relative;
+    top: auto;
+    right: auto;
+    animation: ls3EagleFloatMobile 7.5s ease-in-out infinite;
+    transform: none;
+  }
+  @keyframes ls3EagleFloatMobile {
+    0%,  100% { transform: translateY(0px) rotate(0deg); }
+    30%        { transform: translateY(-10px) rotate(-0.8deg); }
+    70%        { transform: translateY(-5px)  rotate(0.5deg); }
+  }
+  .ls3-eagle-wrap .eagle-container {
+    width: 300px !important;
+    height: 230px !important;
   }
 
-  .mitraa-landing3-design .eagle-container {
-    width: 230px !important;
-    height: 175px !important;
-    right: 50px !important;
-  }
-
-  .mitraa-landing3-dots {
-    left: 20px;
-    bottom: 20px;
-  }
+  .slide-dots { left: 28px; bottom: 28px; }
 }
 
-/* ── Mobile (max 600px) ── */
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — 600px
+═══════════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
-  .mitraa-landing3-container {
-    padding: 0 20px;
+  .ls3-layout { padding: 72px 20px 90px; }
+
+  .ls3-eyebrow {
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  .ls3-h2 {
+    font-size: 18px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .ls3-h1 {
+    font-size: 40px;
+    line-height: 1.18;
+    margin-bottom: 22px;
+  }
+  .ls3-pipeline {
+    line-height: 2.2;
+    margin-bottom: 30px;
   }
 
-  .mitraa-landing3-text {
-    max-width: 58%;
+  .ls3-cta { font-size: 11px; padding: 12px 26px 12px 22px; }
+  .ls3-cta__arrow { display: none; }
+
+  .ls3-stage { height: 230px; margin-top: 20px; }
+  .ls3-circle-halo { width: 300px; height: 300px; }
+  .ls3-eagle-wrap .eagle-container {
+    width: 270px !important;
+    height: 206px !important;
   }
 
-  .mitraa-landing3-text h2 { font-size: 15px; }
-  .mitraa-landing3-text h1 { font-size: 30px; }
-  .mitraa-landing3-text p  { font-size: 11px; }
-
-  .mitraa-landing3-btn {
-    font-size: 13px;
-    padding: 9px 20px;
-    margin-top: 12px;
-  }
-
-  .mitraa-landing3-circle {
-    width: 380px;
-    height: 380px;
-    right: -140px;
-  }
-
-  .mitraa-landing3-bar {
-    width: 46px;
-  }
-
-  .mitraa-landing3-design .eagle-container {
-    width: 195px !important;
-    height: 150px !important;
-    right: 36px !important;
-  }
-
-  .mitraa-landing3-dots { left: 16px; bottom: 16px; gap: 8px; }
-  .mitraa-landing3-dot        { width: 8px; height: 8px; }
-  .mitraa-landing3-dot.active { width: 28px; height: 8px; }
-  .mitraa-landing3-pill       { font-size: 12px; padding: 4px 14px; margin-left: 10px; }
+  .slide-dots { left: 20px; bottom: 158px; gap: 9px; }
+  .slide-dot  { width: 8px; height: 8px; }
+  .slide-dots--warm .slide-dot--active { width: 28px; height: 8px; }
 }
 
-/* ── Small mobile (max 400px) ── */
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — 400px
+═══════════════════════════════════════════════════════════ */
 @media (max-width: 400px) {
-  .mitraa-landing3-text h1 { font-size: 26px; }
-  .mitraa-landing3-text h2 { font-size: 13px; }
+  .ls3-layout { padding: 68px 16px 80px; }
 
-  .mitraa-landing3-circle {
-    width: 300px;
-    height: 300px;
-    right: -110px;
-  }
+  .ls3-eyebrow  { margin-bottom: 18px; }
+  .ls3-h2       { font-size: 16px; margin-bottom: 12px; }
+  .ls3-h1       { font-size: 34px; margin-bottom: 20px; }
+  .ls3-pipeline { margin-bottom: 26px; }
 
-  .mitraa-landing3-bar { width: 36px; }
-
-  .mitraa-landing3-design .eagle-container {
-    width: 165px !important;
-    height: 125px !important;
-    right: 28px !important;
+  .ls3-stage { height: 200px; }
+  .ls3-circle-halo { width: 250px; height: 250px; }
+  .ls3-eagle-wrap .eagle-container {
+    width: 230px !important;
+    height: 176px !important;
   }
 }

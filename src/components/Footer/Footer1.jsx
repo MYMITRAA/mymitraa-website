@@ -31,7 +31,7 @@ function Footer() {
             </p>
           </div>
 
-          {/* Services */}
+          {/* ROW 2 col 1 — Services */}
           <div className="footer-column">
             <h4>Services</h4>
             <ul>
@@ -44,7 +44,7 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* ROW 2 col 2 — Quick Links */}
           <div className="footer-column">
             <h4>Quick Links</h4>
             <ul>
@@ -56,62 +56,27 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact / Address */}
-          <div className="footer-column footer-column--address">
-            <h4>Contact Us</h4>
-            <ul>
-              <li className="footer-address-item">
-                <span className="footer-address-label">
-                  <svg className="footer-pin" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C4.13 0 1 3.13 1 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 8 4.5a2.5 2.5 0 0 1 0 5z" fill="#6c63ff"/>
-                  </svg>
-                  Line 1 <span className="footer-address-sub">(Bhubaneswar HQ)</span>
-                </span>
-                B-93, B.D.A. Duplex, Baramunda,<br />Bhubaneswar, Khurda – 751003
-              </li>
-              <li className="footer-address-item">
-                <span className="footer-address-label">
-                  <svg className="footer-pin" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C4.13 0 1 3.13 1 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 8 4.5a2.5 2.5 0 0 1 0 5z" fill="#6c63ff"/>
-                  </svg>
-                  Line 2
-                </span>
-                Plot No. 446 (HN3), HSIIDC Industrial Growth Center, Sector 2, Saha, Ambala, Haryana – 133104
-              </li>
-              <li className="footer-address-item">
-                <span className="footer-address-label">
-                  <svg className="footer-pin" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C4.13 0 1 3.13 1 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 8 4.5a2.5 2.5 0 0 1 0 5z" fill="#6c63ff"/>
-                  </svg>
-                  Line 3
-                </span>
-                Thirumangalath, Kavungappara, Palakkad P.O., Kuzhimanna (Via), Malappuram District, Kerala – 673641, India
-              </li>
-              <li className="footer-contact-item">
-                <a href="tel:+919938330784">+91 9938330784</a>
-              </li>
-              <li className="footer-contact-item">
-                <a href="mailto:info@mitratechgroup.com">info@mitratechgroup.com</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* ROW 3 — Follow Us (mobile only) */}
+          {/* ROW 3 — Follow Us */}
           <div className="footer-social-mobile">
             <h4>Follow Us</h4>
             <div className="social-icons">
+
               <a href="https://www.instagram.com/mitra.technologypvtltd?igsh=ZGRuNjJhempzbnRv" target="_blank" rel="noopener noreferrer">
                 <img src={instagram} alt="Instagram" />
               </a>
+
               <a href="https://www.linkedin.com/company/mitra-technology-pvt-ltd/" target="_blank" rel="noopener noreferrer">
                 <img src={linkedin} alt="LinkedIn" />
               </a>
+
               <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
                 <img src={facebook} alt="Facebook" />
               </a>
+
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <img src={twitter} alt="Twitter" />
               </a>
+
             </div>
           </div>
 

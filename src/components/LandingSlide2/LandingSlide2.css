@@ -517,8 +517,8 @@
 
   .ml2__branch {
     position: fixed;
-    bottom: 0;
-    left: 7px;
+    bottom: 80px;
+    left: -5px;
     width: 300px;
   }
 
@@ -536,7 +536,7 @@
     left: 130px;
   }
 
-  .ml2__dots  { left: 22px; bottom: 18px; gap: 8px; }
+  .ml2__dots  { left: 22px; bottom: 158px; gap: 8px; }
   .ml2__dot   { width: 9px; height: 9px; }
   .ml2__dot--active { width: 30px; height: 9px; }
   .ml2__pill  { font-size: 11px; padding: 4px 14px; }

@@ -1,0 +1,140 @@
+.eagle-container{
+  position:absolute;
+  right:80px;
+  top:140px;
+  width:420px;
+  height:320px;
+  pointer-events:none;
+}
+
+.eagle{
+  position:relative;
+  width:100%;
+  height:100%;
+  animation:eagleFloat 6s ease-in-out infinite;
+}
+
+/* BODY (center reference) */
+
+.body{
+  position:absolute;
+  width:151.82px;
+  height:119.8px;
+  left:120px;
+  top:120px;
+  z-index:6;
+}
+
+/* HEAD */
+
+.head{
+  position:absolute;
+  width:122px;
+  height:61.05px;
+  left:45px;
+  top:121px;
+  z-index:5;
+  animation:headMove 5s ease-in-out infinite;
+}
+
+/* TAIL */
+
+.tail{
+  position:absolute;
+  width:96.66px;
+  height:64.07px;
+  left:230px;
+  top:190px;
+  z-index:4;
+  animation:tailMove 3s ease-in-out infinite;
+}
+
+/* WINGS */
+
+.wing{
+  position:absolute;
+  width:260px;
+}
+
+/* LEFT WING */
+
+.left-wing{
+  left:-70px;
+  top:130px;
+  z-index:3;
+  width:242.53px;
+  height: 119.69px;
+  transform-origin:85% 50%;
+  animation:flapLeft 4s ease-in-out infinite;
+}
+
+/* RIGHT WING */
+
+.right-wing{
+  left:120px;
+  top:50px;
+  z-index:3;
+  width:245.65px;
+  height: 130.59px;
+  transform-origin:15% 50%;
+  animation:flapRight 4s ease-in-out infinite;
+}
+
+/* LEGS */
+
+.leg{
+  position:absolute;
+  width:35px;
+  top:230px;
+  z-index:4;
+}
+
+.left-leg{
+  left:185px;
+  position:absolute;
+  top:235px;
+  left:235px;
+}
+
+.right-leg{
+    position: absolute;
+    top: 215px;
+    left:260px;
+
+}
+
+/* ================= */
+/* ANIMATIONS */
+/* ================= */
+
+@keyframes flapLeft{
+  0%{transform:rotate(18deg);}
+  50%{transform:rotate(-28deg);}
+  100%{transform:rotate(18deg);}
+}
+
+@keyframes flapRight{
+  0%{transform:rotate(-18deg);}
+  50%{transform:rotate(28deg);}
+  100%{transform:rotate(-18deg);}
+}
+
+@keyframes eagleFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
+}
+
+@keyframes tailMove{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(6deg)}
+  100%{transform:rotate(0deg)}
+}
+
+@keyframes headMove{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(3deg)}
+  100%{transform:rotate(0deg)}
+}
+
+

@@ -463,6 +463,12 @@
   .ls1__ellipse    { width: 500px; height: 460px; }
 }
 
+/* ══════════════════════════════════════════
+   MOBILE — 900px and below
+   • Ellipse circle hidden
+   • Larger text sizes
+══════════════════════════════════════════ */
+
 @media (max-width: 900px) {
   .ls1 { height: auto; min-height: 100svh; }
 
@@ -474,9 +480,12 @@
     gap: 0;
   }
 
-  .ls1__text     { max-width: 100%; }
-  .ls1__title    { font-size: 36px; white-space: normal; }
-  .ls1__subtitle { font-size: 18px; }
+  .ls1__text         { max-width: 100%; }
+  .ls1__title        { font-size: 44px; white-space: normal; }
+  .ls1__subtitle     { font-size: 22px; }
+  .ls1__tagline-word { font-size: 14px; }
+  .ls1__tagline-arrow{ font-size: 14px; }
+  .ls1__btn          { padding: 14px 36px; font-size: 14px; }
 
   .ls1__robot-wrap {
     position: relative;
@@ -488,11 +497,8 @@
     margin-top: 28px;
   }
 
-  .ls1__ellipse {
-    width: 360px;
-    height: 340px;
-    transform: translate(-50%, -50%);
-  }
+  /* ── Hide ellipse circle on mobile ── */
+  .ls1__ellipse { display: none !important; }
 
   .ls1__robot-img { max-height: 300px; }
   .ls1__dots      { left: 36px; bottom: 24px; }
@@ -500,27 +506,30 @@
 
 @media (max-width: 600px) {
   .ls1__container    { padding: 90px 24px 140px; }
-  .ls1__title        { font-size: 28px; }
-  .ls1__subtitle     { font-size: 16px; }
-  .ls1__tagline-word { font-size: 10px; }
-  .ls1__tagline-arrow{ font-size: 11px; }
-  .ls1__btn          { padding: 11px 28px; font-size: 12px; }
+  .ls1__title        { font-size: 36px; }
+  .ls1__subtitle     { font-size: 19px; }
+  .ls1__tagline      { flex-wrap: wrap; gap: 4px; }
+  .ls1__tagline-word { font-size: 12px; }
+  .ls1__tagline-arrow{ font-size: 12px; }
+  .ls1__btn          { padding: 13px 32px; font-size: 13px; }
 
-  .ls1__robot-wrap   { height: 260px; }
-  .ls1__ellipse      { width: 280px; height: 260px; }
-  .ls1__robot-img    { max-height: 240px; }
+  .ls1__robot-wrap   { height: 280px; }
+  .ls1__ellipse      { display: none !important; }
+  .ls1__robot-img    { max-height: 260px; }
 
-  .ls1__dots         { left: 20px; bottom: 18px; gap: 7px; }
+  .ls1__dots         { left: 20px; bottom: 158px; gap: 7px; }
   .ls1__dot          { width: 9px; height: 9px; }
   .ls1__dot--active  { width: 30px; height: 9px; }
   .ls1__pill         { font-size: 11px; padding: 3px 14px; }
 }
 
 @media (max-width: 400px) {
-  .ls1__title     { font-size: 22px; }
-  .ls1__subtitle  { font-size: 14px; }
-  .ls1__robot-img { max-height: 200px; }
-  .ls1__ellipse   { width: 220px; height: 200px; }
+  .ls1__title        { font-size: 28px; }
+  .ls1__subtitle     { font-size: 16px; }
+  .ls1__tagline-word { font-size: 11px; }
+  .ls1__tagline-arrow{ font-size: 11px; }
+  .ls1__robot-img    { max-height: 220px; }
+  .ls1__ellipse      { display: none !important; }
 }
 
 /* ── Reduced motion ── */

@@ -1,140 +1,195 @@
-.eagle-container{
-  position:absolute;
-  right:80px;
-  top:140px;
-  width:420px;
-  height:320px;
-  pointer-events:none;
+.eagle-container {
+  position: absolute;
+  right: 80px;
+  top: 140px;
+  width: 420px;
+  height: 320px;
+  pointer-events: none;
 }
 
-.eagle{
-  position:relative;
-  width:100%;
-  height:100%;
-  animation:eagleFloat 6s ease-in-out infinite;
+.eagle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: eagleFloat 6s ease-in-out infinite;
 }
 
-/* BODY (center reference) */
-
-.body{
-  position:absolute;
-  width:151.82px;
-  height:119.8px;
-  left:120px;
-  top:120px;
-  z-index:6;
+/* BODY */
+.body {
+  position: absolute;
+  width: 151.82px;
+  height: 119.8px;
+  left: 120px;
+  top: 120px;
+  z-index: 6;
 }
 
 /* HEAD */
-
-.head{
-  position:absolute;
-  width:122px;
-  height:61.05px;
-  left:45px;
-  top:121px;
-  z-index:5;
-  animation:headMove 5s ease-in-out infinite;
+.head {
+  position: absolute;
+  width: 122px;
+  height: 61.05px;
+  left: 45px;
+  top: 121px;
+  z-index: 5;
+  animation: headMove 5s ease-in-out infinite;
 }
 
 /* TAIL */
-
-.tail{
-  position:absolute;
-  width:96.66px;
-  height:64.07px;
-  left:230px;
-  top:190px;
-  z-index:4;
-  animation:tailMove 3s ease-in-out infinite;
+.tail {
+  position: absolute;
+  width: 96.66px;
+  height: 64.07px;
+  left: 230px;
+  top: 190px;
+  z-index: 4;
+  animation: tailMove 3s ease-in-out infinite;
 }
 
 /* WINGS */
-
-.wing{
-  position:absolute;
-  width:260px;
+.wing {
+  position: absolute;
+  width: 260px;
 }
 
 /* LEFT WING */
-
-.left-wing{
-  left:-70px;
-  top:130px;
-  z-index:3;
-  width:242.53px;
+.left-wing {
+  left: -70px;
+  top: 130px;
+  z-index: 3;
+  width: 242.53px;
   height: 119.69px;
-  transform-origin:85% 50%;
-  animation:flapLeft 4s ease-in-out infinite;
+  transform-origin: 85% 50%;
+  animation: flapLeft 4s ease-in-out infinite;
 }
 
 /* RIGHT WING */
-
-.right-wing{
-  left:120px;
-  top:50px;
-  z-index:3;
-  width:245.65px;
+.right-wing {
+  left: 120px;
+  top: 50px;
+  z-index: 3;
+  width: 245.65px;
   height: 130.59px;
-  transform-origin:15% 50%;
-  animation:flapRight 4s ease-in-out infinite;
+  transform-origin: 15% 50%;
+  animation: flapRight 4s ease-in-out infinite;
 }
 
 /* LEGS */
-
-.leg{
-  position:absolute;
-  width:35px;
-  top:230px;
-  z-index:4;
+.leg {
+  position: absolute;
+  width: 35px;
+  top: 230px;
+  z-index: 4;
 }
 
-.left-leg{
-  left:185px;
-  position:absolute;
-  top:235px;
-  left:235px;
+.left-leg {
+  position: absolute;
+  top: 235px;
+  left: 235px;
 }
 
-.right-leg{
-    position: absolute;
-    top: 215px;
-    left:260px;
-
+.right-leg {
+  position: absolute;
+  top: 215px;
+  left: 260px;
 }
 
 /* ================= */
-/* ANIMATIONS */
+/* ANIMATIONS        */
 /* ================= */
 
-@keyframes flapLeft{
-  0%{transform:rotate(18deg);}
-  50%{transform:rotate(-28deg);}
-  100%{transform:rotate(18deg);}
+@keyframes flapLeft {
+  0%   { transform: rotate(18deg); }
+  50%  { transform: rotate(-28deg); }
+  100% { transform: rotate(18deg); }
 }
 
-@keyframes flapRight{
-  0%{transform:rotate(-18deg);}
-  50%{transform:rotate(28deg);}
-  100%{transform:rotate(-18deg);}
+@keyframes flapRight {
+  0%   { transform: rotate(-18deg); }
+  50%  { transform: rotate(28deg); }
+  100% { transform: rotate(-18deg); }
 }
 
-@keyframes eagleFloat{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-  100%{transform:translateY(0)}
+@keyframes eagleFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
 }
 
-@keyframes tailMove{
-  0%{transform:rotate(0deg)}
-  50%{transform:rotate(6deg)}
-  100%{transform:rotate(0deg)}
+@keyframes tailMove {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
 }
 
-@keyframes headMove{
-  0%{transform:rotate(0deg)}
-  50%{transform:rotate(3deg)}
-  100%{transform:rotate(0deg)}
+@keyframes headMove {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
 }
 
+/* ═══════════════════════════════════════════
+   MOBILE — 900px
+   Scale factor: ~0.70
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .eagle-container {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 294px;   /* 420 × 0.70 */
+    height: 224px;  /* 320 × 0.70 */
+  }
 
+  .body       { width: 106px;  height: 84px;  left: 84px;  top: 84px; }
+  .head       { width: 85px;   height: 43px;  left: 32px;  top: 85px; }
+  .tail       { width: 68px;   height: 45px;  left: 161px; top: 133px; }
+
+  .left-wing  { width: 170px;  height: 84px;  left: -49px; top: 91px; }
+  .right-wing { width: 172px;  height: 91px;  left: 84px;  top: 35px; }
+
+  .left-leg   { width: 25px; top: 165px; left: 165px; }
+  .right-leg  { width: 25px; top: 151px; left: 182px; }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE — 600px
+   Scale factor: ~0.60
+═══════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .eagle-container {
+    width: 252px;   /* 420 × 0.60 */
+    height: 192px;  /* 320 × 0.60 */
+  }
+
+  .body       { width: 91px;  height: 72px;  left: 72px;  top: 72px; }
+  .head       { width: 73px;  height: 37px;  left: 27px;  top: 73px; }
+  .tail       { width: 58px;  height: 38px;  left: 138px; top: 114px; }
+
+  .left-wing  { width: 146px; height: 72px;  left: -42px; top: 78px; }
+  .right-wing { width: 147px; height: 78px;  left: 72px;  top: 30px; }
+
+  .left-leg   { width: 21px; top: 141px; left: 141px; }
+  .right-leg  { width: 21px; top: 129px; left: 156px; }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE — 400px
+   Scale factor: ~0.50
+═══════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .eagle-container {
+    width: 210px;   /* 420 × 0.50 */
+    height: 160px;  /* 320 × 0.50 */
+  }
+
+  .body       { width: 76px;  height: 60px;  left: 60px;  top: 60px; }
+  .head       { width: 61px;  height: 31px;  left: 23px;  top: 61px; }
+  .tail       { width: 48px;  height: 32px;  left: 115px; top: 95px; }
+
+  .left-wing  { width: 121px; height: 60px;  left: -35px; top: 65px; }
+  .right-wing { width: 123px; height: 65px;  left: 60px;  top: 25px; }
+
+  .left-leg   { width: 18px; top: 118px; left: 118px; }
+  .right-leg  { width: 18px; top: 108px; left: 130px; }
+}
