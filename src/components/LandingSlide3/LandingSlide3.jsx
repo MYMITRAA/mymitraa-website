@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useCallback } from "react";
 import "./LandingSlide3.css";
 import EagleAnimation from "../EagleAnimation/EagleAnimation";
 import mountainbg from "../../assets/images/mountainbg.png";
+import { useNavigate } from "react-router-dom";
+
+ 
 
 
 export function SlideDots({ total = 3, current = 0, onDotClick, theme = "warm" }) {
@@ -153,7 +156,9 @@ export default function LandingSlide3({
   }, [spawnBreeze]);
 
   /* ── RENDER ── */
+  const navigate = useNavigate();
   return (
+    
     <section className="ls3-hero" ref={heroRef}>
 
       {/* MOUNTAIN BACKGROUND */}
@@ -191,43 +196,27 @@ export default function LandingSlide3({
         {/* ── LEFT: TEXT PANEL ── */}
         <div className="ls3-text">
 
-          {/*
-            EYEBROW
-            DM Sans | 500 | 11px | uppercase | #B96100 | 3.5px tracking
-          */}
+          
           <p className="ls3-eyebrow">MiTRAA Intelligence</p>
 
-          {/*
-            SUB-HEADING  "Powering Businesses with"
-            DM Sans | 300 (Light) | 30px | #2b1c0a
-          */}
+       
           <h2 className="ls3-h2">Powering Businesses with</h2>
 
-          {/*
-            MAIN HEADING  "ARTIFICIAL INTELLIGENCE"
-            ★ FIGMA EXACT:
-              Roboto | Bold 700 | 70px | line-height: normal
-              letter-spacing: 0 | color: #B96100 | width: 678px
-          */}
+         
           <h1 className="ls3-h1">
             ARTIFICIAL
             <br />
             INTELLIGENCE
           </h1>
 
-          {/*
-            PIPELINE TAGLINE
-            DM Sans | 400 | 11.5px | uppercase | #5c3d1e | 1.6px tracking
-          */}
+         
           <p className="ls3-pipeline">
             IDEA&nbsp;&nbsp;→&nbsp;&nbsp;INNOVATION&nbsp;&nbsp;→&nbsp;&nbsp;IMPLEMENTATION&nbsp;&nbsp;→&nbsp;&nbsp;IMPACT
           </p>
 
-          {/*
-            CTA BUTTON  "EXPLORE"
-            DM Sans | 500 | 13px | uppercase | #fff on #B96100 | 2.5px tracking
-          */}
-          <button className="ls3-cta" type="button">
+          
+         
+          <button className="ls3-cta" type="button" onClick={() => navigate("/agi-countdown")}>
             <span className="ls3-cta__label">EXPLORE</span>
             <span className="ls3-cta__arrow" aria-hidden="true">→</span>
           </button>
