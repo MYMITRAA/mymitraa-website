@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted   # 🔥 IMPORTANT CHANGE
 
     steps:
       - name: Checkout code
@@ -24,20 +24,14 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          source: "dist/*"
-          target: "/var/www/mymitraa/current"
+      - name: Deploy to Nginx
+        run: |
+          echo "Cleaning old files..."
+          rm -rf /var/www/app/current/*
 
-      - name: Restart Nginx
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            sudo systemctl restart nginx
+          echo "Copying new build..."
+          cp -r dist/* /var/www/app/current/
+
+      - name: Reload Nginx
+        run: |
+          sudo systemctl reload nginx
