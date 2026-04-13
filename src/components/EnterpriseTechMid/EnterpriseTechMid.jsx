@@ -1,6 +1,6 @@
 import "./EnterpriseTechMid.css";
-import customImg from "../../assets/images/PerformanceEngineering.jpg";
-import webAppImg from "../../assets/images/cloud-storage.jpg";
+import customImg from "../../assets/images/PerformanceEngineering.webp";
+import webAppImg from "../../assets/images/cloud-storage.webp";
 
 const solutions = [
   "Performance engineering & optimization",

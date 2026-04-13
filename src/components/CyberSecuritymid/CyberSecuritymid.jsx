@@ -1,6 +1,6 @@
 import "./CyberSecuritymid.css";
-import customImg from "../../assets/images/cybersecurityimage1.jpg";
-import webAppImg from "../../assets/images/cybersecurityimage2.jpg";
+import customImg from "../../assets/images/cybersecurityimage1.webp";
+import webAppImg from "../../assets/images/cybersecurityimage2.webp";
 
 const capabilities = [
   "Identity & Access Management (IAM)",

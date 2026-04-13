@@ -1,5 +1,5 @@
 import "./CyberSecurityhero.css";
-import cyberBg from "../../assets/images/cybersecurityhero.jpg";
+import cyberBg from "../../assets/images/cybersecurityhero.webp";
 
 function CyberSecurityhero() {
   return (

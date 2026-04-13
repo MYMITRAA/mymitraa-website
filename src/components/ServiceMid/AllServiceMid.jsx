@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AllServiceMid.css";
 
-import bird from "../../assets/images/Mascot3.png";
+import bird from "../../assets/images/Mascot3.webp";
 import team1 from "../../assets/images/team1image.svg";
 import team2 from "../../assets/images/team1image.svg";
 import team3 from "../../assets/images/team1image.svg";

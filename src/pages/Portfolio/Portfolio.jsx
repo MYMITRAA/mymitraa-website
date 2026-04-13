@@ -1,14 +1,14 @@
 import "./Portfolio.css";
 import Footer from "../../components/Footer/Footer";
-import PORTFOLIO1 from "../../assets/images/portfoliohero.png";
+import PORTFOLIO1 from "../../assets/images/portfoliohero.webp";
 
-import TalentIcon from "../../assets/images/portfolio1.png";
-import HiringIcon from "../../assets/images/portfolio2.png";
-import MarketIcon from "../../assets/images/portfolio4.png"; // fixed
-import TeamsIcon from "../../assets/images/portfolio4.png";
+import TalentIcon from "../../assets/images/portfolio1.webp";
+import HiringIcon from "../../assets/images/portfolio2.webp";
+import MarketIcon from "../../assets/images/portfolio4.webp";
+import TeamsIcon from "../../assets/images/portfolio4.webp";
 
-import WhatWeDoImg from "../../assets/images/portfoliomid.png";
-import AdvantageImg from "../../assets/images/portfoliodown.png";
+import WhatWeDoImg from "../../assets/images/portfoliomid.webp";
+import AdvantageImg from "../../assets/images/portfoliodown.webp";
 
 const whyItMatters = [
   { label: "Talent shortages",                   icon: TalentIcon  },

@@ -17,14 +17,14 @@ import Awhite from "../../assets/logo/A-white.svg";
 import Ablue  from "../../assets/logo/A-blue.svg";
 
 // ── Bird keyframe images (8 poses) ────────────────────────────
-import birdSlide      from "../../assets/introanimation/bird_slide.png";
-import birdStopWobble from "../../assets/introanimation/bird_stop_wobble.png";
-import birdCurious    from "../../assets/introanimation/bird_curious_lean.png";
-import birdIdle       from "../../assets/introanimation/bird_idle_stand.png";
-import birdFlap       from "../../assets/introanimation/bird_happy_flap.png";
-import birdWindup     from "../../assets/introanimation/bird_launch_windup.png";
-import birdThrust     from "../../assets/introanimation/bird_launch_thrust.png";
-import birdBlur       from "../../assets/introanimation/bird_blur_exit.png";
+import birdSlide      from "../../assets/introanimation/bird_slide.webp";
+import birdStopWobble from "../../assets/introanimation/bird_stop_wobble.webp";
+import birdCurious    from "../../assets/introanimation/bird_curious_lean.webp";
+import birdIdle       from "../../assets/introanimation/bird_idle_stand.webp";
+import birdFlap       from "../../assets/introanimation/bird_happy_flap.webp";
+import birdWindup     from "../../assets/introanimation/bird_launch_windup.webp";
+import birdThrust     from "../../assets/introanimation/bird_launch_thrust.webp";
+import birdBlur       from "../../assets/introanimation/bird_blur_exit.webp";
 
 // ─────────────────────────────────────────────────────────────
 const LETTERS_WHITE = [Mwhite, Iwhite, Twhite, Rwhite, Awhite, Awhite];

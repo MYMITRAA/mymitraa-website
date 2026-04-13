@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import "./LandingSlide2.css";
 import { useNavigate } from "react-router-dom";
 
-import butterfly1 from "../../assets/butterflyanimation/butterly1.png";
-import butterfly2 from "../../assets/butterflyanimation/butterfly2.png";
+import butterfly1 from "../../assets/butterflyanimation/butterly1.webp";
+import butterfly2 from "../../assets/butterflyanimation/butterfly2.webp";
 import treeBranch  from "../../assets/images/treebranch.svg";
 
 /* ── Snowflake config ── */

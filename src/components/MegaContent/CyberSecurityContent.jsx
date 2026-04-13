@@ -1,4 +1,4 @@
-import security from "../../assets/images/cybersecurity.png";
+import security from "../../assets/images/cybersecurity.webp";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

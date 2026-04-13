@@ -1,4 +1,4 @@
-import blockchain from "../../assets/images/blockchainimage.png";
+import blockchain from "../../assets/images/blockchainimage.webp";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

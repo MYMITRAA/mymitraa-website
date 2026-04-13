@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AGIEvolution.css";
 
-import imgEvoMicrobial    from "../../assets/images/stage-microbial.png";
-import imgEvoInvertebrate from "../../assets/images/stage-invertebrate.png";
-import imgEvoReptile      from "../../assets/images/stage-reptile.png";
-import imgEvoMammal       from "../../assets/images/stage-mammal.png";
-import imgEvoHominid      from "../../assets/images/stage-hominid.png";
-import imgEvoSapiens      from "../../assets/images/stage-human.png";
-import imgEvoModern       from "../../assets/images/stage-digital.png";
-import imgAiTuring        from "../../assets/images/ai-turing.png";
-import imgAiPerceptron    from "../../assets/images/ai-perceptron.png";
-import imgAiExpert        from "../../assets/images/ai-expert-systems.png";
-import imgAiBackprop      from "../../assets/images/ai-backprop.png";
-import imgAiDeepLearning  from "../../assets/images/ai-deep-learning.png";
-import imgAiTransformers  from "../../assets/images/ai-transformers.png";
-import imgAiAGI           from "../../assets/images/stage-agi.png";
+import imgEvoMicrobial    from "../../assets/images/stage-microbial.webp";
+import imgEvoInvertebrate from "../../assets/images/stage-invertebrate.webp";
+import imgEvoReptile      from "../../assets/images/stage-reptile.webp";
+import imgEvoMammal       from "../../assets/images/stage-mammal.webp";
+import imgEvoHominid      from "../../assets/images/stage-hominid.webp";
+import imgEvoSapiens      from "../../assets/images/stage-human.webp";
+import imgEvoModern       from "../../assets/images/stage-digital.webp";
+import imgAiTuring        from "../../assets/images/ai-turing.webp";
+import imgAiPerceptron    from "../../assets/images/ai-perceptron.webp";
+import imgAiExpert        from "../../assets/images/ai-expert-systems.webp";
+import imgAiBackprop      from "../../assets/images/ai-backprop.webp";
+import imgAiDeepLearning  from "../../assets/images/ai-deep-learning.webp";
+import imgAiTransformers  from "../../assets/images/ai-transformers.webp";
+import imgAiAGI           from "../../assets/images/stage-agi.webp";
 
 const STAGES = [
   {

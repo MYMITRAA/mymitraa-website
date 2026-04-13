@@ -1,4 +1,4 @@
-import mobile from "../../assets/images/webandappimage1.png";
+import mobile from "../../assets/images/webandappimage1.webp";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

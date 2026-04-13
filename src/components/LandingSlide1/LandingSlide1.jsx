@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import ellipse from "../../assets/images/Ellipse_4.svg";
 
 /* ── Robot images ── */
-import robotNormal  from "../../assets/roboanimation/robot_normal.png";
-import robotHappy   from "../../assets/roboanimation/robot_happy.png";
-import robotExcited from "../../assets/roboanimation/robot_exited.png";
+import robotNormal  from "../../assets/roboanimation/robot_normal.webp";
+import robotHappy   from "../../assets/roboanimation/robot_happy.webp";
+import robotExcited from "../../assets/roboanimation/robot_exited.webp";
 
 /* ── Floating particles config ── */
 const PARTICLE_COUNT = 38;

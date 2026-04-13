@@ -1,10 +1,10 @@
 import "./CaseStudy.css";
 import Footer from "../../components/Footer/Footer.jsx";
-import AIVideConference from "../../assets/images/AIVideoConferencingPlatform.png";
+import AIVideConference from "../../assets/images/AIVideoConferencingPlatform.webp";
 
-import AutonomousAIWebQuality from "../../assets/images/AutonomousAIWebQualityEngine.png";
-import PricingApprovalWorkflow from "../../assets/images/PricingApprovalWorkflowSystem.png";
-import AgenticRAGKnowledge from "../../assets/images/AgenticRAGKnowledgeSystem1.png";
+import AutonomousAIWebQuality from "../../assets/images/AutonomousAIWebQualityEngine.webp";
+import PricingApprovalWorkflow from "../../assets/images/PricingApprovalWorkflowSystem.webp";
+import AgenticRAGKnowledge from "../../assets/images/AgenticRAGKnowledgeSystem1.webp";
 
 const caseStudies = [
   {

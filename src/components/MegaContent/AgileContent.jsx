@@ -1,4 +1,4 @@
-import agile from "../../assets/images/agileimage.png";
+import agile from "../../assets/images/agileimage.webp";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

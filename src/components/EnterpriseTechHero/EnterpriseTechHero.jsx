@@ -1,5 +1,5 @@
 import "./EnterpriseTechHero.css";
-import enterpriseBg from "../../assets/images/Ebterprisetechhero.png";
+import enterpriseBg from "../../assets/images/Ebterprisetechhero.webp";
 
 function EnterpriseTechHero() {
   return (

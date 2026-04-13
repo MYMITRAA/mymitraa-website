@@ -1,4 +1,4 @@
-import enterprise from "../../assets/images/enterpriseimage.png";
+import enterprise from "../../assets/images/enterpriseimage.webp";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

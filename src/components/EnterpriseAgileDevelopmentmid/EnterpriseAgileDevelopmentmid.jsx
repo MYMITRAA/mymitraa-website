@@ -1,5 +1,5 @@
 import "./EnterpriseAgileDevelopmentmid.css";
-import customImg from "../../assets/images/agile1.jpg";
+import customImg from "../../assets/images/agile1.webp";
 import webAppImg from "../../assets/images/laptopimg.svg";
 
 const offerings = [

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import "./LandingSlide3.css";
 import EagleAnimation from "../EagleAnimation/EagleAnimation";
-import mountainbg from "../../assets/images/mountainbg.png";
+import mountainbg from "../../assets/images/mountainbg.webp";
 import { useNavigate } from "react-router-dom";
 
  
