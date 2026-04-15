@@ -19,8 +19,6 @@ body {
   display: flex;
   align-items: center;
   z-index: 1000;
-
-  /* smooth colour AND visibility transitions */
   transition: background 0.6s ease, opacity 0.5s ease;
 }
 
@@ -33,7 +31,7 @@ body {
 
 .navbar-container {
   width: 100%;
-  padding: 0 40px;
+  padding: 0 24px; /* was 40px */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,7 +55,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 45px;
+  gap: 24px; /* was 45px */
 }
 
 .nav-links a {
@@ -86,7 +84,7 @@ body {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px; /* was 18px */
 }
 
 .icon-circle {
@@ -154,6 +152,14 @@ body {
 .menu-toggle.open span:nth-child(1) { transform: rotate(45deg)  translateY(8px);  }
 .menu-toggle.open span:nth-child(2) { opacity: 0; }
 .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
+
+/* ================= MAC / MEDIUM SCREENS ================= */
+
+@media (max-width: 1280px) {
+  .nav-links { gap: 18px; }
+  .navbar-container { padding: 0 20px; }
+  .nav-links a { font-size: 13px; }
+}
 
 /* ================= MOBILE ================= */
 

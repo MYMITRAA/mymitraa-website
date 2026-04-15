@@ -16,7 +16,7 @@ function Bussinesssignin({ onClose }) {
         <button className="auth-close" onClick={onClose}>×</button>
 
        
-        <img src={bird} alt="Bird" className="auth-bird" />
+        <img src={bird} alt="Bird" className={`auth-bird ${isSignup ? "auth-bird--signup" : ""}`} />
 
         <div className="auth-card">
 

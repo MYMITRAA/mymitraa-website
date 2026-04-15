@@ -30,7 +30,9 @@ import birdBlur       from "../../assets/introanimation/bird_blur_exit.webp";
 const LETTERS_WHITE = [Mwhite, Iwhite, Twhite, Rwhite, Awhite, Awhite];
 const LETTERS_BLUE  = [Mblue,  Iblue,  Tblue,  Rblue,  Ablue,  Ablue];
 
+// logo-container has transform: scale(1.7) — account for this when measuring
 const LOGO_VISUAL_SCALE = 1.7;
+
 const FINAL_SCALE = 0.42;
 const NAVBAR_H    = 56;
 const LOGO_LEFT   = 24;
@@ -46,22 +48,6 @@ const POSES = {
   BLUR:    birdBlur,
 };
 
-// ── Generate stars once (stable across renders) ───────────────
-function generateStars(count) {
-  return Array.from({ length: count }, () => ({
-    x:            Math.random(),
-    y:            Math.random(),
-    r:            Math.random() * 1.4 + 0.2,
-    baseAlpha:    0.35 + Math.random() * 0.65,
-    twinklePhase: Math.random() * Math.PI * 2,
-    twinkleSpd:   0.004 + Math.random() * 0.012,
-    driftAngle:   Math.random() * Math.PI * 2,
-    driftSpd:     0.00004 + Math.random() * 0.00006,
-  }));
-}
-
-const STARS = generateStars(220);
-
 export default function IntroAnimation({ onFinish }) {
   const screenRef  = useRef();
   const logoRef    = useRef();
@@ -69,119 +55,81 @@ export default function IntroAnimation({ onFinish }) {
   const taglineRef = useRef();
   const birdRef    = useRef();
   const lettersRef = useRef([]);
-  const canvasRef  = useRef();
 
   const [isBlue,    setIsBlue]    = useState(false);
   const [birdSrc,   setBirdSrc]   = useState(POSES.SLIDE);
   const [birdPhase, setBirdPhase] = useState("slide-in");
 
-  // ── Starfield canvas ──────────────────────────────────────────
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-
-    const resize = () => {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    let rafId;
-    let frame = 0;
-
-    const draw = () => {
-      const W = canvas.width;
-      const H = canvas.height;
-
-      // Deep navy — matches the reference image exactly
-      ctx.fillStyle = "#080b18";
-      ctx.fillRect(0, 0, W, H);
-
-      STARS.forEach((s) => {
-        // Twinkle
-        const alpha = s.baseAlpha * (0.55 + 0.45 * Math.sin(s.twinklePhase + frame * s.twinkleSpd));
-
-        // Tiny drift (wraps at edges)
-        s.x += Math.cos(s.driftAngle) * s.driftSpd;
-        s.y += Math.sin(s.driftAngle) * s.driftSpd;
-        if (s.x < 0) s.x = 1;
-        if (s.x > 1) s.x = 0;
-        if (s.y < 0) s.y = 1;
-        if (s.y > 1) s.y = 0;
-
-        const px = s.x * W;
-        const py = s.y * H;
-
-        // Larger stars get a soft glow halo
-        if (s.r > 1.0) {
-          const glow = ctx.createRadialGradient(px, py, 0, px, py, s.r * 3.5);
-          glow.addColorStop(0, `rgba(200,210,255,${alpha * 0.3})`);
-          glow.addColorStop(1, `rgba(200,210,255,0)`);
-          ctx.fillStyle = glow;
-          ctx.beginPath();
-          ctx.arc(px, py, s.r * 3.5, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // Star core — cool white with faint blue tint
-        ctx.beginPath();
-        ctx.arc(px, py, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(220,225,255,${alpha})`;
-        ctx.fill();
-      });
-
-      frame++;
-      rafId = requestAnimationFrame(draw);
-    };
-
-    rafId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  // ── Main animation sequence (unchanged) ──────────────────────
   useEffect(() => {
     const timers = [];
     const at = (fn, ms) => timers.push(setTimeout(fn, ms));
 
+    // ─────────────────────────────────────────────────────────
+    // STAGE 1 — SOLO BIRD (0 → 1000ms)
+    // Bird slides in and wobbles to a halt in dead center.
+    // --bird-x starts at 0px so all CSS animations land at center.
+    // ─────────────────────────────────────────────────────────
+
+    // Phase 1a: Slide in (bird enters from left, lands at center)
     setBirdSrc(POSES.SLIDE);
     setBirdPhase("slide-in");
 
+    // Phase 1b: Wobble / skid stop (still centered)
     at(() => {
       setBirdSrc(POSES.WOBBLE);
       setBirdPhase("wobble");
     }, 500);
 
+    // ─────────────────────────────────────────────────────────
+    // STAGE 2 — THE SHIFT (1000ms → 1500ms)
+    // Measure logo width to compute exact --bird-x, then
+    // animate the bird gliding left to make room for the logo.
+    // ─────────────────────────────────────────────────────────
     at(() => {
       const logo   = logoRef.current;
       const bird   = birdRef.current;
       const screen = screenRef.current;
       if (!logo || !bird || !screen) return;
 
+      // getBoundingClientRect() returns the *rendered* (post-scale) size.
+      // We want the natural layout size so we can reason about centering.
       const logoRect = logo.getBoundingClientRect();
       const birdRect = bird.getBoundingClientRect();
-      const halfLogo = logoRect.width / 2;
-      const birdHalf = birdRect.width / 2;
-      const gap      = 20;
-      const offset   = -(halfLogo + birdHalf + gap);
+
+      // The logo is centered at 50% of the viewport.
+      // Its rendered left edge = viewportCenterX - logoRect.width / 2
+      // Bird center (when at 0px) = viewportCenterX
+      // We want: bird right edge = logo left edge - gap
+      //   birdCenterX + birdHalf = logoCenterX - logoHalf - gap
+      //   offset = -(logoHalf + birdHalf + gap)
+      const halfLogo = logoRect.width  / 2;
+      const birdHalf = birdRect.width  / 2;
+      const gap      = 20; // px gap between bird right edge and logo left edge
+
+      const offset = -(halfLogo + birdHalf + gap);
       screen.style.setProperty("--bird-x", `${offset}px`);
 
-      setBirdSrc(POSES.IDLE);
+      // Animate bird sliding left to the computed position
+      setBirdSrc(POSES.IDLE);   // use idle image during the glide
       setBirdPhase("shift-left");
     }, 1000);
 
+    // ─────────────────────────────────────────────────────────
+    // STAGE 3 — THE REVEAL (1500ms → 2300ms)
+    // Logo icon and letters assemble staggered.
+    // Bird goes curious while watching the letters appear.
+    // ─────────────────────────────────────────────────────────
+
+    // Bird goes curious just before letters start appearing
     at(() => {
       setBirdSrc(POSES.CURIOUS);
       setBirdPhase("curious");
     }, 1500);
 
+    // Logo icon slides in
     at(() => iconRef.current?.classList.add("show"), 1550);
 
+    // Letters stagger in one by one
     lettersRef.current.forEach((el, i) =>
       at(() => {
         if (!el) return;
@@ -190,25 +138,42 @@ export default function IntroAnimation({ onFinish }) {
       }, 1620 + i * 90)
     );
 
+    // Tagline fades in after all letters are done
     at(() => taglineRef.current?.classList.add("show"), 2200);
 
+    // ─────────────────────────────────────────────────────────
+    // STAGE 4 — THE STAND (2300ms → 3200ms)
+    // Bird stands proudly beside the finished logo.
+    // Color swap to blue, then flap celebration.
+    // ─────────────────────────────────────────────────────────
+
+    // Bird stands up proudly
     at(() => {
       setBirdSrc(POSES.IDLE);
       setBirdPhase("idle");
     }, 2300);
 
+    // Brand color swap — only after logo is fully assembled
     at(() => setIsBlue(true), 2600);
 
+    // Wing flap celebration
     at(() => {
       setBirdSrc(POSES.FLAP);
       setBirdPhase("flap");
     }, 3000);
 
+    // Settle back to idle — extended dwell beside logo
     at(() => {
       setBirdSrc(POSES.IDLE);
       setBirdPhase("idle");
     }, 3400);
 
+    // ─────────────────────────────────────────────────────────
+    // STAGE 5 — EXIT (3700ms → 5200ms)
+    // Tagline fades, bird launches, logo flies to navbar.
+    // ─────────────────────────────────────────────────────────
+
+    // Tagline fade out
     at(() => {
       if (taglineRef.current) {
         taglineRef.current.style.transition = "opacity 0.4s ease";
@@ -216,6 +181,7 @@ export default function IntroAnimation({ onFinish }) {
       }
     }, 3700);
 
+    // Launch sequence: windup → thrust → blur
     at(() => {
       setBirdSrc(POSES.WINDUP);
       setBirdPhase("windup");
@@ -231,6 +197,7 @@ export default function IntroAnimation({ onFinish }) {
       setBirdPhase("blur-exit");
     }, 4300);
 
+    // Logo moves to navbar position
     at(() => {
       const logo = logoRef.current;
       if (!logo) return;
@@ -242,9 +209,13 @@ export default function IntroAnimation({ onFinish }) {
       const isTablet   = vw <= 768;
       const finalScale = isMobile ? 0.55 : isTablet ? 0.48 : FINAL_SCALE;
 
-      const logoRect = logo.getBoundingClientRect();
-      const naturalW = logoRect.width / LOGO_VISUAL_SCALE;
-      const finalW   = naturalW * finalScale;
+      // Natural rendered width of the logo at 1.7x scale
+      const logoRect  = logo.getBoundingClientRect();
+      // finalScale is relative to the natural (un-scaled) logo dimensions.
+      // The logo-container is currently at scale(1.7), so:
+      //   naturalWidth = logoRect.width / LOGO_VISUAL_SCALE
+      const naturalW  = logoRect.width / LOGO_VISUAL_SCALE;
+      const finalW    = naturalW * finalScale;
 
       const cx      = vw / 2;
       const cy      = vh / 2;
@@ -254,12 +225,17 @@ export default function IntroAnimation({ onFinish }) {
       logo.style.transition = "transform 1s cubic-bezier(.65,0,.2,1)";
       logo.style.transform  = `translateX(${targetX - cx}px) translateY(${targetY - cy}px) scale(${finalScale})`;
 
+      // Make screen transparent ONLY now — after everything is done.
+      // Use pointer-events:none so clicks pass through.
+      // Do NOT add a background transition to .intro-screen to avoid the
+      // white-out / flash — set background directly here instead.
       if (screenRef.current) {
         screenRef.current.style.background    = "transparent";
         screenRef.current.style.pointerEvents = "none";
       }
     }, 4600);
 
+    // Fade the logo out once it's near the navbar
     at(() => {
       if (logoRef.current) {
         logoRef.current.style.transition += ", opacity 0.4s ease";
@@ -267,6 +243,7 @@ export default function IntroAnimation({ onFinish }) {
       }
     }, 5400);
 
+    // Signal parent that intro is finished
     at(() => onFinish?.(), 6000);
 
     return () => timers.forEach(clearTimeout);
@@ -276,13 +253,6 @@ export default function IntroAnimation({ onFinish }) {
 
   return (
     <div className="intro-screen" ref={screenRef}>
-
-      {/* Starfield canvas — sits below everything */}
-      <canvas
-        ref={canvasRef}
-        className="starfield-canvas"
-        aria-hidden="true"
-      />
 
       {/* Particles */}
       <div className="particles">
@@ -301,7 +271,7 @@ export default function IntroAnimation({ onFinish }) {
 
       <div className="glow" />
 
-      {/* Bird */}
+      {/* Bird — image swaps drive the pose, CSS class drives position/motion */}
       <img
         className={`bird-wrap ${birdPhase}`}
         ref={birdRef}

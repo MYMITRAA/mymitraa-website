@@ -46,21 +46,16 @@ const POSES = {
   BLUR:    birdBlur,
 };
 
-// ── Generate stars once (stable across renders) ───────────────
-function generateStars(count) {
-  return Array.from({ length: count }, () => ({
-    x:            Math.random(),
-    y:            Math.random(),
-    r:            Math.random() * 1.4 + 0.2,
-    baseAlpha:    0.35 + Math.random() * 0.65,
-    twinklePhase: Math.random() * Math.PI * 2,
-    twinkleSpd:   0.004 + Math.random() * 0.012,
-    driftAngle:   Math.random() * Math.PI * 2,
-    driftSpd:     0.00004 + Math.random() * 0.00006,
-  }));
-}
-
-const STARS = generateStars(220);
+// ── Aurora blob definitions ───────────────────────────────────
+// Each blob: { x, y } as 0–1 fractions of viewport, r as fraction
+// of min(W,H), rgb color, animation speed and phase offset.
+const AURORA_BLOBS = [
+  { x: 0.22, y: 0.38, r: 0.52, c: [108,  52, 240], spd: 0.00028, phase: 0.0 },
+  { x: 0.72, y: 0.58, r: 0.46, c: [  0, 190, 172], spd: 0.00036, phase: 2.1 },
+  { x: 0.50, y: 0.18, r: 0.38, c: [200,  70, 210], spd: 0.00032, phase: 4.3 },
+  { x: 0.80, y: 0.22, r: 0.32, c: [ 60, 130, 255], spd: 0.00022, phase: 1.6 },
+  { x: 0.15, y: 0.76, r: 0.34, c: [ 80,  40, 200], spd: 0.00040, phase: 3.2 },
+];
 
 export default function IntroAnimation({ onFinish }) {
   const screenRef  = useRef();
@@ -69,16 +64,17 @@ export default function IntroAnimation({ onFinish }) {
   const taglineRef = useRef();
   const birdRef    = useRef();
   const lettersRef = useRef([]);
-  const canvasRef  = useRef();
+  const auroraRef  = useRef(); // ← new canvas ref
 
   const [isBlue,    setIsBlue]    = useState(false);
   const [birdSrc,   setBirdSrc]   = useState(POSES.SLIDE);
   const [birdPhase, setBirdPhase] = useState("slide-in");
 
-  // ── Starfield canvas ──────────────────────────────────────────
+  // ── Aurora + grain canvas animation ──────────────────────────
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = auroraRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
 
     const resize = () => {
@@ -89,50 +85,55 @@ export default function IntroAnimation({ onFinish }) {
     window.addEventListener("resize", resize);
 
     let rafId;
-    let frame = 0;
+    let startTs = null;
 
-    const draw = () => {
+    const draw = (ts) => {
+      if (!startTs) startTs = ts;
+      const t = ts - startTs;
       const W = canvas.width;
       const H = canvas.height;
 
-      // Deep navy — matches the reference image exactly
-      ctx.fillStyle = "#080b18";
+      // Base fill
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = "#07041a";
       ctx.fillRect(0, 0, W, H);
 
-      STARS.forEach((s) => {
-        // Twinkle
-        const alpha = s.baseAlpha * (0.55 + 0.45 * Math.sin(s.twinklePhase + frame * s.twinkleSpd));
+      // Aurora blobs
+      AURORA_BLOBS.forEach((b) => {
+        const ox = Math.sin(t * b.spd       + b.phase) * W * 0.10;
+        const oy = Math.cos(t * b.spd * 0.8 + b.phase) * H * 0.08;
+        const cx = b.x * W + ox;
+        const cy = b.y * H + oy;
+        const r  = b.r * Math.min(W, H);
 
-        // Tiny drift (wraps at edges)
-        s.x += Math.cos(s.driftAngle) * s.driftSpd;
-        s.y += Math.sin(s.driftAngle) * s.driftSpd;
-        if (s.x < 0) s.x = 1;
-        if (s.x > 1) s.x = 0;
-        if (s.y < 0) s.y = 1;
-        if (s.y > 1) s.y = 0;
-
-        const px = s.x * W;
-        const py = s.y * H;
-
-        // Larger stars get a soft glow halo
-        if (s.r > 1.0) {
-          const glow = ctx.createRadialGradient(px, py, 0, px, py, s.r * 3.5);
-          glow.addColorStop(0, `rgba(200,210,255,${alpha * 0.3})`);
-          glow.addColorStop(1, `rgba(200,210,255,0)`);
-          ctx.fillStyle = glow;
-          ctx.beginPath();
-          ctx.arc(px, py, s.r * 3.5, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // Star core — cool white with faint blue tint
-        ctx.beginPath();
-        ctx.arc(px, py, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(220,225,255,${alpha})`;
-        ctx.fill();
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        g.addColorStop(0,   `rgba(${b.c[0]},${b.c[1]},${b.c[2]},0.28)`);
+        g.addColorStop(0.5, `rgba(${b.c[0]},${b.c[1]},${b.c[2]},0.09)`);
+        g.addColorStop(1,   `rgba(${b.c[0]},${b.c[1]},${b.c[2]},0.00)`);
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
       });
 
-      frame++;
+      // Film grain — redrawn every frame for a living texture
+      const grain = ctx.createImageData(W, H);
+      const d = grain.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const n = (Math.random() * 20) | 0;
+        d[i] = d[i + 1] = d[i + 2] = n;
+        d[i + 3] = 14 + ((Math.random() * 14) | 0);
+      }
+      ctx.putImageData(grain, 0, 0);
+
+      // Radial vignette — softens edges, focuses center
+      const vig = ctx.createRadialGradient(
+        W / 2, H / 2, H * 0.12,
+        W / 2, H / 2, H * 0.82
+      );
+      vig.addColorStop(0, "rgba(0,0,0,0)");
+      vig.addColorStop(1, "rgba(4,2,20,0.75)");
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, W, H);
+
       rafId = requestAnimationFrame(draw);
     };
 
@@ -149,6 +150,7 @@ export default function IntroAnimation({ onFinish }) {
     const timers = [];
     const at = (fn, ms) => timers.push(setTimeout(fn, ms));
 
+    // STAGE 1 — SOLO BIRD
     setBirdSrc(POSES.SLIDE);
     setBirdPhase("slide-in");
 
@@ -157,6 +159,7 @@ export default function IntroAnimation({ onFinish }) {
       setBirdPhase("wobble");
     }, 500);
 
+    // STAGE 2 — THE SHIFT
     at(() => {
       const logo   = logoRef.current;
       const bird   = birdRef.current;
@@ -165,16 +168,19 @@ export default function IntroAnimation({ onFinish }) {
 
       const logoRect = logo.getBoundingClientRect();
       const birdRect = bird.getBoundingClientRect();
-      const halfLogo = logoRect.width / 2;
-      const birdHalf = birdRect.width / 2;
+
+      const halfLogo = logoRect.width  / 2;
+      const birdHalf = birdRect.width  / 2;
       const gap      = 20;
-      const offset   = -(halfLogo + birdHalf + gap);
+
+      const offset = -(halfLogo + birdHalf + gap);
       screen.style.setProperty("--bird-x", `${offset}px`);
 
       setBirdSrc(POSES.IDLE);
       setBirdPhase("shift-left");
     }, 1000);
 
+    // STAGE 3 — THE REVEAL
     at(() => {
       setBirdSrc(POSES.CURIOUS);
       setBirdPhase("curious");
@@ -192,6 +198,7 @@ export default function IntroAnimation({ onFinish }) {
 
     at(() => taglineRef.current?.classList.add("show"), 2200);
 
+    // STAGE 4 — THE STAND
     at(() => {
       setBirdSrc(POSES.IDLE);
       setBirdPhase("idle");
@@ -209,6 +216,7 @@ export default function IntroAnimation({ onFinish }) {
       setBirdPhase("idle");
     }, 3400);
 
+    // STAGE 5 — EXIT
     at(() => {
       if (taglineRef.current) {
         taglineRef.current.style.transition = "opacity 0.4s ease";
@@ -277,10 +285,10 @@ export default function IntroAnimation({ onFinish }) {
   return (
     <div className="intro-screen" ref={screenRef}>
 
-      {/* Starfield canvas — sits below everything */}
+      {/* Aurora + grain canvas — sits below everything */}
       <canvas
-        ref={canvasRef}
-        className="starfield-canvas"
+        ref={auroraRef}
+        className="aurora-canvas"
         aria-hidden="true"
       />
 

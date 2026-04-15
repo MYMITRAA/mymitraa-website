@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Signinmodel.css";
 import Bussinesssignin from "../Bussinesssignin/Bussinesssignin";
+import Careersignin from "../Careersignin/Careersignin";
 
 function Signinmodel({ onClose }) {
   const [activeTab, setActiveTab] = useState("careers");
@@ -8,7 +9,6 @@ function Signinmodel({ onClose }) {
 
   return (
     <>
-     
       {!showAuth && (
         <div className="modal-overlay">
           <div className="modal-card">
@@ -33,18 +33,14 @@ function Signinmodel({ onClose }) {
 
             {activeTab === "careers" ? (
               <>
-                <h2 className="modal-title">
-                  Build Your Future With Us
-                </h2>
+                <h2 className="modal-title">Build Your Future With Us</h2>
                 <p className="modal-desc">
                   Sign in to continue your career journey with us.
                 </p>
               </>
             ) : (
               <>
-                <h2 className="modal-title">
-                  Let’s Build Strong Partnerships
-                </h2>
+                <h2 className="modal-title">Let's Build Strong Partnerships</h2>
                 <p className="modal-desc">
                   Sign in to connect, collaborate, and unlock new business potential.
                 </p>
@@ -62,8 +58,12 @@ function Signinmodel({ onClose }) {
         </div>
       )}
 
-     
-      {showAuth && (
+      {/* Render based on active tab */}
+      {showAuth && activeTab === "careers" && (
+        <Careersignin onClose={() => setShowAuth(false)} />
+      )}
+
+      {showAuth && activeTab === "business" && (
         <Bussinesssignin onClose={() => setShowAuth(false)} />
       )}
     </>
