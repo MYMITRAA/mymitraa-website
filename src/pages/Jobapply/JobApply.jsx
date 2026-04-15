@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./JobApply.css";
+import { API } from "../../config/api";
 
 const JobApply = ({ job, onBack }) => {
   const [formData, setFormData] = useState({
@@ -14,18 +15,71 @@ const JobApply = ({ job, onBack }) => {
     cv: null,
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error,   setError]   = useState("");
+  const [success, setSuccess] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setError("");
   };
 
   const handleFileChange = (e) => {
     setFormData((prev) => ({ ...prev, cv: e.target.files[0] }));
+    setError("");
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    alert("Application submitted successfully!");
+  const handleSubmit = async () => {
+    // ── Basic validation ──────────────────────────────────────
+    if (!formData.fullName.trim()) return setError("Full name is required.");
+    if (!formData.email.trim())    return setError("Email is required.");
+    if (!formData.mobile.trim())   return setError("Mobile is required.");
+
+    const token = localStorage.getItem("token");
+    if (!token) return setError("Please sign in before applying.");
+
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      // ── Step 1: Upload CV via multipart/form-data ─────────────
+      const payload = new FormData();
+      payload.append("full_name", formData.fullName);
+      payload.append("email",     formData.email);
+      payload.append("mobile",    formData.mobile);
+      payload.append("address",   formData.address);
+      payload.append("city",      formData.city);
+      payload.append("state",     formData.state);
+      payload.append("country",   formData.country);
+      payload.append("zip_code",  formData.zipCode);
+      if (formData.cv) payload.append("cv", formData.cv);
+
+      // ── Step 2: POST to backend ───────────────────────────────
+      const res = await fetch(API.applyJob(job.id), {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // ✅ Do NOT set Content-Type — browser sets it automatically for FormData
+        },
+        body: payload,
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Submission failed.");
+
+      setSuccess("Application submitted successfully! 🎉");
+      setFormData({
+        fullName: "", email: "", mobile: "", address: "",
+        city: "", state: "", country: "", zipCode: "", cv: null,
+      });
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,87 +92,57 @@ const JobApply = ({ job, onBack }) => {
           {job?.employmentType || "Full-time"}
         </p>
 
+        {error   && <p className="apply-error">{error}</p>}
+        {success && <p className="apply-success">{success}</p>}
+
         <div className="apply-form">
+          {/* Full Name */}
           <div className="apply-form__group">
             <label className="apply-form__label">Full Name</label>
-            <input
-              type="text"
-              name="fullName"
-              className="apply-form__input"
-              placeholder="Enter full name"
-              value={formData.fullName}
-              onChange={handleChange}
-            />
+            <input type="text" name="fullName" className="apply-form__input"
+              placeholder="Enter full name" value={formData.fullName} onChange={handleChange} />
           </div>
 
+          {/* Email */}
           <div className="apply-form__group">
             <label className="apply-form__label">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              className="apply-form__input"
-              placeholder="Enter email address"
-              value={formData.email}
-              onChange={handleChange}
-            />
+            <input type="email" name="email" className="apply-form__input"
+              placeholder="Enter email address" value={formData.email} onChange={handleChange} />
           </div>
 
+          {/* Mobile */}
           <div className="apply-form__group">
             <label className="apply-form__label">Mobile</label>
-            <input
-              type="tel"
-              name="mobile"
-              className="apply-form__input"
-              placeholder="Enter mobile"
-              value={formData.mobile}
-              onChange={handleChange}
-            />
+            <input type="tel" name="mobile" className="apply-form__input"
+              placeholder="Enter mobile" value={formData.mobile} onChange={handleChange} />
           </div>
 
+          {/* Address */}
           <div className="apply-form__group">
             <label className="apply-form__label">Address</label>
-            <input
-              type="text"
-              name="address"
-              className="apply-form__input"
-              placeholder="Enter email address"
-              value={formData.address}
-              onChange={handleChange}
-            />
+            <input type="text" name="address" className="apply-form__input"
+              placeholder="Enter address" value={formData.address} onChange={handleChange} />
           </div>
 
+          {/* City */}
           <div className="apply-form__group">
             <label className="apply-form__label">City</label>
-            <input
-              type="text"
-              name="city"
-              className="apply-form__input"
-              placeholder="Enter city"
-              value={formData.city}
-              onChange={handleChange}
-            />
+            <input type="text" name="city" className="apply-form__input"
+              placeholder="Enter city" value={formData.city} onChange={handleChange} />
           </div>
 
+          {/* State */}
           <div className="apply-form__group">
             <label className="apply-form__label">State</label>
-            <input
-              type="text"
-              name="state"
-              className="apply-form__input"
-              placeholder="Enter state"
-              value={formData.state}
-              onChange={handleChange}
-            />
+            <input type="text" name="state" className="apply-form__input"
+              placeholder="Enter state" value={formData.state} onChange={handleChange} />
           </div>
 
+          {/* Country */}
           <div className="apply-form__group">
             <label className="apply-form__label">Country</label>
-            <select
-              name="country"
-              className="apply-form__input apply-form__select"
-              value={formData.country}
-              onChange={handleChange}
-            >
+            <select name="country" className="apply-form__input apply-form__select"
+              value={formData.country} onChange={handleChange}>
               <option value="">Select</option>
               <option value="India">India</option>
               <option value="USA">USA</option>
@@ -129,37 +153,28 @@ const JobApply = ({ job, onBack }) => {
             </select>
           </div>
 
+          {/* Zip Code */}
           <div className="apply-form__group">
             <label className="apply-form__label">Zip Code</label>
-            <input
-              type="text"
-              name="zipCode"
-              className="apply-form__input"
-              placeholder="Enter"
-              value={formData.zipCode}
-              onChange={handleChange}
-            />
+            <input type="text" name="zipCode" className="apply-form__input"
+              placeholder="Enter zip code" value={formData.zipCode} onChange={handleChange} />
           </div>
 
+          {/* CV Upload */}
           <div className="apply-form__group">
             <label className="apply-form__label">CV</label>
             <div className="apply-form__file-wrapper">
-              <input
-                type="file"
-                name="cv"
-                id="cv-upload"
+              <input type="file" name="cv" id="cv-upload"
                 className="apply-form__file-input"
-                accept=".pdf,.doc,.docx"
-                onChange={handleFileChange}
-              />
+                accept=".pdf,.doc,.docx" onChange={handleFileChange} />
               <label htmlFor="cv-upload" className="apply-form__file-label">
                 {formData.cv ? formData.cv.name : "Upload"}
               </label>
             </div>
           </div>
 
-          <button className="apply-form__submit-btn" onClick={handleSubmit}>
-            Apply Now
+          <button className="apply-form__submit-btn" onClick={handleSubmit} disabled={loading}>
+            {loading ? "Submitting..." : "Apply Now"}
           </button>
         </div>
       </div>

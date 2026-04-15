@@ -150,3 +150,22 @@
     font-size: 22px;
   }
 }
+
+
+.apply-error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}
+
+.apply-success {
+  color: #166534;
+  background: #dcfce7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}

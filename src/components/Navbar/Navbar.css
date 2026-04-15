@@ -223,3 +223,125 @@ body {
   width: 100%;
   height: 20px;
 }
+
+/* ================= USER AUTH STATE ================= */
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-greeting {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c2c2c;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-btn {
+  height: 34px;
+  padding: 0 16px;
+  background: transparent;
+  color: #514AD7;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid #514AD7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #514AD7;
+  color: white;
+}
+
+/* Mobile user section */
+.mobile-user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-user-section .user-greeting {
+  font-size: 15px;
+  max-width: 100%;
+}
+
+.mobile-user-section .logout-btn {
+  width: 120px;
+  height: 38px;
+  font-size: 14px;
+}
+
+
+/* ===== DESKTOP: show nav-right, hide mobile-auth ===== */
+@media (min-width: 769px) {
+  .nav-right    { display: flex; }   /* already exists, just confirming */
+  .mobile-auth  { display: none; }   /* ✅ hide mobile auth on desktop */
+}
+
+/* ===== MOBILE: hide nav-right, show mobile-auth ===== */
+@media (max-width: 768px) {
+  .nav-right    { display: none; }   /* already exists */
+  .mobile-auth  { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+}
+
+/* ===== USER SECTION (desktop) ===== */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-greeting {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c2c2c;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-btn {
+  height: 34px;
+  padding: 0 16px;
+  background: transparent;
+  color: #514AD7;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid #514AD7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #514AD7;
+  color: white;
+}
+
+/* ===== MOBILE USER SECTION ===== */
+.mobile-user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-user-section .user-greeting {
+  font-size: 15px;
+  max-width: 100%;
+}
+
+.mobile-user-section .logout-btn {
+  width: 120px;
+  height: 38px;
+  font-size: 14px;
+}

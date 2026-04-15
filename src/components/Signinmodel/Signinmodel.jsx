@@ -3,7 +3,7 @@ import "./Signinmodel.css";
 import Bussinesssignin from "../Bussinesssignin/Bussinesssignin";
 import Careersignin from "../Careersignin/Careersignin";
 
-function Signinmodel({ onClose }) {
+function Signinmodel({ onClose, onSuccess = null }) {  // ✅ accept onSuccess
   const [activeTab, setActiveTab] = useState("careers");
   const [showAuth, setShowAuth] = useState(false);
 
@@ -58,9 +58,12 @@ function Signinmodel({ onClose }) {
         </div>
       )}
 
-      {/* Render based on active tab */}
+      {/* ✅ Pass onSuccess down to Careersignin */}
       {showAuth && activeTab === "careers" && (
-        <Careersignin onClose={() => setShowAuth(false)} />
+        <Careersignin
+          onClose={() => setShowAuth(false)}
+          onSuccess={typeof onSuccess === "function" ? onSuccess : null} // ✅ pass it down
+        />
       )}
 
       {showAuth && activeTab === "business" && (

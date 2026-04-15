@@ -132,3 +132,69 @@
 .auth-bird--signup {
   top: 40px;
 }
+
+
+
+/* ── Field-level error text ── */
+.field-error {
+  display: block;
+  font-size: 11px;
+  color: #e53935;
+  margin-top: 4px;
+}
+
+/* ── Input error border ── */
+.input-error {
+  border: 1.5px solid #e53935 !important;
+  background: #fff5f5;
+}
+
+/* ── Server-level error / success ── */
+.auth-error {
+  font-size: 12px;
+  color: #e53935;
+  background: #fff0f0;
+  border: 1px solid #f5c6c6;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+.auth-success {
+  font-size: 12px;
+  color: #2e7d32;
+  background: #f0fff4;
+  border: 1px solid #b2dfdb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+/* ── Password strength bar ── */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.strength-bar.weak   { background: #e53935; }
+.strength-bar.medium { background: #fb8c00; }
+.strength-bar.strong { background: #43a047; }
+
+.strength-label {
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 40px;
+}
+
+.strength-bar.weak   ~ .strength-label { color: #e53935; }
+.strength-bar.medium ~ .strength-label { color: #fb8c00; }
+.strength-bar.strong ~ .strength-label { color: #43a047; }
