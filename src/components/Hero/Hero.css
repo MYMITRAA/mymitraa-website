@@ -66,9 +66,9 @@
 .hero-tag img { width: 16px; height: 16px; }
 
 .hero-title {
-  font-size: 54px;
+  font-size: 42px;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.2;
   margin-bottom: 24px;
   color: #ffffff;
   letter-spacing: -0.5px;
@@ -127,12 +127,11 @@
   z-index: 9999;
   cursor: grab;
   will-change: transform;
-  touch-action: none;   /* prevents scroll interfering with drag */
+  touch-action: none;
   -webkit-user-select: none;
   user-select: none;
-  opacity: 1;                       
-  transition: opacity 0.4s ease; 
-
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
 .flying-robot img {
@@ -208,14 +207,12 @@
 @media (max-width: 1100px) {
   .hero-container {
     padding: 100px 40px 60px;
-    /* single column — text only, robot orbits bottom-right via JS */
     flex-direction: column;
     text-align: center;
     align-items: center;
     justify-content: center;
   }
 
-  /* hero-right is just an orbit anchor — hide visually */
   .hero-right {
     display: none;
   }
@@ -228,10 +225,9 @@
     flex-direction: column;
   }
 
-  .hero-title { font-size: 36px; }
+  .hero-title { font-size: 32px; }
   .hero-desc  { font-size: 15px; }
 
-  /* Robot smaller on tablet */
   .flying-robot { width: 140px; height: 140px; }
 }
 
@@ -240,7 +236,7 @@
 ═══════════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .hero-container { padding: 80px 20px 40px; }
-  .hero-title { font-size: 28px; }
+  .hero-title { font-size: 26px; }
   .hero-desc  { font-size: 14px; }
   .hero-tag   { font-size: 11px; padding: 7px 14px; }
 
@@ -249,7 +245,6 @@
   .strip-tabs button { font-size: 12px; }
   .strip-btn { padding: 8px 18px; font-size: 12px; }
 
-  /* Robot smaller on phone — orbit is compact bottom-right */
   .flying-robot { width: 150px; height: 150px; }
 }
 
@@ -257,6 +252,6 @@
    RESPONSIVE — 400px
 ═══════════════════════════════════════════════════ */
 @media (max-width: 400px) {
-  .hero-title { font-size: 24px; }
+  .hero-title { font-size: 22px; }
   .flying-robot { width: 150px; height: 150px; }
 }

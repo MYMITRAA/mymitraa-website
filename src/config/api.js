@@ -1,4 +1,4 @@
-const ROOT = "http://3.90.7.185/api/";
+const ROOT = "https://my-mitraawebsite-backend.onrender.com/";
 
 export const API = {
   // auth

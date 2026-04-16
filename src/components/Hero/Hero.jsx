@@ -1,7 +1,3 @@
-
-
-
-
 import "./Hero.css";
 import React, { useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -92,9 +88,6 @@ function Particles() {
 
 /* ═══════════════════════════════════════════════════════════════════
    FlyingRobot
-   Desktop : orbits inside .hero-right (unchanged behaviour)
-   Mobile  : orbits inside the hero section viewport area;
-             hides completely when hero scrolls out of view
 ═══════════════════════════════════════════════════════════════════ */
 function FlyingRobot({ imgSrc }) {
   const robotRef = useRef(null);
@@ -106,7 +99,7 @@ function FlyingRobot({ imgSrc }) {
     cx: 0, cy: 0,
     rx: 220, ry: 85,
     tiltAmp: 55, tiltFreq: 1.5,
-    mode: "orbit",          // orbit | thrown | floating | homing
+    mode: "orbit",
     dragging: false,
     dragOffX: 0, dragOffY: 0,
     prevDragX: 0, prevDragY: 0,
@@ -118,18 +111,15 @@ function FlyingRobot({ imgSrc }) {
     homeX: 0, homeY: 0,
     homeT: 0,
     bobPhase: 0,
-    heroVisible: true,      // NEW — tracks if hero is in viewport on mobile
+    heroVisible: true,
   }).current;
 
-  /* ── orbit centre ── */
   const updateCentre = useCallback(() => {
     const isMobile = window.innerWidth <= 1100;
     if (isMobile) {
-      // Centre orbit around the lower-right area of the hero viewport rect
       const heroEl = document.querySelector(".hero");
       if (heroEl) {
         const rect = heroEl.getBoundingClientRect();
-        // Use bottom-right quadrant of whatever hero area is visible
         const visibleBottom = Math.min(rect.bottom, window.innerHeight);
         const visibleTop    = Math.max(rect.top, 0);
         const midY          = (visibleTop + visibleBottom) / 2;
@@ -145,7 +135,6 @@ function FlyingRobot({ imgSrc }) {
       s.tiltAmp = Math.min(22, 40 * scale);
       return;
     }
-    // Desktop — unchanged
     const el = document.querySelector(".hero-right");
     if (!el) return;
     const r   = el.getBoundingClientRect();
@@ -195,28 +184,21 @@ function FlyingRobot({ imgSrc }) {
     `;
   }, []);
 
-  /* ── show / hide robot based on hero visibility (mobile only) ── */
   const syncVisibility = useCallback(() => {
     const el = robotRef.current;
     if (!el) return;
-
     if (window.innerWidth > 1100) {
-      // Desktop — always visible
       el.style.opacity    = "1";
       el.style.pointerEvents = "auto";
       s.heroVisible = true;
       return;
     }
-
     const heroEl = document.querySelector(".hero");
     if (!heroEl) return;
     const rect = heroEl.getBoundingClientRect();
-
-    // Hero is "visible" if at least 10% of it is still in the viewport
     const overlap = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
     const threshold = heroEl.offsetHeight * 0.10;
     const visible = overlap >= threshold;
-
     if (visible !== s.heroVisible) {
       s.heroVisible = visible;
       el.style.transition  = "opacity 0.4s ease";
@@ -249,12 +231,11 @@ function FlyingRobot({ imgSrc }) {
       if (s.lastTs === null) s.lastTs = ts;
       const dt = Math.min((ts - s.lastTs) / 1000, 0.05);
       s.lastTs = ts;
-      updateCentre();   // re-centres orbit every frame so it tracks hero position
+      updateCentre();
 
       if (s.dragging) { commit(); rafId = requestAnimationFrame(tick); return; }
 
       switch (s.mode) {
-
         case "orbit": {
           if (s.paused) {
             s.pauseLeft -= dt * 1000;
@@ -279,7 +260,6 @@ function FlyingRobot({ imgSrc }) {
           setGlow(0);
           break;
         }
-
         case "thrown": {
           s.vx *= AIR_DRAG; s.vy *= AIR_DRAG;
           s.vy += 18 * dt;
@@ -296,7 +276,6 @@ function FlyingRobot({ imgSrc }) {
           if (speed < FLOAT_THRESH) { s.mode = "floating"; s.bobPhase = 0; s.vx = 0; s.vy = 0; }
           break;
         }
-
         case "floating": {
           s.bobPhase += dt;
           s.vx *= 0.96; s.vy *= 0.96;
@@ -311,7 +290,6 @@ function FlyingRobot({ imgSrc }) {
           }
           break;
         }
-
         case "homing": {
           s.homeT += ORBIT_SPEED * 0.55 * dt;
           if (s.homeT >= Math.PI * 2) s.homeT = s.homeT % (Math.PI * 2);
@@ -335,7 +313,6 @@ function FlyingRobot({ imgSrc }) {
           }
           break;
         }
-
         default: break;
       }
 
@@ -398,12 +375,7 @@ function FlyingRobot({ imgSrc }) {
       }
     };
 
-    /* ── scroll: update orbit centre + visibility on mobile ── */
-    const onScroll = () => {
-      syncVisibility();
-      // On mobile, updateCentre is called every tick already,
-      // so orbit naturally follows the hero rect — nothing else needed.
-    };
+    const onScroll = () => { syncVisibility(); };
 
     el.addEventListener("pointerdown",    onDragStart);
     window.addEventListener("pointermove",   onDragMove);
@@ -455,8 +427,7 @@ function Hero() {
               Where Intelligence Meets the Real World
             </div>
             <h1 className="hero-title">
-              We Build AI That Lives <br />
-              Beyond the Screen for our <br />
+              We Build AI That Lives Beyond the Screen for our{" "}
               <span>Digital Partner</span>
             </h1>
             <p className="hero-desc">
