@@ -1,4 +1,4 @@
-const ROOT = "http://127.0.0.1:8000";
+const ROOT = "http://3.90.7.185/api/";
 
 export const API = {
   // auth
