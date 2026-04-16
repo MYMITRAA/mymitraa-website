@@ -20,7 +20,6 @@ const Jobs = () => {
 
   const navigate = useNavigate();
 
-  // ── Auth state ────────────────────────────────────────────
   const token   = localStorage.getItem("token");
   const isAdmin = localStorage.getItem("isAdmin") === "true";
 
@@ -42,7 +41,6 @@ const Jobs = () => {
     fetchJobs();
   }, []);
 
-  // ── Check login before applying ───────────────────────────
   const handleApplyClick = (job) => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -53,7 +51,6 @@ const Jobs = () => {
     }
   };
 
-  // ── After sign in, continue to apply ─────────────────────
   const handleSigninSuccess = () => {
     setShowSignin(false);
     setShowSigninPrompt(false);
@@ -142,7 +139,7 @@ const Jobs = () => {
         />
       )}
 
-      {/* ── Hero Section ──────────────────────────────────── */}
+      {/* ── Hero Section (search only) ────────────────────── */}
       <div className="jobs-hero">
         <div className="jobs-hero__overlay" />
         <div className="jobs-hero__search">
@@ -167,41 +164,57 @@ const Jobs = () => {
           <button className="jobs-search-bar__btn" onClick={handleSearch}>
             Search
           </button>
-
-          {/* ── My Applications — signed-in non-admin only ── */}
-          {token && !isAdmin && (
-            <button
-              className="my-applications-btn"
-              onClick={() => navigate("/my-applications")}
-            >
-              My Applications
-            </button>
-          )}
-
+          {/* My Applications REMOVED from here */}
         </div>
+      </div>
+
+      {/* ── Mid Section Toolbar ───────────────────────────── */}
+      <div className="jobs-toolbar">
+        <div className="jobs-toolbar__left">
+          <h2 className="jobs-toolbar__heading">Open Positions</h2>
+          {!loading && !error && (
+            <span className="jobs-toolbar__count">
+              {filtered.length} {filtered.length === 1 ? "Job" : "Jobs"} Found
+            </span>
+          )}
+        </div>
+
+        {/* My Applications button — signed-in non-admin only */}
+        {token && !isAdmin && (
+          <button
+            className="my-applications-btn"
+            onClick={() => navigate("/my-applications")}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            My Applications
+          </button>
+        )}
       </div>
 
       {/* ── Jobs Grid ─────────────────────────────────────── */}
       <div className="jobs-container">
-
         {loading && (
           <p style={{ textAlign: "center", padding: "2rem", color: "#888" }}>
             Loading jobs...
           </p>
         )}
-
         {error && (
           <p style={{ textAlign: "center", padding: "2rem", color: "#c0392b" }}>
             {error}
           </p>
         )}
-
         {!loading && !error && filtered.length === 0 && (
           <p style={{ textAlign: "center", padding: "2rem", color: "#888" }}>
             No jobs found{searchQuery ? ` for "${searchQuery}"` : ""}.
           </p>
         )}
-
         {!loading && !error && paginated.length > 0 && (
           <div className="jobs-grid">
             {paginated.map((job) => (
@@ -224,7 +237,6 @@ const Jobs = () => {
             ))}
           </div>
         )}
-
         {!loading && !error && totalPages > 1 && (
           <div className="jobs-pagination">
             {getVisiblePages().map((page, idx) =>
@@ -242,7 +254,6 @@ const Jobs = () => {
             )}
           </div>
         )}
-
       </div>
     </div>
   );

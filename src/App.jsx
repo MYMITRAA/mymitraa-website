@@ -15,6 +15,8 @@ import AIforSmallBusinesshero from "./pages/Aiforsmallbussiness/Aiforsmallbussin
 import Blockchain from "./pages/BlockChain/Blockchain";
 import AGICountdown from "./pages/AgiCountdown/AGIEvolution";
 import Jobs from "./pages/Jobs/Jobs";
+import MyApplications from "./pages/Myapplication/MyApplications";
+import AdminApplication from "./pages/Adminapplication/Adminapplication";
 
 import EnterpriseAgileDevelopment from "./pages/EnterpriseAgileDevelopment/EnterpriseAgileDevelopment";
 import EnterpriseTech from "./pages/EnterpriseTech/EnterpriseTech";
@@ -68,6 +70,8 @@ function App() {
                 <Route path="/agi" element={<Agi />} />
                 <Route path="/agi-countdown" element={<AGICountdown />} />
                 <Route path="/jobs" element={<Jobs />} />
+                <Route path="/my-applications" element={<MyApplications />} />
+                <Route path="/admin-application" element={<AdminApplication />} />
 
                 <Route path="/service" element={<Service />} />
                 <Route path="/execution" element={<Execution />} />
