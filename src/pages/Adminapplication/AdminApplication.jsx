@@ -2,7 +2,7 @@ import "./Adminapplication.css";
 import { useEffect, useState } from "react";
 import { API } from "../../config/api";
 
-function Adminapplication() {
+function AdminApplication() {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -142,4 +142,4 @@ function Adminapplication() {
   );
 }
 
-export default Adminapplication;
+export default AdminApplication;
