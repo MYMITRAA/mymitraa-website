@@ -16,7 +16,7 @@ import Blockchain from "./pages/BlockChain/Blockchain";
 import AGICountdown from "./pages/AgiCountdown/AGIEvolution";
 import Jobs from "./pages/Jobs/Jobs";
 import MyApplications from "./pages/Myapplication/MyApplications";
-import AdminApplication from "./pages/Adminapplication/Adminapplication";
+import AdminApplication from "./pages/Adminapplication/AdminApplication";
 
 import EnterpriseAgileDevelopment from "./pages/EnterpriseAgileDevelopment/EnterpriseAgileDevelopment";
 import EnterpriseTech from "./pages/EnterpriseTech/EnterpriseTech";
