@@ -60,19 +60,19 @@ const Jobs = () => {
     }
   };
 
-  const handleDeleteJob = async (jobId) => {
-    if (!window.confirm("Are you sure you want to delete this job?")) return;
-    try {
-      const res = await fetch(API.jobById(jobId), {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (!res.ok) throw new Error("Failed to delete job");
-      setJobsData((prev) => prev.filter((job) => job.id !== jobId));
-    } catch (err) {
-      alert(err.message);
-    }
-  };
+const handleDeleteJob = async (jobId) => {
+  if (!window.confirm("Are you sure you want to delete this job?")) return;
+  try {
+    const res = await fetch(API.adminJobById(jobId), {  // ← was API.jobById
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) throw new Error("Failed to delete job");
+    setJobsData((prev) => prev.filter((job) => job.id !== jobId));
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
   const filtered = jobsData.filter((job) => {
     const q = searchQuery.toLowerCase();

@@ -15,4 +15,5 @@ export const API = {
   // admin
   adminJobs:        `${ROOT}/admin/jobs`,
   adminApplications:`${ROOT}/admin/applications`,
+  adminJobById: (id) => `${ROOT}/admin/jobs/${id}`,
 };
