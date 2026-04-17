@@ -17,6 +17,7 @@ import AGICountdown from "./pages/AgiCountdown/AGIEvolution";
 import Jobs from "./pages/Jobs/Jobs";
 import MyApplications from "./pages/Myapplication/MyApplications";
 import AdminApplication from "./pages/Adminapplication/AdminApplication";
+import AdminAddJob from "./pages/Adminaddjob/AdminAddJob";
 
 import EnterpriseAgileDevelopment from "./pages/EnterpriseAgileDevelopment/EnterpriseAgileDevelopment";
 import EnterpriseTech from "./pages/EnterpriseTech/EnterpriseTech";
@@ -72,6 +73,7 @@ function App() {
                 <Route path="/jobs" element={<Jobs />} />
                 <Route path="/my-applications" element={<MyApplications />} />
                 <Route path="/admin-application" element={<AdminApplication />} />
+                <Route path="/admin-add-job" element={<AdminAddJob />} />
 
                 <Route path="/service" element={<Service />} />
                 <Route path="/execution" element={<Execution />} />

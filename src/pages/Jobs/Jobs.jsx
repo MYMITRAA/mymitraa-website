@@ -197,7 +197,7 @@ const Jobs = () => {
           {token && isAdmin && (
             <button
               className="add-jobs-btn"
-              onClick={() => navigate("/admin/add-job")}
+              onClick={() => navigate("/admin-add-job")}
             >
               + Add Jobs
             </button>
