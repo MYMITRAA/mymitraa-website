@@ -60,6 +60,20 @@ const Jobs = () => {
     }
   };
 
+  const handleDeleteJob = async (jobId) => {
+    if (!window.confirm("Are you sure you want to delete this job?")) return;
+    try {
+      const res = await fetch(API.jobById(jobId), {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("Failed to delete job");
+      setJobsData((prev) => prev.filter((job) => job.id !== jobId));
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   const filtered = jobsData.filter((job) => {
     const q = searchQuery.toLowerCase();
     return (
@@ -139,7 +153,7 @@ const Jobs = () => {
         />
       )}
 
-      {/* ── Hero Section (search only) ────────────────────── */}
+      {/* ── Hero Section ─────────────────────────────────── */}
       <div className="jobs-hero">
         <div className="jobs-hero__overlay" />
         <div className="jobs-hero__search">
@@ -164,7 +178,6 @@ const Jobs = () => {
           <button className="jobs-search-bar__btn" onClick={handleSearch}>
             Search
           </button>
-          {/* My Applications REMOVED from here */}
         </div>
       </div>
 
@@ -179,23 +192,35 @@ const Jobs = () => {
           )}
         </div>
 
-        {/* My Applications button — signed-in non-admin only */}
-        {token && !isAdmin && (
-          <button
-            className="my-applications-btn"
-            onClick={() => navigate("/my-applications")}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
-            </svg>
-            My Applications
-          </button>
-        )}
+        <div className="jobs-toolbar__right">
+          {/* Add Jobs button — admin only */}
+          {token && isAdmin && (
+            <button
+              className="add-jobs-btn"
+              onClick={() => navigate("/admin/add-job")}
+            >
+              + Add Jobs
+            </button>
+          )}
+
+          {/* My Applications button — signed-in non-admin only */}
+          {token && !isAdmin && (
+            <button
+              className="my-applications-btn"
+              onClick={() => navigate("/my-applications")}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              My Applications
+            </button>
+          )}
+        </div>
       </div>
 
       {/* ── Jobs Grid ─────────────────────────────────────── */}
@@ -221,12 +246,29 @@ const Jobs = () => {
               <div key={job.id} className="job-card">
                 <div className="job-card__header">
                   <h3 className="job-card__title">{job.title}</h3>
-                  <button
-                    className="job-card__apply-btn"
-                    onClick={() => handleApplyClick(job)}
-                  >
-                    Apply Now
-                  </button>
+                  {token && isAdmin ? (
+                    <div className="job-card__admin-actions">
+                      <button
+                        className="job-card__edit-btn"
+                        onClick={() => navigate(`/admin/edit-job/${job.id}`)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="job-card__delete-btn"
+                        onClick={() => handleDeleteJob(job.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      className="job-card__apply-btn"
+                      onClick={() => handleApplyClick(job)}
+                    >
+                      Apply Now
+                    </button>
+                  )}
                 </div>
                 <div className="job-card__meta">
                   <p><span className="job-card__meta-label">Job Type:</span> {job.job_type}</p>
