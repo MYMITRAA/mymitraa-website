@@ -33,6 +33,12 @@ function AdminApplication() {
       });
   }, []);
 
+  const getViewableUrl = (url) => {
+    if (!url) return null;
+    const fixed = url.replace("/raw/upload/", "/image/upload/");
+    return `https://docs.google.com/viewer?url=${encodeURIComponent(fixed)}&embedded=true`;
+  };
+
   const filtered = applications.filter((app) => {
     const q = search.toLowerCase();
     return (
@@ -60,7 +66,6 @@ function AdminApplication() {
 
   return (
     <section className="admin-applications">
-
       <div className="admin-applications-header">
         <h2>All Applications</h2>
         <input
@@ -105,14 +110,7 @@ function AdminApplication() {
                   <td>{app.city || "—"}</td>
                   <td>
                     {app.cv_url ? (
-                      <a
-                        href={app.cv_url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="cv-link"
-                      >
-                        View CV
-                      </a>
+                      <a href={getViewableUrl(app.cv_url)} target="_blank" rel="noreferrer" className="cv-link">View CV</a>
                     ) : (
                       <span className="no-cv">No CV</span>
                     )}
@@ -137,7 +135,6 @@ function AdminApplication() {
           </table>
         </div>
       )}
-
     </section>
   );
 }
