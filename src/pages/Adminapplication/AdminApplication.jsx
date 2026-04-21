@@ -35,7 +35,9 @@ function AdminApplication() {
 
   const getViewableUrl = (url) => {
     if (!url) return null;
-    const fixed = url.replace("/raw/upload/", "/image/upload/");
+    const fixed = url
+      .replace("/raw/upload/", "/image/upload/")
+      .replace("/auto/upload/", "/image/upload/");
     return `https://docs.google.com/viewer?url=${encodeURIComponent(fixed)}&embedded=true`;
   };
 
