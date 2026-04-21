@@ -6,12 +6,13 @@ import logo  from "../../assets/logo/icon-blue.svg";
 import mitra from "../../assets/logo/mitraa.svg";
 import { API } from "../../config/api";
 
-function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
-  const [isSignup, setIsSignup] = useState(false);
-  const [loading,  setLoading]  = useState(false);
-  const [error,    setError]    = useState("");
-  const [success,  setSuccess]  = useState("");
-  const [touched,  setTouched]  = useState({});
+function Careersignin({ onClose, onSuccess = null }) {
+  const [isSignup,      setIsSignup]      = useState(false);
+  const [loading,       setLoading]       = useState(false);
+  const [error,         setError]         = useState("");
+  const [success,       setSuccess]       = useState("");
+  const [touched,       setTouched]       = useState({});
+  const [showPassword,  setShowPassword]  = useState(false);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -58,8 +59,8 @@ function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
     return errs;
   };
 
-  const mode      = isSignup ? "signup" : "login";
-  const allErrors = validate(formData, mode);
+  const mode       = isSignup ? "signup" : "login";
+  const allErrors  = validate(formData, mode);
   const fieldError = (field) => touched[field] ? allErrors[field] : undefined;
 
   const handleChange = (e) => {
@@ -76,6 +77,23 @@ function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
     fields.forEach(f => all[f] = true);
     setTouched(all);
   };
+
+  const EyeIcon = () => (
+    showPassword ? (
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+        <line x1="1" y1="1" x2="23" y2="23"/>
+      </svg>
+    ) : (
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    )
+  );
 
   // ─── Login ──────────────────────────────────────────────────────
   const handleLogin = async () => {
@@ -99,17 +117,14 @@ function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
       localStorage.setItem("userEmail", data.email);
       localStorage.setItem("isAdmin",   data.is_admin);
 
-      // ✅ Fire event so Navbar updates without page refresh
       window.dispatchEvent(new Event("userLoggedIn"));
 
-      // ✅ If opened from job apply, call onSuccess — else go to home
       if (typeof onSuccess === "function") {
         onSuccess();
       } else {
         navigate("/home");
         onClose();
       }
-
     } catch (err) {
       setError(err.message);
     } finally {
@@ -156,6 +171,7 @@ function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
     setError("");
     setSuccess("");
     setTouched({});
+    setShowPassword(false);
     setFormData({ name: "", email: "", mobile: "", password: "" });
   };
 
@@ -203,15 +219,26 @@ function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
 
               <div className="auth-field">
                 <label>Password</label>
-                <input
-                  name="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={fieldError("password") ? "input-error" : ""}
-                />
+                <div className="auth-password-wrap">
+                  <input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={fieldError("password") ? "input-error" : ""}
+                  />
+                  <button
+                    type="button"
+                    className="auth-eye-btn"
+                    onClick={() => setShowPassword(v => !v)}
+                    tabIndex={-1}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    <EyeIcon />
+                  </button>
+                </div>
                 {fieldError("password") && (
                   <span className="field-error">{fieldError("password")}</span>
                 )}
@@ -284,15 +311,26 @@ function Careersignin({ onClose, onSuccess = null }) {  // ✅ default null
 
               <div className="auth-field">
                 <label>Password</label>
-                <input
-                  name="password"
-                  type="password"
-                  placeholder="Min 8 chars, 1 uppercase, 1 number, 1 symbol"
-                  value={formData.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={fieldError("password") ? "input-error" : ""}
-                />
+                <div className="auth-password-wrap">
+                  <input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Min 8 chars, 1 uppercase, 1 number, 1 symbol"
+                    value={formData.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={fieldError("password") ? "input-error" : ""}
+                  />
+                  <button
+                    type="button"
+                    className="auth-eye-btn"
+                    onClick={() => setShowPassword(v => !v)}
+                    tabIndex={-1}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    <EyeIcon />
+                  </button>
+                </div>
                 {fieldError("password") && (
                   <span className="field-error">{fieldError("password")}</span>
                 )}
