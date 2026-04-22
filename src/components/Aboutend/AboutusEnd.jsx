@@ -21,6 +21,7 @@ import openai     from "../../assets/organisation/CHATGPT.png";
 import qatar      from "../../assets/organisation/Qatar_University_logo.svg";
 import stanford   from "../../assets/organisation/Stanford-University-Logo.png";
 import oxford     from "../../assets/organisation/university-of-oxford-logo.png";
+import JPR         from "../../assets/organisation/JPR.png";
 
 const LOGOS = [
   { src: ibm,        alt: "IBM" },
@@ -38,9 +39,10 @@ const LOGOS = [
   { src: mit,        alt: "MIT" },
   { src: nvidia,     alt: "NVIDIA" },
   { src: openai,     alt: "OpenAI" },
-  { src: qatar,      alt: "Qatar University" },
+  { src: qatar,      alt: "Qatar University" },   
   { src: stanford,   alt: "Stanford University" },
   { src: oxford,     alt: "University of Oxford" },
+  { src: JPR,        alt: "JPR" },
 ];
 
 /* Duplicate for seamless infinite scroll */
