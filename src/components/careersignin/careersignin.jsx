@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Careersignin.css";
 import bird  from "../../assets/images/birdimage.svg";
@@ -6,23 +6,32 @@ import logo  from "../../assets/logo/icon-blue.svg";
 import mitra from "../../assets/logo/mitraa.svg";
 import { API } from "../../config/api";
 
+// ─── Modes ───────────────────────────────────────────────────────────────────
+// "login" | "signup" | "verify"
+
 function Careersignin({ onClose, onSuccess = null }) {
-  const [isSignup,      setIsSignup]      = useState(false);
+  const [mode,          setMode]          = useState("login");   // "login" | "signup" | "verify"
   const [loading,       setLoading]       = useState(false);
   const [error,         setError]         = useState("");
   const [success,       setSuccess]       = useState("");
   const [touched,       setTouched]       = useState({});
   const [showPassword,  setShowPassword]  = useState(false);
+  const [otpDigits,     setOtpDigits]     = useState(["", "", "", "", "", ""]);
+  const [resendCooldown,setResendCooldown]= useState(0);
+  const [pendingEmail,  setPendingEmail]  = useState(""); // email saved after registration
+
+  const otpRefs = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()];
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "", email: "", mobile: "", password: "",
   });
 
-  const validate = (fields, mode) => {
+  // ─── Validation ────────────────────────────────────────────────────────────
+  const validate = (fields, m) => {
     const errs = {};
 
-    if (mode === "signup") {
+    if (m === "signup") {
       if (!fields.name.trim())
         errs.name = "Full name is required.";
       else if (fields.name.trim().length < 2)
@@ -36,7 +45,7 @@ function Careersignin({ onClose, onSuccess = null }) {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email))
       errs.email = "Enter a valid email address (e.g. you@example.com).";
 
-    if (mode === "signup") {
+    if (m === "signup") {
       if (!fields.mobile.trim())
         errs.mobile = "Mobile number is required.";
       else if (!/^\+?[0-9]{7,15}$/.test(fields.mobile.replace(/\s/g, "")))
@@ -45,7 +54,7 @@ function Careersignin({ onClose, onSuccess = null }) {
 
     if (!fields.password)
       errs.password = "Password is required.";
-    else if (mode === "signup") {
+    else if (m === "signup") {
       if (fields.password.length < 8)
         errs.password = "Password must be at least 8 characters.";
       else if (!/[A-Z]/.test(fields.password))
@@ -59,7 +68,6 @@ function Careersignin({ onClose, onSuccess = null }) {
     return errs;
   };
 
-  const mode       = isSignup ? "signup" : "login";
   const allErrors  = validate(formData, mode);
   const fieldError = (field) => touched[field] ? allErrors[field] : undefined;
 
@@ -74,11 +82,49 @@ function Careersignin({ onClose, onSuccess = null }) {
 
   const touchAll = (fields) => {
     const all = {};
-    fields.forEach(f => all[f] = true);
+    fields.forEach(f => (all[f] = true));
     setTouched(all);
   };
 
-  const EyeIcon = () => (
+  // ─── OTP digit handlers ────────────────────────────────────────────────────
+  const handleOtpChange = (index, value) => {
+    if (!/^\d?$/.test(value)) return;           // digits only
+    const next = [...otpDigits];
+    next[index] = value;
+    setOtpDigits(next);
+    setError("");
+    if (value && index < 5) otpRefs[index + 1].current?.focus();
+  };
+
+  const handleOtpKeyDown = (index, e) => {
+    if (e.key === "Backspace" && !otpDigits[index] && index > 0)
+      otpRefs[index - 1].current?.focus();
+    if (e.key === "ArrowLeft"  && index > 0) otpRefs[index - 1].current?.focus();
+    if (e.key === "ArrowRight" && index < 5) otpRefs[index + 1].current?.focus();
+  };
+
+  const handleOtpPaste = (e) => {
+    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    if (pasted.length === 6) {
+      setOtpDigits(pasted.split(""));
+      otpRefs[5].current?.focus();
+      e.preventDefault();
+    }
+  };
+
+  // ─── Resend cooldown timer ─────────────────────────────────────────────────
+  const startCooldown = () => {
+    setResendCooldown(60);
+    const interval = setInterval(() => {
+      setResendCooldown(prev => {
+        if (prev <= 1) { clearInterval(interval); return 0; }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  // ─── Eye icon ──────────────────────────────────────────────────────────────
+  const EyeIcon = () =>
     showPassword ? (
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -92,10 +138,9 @@ function Careersignin({ onClose, onSuccess = null }) {
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
         <circle cx="12" cy="12" r="3"/>
       </svg>
-    )
-  );
+    );
 
-  // ─── Login ──────────────────────────────────────────────────────
+  // ─── Handlers ──────────────────────────────────────────────────────────────
   const handleLogin = async () => {
     touchAll(["email", "password"]);
     const errs = validate(formData, "login");
@@ -104,7 +149,7 @@ function Careersignin({ onClose, onSuccess = null }) {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(API.login, {
+      const res  = await fetch(API.login, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email, password: formData.password }),
@@ -132,7 +177,6 @@ function Careersignin({ onClose, onSuccess = null }) {
     }
   };
 
-  // ─── Register ───────────────────────────────────────────────────
   const handleRegister = async () => {
     touchAll(["name", "email", "mobile", "password"]);
     const errs = validate(formData, "signup");
@@ -142,7 +186,7 @@ function Careersignin({ onClose, onSuccess = null }) {
     setError("");
     setSuccess("");
     try {
-      const res = await fetch(API.register, {
+      const res  = await fetch(API.register, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -155,10 +199,13 @@ function Careersignin({ onClose, onSuccess = null }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || "Registration failed");
 
-      setSuccess("Account created! Please sign in.");
-      setIsSignup(false);
-      setFormData({ name: "", email: "", mobile: "", password: "" });
-      setTouched({});
+      // Save email for verification, switch to OTP screen
+      setPendingEmail(formData.email);
+      setOtpDigits(["", "", "", "", "", ""]);
+      setMode("verify");
+      startCooldown();
+      setSuccess("");
+      setError("");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -166,8 +213,59 @@ function Careersignin({ onClose, onSuccess = null }) {
     }
   };
 
-  const switchMode = (toSignup) => {
-    setIsSignup(toSignup);
+  const handleVerify = async () => {
+    const otp = otpDigits.join("");
+    if (otp.length < 6) {
+      setError("Please enter the 6-digit code sent to your email.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    try {
+      const res  = await fetch(API.verifyEmail, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: pendingEmail, otp }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Verification failed");
+
+      switchMode("login");
+      setSuccess("Email verified! You can now sign in.");
+    } catch (err) {
+      setError(err.message);
+      // Shake OTP boxes on error
+      setOtpDigits(["", "", "", "", "", ""]);
+      setTimeout(() => otpRefs[0].current?.focus(), 50);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    if (resendCooldown > 0) return;
+    setLoading(true);
+    setError("");
+    try {
+      const res  = await fetch(API.resendOtp, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: pendingEmail }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Could not resend code");
+      setSuccess("A new code has been sent to your email.");
+      startCooldown();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const switchMode = (toMode) => {
+    setMode(toMode);
     setError("");
     setSuccess("");
     setTouched({});
@@ -175,6 +273,7 @@ function Careersignin({ onClose, onSuccess = null }) {
     setFormData({ name: "", email: "", mobile: "", password: "" });
   };
 
+  // ─── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="auth-overlay">
       <div className="auth-container">
@@ -184,7 +283,7 @@ function Careersignin({ onClose, onSuccess = null }) {
         <img
           src={bird}
           alt="Bird"
-          className={`auth-bird ${isSignup ? "auth-bird--signup" : ""}`}
+          className={`auth-bird ${mode === "signup" ? "auth-bird--signup" : ""}`}
         />
 
         <div className="auth-card">
@@ -196,7 +295,8 @@ function Careersignin({ onClose, onSuccess = null }) {
           {error   && <p className="auth-error">{error}</p>}
           {success && <p className="auth-success">{success}</p>}
 
-          {!isSignup ? (
+          {/* ── LOGIN ── */}
+          {mode === "login" && (
             <>
               <h2>Sign in</h2>
               <p className="auth-sub">Shape your career with us</p>
@@ -251,10 +351,13 @@ function Careersignin({ onClose, onSuccess = null }) {
 
               <p className="auth-switch">
                 Create an account{" "}
-                <span onClick={() => switchMode(true)}>Sign up</span>
+                <span onClick={() => switchMode("signup")}>Sign up</span>
               </p>
             </>
-          ) : (
+          )}
+
+          {/* ── SIGNUP ── */}
+          {mode === "signup" && (
             <>
               <h2>Sign up</h2>
               <p className="auth-sub">
@@ -367,7 +470,62 @@ function Careersignin({ onClose, onSuccess = null }) {
 
               <p className="auth-switch">
                 Already have an account?{" "}
-                <span onClick={() => switchMode(false)}>Sign in</span>
+                <span onClick={() => switchMode("login")}>Sign in</span>
+              </p>
+            </>
+          )}
+
+          {/* ── VERIFY OTP ── */}
+          {mode === "verify" && (
+            <>
+              <h2>Verify Email</h2>
+              <p className="auth-sub">
+                We sent a 6-digit code to{" "}
+                <strong>{pendingEmail}</strong>. Enter it below.
+              </p>
+
+              <div className="auth-field">
+                <label>Verification Code</label>
+                <div className="otp-wrap" onPaste={handleOtpPaste}>
+                  {otpDigits.map((digit, i) => (
+                    <input
+                      key={i}
+                      ref={otpRefs[i]}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={digit}
+                      className={`otp-box${error ? " otp-box--error" : ""}`}
+                      onChange={e => handleOtpChange(i, e.target.value)}
+                      onKeyDown={e => handleOtpKeyDown(i, e)}
+                      autoFocus={i === 0}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <button
+                className="auth-btn"
+                onClick={handleVerify}
+                disabled={loading || otpDigits.join("").length < 6}
+              >
+                {loading ? "Verifying..." : "Verify & Continue"}
+              </button>
+
+              <p className="auth-switch">
+                Didn't receive a code?{" "}
+                {resendCooldown > 0 ? (
+                  <span className="resend-cooldown">
+                    Resend in {resendCooldown}s
+                  </span>
+                ) : (
+                  <span onClick={handleResendOtp}>Resend code</span>
+                )}
+              </p>
+
+              <p className="auth-switch" style={{ marginTop: "4px" }}>
+                Wrong email?{" "}
+                <span onClick={() => switchMode("signup")}>Go back</span>
               </p>
             </>
           )}
