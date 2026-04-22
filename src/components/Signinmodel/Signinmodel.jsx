@@ -1,11 +1,17 @@
 import { useState } from "react";
 import "./Signinmodel.css";
 import Bussinesssignin from "../Bussinesssignin/Bussinesssignin";
-import Careersignin from "../careersignin/Careersignin";//
+import Careersignin from "../careersignin/Careersignin";
 
-function Signinmodel({ onClose, onSuccess = null }) {  // ✅ accept onSuccess
+function Signinmodel({ onClose, onSuccess = null }) {
   const [activeTab, setActiveTab] = useState("careers");
   const [showAuth, setShowAuth] = useState(false);
+
+  // Called by child auth components on successful login/register
+  const handleSuccess = () => {
+    if (typeof onSuccess === "function") onSuccess();
+    onClose(); // always close the modal
+  };
 
   return (
     <>
@@ -58,16 +64,18 @@ function Signinmodel({ onClose, onSuccess = null }) {  // ✅ accept onSuccess
         </div>
       )}
 
-      {/* ✅ Pass onSuccess down to Careersignin */}
       {showAuth && activeTab === "careers" && (
         <Careersignin
           onClose={() => setShowAuth(false)}
-          onSuccess={typeof onSuccess === "function" ? onSuccess : null} // ✅ pass it down
+          onSuccess={handleSuccess}
         />
       )}
 
       {showAuth && activeTab === "business" && (
-        <Bussinesssignin onClose={() => setShowAuth(false)} />
+        <Bussinesssignin
+          onClose={() => setShowAuth(false)}
+          onSuccess={handleSuccess}
+        />
       )}
     </>
   );
