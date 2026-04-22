@@ -17,7 +17,7 @@ import metaAI     from "../../assets/organisation/Meta-AI-Logo.jpg";
 import microsoft  from "../../assets/organisation/microsoft-transparent-microsoft.webp";
 import mit        from "../../assets/organisation/MIT-lOGO.png";
 import nvidia     from "../../assets/organisation/nvidia-logo.png";
-import openai     from "../../assets/organisation/openai-logo.png";
+import openai     from "../../assets/organisation/CHATGPT.png";
 import qatar      from "../../assets/organisation/Qatar_University_logo.svg";
 import stanford   from "../../assets/organisation/Stanford-University-Logo.png";
 import oxford     from "../../assets/organisation/university-of-oxford-logo.png";
