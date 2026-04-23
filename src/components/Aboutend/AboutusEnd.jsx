@@ -15,13 +15,14 @@ import kingSaud   from "../../assets/organisation/king_saud_university_logo.png"
 import mbzuai     from "../../assets/organisation/Mbzuai_logo.png";
 import metaAI     from "../../assets/organisation/Meta-AI-Logo.jpg";
 import microsoft  from "../../assets/organisation/microsoft-transparent-microsoft.webp";
-import mit        from "../../assets/organisation/MIT-lOGO.png";
+import mit        from "../../assets/organisation/MIT-lOGO1.png";
 import nvidia     from "../../assets/organisation/nvidia-logo.png";
 import openai     from "../../assets/organisation/CHATGPT.png";
 import qatar      from "../../assets/organisation/Qatar_University_logo.svg";
 import stanford   from "../../assets/organisation/Stanford-University-Logo.png";
 import oxford     from "../../assets/organisation/university-of-oxford-logo.png";
 import JPR         from "../../assets/organisation/JPR.png";
+import AWS         from "../../assets/organisation/aws.png";
 
 const LOGOS = [
   { src: ibm,        alt: "IBM" },
@@ -43,6 +44,7 @@ const LOGOS = [
   { src: stanford,   alt: "Stanford University" },
   { src: oxford,     alt: "University of Oxford" },
   { src: JPR,        alt: "JPR" },
+  { src: AWS,        alt: "AWS" },
 ];
 
 /* Duplicate for seamless infinite scroll */

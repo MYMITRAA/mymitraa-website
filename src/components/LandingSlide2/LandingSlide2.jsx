@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import butterfly1 from "../../assets/butterflyanimation/butterly1.webp";
 import butterfly2 from "../../assets/butterflyanimation/butterfly2.webp";
-import treeBranch  from "../../assets/images/treebranch.jpg";
+import treeBranch  from "../../assets/images/treebranch1.webp";
 
 /* ── Snowflake config ── */
 const SNOW_COUNT = 55;

@@ -25,7 +25,6 @@
   padding: 0 0 60px;
 }
 
-/* Top image area */
 .portfolio__hero-img-wrap {
   width: 100%;
   display: flex;
@@ -42,7 +41,6 @@
   display: block;
 }
 
-/* Text content below image */
 .portfolio__hero-content {
   text-align: center;
   padding: 36px 24px 0;
@@ -75,7 +73,7 @@
 }
 
 /* ============================================================
-   WHAT WE DO — white section, left text / right image
+   WHAT WE DO
    ============================================================ */
 
 .portfolio__whatwedo {
@@ -93,9 +91,7 @@
   gap: 60px;
 }
 
-.portfolio__whatwedo-left {
-  flex: 1;
-}
+.portfolio__whatwedo-left { flex: 1; }
 
 .portfolio__whatwedo-title {
   font-family: "Syne", sans-serif;
@@ -139,7 +135,7 @@
 }
 
 /* ============================================================
-   WHY IT MATTERS — lavender bg, 4 white cards with 3D icons
+   WHY IT MATTERS
    ============================================================ */
 
 .portfolio__why {
@@ -216,7 +212,7 @@
 }
 
 /* ============================================================
-   OUR ADVANTAGE — white section, left list / right 3D image
+   OUR ADVANTAGE
    ============================================================ */
 
 .portfolio__advantage {
@@ -234,9 +230,7 @@
   gap: 80px;
 }
 
-.portfolio__advantage-left {
-  flex: 1;
-}
+.portfolio__advantage-left { flex: 1; }
 
 .portfolio__advantage-title {
   font-family: "Syne", sans-serif;
@@ -246,9 +240,7 @@
   margin: 0 0 44px;
 }
 
-.portfolio__advantage-title span {
-  color: #5a6af8;
-}
+.portfolio__advantage-title span { color: #5a6af8; }
 
 .portfolio__adv-list {
   display: flex;
@@ -280,7 +272,6 @@
   object-fit: contain;
 }
 
-/* Fallback SVG icons inside circle */
 .portfolio__adv-icon svg {
   width: 22px;
   height: 22px;
@@ -336,7 +327,7 @@
 }
 
 /* ============================================================
-   PORTFOLIO HIGHLIGHTS — lavender bg, 4 emoji cards
+   PORTFOLIO HIGHLIGHTS
    ============================================================ */
 
 .portfolio__highlights {
@@ -416,6 +407,413 @@
   font-style: italic;
 }
 
+
+/* ============================================================
+   PRODUCTS WE'VE BUILT  — new section
+   ============================================================ */
+
+.portfolio__products {
+  padding: 100px 0 120px;
+  background: #f8f9ff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle background texture */
+.portfolio__products::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(220,227,255,0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 90% 80%, rgba(200,212,255,0.40) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.portfolio__products-container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section header ── */
+.portfolio__products-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.portfolio__products-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5a6af8;
+  background: #eef0ff;
+  border-radius: 100px;
+  padding: 6px 18px;
+  margin-bottom: 18px;
+}
+
+.portfolio__products-title {
+  font-family: "Syne", sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.portfolio__products-title span { color: #5a6af8; }
+
+.portfolio__products-subtitle {
+  font-size: 16px;
+  color: #5a5e7a;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ── Products list ── */
+.portfolio__products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* ── Single product card ── */
+.portfolio__product-card {
+  background: #ffffff;
+  border-radius: 28px;
+  border: 1px solid rgba(90, 106, 248, 0.10);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.04),
+    0 20px 60px rgba(90,106,248,0.07);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.portfolio__product-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.06),
+    0 32px 80px rgba(90,106,248,0.13);
+}
+
+/* alternating layout — reversed cards */
+.portfolio__product-card--reverse {
+  flex-direction: row-reverse;
+}
+
+/* ── Content side ── */
+.portfolio__product-content {
+  flex: 1;
+  padding: 52px 52px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* top row: logo + name */
+.portfolio__product-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.portfolio__product-logo-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: var(--accent-light);
+  border: 1.5px solid rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio__product-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+/* fallback shown when logo image is hidden/missing */
+.portfolio__product-logo-fallback {
+  font-family: "Syne", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* when logo img loads successfully, hide fallback */
+.portfolio__product-logo:not([style*="display: none"]) + .portfolio__product-logo-fallback {
+  display: none;
+}
+
+.portfolio__product-tagline {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 4px;
+  opacity: 0.85;
+}
+
+.portfolio__product-name {
+  font-family: "Syne", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* thin divider */
+.portfolio__product-divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+  opacity: 0.18;
+  margin-bottom: 28px;
+}
+
+/* headline quote */
+.portfolio__product-headline {
+  font-family: "Syne", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 16px;
+  line-height: 1.35;
+  font-style: italic;
+}
+
+.portfolio__product-desc {
+  font-size: 15px;
+  color: #4a4e6a;
+  line-height: 1.78;
+  margin: 0 0 28px;
+}
+
+/* feature list */
+.portfolio__product-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.portfolio__product-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.portfolio__product-feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.portfolio__product-feature-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.portfolio__product-feature-sep {
+  font-size: 14px;
+  color: #9090a0;
+}
+
+.portfolio__product-feature-desc {
+  font-size: 14px;
+  color: #5a5e7a;
+}
+
+/* vision block */
+.portfolio__product-vision {
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+  margin-bottom: 0;
+}
+
+.portfolio__product-vision-heading {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+
+.portfolio__product-vision-text {
+  font-size: 14px;
+  color: #4a4e6a;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* contact block (Feelzy) */
+.portfolio__product-contact {
+  margin-top: 28px;
+  background: #1a1a3a;
+  border-radius: 16px;
+  padding: 24px 24px 20px;
+}
+
+.portfolio__product-contact-heading {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px;
+}
+
+.portfolio__product-contact-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.portfolio__product-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.portfolio__product-social:hover { color: #ffffff; }
+
+.portfolio__product-social svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* ── Visual (image) side ── */
+.portfolio__product-visual {
+  flex: 0 0 42%;
+  position: relative;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+/* subtle gradient overlay on visual */
+.portfolio__product-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.04) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.portfolio__product-img-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  position: relative;
+}
+
+.portfolio__product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  max-height: 380px;
+  border-radius: 16px;
+}
+
+/* placeholder shown when image is hidden (onError) */
+.portfolio__product-img-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 0;
+}
+
+.portfolio__product-img-placeholder span {
+  font-family: "Syne", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: 0.25;
+}
+
+.portfolio__product-img-placeholder small {
+  font-size: 12px;
+  color: var(--accent);
+  opacity: 0.20;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* accent badge floating over image */
+.portfolio__product-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: var(--accent);
+  border-radius: 100px;
+  padding: 7px 16px;
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.portfolio__product-badge span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* reversed card — badge flips to other corner */
+.portfolio__product-card--reverse .portfolio__product-badge {
+  right: auto;
+  left: 24px;
+}
+
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -437,6 +835,24 @@
   .portfolio__why-grid,
   .portfolio__highlights-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portfolio__products-container { padding: 0 28px; }
+
+  .portfolio__products-title { font-size: 36px; }
+
+  .portfolio__product-card,
+  .portfolio__product-card--reverse {
+    flex-direction: column;
+  }
+
+  .portfolio__product-visual {
+    flex: none;
+    min-height: 280px;
+  }
+
+  .portfolio__product-content {
+    padding: 36px 36px 32px;
   }
 }
 
@@ -462,6 +878,16 @@
     max-width: 100%;
     height: 300px;
   }
+
+  .portfolio__products-container { padding: 0 20px; }
+
+  .portfolio__product-content {
+    padding: 28px 24px 24px;
+  }
+
+  .portfolio__product-contact-links {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
@@ -475,4 +901,8 @@
   .portfolio__highlights-container {
     padding: 0 16px;
   }
+
+  .portfolio__products-container { padding: 0 16px; }
+
+  .portfolio__products-title { font-size: 30px; }
 }
