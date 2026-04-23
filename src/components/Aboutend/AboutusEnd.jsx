@@ -15,7 +15,7 @@ import kingSaud   from "../../assets/organisation/king_saud_university_logo.png"
 import mbzuai     from "../../assets/organisation/Mbzuai_logo.png";
 import metaAI     from "../../assets/organisation/Meta-AI-Logo.jpg";
 import microsoft  from "../../assets/organisation/microsoft-transparent-microsoft.webp";
-import mit        from "../../assets/organisation/MIT-lOGO1.png";
+import mit        from "../../assets/organisation/MIT.png";
 import nvidia     from "../../assets/organisation/nvidia-logo.png";
 import openai     from "../../assets/organisation/CHATGPT.png";
 import qatar      from "../../assets/organisation/Qatar_University_logo.svg";
