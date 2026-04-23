@@ -1,6 +1,6 @@
 
 import "./Aboutushero.css";
-import aboutBg from "../../assets/images/aboutusbg.svg";
+import aboutBg from "../../assets/images/aboutusbg.jpg";
 
 function Aboutushero() {
   return (

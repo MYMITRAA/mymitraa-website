@@ -40,7 +40,7 @@
 }
 
 /* ============================================================
-   HERO — background image + soft gradient overlay
+   HERO — editorial, asymmetric, premium
    ============================================================ */
 
 .portfolio__hero {
@@ -49,32 +49,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-
-  /* ── Background image with soft lavender overlay ── */
-  background-image:
-    linear-gradient(
-      135deg,
-      rgba(232, 236, 255, 0.82) 0%,
-      rgba(220, 227, 255, 0.70) 45%,
-      rgba(205, 213, 248, 0.78) 100%
-    ),
-    url('../../assets/images/portfolioherobg3.png');
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-  background-attachment: scroll, scroll;
-
+  background: linear-gradient(135deg, #e8ecff 0%, var(--lavender) 50%, #cdd5f8 100%);
   overflow: hidden;
 }
 
-/* geometric accent blobs */
+/* geometric accent */
 .portfolio__hero::before {
   content: "";
   position: absolute;
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(90,106,248,0.14) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(90,106,248,0.18) 0%, transparent 70%);
   top: -160px;
   right: -80px;
   pointer-events: none;
@@ -86,7 +72,7 @@
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(90,106,248,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(90,106,248,0.10) 0%, transparent 70%);
   bottom: -80px;
   left: 10%;
   pointer-events: none;
@@ -138,8 +124,6 @@
   line-height: 0.92;
   letter-spacing: -2px;
   margin-bottom: 36px;
-  /* subtle text shadow to lift off the bg image */
-  text-shadow: 0 1px 12px rgba(232,236,255,0.6);
 }
 
 .portfolio__hero-title em {
@@ -275,7 +259,7 @@
 }
 
 /* ============================================================
-   WHAT WE DO — clean split + card slider
+   WHAT WE DO — clean split, generous space
    ============================================================ */
 
 .portfolio__whatwedo {
@@ -311,231 +295,38 @@
   max-width: 420px;
 }
 
-/* ============================================================
-   CARD SLIDER — What We Do animated system
-   ============================================================ */
-
-/* ============================================================
-   PREMIUM SINGLE-CARD SLIDER
-   ============================================================ */
-
-.wwd-premium-slider {
+.portfolio__whatwedo-img {
   position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--lavender);
+}
+
+.portfolio__whatwedo-img img {
   width: 100%;
-  max-width: 520px;
-  align-self: center;
-}
-
-/* ── Stack depth ghost cards ── */
-.wwd-stack-card {
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(90, 106, 248, 0.10);
-  pointer-events: none;
-}
-
-.wwd-stack-card--back {
-  transform: scale(0.955) translateY(12px);
-  opacity: 0.3;
-  filter: blur(1.5px);
-  z-index: 0;
-}
-
-.wwd-stack-card--front {
-  transform: scale(0.978) translateY(6px);
-  opacity: 0.5;
-  filter: blur(0.5px);
-  z-index: 1;
-}
-
-/* ── Card stage (clips the animation) ── */
-.wwd-card-stage {
-  position: relative;
-  z-index: 2;
-  border-radius: 24px;
-  overflow: hidden;
-}
-
-/* ── Main card ── */
-.wwd-main-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(90, 106, 248, 0.18);
-  border-radius: 24px;
-  overflow: hidden;
-  min-height: 280px;
-  will-change: transform, opacity;
-  transition: box-shadow 0.3s ease;
-}
-
-.wwd-main-card:hover {
-  box-shadow: 0 16px 48px rgba(90, 106, 248, 0.14);
-}
-
-/* ── Slide animations ── */
-.wwd-main-card--exit {
-  animation: wwd-slide-out 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.wwd-main-card--enter {
-  animation: wwd-slide-in 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes wwd-slide-out {
-  from { transform: translateX(0);     opacity: 1; }
-  to   { transform: translateX(-48px); opacity: 0; }
-}
-
-@keyframes wwd-slide-in {
-  from { transform: translateX(48px);  opacity: 0; }
-  to   { transform: translateX(0);     opacity: 1; }
-}
-
-/* ── Content side ── */
-.wwd-main-card__content {
-  padding: 10px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.wwd-main-card__top {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.wwd-main-card__index {
-  font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: rgba(90, 106, 248, 0.5);
-}
-
-.wwd-main-card__title {
-  font-family: "Outfit", sans-serif;
-  font-size: 21px;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.2;
-}
-
-.wwd-main-card__desc {
-  font-size: 13px;
-  color: var(--ink-light);
-  line-height: 1.7;
-}
-
-.wwd-main-card__bottom {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.wwd-main-card__sep {
-  display: block;
-  height: 1px;
-  flex: 1;
-  background: rgba(90, 106, 248, 0.12);
-}
-
-/* ── Next button ── */
-.wwd-next-btn {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 1.5px solid rgba(90, 106, 248, 0.25);
-  background: rgba(90, 106, 248, 0.07);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.2s var(--ease);
-  color: var(--indigo);
-}
-
-.wwd-next-btn svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.25s var(--ease);
-}
-
-.wwd-next-btn:hover {
-  background: var(--indigo);
-  border-color: var(--indigo);
-  color: #fff;
-}
-
-.wwd-next-btn:hover svg {
-  transform: translateX(2px);
-}
-
-.wwd-next-btn:active {
-  transform: scale(0.92);
-}
-
-/* ── Image side ── */
-.wwd-main-card__img-side {
-  position: relative;
-  overflow: hidden;
-}
-
-.wwd-main-card__img {
-  width: 80%;
-  height: 80%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.7s var(--ease);
 }
 
-.wwd-main-card:hover .wwd-main-card__img {
-  transform: scale(1.04);
+.portfolio__whatwedo-img:hover img {
+  transform: scale(1.03);
 }
 
-.wwd-main-card__img-overlay {
+/* corner accent */
+.portfolio__whatwedo-img::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.15) 0%,
-    transparent 50%
-  );
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(90,106,248,0.12) 0%, transparent 100%);
   pointer-events: none;
 }
 
-
-
-
-/* ── Responsive ── */
-@media (max-width: 1024px) {
-  .wwd-premium-slider {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-  .wwd-main-card {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .wwd-main-card__img-side {
-    height: 180px;
-    order: -1;
-  }
-
-  .wwd-main-card__content {
-    padding: 24px 20px;
-  }
-}
 /* ============================================================
    WHY IT MATTERS — dark ink strip
    ============================================================ */
@@ -692,10 +483,7 @@
   letter-spacing: -0.5px;
 }
 
-.portfolio__advantage-title span {
-  color: var(--indigo);
-  font-style: italic;
-}
+.portfolio__advantage-title span { color: var(--indigo); font-style: italic; }
 
 .portfolio__adv-list {
   display: flex;
@@ -712,13 +500,9 @@
   transition: padding-left 0.3s var(--ease);
 }
 
-.portfolio__adv-item:first-child {
-  border-top: 1px solid rgba(90,106,248,0.10);
-}
+.portfolio__adv-item:first-child { border-top: 1px solid rgba(90,106,248,0.10); }
 
-.portfolio__adv-item:hover {
-  padding-left: 8px;
-}
+.portfolio__adv-item:hover { padding-left: 8px; }
 
 .portfolio__adv-icon {
   width: 44px;
@@ -741,9 +525,7 @@
   stroke-linejoin: round;
 }
 
-.portfolio__adv-text {
-  flex: 1;
-}
+.portfolio__adv-text { flex: 1; }
 
 .portfolio__adv-title {
   font-size: 15px;
@@ -972,7 +754,7 @@
   border-top: 1px solid var(--card-border);
 }
 
-/* ── Single product card ── */
+/* ── Single product card — edge-to-edge split ── */
 .portfolio__product-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -994,6 +776,7 @@
   flex-direction: column;
 }
 
+/* top row: logo + meta */
 .portfolio__product-top {
   display: flex;
   align-items: center;
@@ -1055,6 +838,7 @@
   line-height: 1.15;
 }
 
+/* headline */
 .portfolio__product-headline {
   font-family: "Cormorant Garamond", serif;
   font-size: 32px;
@@ -1142,7 +926,7 @@
   line-height: 1.7;
 }
 
-/* contact */
+/* contact (Feelzy) */
 .portfolio__product-contact {
   margin-top: 24px;
   background: var(--ink);
@@ -1176,9 +960,7 @@
   padding: 4px 0;
 }
 
-.portfolio__product-social:hover {
-  color: var(--white);
-}
+.portfolio__product-social:hover { color: var(--white); }
 
 .portfolio__product-social svg {
   width: 14px;
@@ -1191,7 +973,7 @@
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 3.2;
+  aspect-ratio: 4/3.2;
   background: var(--accent-light, #eef0ff);
   display: flex;
   align-items: center;
@@ -1279,7 +1061,6 @@
   .portfolio__hero {
     grid-template-columns: 1fr;
     min-height: auto;
-    background-size: cover, cover;
   }
 
   .portfolio__hero-content {
@@ -1287,9 +1068,9 @@
     text-align: center;
   }
 
-  .portfolio__hero-eyebrow  { justify-content: center; }
-  .portfolio__hero-desc     { margin: 0 auto 40px; }
-  .portfolio__hero-title    { font-size: 64px; }
+  .portfolio__hero-eyebrow { justify-content: center; }
+  .portfolio__hero-desc { margin: 0 auto 40px; }
+  .portfolio__hero-title { font-size: 64px; }
 
   .portfolio__hero-img-wrap {
     padding: 20px 40px 60px;
@@ -1306,18 +1087,18 @@
 
   .portfolio__whatwedo-desc { max-width: 100%; }
 
-  .portfolio__why-header    { flex-direction: column; align-items: flex-start; }
-  .portfolio__why-subtitle  { text-align: left; max-width: 100%; }
-  .portfolio__why-grid      { grid-template-columns: repeat(2, 1fr); }
+  .portfolio__why-header { flex-direction: column; align-items: flex-start; }
+  .portfolio__why-subtitle { text-align: left; max-width: 100%; }
+  .portfolio__why-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio__why-container { padding: 0 40px; }
 
   .portfolio__highlights-container { padding: 0 40px; }
-  .portfolio__highlights-header    { grid-template-columns: 1fr; gap: 16px; }
-  .portfolio__highlights-grid      { grid-template-columns: repeat(2, 1fr); }
+  .portfolio__highlights-header { grid-template-columns: 1fr; gap: 16px; }
+  .portfolio__highlights-grid { grid-template-columns: repeat(2, 1fr); }
 
   .portfolio__products-container { padding: 0 40px; }
-  .portfolio__products-header    { grid-template-columns: 1fr; gap: 16px; }
-  .portfolio__products-title     { font-size: 44px; }
+  .portfolio__products-header { grid-template-columns: 1fr; gap: 16px; }
+  .portfolio__products-title { font-size: 44px; }
 
   .portfolio__product-card,
   .portfolio__product-card--reverse {
@@ -1326,10 +1107,7 @@
     gap: 40px;
   }
 
-  .portfolio__product-visual { aspect-ratio: 16 / 9; }
-
-  /* slider on tablet */
-  .wwd-slider__track { padding: 0 40px; }
+  .portfolio__product-visual { aspect-ratio: 16/9; }
 }
 
 @media (max-width: 768px) {
@@ -1346,12 +1124,11 @@
 
   .portfolio__products-header { padding-bottom: 36px; margin-bottom: 56px; }
 
-  .portfolio__product-contact-links { grid-template-columns: 1fr; }
-  .portfolio__product-headline      { font-size: 26px; }
+  .portfolio__product-content { }
 
-  /* slider on mobile */
-  .wwd-card         { flex: 0 0 160px; }
-  .wwd-slider__track { padding: 0 16px; gap: 14px; }
+  .portfolio__product-contact-links { grid-template-columns: 1fr; }
+
+  .portfolio__product-headline { font-size: 26px; }
 }
 
 @media (max-width: 540px) {
@@ -1367,12 +1144,8 @@
 
   .portfolio__why-title { font-size: 36px; }
 
-  .portfolio__products-list              { gap: 56px; }
+  .portfolio__products-list { gap: 56px; }
   .portfolio__products-list > article + article { padding-top: 56px; }
 
   .portfolio__product-feature-label { min-width: 100px; }
-
-  /* slider on small screens */
-  .wwd-card          { flex: 0 0 140px; }
-  .wwd-slider__track { padding: 0 12px; gap: 12px; }
 }

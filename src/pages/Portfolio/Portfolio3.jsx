@@ -1,7 +1,5 @@
 import "./Portfolio.css";
 import Footer from "../../components/Footer/Footer";
-import { useState, useEffect, useRef, useCallback } from "react";
-
 import PORTFOLIO1 from "../../assets/images/portfoliohero.webp";
 
 import TalentIcon from "../../assets/images/portfolio1.webp";
@@ -9,13 +7,8 @@ import HiringIcon from "../../assets/images/portfolio2.webp";
 import MarketIcon from "../../assets/images/portfolio4.webp";
 import TeamsIcon  from "../../assets/images/portfolio4.webp";
 
+import WhatWeDoImg  from "../../assets/images/portfoliomid.webp";
 import AdvantageImg from "../../assets/images/portfoliodown.webp";
-
-import WhatWeDo1 from "../../assets/images/whatwedo1.webp";
-import WhatWeDo2 from "../../assets/images/whatwedo2.webp";
-import WhatWeDo3 from "../../assets/images/whatwedo3.webp";
-import WhatWeDo4 from "../../assets/images/whatwedo4.webp";
-import WhatWeDo5 from "../../assets/images/whatwedo5.webp";
 
 import FeelzyLogo    from "../../assets/images/feezlylogo2.png";
 import JarviisLogo   from "../../assets/images/portfolio1.webp";
@@ -26,212 +19,60 @@ import JarviisImg   from "../../assets/images/portfolio1.webp";
 import SeekmitraImg from "../../assets/images/seekmitraimage.png";
 
 
-/* ── SLIDER DATA ── */
-const sliderCards = [
-  { img: WhatWeDo1, title: "AI Automation",    desc: "Automate repetitive work with AI"      },
-  { img: WhatWeDo2, title: "Expert Teams",     desc: "Pre-vetted experts, ready instantly"   },
-  { img: WhatWeDo3, title: "Smart Decisions",  desc: "Make faster, data-driven decisions"    },
-  { img: WhatWeDo4, title: "Scalable Systems", desc: "Built to scale with your business"     },
-  { img: WhatWeDo5, title: "Cost Efficiency",  desc: "Reduce cost & improve efficiency"      },
-];
-
-/* ── CARD SLIDER COMPONENT ── */
-function CardSlider() {
-  const [current, setCurrent] = useState(0);
-  const [phase, setPhase]     = useState("idle"); // "idle" | "exiting" | "entering"
-  const timerRef   = useRef(null);
-  const pausedRef  = useRef(false);
-  const total      = sliderCards.length;
-
-  const goTo = useCallback((nextIdx) => {
-    const next = ((nextIdx % total) + total) % total;
-    if (next === current) return;
-
-    setPhase("exiting");
-    setTimeout(() => {
-      setCurrent(next);
-      setPhase("entering");
-    }, 360);
-  }, [current, total]);
-
-  const resetTimer = useCallback(() => {
-    clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      if (!pausedRef.current) {
-        setCurrent(prev => {
-          const next = (prev + 1) % total;
-          setPhase("exiting");
-          setTimeout(() => {
-            setCurrent(next);
-            setPhase("entering");
-          }, 360);
-          return prev;
-        });
-      }
-    }, 4000);
-  }, [total]);
-
-  useEffect(() => {
-    resetTimer();
-    return () => clearInterval(timerRef.current);
-  }, [resetTimer]);
-
-  const handleNext = () => {
-    goTo(current + 1);
-    resetTimer();
-  };
-
-  const handleDot = (i) => {
-    goTo(i);
-    resetTimer();
-  };
-
-  const card = sliderCards[current];
-  const pad  = (n) => String(n).padStart(2, "0");
-
-  return (
-    <div
-      className="wwd-premium-slider"
-      onMouseEnter={() => { pausedRef.current = true; }}
-      onMouseLeave={() => { pausedRef.current = false; }}
-    >
-      {/* Stack depth cards */}
-      <div className="wwd-stack-card wwd-stack-card--back"  aria-hidden="true" />
-      <div className="wwd-stack-card wwd-stack-card--front" aria-hidden="true" />
-
-      {/* Main card stage */}
-      <div className="wwd-card-stage">
-        <div className={`wwd-main-card ${phase === "exiting" ? "wwd-main-card--exit" : ""} ${phase === "entering" ? "wwd-main-card--enter" : ""}`}>
-
-          {/* Left: content */}
-          <div className="wwd-main-card__content">
-            <div className="wwd-main-card__top">
-              <p className="wwd-main-card__index">
-                {pad(current + 1)} / {pad(total)}
-              </p>
-              <h3 className="wwd-main-card__title">{card.title}</h3>
-              <p  className="wwd-main-card__desc">{card.desc}</p>
-            </div>
-            <div className="wwd-main-card__bottom">
-              <span className="wwd-main-card__sep" />
-              <button
-                className="wwd-next-btn"
-                onClick={handleNext}
-                aria-label="Next"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="13 6 19 12 13 18" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Right: image */}
-          <div className="wwd-main-card__img-side">
-            <img
-              src={card.img}
-              alt={card.title}
-              className="wwd-main-card__img"
-            />
-            <div className="wwd-main-card__img-overlay" />
-          </div>
-
-        </div>
-      </div>
-
-      {/* Dot indicators */}
-      <div className="wwd-premium-dots">
-        {sliderCards.map((_, i) => (
-          <button
-            key={i}
-            className={`wwd-premium-dot${i === current ? " wwd-premium-dot--active" : ""}`}
-            onClick={() => handleDot(i)}
-            aria-label={`Go to card ${i + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-
-/* ── STATIC DATA ── */
 const whyItMatters = [
-  { label: "Talent shortages",                  icon: TalentIcon },
-  { label: "Rising hiring costs",               icon: HiringIcon },
-  { label: "Faster go-to-market pressure",      icon: MarketIcon },
-  { label: "Need for flexible, scalable teams", icon: TeamsIcon  },
+  { label: "Talent shortages",                   icon: TalentIcon },
+  { label: "Rising hiring costs",                icon: HiringIcon },
+  { label: "Faster go-to-market pressure",       icon: MarketIcon },
+  { label: "Need for flexible, scalable teams",  icon: TeamsIcon  },
 ];
 
 const advantages = [
   {
     title: "Elite Talent",
-    desc:  "Proven experts, not resumes",
-    svg: (
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-      </svg>
-    ),
+    desc: "Proven experts, not resumes",
+    svg: <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>,
   },
   {
     title: "Rapid Onboarding",
-    desc:  "Days, not months",
-    svg: (
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M12 7v5l3 3"/>
-      </svg>
-    ),
+    desc: "Days, not months",
+    svg: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>,
   },
   {
     title: "Flexible Scale",
-    desc:  "Scale up or down anytime",
-    svg: (
-      <svg viewBox="0 0 24 24">
-        <rect x="3"  y="14" width="4" height="7" rx="1"/>
-        <rect x="10" y="9"  width="4" height="12" rx="1"/>
-        <rect x="17" y="4"  width="4" height="17" rx="1"/>
-      </svg>
-    ),
+    desc: "Scale up or down anytime",
+    svg: <svg viewBox="0 0 24 24"><rect x="3" y="14" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/></svg>,
   },
   {
     title: "Full Ownership",
-    desc:  "You control delivery, we ensure continuity",
-    svg: (
-      <svg viewBox="0 0 24 24">
-        <path d="M12 2l7 4v6c0 5-3.5 9-7 10C8.5 21 5 17 5 12V6l7-4z"/>
-        <path d="M9 12l2 2 4-4"/>
-      </svg>
-    ),
+    desc: "You control delivery, we ensure continuity",
+    svg: <svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 9-7 10C8.5 21 5 17 5 12V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>,
   },
 ];
 
 const highlights = [
-  { emoji: "🏢", label: "Enterprise SaaS platforms"    },
-  { emoji: "🤖", label: "AI-powered automation tools"  },
-  { emoji: "🔗", label: "Fintech applications"         },
-  { emoji: "🛒", label: "E-commerce projects"          },
+  { emoji: "🏢", label: "Enterprise SaaS platforms" },
+  { emoji: "🤖", label: "AI-powered automation tools" },
+  { emoji: "🔗", label: "Fintech applications" },
+  { emoji: "🛒", label: "E-commerce projects" },
 ];
 
 /* ── PRODUCTS DATA ── */
 const products = [
   {
-    id:          "feelzy",
-    logo:        FeelzyLogo,
-    image:       FeelzyImg,
+    id: "feelzy",
+    logo: FeelzyLogo,
+    image: FeelzyImg,
     accentColor: "#b44fbe",
     accentLight: "#f9eeff",
-    tagline:     "Emotional Wellness Platform",
-    name:        "feelzy",
-    headline:    "Together we rise, together we heal",
+    tagline: "Emotional Wellness Platform",
+    name: "feelzy",
+    headline: "Together we rise, together we heal",
     description:
       "Feelzy is a digital platform that helps people handle emotions like stress, loneliness, and heartbreak — providing a safe, supportive space where users share their feelings and find community.",
     features: [
-      { label: "Anonymous Support",    desc: "Share feelings privately, without judgement"  },
-      { label: "Empathetic Listeners", desc: "Get support from caring, trained people"       },
-      { label: "Safe Space",           desc: "Secure and fully confidential environment"     },
+      { label: "Anonymous Support",    desc: "Share feelings privately, without judgement" },
+      { label: "Empathetic Listeners", desc: "Get support from caring, trained people" },
+      { label: "Safe Space",           desc: "Secure and fully confidential environment" },
     ],
     vision:
       "We use technology to bring people closer, support emotional well-being, and create meaningful human connections.",
@@ -243,41 +84,41 @@ const products = [
     },
   },
   {
-    id:          "jarviis",
-    logo:        JarviisLogo,
-    image:       JarviisImg,
+    id: "jarviis",
+    logo: JarviisLogo,
+    image: JarviisImg,
     accentColor: "#4a5af8",
     accentLight: "#eef0ff",
-    tagline:     "AI-Powered Testing Platform",
-    name:        "JARVIIS AI",
-    headline:    "The Future of Intelligent Testing",
+    tagline: "AI-Powered Testing Platform",
+    name: "JARVIIS AI",
+    headline: "The Future of Intelligent Testing",
     description:
       "JARVIIS AI is an AI-based platform that automates testing for websites and applications — helping teams test faster, reduce manual work, and ship with confidence.",
     features: [
-      { label: "App Testing",      desc: "Tests web, mobile, and APIs end-to-end"          },
-      { label: "Smart Detection",  desc: "Identifies errors and regressions automatically"  },
-      { label: "Test Automation",  desc: "Creates and manages test cases using AI"          },
-      { label: "Quality Insights", desc: "Actionable reports to improve performance"        },
+      { label: "App Testing",      desc: "Tests web, mobile, and APIs end-to-end" },
+      { label: "Smart Detection",  desc: "Identifies errors and regressions automatically" },
+      { label: "Test Automation",  desc: "Creates and manages test cases using AI" },
+      { label: "Quality Insights", desc: "Actionable reports to improve performance" },
     ],
     vision:
       "JARVIIS AI helps teams release software faster with better quality — reducing testing time, improving accuracy, and ensuring smooth, reliable deployments.",
     contact: null,
   },
   {
-    id:          "seekmitra",
-    logo:        SeekmitraLogo,
-    image:       SeekmitraImg,
+    id: "seekmitra",
+    logo: SeekmitraLogo,
+    image: SeekmitraImg,
     accentColor: "#1a1a2e",
     accentLight: "#f0f0f8",
-    tagline:     "Mobility & Storytelling Platform",
-    name:        "SeeKMiTra",
-    headline:    "Every Journey Tells a Story",
+    tagline: "Mobility & Storytelling Platform",
+    name: "SeeKMiTra",
+    headline: "Every Journey Tells a Story",
     description:
       "SeeKMiTra is a digital platform that captures real-life stories from everyday travel experiences — turning simple journeys into meaningful narratives by connecting people and their moments.",
     features: [
       { label: "Backseat Stories",     desc: "Capture real conversations and experiences during rides" },
-      { label: "Community Connection", desc: "Connect people, cities, and cultures"                    },
-      { label: "Real Experiences",     desc: "Share authentic, human-centered stories"                 },
+      { label: "Community Connection", desc: "Connect people, cities, and cultures" },
+      { label: "Real Experiences",     desc: "Share authentic, human-centered stories" },
     ],
     vision:
       "We believe travel is not just about reaching a destination, but about human connection. SeeKMiTra uses technology to capture and share these moments, creating a unique digital storytelling experience.",
@@ -312,8 +153,6 @@ const LIIcon = () => (
   </svg>
 );
 
-
-/* ── MAIN PAGE COMPONENT ── */
 function Portfolio() {
   return (
     <div className="portfolio__page">
@@ -342,8 +181,11 @@ function Portfolio() {
 
         <div className="portfolio__hero-img-wrap">
           <div className="portfolio__hero-img-frame">
-            
-          
+            <img src={PORTFOLIO1} alt="Portfolio Hero" />
+            <div className="portfolio__hero-stat">
+              <span className="portfolio__hero-stat-num">100+</span>
+              <span className="portfolio__hero-stat-label">Projects Delivered</span>
+            </div>
           </div>
         </div>
       </section>
@@ -362,9 +204,9 @@ function Portfolio() {
               the hiring overhead.
             </p>
           </div>
-
-          {/* ── ANIMATED CARD SLIDER replaces static image ── */}
-          <CardSlider />
+          <div className="portfolio__whatwedo-img">
+            <img src={WhatWeDoImg} alt="What We Do" />
+          </div>
         </div>
       </section>
 
@@ -522,13 +364,13 @@ function Portfolio() {
                         <a href={`mailto:${product.contact.email}`} className="portfolio__product-social">
                           <EmailIcon /> {product.contact.email}
                         </a>
-                        <a href={product.contact.facebook}  target="_blank" rel="noreferrer" className="portfolio__product-social">
+                        <a href={product.contact.facebook} target="_blank" rel="noreferrer" className="portfolio__product-social">
                           <FBIcon /> Facebook
                         </a>
                         <a href={product.contact.instagram} target="_blank" rel="noreferrer" className="portfolio__product-social">
                           <IGIcon /> Instagram
                         </a>
-                        <a href={product.contact.linkedin}  target="_blank" rel="noreferrer" className="portfolio__product-social">
+                        <a href={product.contact.linkedin} target="_blank" rel="noreferrer" className="portfolio__product-social">
                           <LIIcon /> LinkedIn
                         </a>
                       </div>
