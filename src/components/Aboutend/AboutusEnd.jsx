@@ -22,7 +22,7 @@ import qatar      from "../../assets/organisation/Qatar_University_logo.svg";
 import stanford   from "../../assets/organisation/Stanford-University-Logo.png";
 import oxford     from "../../assets/organisation/university-of-oxford-logo.png";
 import JPR         from "../../assets/organisation/JPR.png";
-import AWS         from "../../assets/organisation/aws.png";
+import AWS         from "../../assets/organisation/AWS.png";
 
 const LOGOS = [
   { src: ibm,        alt: "IBM" },
