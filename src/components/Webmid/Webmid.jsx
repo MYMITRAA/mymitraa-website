@@ -1,6 +1,6 @@
 import "./Webmid.css";
-import customImg from "../../assets/images/webface.svg.svg";
-import webAppImg from "../../assets/images/weblapimg.svg.svg";
+import customImg from "../../assets/images/webface.svg.jpg";
+import webAppImg from "../../assets/images/weblapimg.svg.jpg";
 
 const services = [
   "Custom web application development",

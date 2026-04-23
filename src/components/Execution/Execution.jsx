@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Execution.css";
-import lensImage from "../../assets/images/lens.svg";
+import lensImage from "../../assets/images/lens.webp";
 
 function Execution() {
 

@@ -1,4 +1,4 @@
-import resourceImg from "../../assets/images/resource.svg";
+import resourceImg from "../../assets/images/resource.jpg";
 import "./ResourcesContent.css";
 import { useNavigate } from "react-router-dom";
 

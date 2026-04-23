@@ -1,20 +1,15 @@
 import "./Discover.css";
-import birdimage from "../../assets/images/birdimage.svg";
-import brainImage from "../../assets/images/brain.svg";
-import robotHand from "../../assets/images/handimage.svg";
-import robot from "../../assets/images/robot.svg";
+import birdimage from "../../assets/images/birdimage.jpg";
+import brainImage from "../../assets/images/brain.jpg";
+import robotHand from "../../assets/images/handimage.jpg";
+import robot from "../../assets/images/robot.jpg";
 import problem1 from "../../assets/images/problem1.svg";
 import problem2 from "../../assets/images/problem2.svg";
-import birdinicon from "../../assets/images/birdinicon.svg";
 
 function Discover() {
   return (
     <section className="discover">
-      {/* <img
-        src={birdinicon}
-        alt="Floating Bird"
-        className="discover-floating-bird"
-      /> */}
+    
 
       <div className="discover-content">
         <h2 className="discover-title">

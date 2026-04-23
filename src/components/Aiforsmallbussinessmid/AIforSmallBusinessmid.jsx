@@ -1,6 +1,6 @@
 import "./AIforSmallBusinessmid.css";
-import customImg from "../../assets/images/facelapimg.svg";
-import webAppImg from "../../assets/images/laptopimg.svg";
+import customImg from "../../assets/images/facelapimg.jpg";
+import webAppImg from "../../assets/images/laptopimg.webp";
 
 const solutions = [
   "AI-driven CRM automation",

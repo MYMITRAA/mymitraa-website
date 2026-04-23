@@ -1,5 +1,5 @@
 import "./EnterpriseAgileDevelopmenthero.css";
-import genaiBg from "../../assets/images/genaiheroimg.svg";
+import genaiBg from "../../assets/images/genaiheroimg.jpg";
 
 function EnterpriseAgileDevelopmenthero() {
   return (

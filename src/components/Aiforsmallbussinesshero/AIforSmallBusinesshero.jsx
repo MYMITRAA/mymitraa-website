@@ -1,5 +1,5 @@
 import "./AIforSmallBusinesshero.css";
-import smallBizBg from "../../assets/images/genaiheroimg.svg";
+import smallBizBg from "../../assets/images/genaiheroimg.jpg";
 
 function AIforSmallBusinesshero() {
   return (

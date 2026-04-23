@@ -2,7 +2,7 @@ import "./Service.css";
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import robotImage from "../../assets/images/roboman.svg";
+import robotImage from "../../assets/images/roboman.jpg";
 import serviceBg from "../../assets/images/servicebg.svg";
 
 import icon1 from "../../assets/images/icon1.svg";

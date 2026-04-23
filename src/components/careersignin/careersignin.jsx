@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Careersignin.css";
-import bird  from "../../assets/images/birdimage.svg";
+import bird  from "../../assets/images/birdimage.jpg";
 import logo  from "../../assets/logo/icon-blue.svg";
 import mitra from "../../assets/logo/mitraa.svg";
 import { API } from "../../config/api";

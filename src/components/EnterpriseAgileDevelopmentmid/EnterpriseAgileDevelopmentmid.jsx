@@ -1,6 +1,6 @@
 import "./EnterpriseAgileDevelopmentmid.css";
 import customImg from "../../assets/images/agile1.webp";
-import webAppImg from "../../assets/images/laptopimg.svg";
+import webAppImg from "../../assets/images/laptopimg.webp";
 
 const offerings = [
   "Agile transformation consulting",

@@ -1,4 +1,4 @@
-import brain from "../../assets/images/megamenubrain.svg";
+import brain from "../../assets/images/megamenubrain.jpg";
 import "./ServicesContent.css";
 import { useNavigate } from "react-router-dom";
 

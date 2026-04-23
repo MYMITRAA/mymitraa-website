@@ -5,7 +5,7 @@ import { API } from "../../config/api";
 
 import img1 from "../../assets/images/career1.svg";
 import img2 from "../../assets/images/career2.svg";
-import img3 from "../../assets/images/career3.svg";
+import img3 from "../../assets/images/career3.jpg";
 
 function Careermid() {
   const navigate = useNavigate();

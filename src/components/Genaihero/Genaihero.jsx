@@ -1,5 +1,5 @@
 import "./Genaihero.css";
-import genaiBg from "../../assets/images/genaiheroimg.svg";
+import genaiBg from "../../assets/images/genaiheroimg.jpg";
 
 function Genaihero() {
   return (

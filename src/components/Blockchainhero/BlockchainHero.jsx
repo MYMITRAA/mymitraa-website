@@ -1,5 +1,5 @@
 import "./BlockchainHero.css";
-import blockchainBg from "../../assets/images/genaiheroimg.svg";
+import blockchainBg from "../../assets/images/genaiheroimg.jpg";
 
 function BlockchainHero() {
   return (

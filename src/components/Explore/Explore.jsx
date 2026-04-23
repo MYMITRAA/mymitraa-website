@@ -1,5 +1,5 @@
 import "./Explore.css";
-import treeBg from "../../assets/images/treebg.svg";
+import treeBg from "../../assets/images/treebg.jpg";
 import { useNavigate } from "react-router-dom";
 
 function Explore() {

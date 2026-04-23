@@ -1,8 +1,8 @@
 import "./Careerend.css";
 import { useNavigate } from "react-router-dom";
-import internImg from "../../assets/images/imgintern.svg";
-import earlyImg from "../../assets/images/imgmid.svg";
-import expImg from "../../assets/images/imgend.svg";
+import internImg from "../../assets/images/imgintern.webp";
+import earlyImg from "../../assets/images/imgmid.webp";
+import expImg from "../../assets/images/imgend.webp";
 
 function CareerEnd() {
   const navigate = useNavigate();
