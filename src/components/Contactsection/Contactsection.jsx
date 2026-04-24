@@ -396,7 +396,7 @@ const COUNTRY_CODES = [
 //    Set "To Email" in template to: info@mitratechgroup.com
 // 4. Go to Account → API Keys → copy your Public Key
 // 5. Replace the three values below:
-const EMAILJS_SERVICE_ID  = "service_m07do7r";
+const EMAILJS_SERVICE_ID  = "service_x1mv9lp";
 const EMAILJS_TEMPLATE_ID = "template_6jsgzmg";
 const EMAILJS_PUBLIC_KEY  = "CriDeVu3IjSdV9aBW";
 
