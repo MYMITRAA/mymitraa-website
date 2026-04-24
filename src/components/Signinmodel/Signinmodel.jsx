@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Signinmodel.css";
 import Bussinesssignin from "../Bussinesssignin/Bussinesssignin";
-import Careersignin from "../careersignin/Careersignin";
+import Careersignin from "../Careersignin/Careersignin";
 
 function Signinmodel({ onClose, onSuccess = null }) {
   const [activeTab, setActiveTab] = useState("careers");
