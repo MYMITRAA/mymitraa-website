@@ -1,0 +1,321 @@
+/* ============================================================
+   OurAdvantage.css
+   Scrollytelling: sticky bg headline + floating zigzag cards
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --adv-indigo:        #5a6af8;
+  --adv-indigo-soft:   rgba(90, 106, 248, 0.08);
+  --adv-indigo-mid:    rgba(90, 106, 248, 0.16);
+  --adv-ink:           #0d0f1a;
+  --adv-ink-light:     #6b7280;
+  --adv-glass:         rgba(255, 255, 255, 0.78);
+  --adv-glass-border:  rgba(255, 255, 255, 0.60);
+}
+
+/* ── OUTER SECTION ──────────────────────────────────────── */
+/*
+  Very tall so there's plenty of scroll room.
+  Each card needs its own ~100vh of scroll distance.
+  We use 600vh total:  100vh initial view + 4 × 100vh per card + 100vh tail
+*/
+.adv {
+  position: relative;
+  min-height: 600vh;
+  background: #f4f5ff;
+  overflow: hidden; /* clip cards that haven't entered yet */
+}
+
+/* Subtle dot grid atmosphere */
+.adv::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(90,106,248,0.045) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── LAYER 1: STICKY BACKGROUND TEXT ───────────────────── */
+/*
+  position:sticky + top:0 + height:100vh = locked to viewport.
+  z-index:1 → behind the cards layer (z:2).
+  pointer-events:none → doesn't block card interaction.
+*/
+.adv__sticky-bg {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+  text-align: center;
+  padding: 0 40px;
+
+  /*
+    KEY FIX: negative margin pulls the cards viewport UP so it
+    overlaps the sticky bg exactly — both sticky elements share
+    the same viewport real-estate.
+  */
+  margin-bottom: -100vh;
+}
+
+.adv__bg-line1 {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(52px, 8vw, 118px);
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -3px;
+  line-height: 0.90;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.adv__bg-line2 {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(52px, 8vw, 118px);
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -3px;
+  line-height: 0.90;
+  margin: 0 0 0 0;
+  white-space: nowrap;
+}
+
+.adv__bg-line2 em {
+  font-style: italic;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.06em;
+  color: var(--adv-indigo);
+}
+
+.adv__bg-sub {
+  margin-top: 20px;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 500;
+  color: var(--adv-ink);
+  opacity: 0.38;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+/* ── LAYER 2: CARDS VIEWPORT ────────────────────────────── */
+/*
+  Also sticky + 100vh so it shares the exact same locked window
+  as the background text. z-index:2 floats cards over the text.
+  Cards are absolutely positioned WITHIN this sticky container.
+*/
+.adv__cards-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none; /* let clicks pass through empty areas */
+  overflow: visible;
+}
+
+/* ── CARD WRAPPER ────────────────────────────────────────── */
+/*
+  Each card wrapper is absolutely placed in the viewport.
+  Left cards sit in the left third, right cards in the right third.
+  Cards are vertically centred then offset slightly so they
+  don't all stack in exactly the same spot.
+*/
+.adv__card-wrap {
+  position: absolute;
+  pointer-events: all;
+}
+
+/* Vertical offsets — stagger cards so they feel scattered */
+.adv__card-wrap:nth-child(1) { top: 20%; }
+.adv__card-wrap:nth-child(2) { top: 25%; }
+.adv__card-wrap:nth-child(3) { top: 30%; }
+.adv__card-wrap:nth-child(4) { top: 22%; }
+
+/* Horizontal placement — zigzag L/R */
+.adv__card-wrap--left  { left:  7vw; }
+.adv__card-wrap--right { right: 7vw; }
+
+/* ── GLASS CARD ──────────────────────────────────────────── */
+.adv__card {
+  width: clamp(270px, 28vw, 340px);
+  background: var(--adv-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--adv-glass-border);
+  border-radius: 24px;
+  padding: 24px 22px 20px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.80) inset,
+    0 24px 64px rgba(90,106,248,0.14),
+    0 4px 20px  rgba(90,106,248,0.08);
+  will-change: transform, opacity;
+}
+
+.adv__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.adv__card-num {
+  font-family: "SF Mono", "Fira Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(90,106,248,0.30);
+}
+
+.adv__card-tag {
+  font-family: "Outfit", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(90,106,248,0.65);
+  background: var(--adv-indigo-soft);
+  border: 1px solid var(--adv-indigo-mid);
+  border-radius: 100px;
+  padding: 3px 12px;
+}
+
+.adv__card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--adv-indigo-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.adv__card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.adv__card-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--adv-ink);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.adv__card-desc {
+  font-family: "Outfit", sans-serif;
+  font-size: 12.5px;
+  color: var(--adv-ink-light);
+  line-height: 1.68;
+  margin: 0 0 18px 0;
+}
+
+.adv__card-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  border-top: 1px solid rgba(90,106,248,0.08);
+  padding-top: 14px;
+}
+
+.adv__card-metric {
+  font-family: "Outfit", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--adv-indigo);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.adv__card-metric-lbl {
+  font-family: "Outfit", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--adv-ink-light);
+}
+
+/* ── ARROW CONNECTORS ────────────────────────────────────── */
+/*
+  Arrows are absolutely placed inside the cards-viewport.
+  They sit between the two cards they connect, roughly
+  in the vertical centre of the viewport.
+  JS animates opacity + translateY via Framer Motion.
+*/
+.adv__arrow-wrap {
+  position: absolute;
+  top: 48%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* Arrow connecting a LEFT card to the next RIGHT card:
+   sits in the centre-left area */
+.adv__arrow-wrap--left {
+  left: calc(7vw + clamp(270px, 28vw, 340px) + 16px);
+}
+
+/* Arrow connecting a RIGHT card to the next LEFT card:
+   sits in the centre-right area, image is flipped via scaleX(-1) in JS */
+.adv__arrow-wrap--right {
+  right: calc(7vw + clamp(270px, 28vw, 340px) + 16px);
+}
+
+.adv__arrow-img {
+  width: clamp(56px, 6vw, 90px);
+  opacity: 0.55;
+  display: block;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: clamp(40px, 9vw, 80px);
+    letter-spacing: -2px;
+  }
+
+  .adv__card-wrap--left  { left:  4vw; }
+  .adv__card-wrap--right { right: 4vw; }
+}
+
+@media (max-width: 720px) {
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Stack all cards centre on mobile */
+  .adv__card-wrap--left,
+  .adv__card-wrap--right {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) !important;
+  }
+
+  .adv__card-wrap:nth-child(1),
+  .adv__card-wrap:nth-child(2),
+  .adv__card-wrap:nth-child(3),
+  .adv__card-wrap:nth-child(4) {
+    top: 20%;
+  }
+
+  .adv__card { width: min(320px, 88vw); }
+  .adv__arrow-wrap { display: none; }
+}

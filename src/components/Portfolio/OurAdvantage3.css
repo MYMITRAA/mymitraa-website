@@ -1,0 +1,372 @@
+/* ============================================================
+   OurAdvantage.css  —  Cinematic Crink-style scroll storytelling
+   Matches screenshot: giant bg type + glassmorphism floating cards
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&display=swap');
+
+/* ── DESIGN TOKENS ──────────────────────────────────────── */
+:root {
+  --adv-ink:          #0a0b0f;
+  --adv-ink-light:    #5a6070;
+  --adv-accent:       #1a1a2e;
+  --adv-glass:        rgba(255, 255, 255, 0.65);
+  --adv-glass-border: rgba(255, 255, 255, 0.42);
+  --adv-shadow-md:    0 20px 60px rgba(0, 0, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.04);
+  --adv-shadow-lg:    0 32px 80px rgba(0, 0, 0, 0.14), 0 8px 32px rgba(0, 0, 0, 0.07);
+}
+
+/* ── OUTER SECTION ──────────────────────────────────────── */
+/*
+  500vh:  4 cards × 100vh each + 100vh entry buffer
+  No overflow:hidden here — cards need to be visible
+  outside the section bounds during rotation entry.
+  Background is clean white; the "texture" comes from
+  the giant fixed typography sitting behind everything.
+*/
+.adv {
+  position: relative;
+  height: 500vh;
+  background: #f8f8f6;
+}
+
+/* Subtle grain overlay for premium texture */
+.adv::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── LAYER 1: FIXED BACKGROUND TYPOGRAPHY ───────────────── */
+/*
+  position:fixed = locked to viewport for the entire scroll.
+  Giant letterforms bleed off screen edges — exactly like
+  the Crink / screenshot reference.
+  z-index: 1 → behind cards (z: 3) and arrows (z: 2).
+*/
+.adv__sticky-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.adv__bg-inner {
+  text-align: center;
+  padding: 0 5vw;
+  line-height: 0.85;
+}
+
+/* Small label above the giant type — "Our Advantage" */
+.adv__bg-eyebrow {
+  display: block;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--adv-ink);
+  opacity: 0.30;
+  margin: 0 0 clamp(24px, 4vh, 48px) 0;
+}
+
+/* "Why teams" — first giant line */
+.adv__bg-line1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(72px, 13vw, 190px);
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* "choose us" — second giant line with italic serif "us" */
+.adv__bg-line2 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(72px, 13vw, 190px);
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.adv__bg-line2 em {
+  font-style: italic;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.04em;
+  font-weight: 700;
+  /* Slightly lighter so it feels organic, not just bold */
+  color: #1a1a2e;
+  opacity: 0.88;
+}
+
+/* Subtitle beneath the giant type */
+.adv__bg-sub {
+  display: block;
+  margin-top: clamp(16px, 3vh, 32px);
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 400;
+  color: var(--adv-ink);
+  opacity: 0.25;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+/* ── LAYER 2: STICKY CARDS VIEWPORT ─────────────────────── */
+/*
+  position:sticky + top:0 + height:100vh gives us a locked
+  100vh window while the outer section scrolls underneath.
+  z-index: 3 → floats above the fixed bg text.
+  overflow:visible allows rotated cards to peek out of bounds.
+*/
+.adv__cards-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ── CARD WRAPPERS ───────────────────────────────────────── */
+/*
+  All wrappers share: absolute, vertically centred.
+  Framer Motion's y/rotate handles the rest.
+  No nth-child top overrides — all cards share the same
+  vertical centre line; y transforms differentiate them.
+*/
+.adv__card-wrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: all;
+  /* transform-origin matters for the rotation swing feel */
+  transform-origin: top center;
+}
+
+/* Zigzag: left cards on the left third, right on right third */
+.adv__card-wrap--left  { left: 10%; }
+.adv__card-wrap--right { right: 10%; }
+
+/* ── GLASSMORPHISM CARD ──────────────────────────────────── */
+/*
+  Exact spec from brief:
+  - rgba(255,255,255,0.65) background
+  - blur(20px) backdrop filter
+  - Subtle white border
+  - Layered shadow system
+*/
+.adv__card {
+  width: clamp(280px, 26vw, 340px);
+  padding: 26px 24px 22px;
+  border-radius: 24px;
+
+  background: var(--adv-glass);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+
+  border: 1px solid var(--adv-glass-border);
+
+  box-shadow: var(--adv-shadow-md);
+
+  will-change: transform, opacity;
+  cursor: default;
+
+  /* Inset white highlight for depth */
+  outline: 1px solid rgba(255, 255, 255, 0.75);
+  outline-offset: -1px;
+}
+
+/* ── CARD ANATOMY ────────────────────────────────────────── */
+
+.adv__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.adv__card-num {
+  font-family: "SF Mono", "Fira Mono", "Consolas", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(10, 11, 15, 0.22);
+}
+
+.adv__card-tag {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 11, 15, 0.48);
+  background: rgba(10, 11, 15, 0.055);
+  border: 1px solid rgba(10, 11, 15, 0.10);
+  border-radius: 100px;
+  padding: 4px 12px;
+}
+
+.adv__card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(10, 11, 15, 0.05);
+  border: 1px solid rgba(10, 11, 15, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--adv-ink);
+}
+
+.adv__card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.adv__card-title {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--adv-ink);
+  margin: 0 0 9px 0;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.adv__card-desc {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--adv-ink-light);
+  line-height: 1.70;
+  margin: 0 0 20px 0;
+}
+
+.adv__card-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border-top: 1px solid rgba(10, 11, 15, 0.07);
+  padding-top: 16px;
+}
+
+.adv__card-metric {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.adv__card-metric-lbl {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--adv-ink-light);
+  letter-spacing: 0.01em;
+}
+
+/* ── ARROW CONNECTORS ────────────────────────────────────── */
+/*
+  Positioned at viewport mid-height, horizontally just outside
+  the card edge. Framer Motion drives opacity + y + rotate.
+  scaleX flips the PNG in JS.
+*/
+.adv__arrow-wrap {
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  z-index: 2;
+}
+
+/* After a LEFT card → arrow sits just to its right, centre-ish */
+.adv__arrow-wrap--left {
+  left: calc(10% + clamp(280px, 26vw, 340px) + 20px);
+}
+
+/* After a RIGHT card → arrow sits just to its left, flipped via scaleX */
+.adv__arrow-wrap--right {
+  right: calc(10% + clamp(280px, 26vw, 340px) + 20px);
+}
+
+.adv__arrow-img {
+  width: clamp(52px, 5.5vw, 84px);
+  display: block;
+  /* PNG is dark by default; mix-blend gives natural integration */
+  mix-blend-mode: multiply;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: clamp(56px, 11vw, 120px);
+  }
+
+  .adv__card-wrap--left  { left: 5%; }
+  .adv__card-wrap--right { right: 5%; }
+}
+
+@media (max-width: 768px) {
+  .adv {
+    height: 500vh; /* keep same — each card still needs 100vh room */
+  }
+
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: clamp(44px, 12vw, 72px);
+    letter-spacing: -0.03em;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Stack all cards centred on mobile */
+  .adv__card-wrap--left,
+  .adv__card-wrap--right {
+    left: 50% !important;
+    right: auto !important;
+    /* Override Framer Motion inline transform carefully:
+       translateY(-50%) from wrapper + Framer's translateX centred */
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .adv__card {
+    width: min(310px, 86vw);
+  }
+
+  /* Arrows hidden on mobile — too narrow */
+  .adv__arrow-wrap {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: 36px;
+  }
+}

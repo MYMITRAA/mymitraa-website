@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Hero from "../../components/Hero/Hero";
 import Discover from "../../components/Discover/Discover";
 import Execution from "../../components/Execution/Execution";
@@ -6,31 +5,18 @@ import Service from "../../components/Service/Service";
 import Explore from "../../components/Explore/Explore";
 import ContactSection from "../../components/Contactsection/Contactsection";
 import Footer from "../../components/Footer/Footer";
-import ChatWidget from "../../components/ChatWidget/ChatWidget";
 import birdinicon from "../../assets/images/birdinicon.svg";
 import "./Home.css";
 
 function Home() {
-  const [chatOpen, setChatOpen] = useState(false);
-
-  const toggleChat = () => setChatOpen((prev) => !prev);
-
   return (
     <>
-      {/* Floating Bird — click to toggle chat */}
+      {/* Sticky floating bird — fixed to viewport, always visible on desktop */}
       <img
         src={birdinicon}
-        alt="Chat with Mitra AI"
-        className={`home-floating-bird ${chatOpen ? "home-floating-bird--active" : ""}`}
-        onClick={toggleChat}
-        title={chatOpen ? "Close chat" : "Chat with Mitra AI"}
+        alt="Floating Bird"
+        className="home-floating-bird"
       />
-
-      {/* Chat pulse ring — visible when chat is closed */}
-      {!chatOpen && <span className="home-bird-pulse" onClick={toggleChat} />}
-
-      {/* Floating Chat Panel */}
-      <ChatWidget isOpen={chatOpen} onToggle={toggleChat} />
 
       <Hero />
       <Discover />

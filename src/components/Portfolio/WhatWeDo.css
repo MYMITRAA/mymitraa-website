@@ -1,0 +1,152 @@
+/* ============================================================
+   What We Do Section — Redesigned
+   ============================================================ */
+
+.pf-wwd {
+  padding: 120px 0;
+  background: linear-gradient(160deg, #0d0f1a 0%, #11152b 60%, #0d1020 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* background glow blobs */
+.pf-wwd::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,106,248,0.10) 0%, transparent 65%);
+  top: -200px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.pf-wwd::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,106,248,0.07) 0%, transparent 65%);
+  bottom: -100px;
+  left: 5%;
+  pointer-events: none;
+}
+
+.pf-wwd__container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Left text block ── */
+.pf-wwd__text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pf-wwd__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(90, 106, 248, 0.85);
+}
+
+.pf-wwd__eyebrow::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: rgba(90, 106, 248, 0.85);
+  flex-shrink: 0;
+}
+
+.pf-wwd__title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 54px;
+  font-weight: 700;
+  color: #f0f2ff;
+  line-height: 1.02;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.pf-wwd__title em {
+  font-style: italic;
+  color: rgba(130, 143, 255, 0.95);
+}
+
+.pf-wwd__desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(200, 205, 240, 0.65);
+  line-height: 1.85;
+  margin: 0;
+  max-width: 380px;
+}
+
+/* stat pills */
+.pf-wwd__stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.pf-wwd__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(90, 106, 248, 0.10);
+  border: 1px solid rgba(90, 106, 248, 0.18);
+  border-radius: 14px;
+  padding: 12px 20px;
+}
+
+.pf-wwd__stat-num {
+  font-family: "Outfit", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #c8cdff;
+  line-height: 1;
+}
+
+.pf-wwd__stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(180, 190, 255, 0.50);
+  letter-spacing: 0.08em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .pf-wwd__container {
+    grid-template-columns: 1fr;
+    padding: 0 40px;
+    gap: 48px;
+  }
+
+  .pf-wwd__desc { max-width: 100%; }
+  .pf-wwd__title { font-size: 44px; }
+}
+
+@media (max-width: 768px) {
+  .pf-wwd__container { padding: 0 24px; }
+  .pf-wwd { padding: 80px 0; }
+}
+
+@media (max-width: 540px) {
+  .pf-wwd__title { font-size: 36px; }
+}

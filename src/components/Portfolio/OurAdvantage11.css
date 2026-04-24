@@ -1,0 +1,303 @@
+/* ============================================================
+   OurAdvantage.css  —  Crink-style scroll storytelling
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --adv-indigo:        #5a6af8;
+  --adv-indigo-soft:   rgba(90, 106, 248, 0.08);
+  --adv-indigo-mid:    rgba(90, 106, 248, 0.16);
+  --adv-ink:           #0d0f1a;
+  --adv-ink-light:     #6b7280;
+  --adv-glass:         rgba(255, 255, 255, 0.78);
+  --adv-glass-border:  rgba(255, 255, 255, 0.60);
+}
+
+/* ── OUTER SECTION ──────────────────────────────────────── */
+/*
+  4 cards × 100vh each = 400vh total.
+  No extra padding → zero blank scroll gaps.
+*/
+.adv {
+  position: relative;
+  height: 400vh;
+  background: #f4f5ff;
+  overflow: hidden;
+}
+
+/* Subtle dot-grid atmosphere */
+.adv::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(90,106,248,0.045) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── LAYER 1: STICKY BACKGROUND TEXT ───────────────────── */
+/*
+  Stays locked in the centre of the viewport for the entire
+  400vh scroll. z-index:1 → sits behind cards (z:2).
+  margin-bottom: -100vh pulls the cards-viewport up so both
+  sticky layers share the same 100vh window.
+*/
+.adv__sticky-bg {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+  text-align: center;
+  padding: 0 40px;
+  margin-bottom: -100vh; /* KEY: overlaps cards-viewport into same window */
+}
+
+.adv__bg-line1 {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(52px, 8vw, 118px);
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -3px;
+  line-height: 0.90;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.adv__bg-line2 {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(52px, 8vw, 118px);
+  font-weight: 800;
+  color: var(--adv-ink);
+  letter-spacing: -3px;
+  line-height: 0.90;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.adv__bg-line2 em {
+  font-style: italic;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.06em;
+  color: var(--adv-indigo);
+}
+
+.adv__bg-sub {
+  margin-top: 20px;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 500;
+  color: var(--adv-ink);
+  opacity: 0.38;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+/* ── LAYER 2: CARDS VIEWPORT ────────────────────────────── */
+/*
+  Also sticky + 100vh → occupies the same locked window as the
+  background text. z-index:2 floats cards over the text.
+  overflow:visible so cards can drift slightly outside bounds.
+*/
+.adv__cards-viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ── CARD WRAPPER ────────────────────────────────────────── */
+/*
+  Absolutely placed in viewport.
+  Vertically centred via top:50% + transform.
+  No nth-child top overrides — all cards share the same
+  vertical baseline; Framer Motion's y handles the rest.
+*/
+.adv__card-wrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: all;
+}
+
+/* Zigzag horizontal placement */
+.adv__card-wrap--left  { left:  12%; }
+.adv__card-wrap--right { right: 12%; }
+
+/* ── GLASS CARD ──────────────────────────────────────────── */
+.adv__card {
+  width: clamp(270px, 28vw, 340px);
+  background: var(--adv-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--adv-glass-border);
+  border-radius: 24px;
+  padding: 24px 22px 20px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.80) inset,
+    0 24px 64px rgba(90,106,248,0.14),
+    0 4px 20px  rgba(90,106,248,0.08);
+  will-change: transform, opacity;
+}
+
+.adv__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.adv__card-num {
+  font-family: "SF Mono", "Fira Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(90,106,248,0.30);
+}
+
+.adv__card-tag {
+  font-family: "Outfit", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(90,106,248,0.65);
+  background: var(--adv-indigo-soft);
+  border: 1px solid var(--adv-indigo-mid);
+  border-radius: 100px;
+  padding: 3px 12px;
+}
+
+.adv__card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--adv-indigo-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.adv__card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.adv__card-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--adv-ink);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.adv__card-desc {
+  font-family: "Outfit", sans-serif;
+  font-size: 12.5px;
+  color: var(--adv-ink-light);
+  line-height: 1.68;
+  margin: 0 0 18px 0;
+}
+
+.adv__card-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  border-top: 1px solid rgba(90,106,248,0.08);
+  padding-top: 14px;
+}
+
+.adv__card-metric {
+  font-family: "Outfit", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--adv-indigo);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.adv__card-metric-lbl {
+  font-family: "Outfit", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--adv-ink-light);
+}
+
+/* ── ARROW CONNECTORS ────────────────────────────────────── */
+/*
+  Positioned at the vertical mid-point of the viewport,
+  horizontally between a card edge and the viewport centre.
+  JS drives opacity + translateY; scaleX flips direction.
+*/
+.adv__arrow-wrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* Arrow after a LEFT card → points right toward centre */
+.adv__arrow-wrap--left {
+  left: calc(12% + clamp(270px, 28vw, 340px) + 16px);
+}
+
+/* Arrow after a RIGHT card → flipped to point left toward centre */
+.adv__arrow-wrap--right {
+  right: calc(12% + clamp(270px, 28vw, 340px) + 16px);
+}
+
+.adv__arrow-img {
+  width: clamp(56px, 6vw, 90px);
+  opacity: 0.55;
+  display: block;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: clamp(40px, 9vw, 80px);
+    letter-spacing: -2px;
+  }
+
+  .adv__card-wrap--left  { left:  6%; }
+  .adv__card-wrap--right { right: 6%; }
+}
+
+@media (max-width: 720px) {
+  .adv__bg-line1,
+  .adv__bg-line2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Stack all cards centred on mobile */
+  .adv__card-wrap--left,
+  .adv__card-wrap--right {
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .adv__card { width: min(320px, 88vw); }
+
+  /* Hide arrows on mobile — not enough horizontal space */
+  .adv__arrow-wrap { display: none; }
+}

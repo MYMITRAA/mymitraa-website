@@ -1,0 +1,500 @@
+/* ================================================================
+   MAHIBOT CHAT WIDGET  ·  Cosmic Glassmorphism
+   Positioned directly below the bird (top:80px / right:48px)
+   Panel height auto-grows with message content, caps at 80vh
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700&display=swap');
+
+/* ── Design tokens ─────────────────────────────────────────────── */
+:root {
+  --cw-cosmos:        #05060f;
+  --cw-nebula-a:      #160832;
+  --cw-nebula-b:      #081228;
+  --cw-ion:           #7c5cfc;
+  --cw-ion-light:     #a084fd;
+  --cw-photon:        #38bdf8;
+  --cw-green:         #22c55e;
+  --cw-error-bg:      rgba(244,63,94,0.12);
+  --cw-error-border:  rgba(244,63,94,0.28);
+
+  --cw-glass-bg:      rgba(7, 5, 22, 0.82);
+  --cw-border-ion:    rgba(124, 92, 252, 0.30);
+  --cw-border-photon: rgba(56, 189, 248, 0.10);
+  --cw-surface:       rgba(255,255,255,0.035);
+  --cw-surface-hov:   rgba(124,92,252,0.14);
+  --cw-divider:       rgba(255,255,255,0.05);
+  --cw-text:          #edeaff;
+  --cw-text-muted:    rgba(200,190,255,0.45);
+
+  --cw-r-panel:  20px;
+  --cw-r-bubble: 17px;
+  --cw-font:     'Outfit', sans-serif;
+  --cw-mono:     'Space Mono', monospace;
+
+  --cw-shadow:
+    0 0 0 1px rgba(255,255,255,0.035) inset,
+    0 28px 90px rgba(0,0,0,0.72),
+    0 0 70px  rgba(124,92,252,0.13),
+    0 0 140px rgba(56,189,248,0.05);
+}
+
+/* ================================================================
+   PANEL
+   — anchored to the bird's position: top:80px right:48px
+   — the bird is 72px tall, so panel top = 80+72+10 = 162px
+   — right edge aligns with bird right edge (right:48px)
+   ================================================================ */
+
+.cw-panel {
+  position: fixed;
+
+  /*
+   * Bird sits at:  top: 80px, right: 48px, width: 72px
+   * Panel top  = bird_top + bird_height + gap = 80 + 72 + 10 = 162px
+   * Panel right = bird_right = 48px  (right-edge aligned)
+   */
+  top:   162px;
+  right:  48px;
+
+  z-index: 998;
+  width: 360px;
+
+  /* Height: starts at 0, grows with content, caps at 80vh */
+  max-height: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  font-family: var(--cw-font);
+
+  /* Glassmorphism */
+  background:
+    linear-gradient(var(--cw-glass-bg), var(--cw-glass-bg)) padding-box,
+    linear-gradient(
+      155deg,
+      var(--cw-border-ion),
+      var(--cw-border-photon) 45%,
+      rgba(124,92,252,0.06) 85%
+    ) border-box;
+  border: 1px solid transparent;
+  border-radius: var(--cw-r-panel);
+  backdrop-filter: blur(52px) saturate(220%);
+  -webkit-backdrop-filter: blur(52px) saturate(220%);
+  box-shadow: var(--cw-shadow);
+
+  /* Entry animation — slides down from bird */
+  opacity: 0;
+  transform: translateY(-14px) scale(0.96);
+  transform-origin: top right;
+  transition:
+    max-height 0.52s cubic-bezier(0.34, 1.38, 0.64, 1),
+    opacity    0.32s ease,
+    transform  0.44s cubic-bezier(0.34, 1.38, 0.64, 1);
+  pointer-events: none;
+}
+
+.cw-panel--open {
+  max-height: 80vh;   /* content drives actual height; this is the cap */
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* ── Ambient glow orbs ─────────────────────────────────────────── */
+.cw-glow-top {
+  position: absolute; top: -50px; left: -30px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,92,252,0.16) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+.cw-glow-bottom {
+  position: absolute; bottom: -40px; right: -20px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(56,189,248,0.09) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Arrow notch — points up toward bird ──────────────────────── */
+/*
+ * Bird right edge  = viewport_width − 48px
+ * Panel right edge = viewport_width − 48px   (same right:48px)
+ * Bird centre X    = viewport_width − 48 − 36 = viewport_width − 84
+ * Panel right edge = viewport_width − 48
+ * Arrow from right = 84 − 48 = 36px from panel's right edge
+ */
+.cw-arrow {
+  position: absolute;
+  top: -8px;
+  right: 28px;          /* centres arrow under the bird's body */
+  width: 16px;
+  height: 16px;
+  background:
+    linear-gradient(var(--cw-glass-bg), var(--cw-glass-bg)) padding-box,
+    linear-gradient(155deg, var(--cw-border-ion), transparent) border-box;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+  backdrop-filter: blur(52px);
+  z-index: 3;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
+.cw-header {
+  position: relative; z-index: 2;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 15px 13px;
+  border-bottom: 1px solid var(--cw-divider);
+  overflow: hidden;
+  border-radius: var(--cw-r-panel) var(--cw-r-panel) 0 0;
+}
+
+.cw-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 130% at  0% 50%, rgba(124,92,252,0.17) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 90%  at 100%  0%, rgba(56,189,248,0.09) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.cw-header-left {
+  display: flex; align-items: center; gap: 10px;
+  position: relative; z-index: 1;
+}
+
+/* Avatar */
+.cw-avatar-shell {
+  position: relative;
+  width: 40px; height: 40px;
+  flex-shrink: 0;
+}
+
+.cw-avatar-ring {
+  position: absolute; inset: -2px; border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--cw-ion), var(--cw-photon), var(--cw-ion-light), var(--cw-ion)
+  );
+  animation: cw-spin 6s linear infinite;
+}
+.cw-avatar-ring::after {
+  content: ''; position: absolute; inset: 2px;
+  background: var(--cw-cosmos); border-radius: 50%;
+}
+
+.cw-avatar-core {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: linear-gradient(135deg, #1c0b45, #091a45);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--cw-mono); font-size: 14px; font-weight: 700;
+  color: var(--cw-ion-light); z-index: 1;
+}
+
+.cw-online-dot {
+  position: absolute; bottom: 1px; right: 1px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--cw-green);
+  border: 2px solid #050510;
+  box-shadow: 0 0 8px rgba(34,197,94,0.7);
+  z-index: 2;
+  animation: cw-glow-pulse 2.5s ease-in-out infinite;
+}
+
+.cw-header-text { line-height: 1; }
+
+.cw-bot-name {
+  margin: 0;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--cw-text);
+  font-family: var(--cw-font);
+}
+
+.cw-bot-status {
+  margin: 3px 0 0;
+  font-size: 10.5px; font-weight: 400;
+  color: var(--cw-green);
+  display: flex; align-items: center; gap: 5px;
+}
+
+.cw-status-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--cw-green);
+  animation: cw-glow-pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Header buttons */
+.cw-header-actions {
+  display: flex; gap: 5px;
+  position: relative; z-index: 1;
+}
+
+.cw-hdr-btn {
+  width: 29px; height: 29px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--cw-surface);
+  color: var(--cw-text-muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s;
+}
+.cw-hdr-btn:hover {
+  background: var(--cw-surface-hov);
+  color: var(--cw-ion-light);
+  border-color: rgba(124,92,252,0.3);
+  transform: scale(1.07);
+}
+.cw-hdr-btn--close:hover {
+  background: rgba(244,63,94,0.14);
+  color: #fb7185;
+  border-color: rgba(244,63,94,0.28);
+}
+
+/* ================================================================
+   MESSAGES  — no fixed height; grows with content
+   ================================================================ */
+
+.cw-messages {
+  position: relative; z-index: 2;
+  flex: 1;
+  overflow-y: auto;
+  /* min-height keeps it from collapsing on first load */
+  min-height: 72px;
+  padding: 13px 12px 6px;
+  display: flex; flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.cw-messages::-webkit-scrollbar        { width: 3px; }
+.cw-messages::-webkit-scrollbar-track  { background: transparent; }
+.cw-messages::-webkit-scrollbar-thumb  {
+  background: rgba(124,92,252,0.22);
+  border-radius: 3px;
+}
+
+/* Date separator */
+.cw-date-sep {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 9.5px; color: rgba(200,185,255,0.25);
+  letter-spacing: 0.13em; text-transform: uppercase;
+  font-family: var(--cw-mono); margin-bottom: 2px;
+}
+.cw-date-sep::before,
+.cw-date-sep::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,92,252,0.18), transparent);
+}
+
+/* Message row */
+.cw-msg-row {
+  display: flex; align-items: flex-end; gap: 7px;
+  animation: cw-msg-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.cw-msg-row--user { justify-content: flex-end; }
+.cw-msg-row--ai   { justify-content: flex-start; }
+
+/* Mini avatar */
+.cw-msg-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cw-ion), #200c55);
+  border: 1px solid rgba(124,92,252,0.32);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: var(--cw-ion-light);
+  font-family: var(--cw-mono); flex-shrink: 0;
+}
+
+/* ── Bubble — height = auto (grows with text) ── */
+.cw-bubble {
+  max-width: 78%;
+  /* NO fixed height — padding + text drives height */
+  padding: 10px 14px;
+  border-radius: var(--cw-r-bubble);
+  font-size: 13.5px; line-height: 1.6; font-weight: 400;
+  word-break: break-word; white-space: pre-wrap;
+  position: relative; overflow: hidden;
+  font-family: var(--cw-font);
+}
+.cw-bubble::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(140deg, rgba(255,255,255,0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.cw-bubble--ai {
+  background: rgba(255,255,255,0.048);
+  border: 1px solid rgba(255,255,255,0.065);
+  color: var(--cw-text);
+  border-bottom-left-radius: 4px;
+}
+.cw-bubble--user {
+  background: linear-gradient(135deg, rgba(124,92,252,0.76), rgba(78,46,198,0.66));
+  border: 1px solid rgba(124,92,252,0.42);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 18px rgba(124,92,252,0.2);
+}
+.cw-bubble--error {
+  background: var(--cw-error-bg)    !important;
+  border-color: var(--cw-error-border) !important;
+  color: #fca5a5 !important;
+}
+
+/* Typing dots */
+.cw-bubble--typing {
+  display: flex; align-items: center; gap: 5px;
+  padding: 12px 16px; min-width: 56px;
+}
+.cw-bubble--typing span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cw-ion-light); opacity: 0.4;
+  animation: cw-dot 1.3s ease-in-out infinite;
+}
+.cw-bubble--typing span:nth-child(2) { animation-delay: 0.2s; }
+.cw-bubble--typing span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ================================================================
+   INPUT AREA
+   ================================================================ */
+
+.cw-input-area {
+  position: relative; z-index: 2;
+  flex-shrink: 0;
+  padding: 9px 11px 5px;
+  border-top: 1px solid var(--cw-divider);
+  background: rgba(255,255,255,0.012);
+  border-radius: 0 0 var(--cw-r-panel) var(--cw-r-panel);
+}
+
+.cw-input-glass {
+  display: flex; align-items: flex-end; gap: 8px;
+  background: var(--cw-surface);
+  border: 1px solid rgba(255,255,255,0.065);
+  border-radius: 13px;
+  padding: 7px 7px 7px 13px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.cw-input-glass:focus-within {
+  border-color: rgba(124,92,252,0.44);
+  box-shadow: 0 0 0 3px rgba(124,92,252,0.07), 0 0 26px rgba(124,92,252,0.06);
+}
+
+.cw-textarea {
+  flex: 1;
+  resize: none; background: none; border: none; outline: none;
+  font-family: var(--cw-font);
+  font-size: 13.5px; font-weight: 400; line-height: 1.5;
+  color: var(--cw-text);
+  min-height: 22px; max-height: 110px;
+  overflow-y: auto;
+}
+.cw-textarea::placeholder { color: rgba(200,188,255,0.28); }
+.cw-textarea::-webkit-scrollbar { width: 2px; }
+.cw-textarea::-webkit-scrollbar-thumb {
+  background: rgba(124,92,252,0.2); border-radius: 2px;
+}
+
+/* Send button */
+.cw-send-btn {
+  width: 35px; height: 35px;
+  border-radius: 10px; border: 1px solid rgba(124,92,252,0.18);
+  background: rgba(124,92,252,0.12);
+  color: rgba(160,132,253,0.4);
+  display: flex; align-items: center; justify-content: center;
+  cursor: not-allowed; flex-shrink: 0;
+  transition: background 0.22s, transform 0.18s, box-shadow 0.22s,
+              color 0.18s, border-color 0.18s;
+}
+.cw-send-btn--active {
+  background: linear-gradient(135deg, var(--cw-ion), #4e2ec6);
+  border-color: rgba(124,92,252,0.48);
+  color: #fff; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(124,92,252,0.32);
+}
+.cw-send-btn--active:hover {
+  transform: scale(1.09);
+  box-shadow: 0 6px 24px rgba(124,92,252,0.48);
+}
+.cw-send-btn--loading { animation: cw-spin 0.85s linear infinite; }
+
+/* Footer */
+.cw-footer-note {
+  margin: 5px 0 2px; text-align: center;
+  font-size: 9.5px; font-weight: 400; letter-spacing: 0.11em;
+  text-transform: uppercase; color: rgba(200,188,255,0.16);
+  font-family: var(--cw-font);
+}
+.cw-footer-note strong { color: rgba(124,92,252,0.35); font-weight: 600; }
+
+/* ================================================================
+   KEYFRAMES
+   ================================================================ */
+
+@keyframes cw-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes cw-glow-pulse {
+  0%,100% { box-shadow: 0 0  6px rgba(34,197,94,0.45); }
+  50%      { box-shadow: 0 0 14px rgba(34,197,94,0.85); }
+}
+@keyframes cw-msg-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+@keyframes cw-dot {
+  0%,80%,100% { transform: translateY(0);   opacity: 0.4; }
+  40%         { transform: translateY(-7px); opacity: 1;   }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+/*
+ * On tablets / mid screens the bird moves to bottom-right.
+ * Home.css moves bird to: bottom:28px right:20px (≤768px)
+ * So panel flips to bottom-anchored as well.
+ */
+@media (max-width: 768px) {
+  .cw-panel {
+    /* Bird is at bottom:28px right:20px width:54px on mobile   */
+    /* Panel sits ABOVE the bird: bottom = 28 + 54 + 10 = 92px */
+    top:    unset;
+    bottom: 92px;
+    right:  12px;
+    width: calc(100vw - 24px);
+    max-width: 370px;
+    transform-origin: bottom right;
+  }
+
+  /* Arrow flips to bottom */
+  .cw-arrow {
+    top: unset;
+    bottom: -8px;
+    right: 20px;
+    transform: rotate(225deg);
+  }
+
+  .cw-panel--open {
+    max-height: 72vh;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 380px) {
+  /* Bird: bottom:20px right:16px width:46px → panel bottom = 20+46+10 = 76px */
+  .cw-panel {
+    bottom: 76px;
+    right:  8px;
+    width: calc(100vw - 16px);
+  }
+  .cw-arrow { right: 15px; }
+}

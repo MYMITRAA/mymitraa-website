@@ -1,0 +1,143 @@
+/* ============================================================
+   Why It Matters Section — dark ink strip
+   ============================================================ */
+
+.portfolio__why {
+  padding: 100px 0;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio__why::before {
+  content: "WHY";
+  position: absolute;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 320px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.025);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.portfolio__why-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.portfolio__why-header {
+  margin-bottom: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.portfolio__why .section-label {
+  color: var(--lavender);
+}
+
+.portfolio__why .section-label::before {
+  background: var(--lavender);
+}
+
+.portfolio__why-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  max-width: 500px;
+}
+
+.portfolio__why-subtitle {
+  font-size: 14px;
+  color: rgba(220,227,255,0.55);
+  max-width: 220px;
+  text-align: right;
+  line-height: 1.7;
+}
+
+.portfolio__why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.portfolio__why-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-md);
+  padding: 36px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  cursor: default;
+}
+
+.portfolio__why-card:hover {
+  background: rgba(90,106,248,0.15);
+  border-color: rgba(90,106,248,0.35);
+  transform: translateY(-4px);
+}
+
+.portfolio__why-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: rgba(90,106,248,0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.portfolio__why-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.portfolio__why-number {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: rgba(90,106,248,0.35);
+  line-height: 1;
+  margin-bottom: -10px;
+}
+
+.portfolio__why-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(220,227,255,0.85);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .portfolio__why-header   { flex-direction: column; align-items: flex-start; }
+  .portfolio__why-subtitle { text-align: left; max-width: 100%; }
+  .portfolio__why-grid     { grid-template-columns: repeat(2, 1fr); }
+  .portfolio__why-container { padding: 0 40px; }
+}
+
+@media (max-width: 768px) {
+  .portfolio__why-container { padding: 0 24px; }
+}
+
+@media (max-width: 540px) {
+  .portfolio__why-grid  { grid-template-columns: 1fr; }
+  .portfolio__why-title { font-size: 36px; }
+}

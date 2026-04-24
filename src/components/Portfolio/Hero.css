@@ -1,0 +1,343 @@
+/* ============================================================
+   Hero Section — Full Redesign
+   ============================================================ */
+
+.pf-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background-image:
+    linear-gradient(
+      105deg,
+      rgba(235, 238, 255, 0.96) 0%,
+      rgba(225, 231, 255, 0.88) 38%,
+      rgba(210, 220, 255, 0.60) 62%,
+      rgba(200, 210, 252, 0.25) 100%
+    ),
+    url('../../assets/images/portfoliobg.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* top accent rule */
+.pf-hero__rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(90,106,248,0.45) 35%, transparent 100%);
+}
+
+/* left vertical accent line */
+.pf-hero::before {
+  content: "";
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 220px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(90,106,248,0.30) 30%,
+    rgba(90,106,248,0.30) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* decorative glow blob top right */
+.pf-hero::after {
+  content: "";
+  position: absolute;
+  width: 680px;
+  height: 680px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,106,248,0.09) 0%, transparent 65%);
+  top: -180px;
+  right: -120px;
+  pointer-events: none;
+}
+
+/* ── Content block ── */
+.pf-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  min-height: 92vh;
+}
+
+/* ── Left text ── */
+.pf-hero__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 32px;
+}
+
+.pf-hero__eyebrow::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1.5px;
+  background: var(--indigo);
+  flex-shrink: 0;
+}
+
+.pf-hero__title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 92px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 0.90;
+  letter-spacing: -2.5px;
+  margin: 0 0 32px 0;
+}
+
+.pf-hero__title em {
+  font-style: italic;
+  color: var(--indigo);
+  display: block;
+}
+
+.pf-hero__desc {
+  font-size: 15.5px;
+  font-weight: 400;
+  color: var(--ink-mid);
+  line-height: 1.85;
+  max-width: 390px;
+  margin: 0 0 44px 0;
+}
+
+/* CTA group */
+.pf-hero__cta-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.pf-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 34px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.25s ease,
+              box-shadow 0.3s ease;
+}
+
+.pf-hero__cta:hover {
+  background: var(--indigo);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(90,106,248,0.28);
+}
+
+.pf-hero__cta-arrow {
+  font-size: 15px;
+  transition: transform 0.28s ease;
+}
+
+.pf-hero__cta:hover .pf-hero__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ghost / secondary CTA */
+.pf-hero__cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Outfit", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(90,106,248,0.30);
+  padding-bottom: 2px;
+  transition: border-color 0.25s ease, gap 0.25s ease;
+}
+
+.pf-hero__cta-ghost:hover {
+  border-color: var(--indigo);
+  gap: 12px;
+}
+
+/* ── Right side — floating stat cards ── */
+.pf-hero__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.pf-hero__stat-card {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(90,106,248,0.14);
+  border-radius: 20px;
+  padding: 22px 28px;
+  width: 220px;
+  box-shadow: 0 8px 32px rgba(90,106,248,0.08),
+              0 1px 0 rgba(255,255,255,0.8) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pf-hero__stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(90,106,248,0.14);
+}
+
+.pf-hero__stat-card:nth-child(2) {
+  margin-right: 40px;  /* stagger for depth */
+}
+
+.pf-hero__stat-num {
+  font-family: "Outfit", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -1px;
+}
+
+.pf-hero__stat-num span {
+  color: var(--indigo);
+}
+
+.pf-hero__stat-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-light);
+  letter-spacing: 0.05em;
+}
+
+/* thin connector dot between cards */
+.pf-hero__stat-connector {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(180deg, rgba(90,106,248,0.20) 0%, rgba(90,106,248,0.20) 100%);
+  margin-right: 110px;
+}
+
+/* ── Scroll indicator ── */
+.pf-hero__scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(90,106,248,0.60);
+  z-index: 2;
+}
+
+.pf-hero__scroll-line {
+  width: 40px;
+  height: 1px;
+  background: rgba(90,106,248,0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.pf-hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--indigo);
+  animation: pf-scroll-slide 2s ease-in-out infinite;
+}
+
+@keyframes pf-scroll-slide {
+  0%   { left: -100%; }
+  50%  { left: 0%;    }
+  100% { left: 100%;  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .pf-hero__content {
+    grid-template-columns: 1fr;
+    padding: 100px 40px 80px;
+    min-height: auto;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .pf-hero {
+    min-height: auto;
+    background-position: center;
+  }
+
+  .pf-hero::before { display: none; }
+
+  .pf-hero__eyebrow  { justify-content: center; }
+  .pf-hero__desc     { margin: 0 auto 44px; }
+  .pf-hero__cta-group { justify-content: center; }
+
+  .pf-hero__title { font-size: 68px; }
+
+  .pf-hero__right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .pf-hero__stat-card:nth-child(2) { margin-right: 0; }
+  .pf-hero__stat-connector { display: none; }
+  .pf-hero__scroll { left: 50%; transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .pf-hero__title    { font-size: 54px; }
+  .pf-hero__content  { padding: 90px 24px 70px; }
+  .pf-hero__scroll   { display: none; }
+}
+
+@media (max-width: 540px) {
+  .pf-hero__title    { font-size: 44px; letter-spacing: -1.5px; }
+  .pf-hero__stat-card { width: 100%; }
+}

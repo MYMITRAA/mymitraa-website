@@ -16,20 +16,8 @@
   100% { transform: translateY(-14px) scale(1.13) rotate(0deg); }
 }
 
-@keyframes home-bird-active-bounce {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  25%       { transform: scale(1.12) rotate(-5deg); }
-  50%       { transform: scale(1.08) rotate(4deg); }
-  75%       { transform: scale(1.1) rotate(-3deg); }
-}
-
-@keyframes home-pulse-ring {
-  0%   { transform: scale(0.95); opacity: 0.7; }
-  70%  { transform: scale(1.5);  opacity: 0; }
-  100% { transform: scale(0.95); opacity: 0; }
-}
-
 .home-floating-bird {
+  /* Fixed to the viewport so it stays on screen while scrolling */
   position: fixed;
   top: 80px;
   right: 48px;
@@ -41,11 +29,14 @@
   cursor: pointer;
   pointer-events: auto;
 
+  /* Idle float animation */
   animation: home-bird-float 3.8s ease-in-out infinite;
   transform-origin: center bottom;
 
   filter: drop-shadow(0 6px 14px rgba(81, 74, 215, 0.22));
   transition: filter 0.3s ease;
+
+  /* Smooth entrance */
   opacity: 1;
 }
 
@@ -54,30 +45,7 @@
   filter: drop-shadow(0 18px 32px rgba(81, 74, 215, 0.38));
 }
 
-/* Active state when chat is open */
-.home-floating-bird--active {
-  animation: home-bird-active-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  filter:
-    drop-shadow(0 0 0 4px rgba(115, 122, 255, 0.35))
-    drop-shadow(0 8px 20px rgba(81, 74, 215, 0.4));
-}
-
-/* Pulse ring — sits behind the bird, hidden when chat open */
-.home-bird-pulse {
-  position: fixed;
-  top: 80px;
-  right: 48px;
-  z-index: 997;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: rgba(115, 122, 255, 0.35);
-  pointer-events: auto;
-  cursor: pointer;
-  animation: home-pulse-ring 2.2s ease-out infinite;
-}
-
-/* Mobile */
+/* Mobile — reposition to bottom-right corner to avoid navbar */
 @media (max-width: 768px) {
   .home-floating-bird {
     top: auto;
@@ -86,14 +54,6 @@
     width: 54px;
     filter: drop-shadow(0 4px 12px rgba(81, 74, 215, 0.28));
   }
-
-  .home-bird-pulse {
-    top: auto;
-    bottom: 28px;
-    right: 20px;
-    width: 54px;
-    height: 54px;
-  }
 }
 
 @media (max-width: 380px) {
@@ -101,12 +61,5 @@
     bottom: 20px;
     right: 16px;
     width: 46px;
-  }
-
-  .home-bird-pulse {
-    bottom: 20px;
-    right: 16px;
-    width: 46px;
-    height: 46px;
   }
 }
