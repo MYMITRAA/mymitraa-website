@@ -396,9 +396,9 @@ const COUNTRY_CODES = [
 //    Set "To Email" in template to: info@mitratechgroup.com
 // 4. Go to Account → API Keys → copy your Public Key
 // 5. Replace the three values below:
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // e.g. "service_abc123"
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // e.g. "template_xyz789"
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // e.g. "AbCdEfGhIjKlMnOp"
+const EMAILJS_SERVICE_ID  = "service_rfeharh";   // ← updated
+const EMAILJS_TEMPLATE_ID = "template_6jsgzmg";  // ← same
+const EMAILJS_PUBLIC_KEY  = "CriDeVu3IjSdV9aBW"; // ← same
 
 // ─── Validation helpers ───────────────────────────────────────────────────────
 function validate(fields, file) {
@@ -412,7 +412,7 @@ function validate(fields, file) {
   if (!fields.phone.trim())                             errs.phone   = "Contact number is required.";
   else if (!/^\d{7,15}$/.test(fields.phone.replace(/\s/g, ""))) errs.phone = "Enter a valid phone number (7–15 digits).";
 
-  if (file && file.size > 50 * 1024)                   errs.file    = "File size must be under 50 KB. Please compress your resume and try again.";
+  if (file && file.size > 5 * 1024 * 1024)             errs.file    = "File size must be under 5 MB.";
 
   return errs;
 }
@@ -452,8 +452,8 @@ export default function ContactSection() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    if (file.size > 50 * 1024) {
-      setErrors((prev) => ({ ...prev, file: "File size must be under 50 KB. Please compress your resume and try again." }));
+    if (file.size > 5 * 1024 * 1024) {
+      setErrors((prev) => ({ ...prev, file: "File size must be under 5 MB." }));
       return;
     }
     setErrors((prev) => ({ ...prev, file: undefined }));
