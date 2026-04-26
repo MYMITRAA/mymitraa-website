@@ -41,27 +41,22 @@
 
 /* ================================================================
    PANEL
-   — FIX: overflow changed from 'hidden' to 'clip' so that
-     position:sticky on the header works correctly and the header
-     is never swallowed by a scroll-container side-effect.
+   — anchored just below the bird
+   — top: 95px gives enough room so the header is never clipped
    ================================================================ */
 
 .cw-panel {
   position: fixed;
 
-  top:   95px;
+  top:   95px;   /* was 162px — reduced so header is fully visible */
   right:  48px;
 
   z-index: 998;
   width: 360px;
 
-  /* Height: starts at 0, grows with content, caps at viewport */
+  /* Height: starts at 0, grows with content, caps at 80vh */
   max-height: 0;
-
-  /* KEY FIX: 'clip' cuts visually but does NOT create a scroll
-     container — so position:sticky on the header works, and the
-     header renders fully from the very first frame of the animation */
-  overflow: clip;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -94,7 +89,7 @@
 }
 
 .cw-panel--open {
-  max-height: calc(100vh - 115px);
+  max-height: calc(100vh - 115px); /* ensures header never clips at bottom either */
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: all;
@@ -134,33 +129,18 @@
 
 /* ================================================================
    HEADER
-   — FIX 1: position:sticky + top:0 so the header is always the
-     first thing visible when the panel opens, and never scrolls
-     away when messages overflow.
-   — FIX 2: z-index raised to 10 so it sits above message content
-     and glow orbs.
-   — FIX 3: background explicitly set so it stays opaque when
-     messages scroll behind it.
    ================================================================ */
 
 .cw-header {
-  position: sticky;      /* FIX: was 'relative' — sticky anchors it at top */
-  top: 0;                /* FIX: required for sticky to activate            */
-  z-index: 10;           /* FIX: was 2 — raised above messages & orbs       */
-
+  position: relative; z-index: 2;
   flex-shrink: 0;
   display: flex; align-items: center; justify-content: space-between;
   padding: 15px 15px 13px;
   border-bottom: 1px solid var(--cw-divider);
   overflow: hidden;
   border-radius: var(--cw-r-panel) var(--cw-r-panel) 0 0;
+  /* Ensure header is never clipped by overflow:hidden on panel */
   min-height: 72px;
-
-  /* FIX: explicit background so content scrolling behind doesn't
-     bleed through the translucent panel glass */
-  background: rgba(7, 5, 22, 0.90);
-  backdrop-filter: blur(52px) saturate(220%);
-  -webkit-backdrop-filter: blur(52px) saturate(220%);
 }
 
 .cw-header::before {
@@ -267,16 +247,14 @@
 }
 
 /* ================================================================
-   MESSAGES
-   — FIX: min-height reduced so it doesn't push the header out of
-     the clipped panel area on first open.
+   MESSAGES  — no fixed height; grows with content
    ================================================================ */
 
 .cw-messages {
   position: relative; z-index: 2;
   flex: 1;
   overflow-y: auto;
-  min-height: 80px;      /* FIX: was 120px — just enough to show 1 bubble */
+  min-height: 120px; /* was 72px — tall enough to always show header above */
   padding: 13px 12px 6px;
   display: flex; flex-direction: column;
   gap: 10px;
@@ -321,7 +299,7 @@
   font-family: var(--cw-mono); flex-shrink: 0;
 }
 
-/* ── Bubble ── */
+/* ── Bubble — height = auto (grows with text) ── */
 .cw-bubble {
   max-width: 78%;
   padding: 10px 14px;
@@ -372,24 +350,14 @@
 
 /* ================================================================
    INPUT AREA
-   — FIX: z-index raised to 5 and position:sticky bottom:0 so it
-     always stays anchored at the bottom and is never clipped.
    ================================================================ */
 
 .cw-input-area {
-  position: sticky;      /* FIX: keeps input pinned at the bottom */
-  bottom: 0;             /* FIX: required for sticky to activate  */
-  z-index: 5;            /* FIX: above messages                   */
-
+  position: relative; z-index: 2;
   flex-shrink: 0;
   padding: 9px 11px 5px;
   border-top: 1px solid var(--cw-divider);
-
-  /* FIX: explicit background to prevent message bleed-through */
-  background: rgba(7, 5, 22, 0.90);
-  backdrop-filter: blur(52px) saturate(220%);
-  -webkit-backdrop-filter: blur(52px) saturate(220%);
-
+  background: rgba(255,255,255,0.012);
   border-radius: 0 0 var(--cw-r-panel) var(--cw-r-panel);
 }
 
