@@ -71,10 +71,9 @@ function Navbar({ hidden, slideIndex }) {
       >
         <div className="navbar-container">
 
-          {/* Logo */}
-          <div className="navbar-left">
-            <img src={mitraaLogo} alt="MiTRAA Logo" className="logo-full" />
-          </div>
+         <div className="navbar-left" onClick={() => navigate("/home")} style={{ cursor: "pointer" }}>
+  <img src={mitraaLogo} alt="MiTRAA Logo" className="logo-full" />
+</div>
 
           {/* Nav Links — desktop & mobile */}
           {!isLandingPage && (

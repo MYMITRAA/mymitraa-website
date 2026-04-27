@@ -199,7 +199,7 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
             title={`Slide ${i + 1}`}
           />
         ))}
-        <span className="ls1__pill">Home</span>
+        
       </div>
 
     </section>
