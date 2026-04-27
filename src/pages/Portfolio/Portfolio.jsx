@@ -6,6 +6,7 @@ import OurAdvantage  from "../../components/Portfolio/OurAdvantage";
 import Highlights    from "../../components/Portfolio/Highlights";
 import Products      from "../../components/Portfolio/Products";
 import Footer        from "../../components/Footer/Footer";
+import MVP           from "../../components/Portfolio/MVP";
 
 function Portfolio() {
   return (
@@ -16,6 +17,7 @@ function Portfolio() {
       <OurAdvantage />
       <Highlights />
       <Products />
+      <MVP />
       <Footer />
     </div>
   );
