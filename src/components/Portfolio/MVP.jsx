@@ -17,7 +17,7 @@ import imgDevSecOps   from "../../assets/Mvp/mvp-devsecops-agent.webp";
 import imgReleasePlan from "../../assets/Mvp/mvp-release-planner.webp";
 import imgGenAIBot    from "../../assets/Mvp/mvp-genai-bot.webp";
 import imgChaos       from "../../assets/Mvp/mvp-chaos-engineering.webp";
-import imgKPIDash     from "../../assetMvp/mvp-kpi-dashboard.webp";
+import imgKPIDash     from "../../asset/Mvp/mvp-kpi-dashboard.webp";
 import imgAIOps       from "../../assets/Mvp/mvp-aiops-cloud.webp";
 import imgMultiCloud  from "../../assets/Mvp/mvp-multicloud-optimizer.webp";
 
