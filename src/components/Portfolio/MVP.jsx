@@ -2,24 +2,24 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import "./MVP.css";
 
 /* ── Image Imports ── */
-import imgCICD        from "../../assets/MVP/mvp-cicd-optimizer.png";
-import imgFailure     from "../../assets/MVP/mvp-failure-prediction.png";
-import imgGitOps      from "../../assets/MVP/mvp-gitops-drift.png";
-import imgCostEngine  from "../../assets/MVP/mvp-cost-intelligence.png";
-import imgPostmortem  from "../../assets/MVP/mvp-postmortem-narrator.png";
-import imgSelfHeal    from "../../assets/MVP/mvp-self-healing.png";
-import imgMaturity    from "../../assets/MVP/mvp-maturity-scoring.png";
-import imgRiskRadar   from "../../assets/MVP/mvp-release-risk-radar.png";
-import imgKnowledge   from "../../assets/MVP/mvp-knowledge-graph.png";
-import imgCommandCtrl from "../../assets/MVP/mvp-command-center.png";
-import imgCDOptimize  from "../../assets/MVP/mvp-cd-optimization.png";
-import imgDevSecOps   from "../../assets/MVP/mvp-devsecops-agent.png";
-import imgReleasePlan from "../../assets/MVP/mvp-release-planner.png";
-import imgGenAIBot    from "../../assets/MVP/mvp-genai-bot.png";
-import imgChaos       from "../../assets/MVP/mvp-chaos-engineering.png";
-import imgKPIDash     from "../../assets/MVP/mvp-kpi-dashboard.png";
-import imgAIOps       from "../../assets/MVP/mvp-aiops-cloud.png";
-import imgMultiCloud  from "../../assets/MVP/mvp-multicloud-optimizer.png";
+import imgCICD        from "../../assets/MVP/mvp-cicd-optimizer.webp";
+import imgFailure     from "../../assets/MVP/mvp-failure-prediction.webp";
+import imgGitOps      from "../../assets/MVP/mvp-gitops-drift.webp";
+import imgCostEngine  from "../../assets/MVP/mvp-cost-intelligence.webp";
+import imgPostmortem  from "../../assets/MVP/mvp-postmortem-narrator.webp";
+import imgSelfHeal    from "../../assets/MVP/mvp-self-healing.webp";
+import imgMaturity    from "../../assets/MVP/mvp-maturity-scoring.webp";
+import imgRiskRadar   from "../../assets/MVP/mvp-release-risk-radar.webp";
+import imgKnowledge   from "../../assets/MVP/mvp-knowledge-graph.webp";
+import imgCommandCtrl from "../../assets/MVP/mvp-command-center.webp";
+import imgCDOptimize  from "../../assets/MVP/mvp-cd-optimization.webp";
+import imgDevSecOps   from "../../assets/MVP/mvp-devsecops-agent.webp";
+import imgReleasePlan from "../../assets/MVP/mvp-release-planner.webp";
+import imgGenAIBot    from "../../assets/MVP/mvp-genai-bot.webp";
+import imgChaos       from "../../assets/MVP/mvp-chaos-engineering.webp";
+import imgKPIDash     from "../../assets/MVP/mvp-kpi-dashboard.webp";
+import imgAIOps       from "../../assets/MVP/mvp-aiops-cloud.webp";
+import imgMultiCloud  from "../../assets/MVP/mvp-multicloud-optimizer.webp";
 
 /* ── Category config ── */
 const CATEGORIES = [
