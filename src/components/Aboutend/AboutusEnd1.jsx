@@ -21,8 +21,8 @@ import openai     from "../../assets/organisation/CHATGPT.png";
 import qatar      from "../../assets/organisation/Qatar_University_logo.svg";
 import stanford   from "../../assets/organisation/Stanford-University-Logo.png";
 import oxford     from "../../assets/organisation/university-of-oxford-logo.png";
-import JPR        from "../../assets/organisation/JPR.png";
-import AWS        from "../../assets/organisation/AWS.png";
+import JPR         from "../../assets/organisation/JPR.png";
+import AWS         from "../../assets/organisation/AWS.png";
 
 const LOGOS = [
   { src: ibm,        alt: "IBM" },
@@ -35,12 +35,12 @@ const LOGOS = [
   { src: khalifa,    alt: "Khalifa University" },
   { src: kingSaud,   alt: "King Saud University" },
   { src: mbzuai,     alt: "MBZUAI" },
-  // { src: metaAI,  alt: "Meta AI" },
+  // { src: metaAI,     alt: "Meta AI" },
   { src: microsoft,  alt: "Microsoft" },
   { src: mit,        alt: "MIT" },
   { src: nvidia,     alt: "NVIDIA" },
   { src: openai,     alt: "OpenAI" },
-  { src: qatar,      alt: "Qatar University" },
+  { src: qatar,      alt: "Qatar University" },   
   { src: stanford,   alt: "Stanford University" },
   { src: oxford,     alt: "University of Oxford" },
   { src: JPR,        alt: "JPR" },
@@ -51,15 +51,18 @@ const LOGOS = [
 const TRACK = [...LOGOS, ...LOGOS];
 
 function AboutusEnd() {
-  const sliderRef = useRef(null);
-  const trackRef  = useRef(null);
-  const pausedRef = useRef(false);
+  const sliderRef  = useRef(null);
+  const trackRef   = useRef(null);
+  const pausedRef  = useRef(false);  // tracks hover pause
 
   /* ── IntersectionObserver: detect items near center ── */
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
+    /* rootMargin cuts the observable area to a narrow vertical strip
+       at the horizontal center of the slider — only logos passing
+       through the center ~20% band will be "intersecting"           */
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -73,6 +76,7 @@ function AboutusEnd() {
       },
       {
         root: slider,
+        /* Left/right margins crop observation to center 30% of slider */
         rootMargin: "0px -35% 0px -35%",
         threshold: 0.5,
       }
@@ -104,7 +108,6 @@ function AboutusEnd() {
 
       <div className="about-end-container">
 
-        {/* ── Two-column header: title left, subtitle right ── */}
         <div className="about-end-header">
           <h2>Where Vision Meets Innovation</h2>
           <p>
@@ -113,7 +116,6 @@ function AboutusEnd() {
           </p>
         </div>
 
-        {/* ── Image + Cards ── */}
         <div className="about-end-content">
 
           <div className="about-end-left">
