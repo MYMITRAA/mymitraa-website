@@ -15,7 +15,7 @@
       rgba(210, 220, 255, 0.60) 62%,
       rgba(200, 210, 252, 0.25) 100%
     ),
-    url('../../assets/images/portfoliobg.png');
+    url('../../assets/images/portfoliobg.webp');
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
