@@ -396,9 +396,10 @@ const COUNTRY_CODES = [
 //    Set "To Email" in template to: info@mitratechgroup.com
 // 4. Go to Account → API Keys → copy your Public Key
 // 5. Replace the three values below:
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";   // e.g. "service_abc123"
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";  // e.g. "template_xyz789"
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";   // e.g. "AbCdEfGhIjKlMnOp"
+
+const EMAILJS_SERVICE_ID  = "service_rfeharh";   
+const EMAILJS_TEMPLATE_ID = "template_6jsgzmg";  
+const EMAILJS_PUBLIC_KEY  = "CriDeVu3IjSdV9aBW";  
 
 // ─── Validation helpers ───────────────────────────────────────────────────────
 function validate(fields, file) {
