@@ -1,10 +1,10 @@
 import "./Highlights.css";
 
 const highlights = [
-  { img: "/src/assets/images/phighlight1.png", label: "Enterprise SaaS platforms"   },
-  { img: "/src/assets/images/phighlight2.png", label: "AI-powered automation tools" },
-  { img: "/src/assets/images/phighlight3.png", label: "Fintech applications"        },
-  { img: "/src/assets/images/phighlight4.png", label: "E-commerce projects"         },
+  { img: "/src/assets/images/phighlight1.webp", label: "Enterprise SaaS platforms"   },
+  { img: "/src/assets/images/phighlight2.webp", label: "AI-powered automation tools" },
+  { img: "/src/assets/images/phighlight3.webp", label: "Fintech applications"        },
+  { img: "/src/assets/images/phighlight4.webp", label: "E-commerce projects"         },
 ];
 
 function Highlights() {
