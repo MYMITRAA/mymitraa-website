@@ -106,106 +106,6 @@ const COUNTRY_CODES = [
   { code: "+977", flag: "🇳🇵", name: "NP" },
 ];
 
-// ─── Country-specific mobile length rules (digits only, excluding dial code) ──
-// Format: { min, max } — if min === max it means exact length required
-const MOBILE_LENGTH_RULES = {
-  "+1":   { min: 10, max: 10 },  // US, CA
-  "+7":   { min: 10, max: 10 },  // RU
-  "+20":  { min: 10, max: 10 },  // EG
-  "+27":  { min: 9,  max: 9  },  // ZA
-  "+30":  { min: 10, max: 10 },  // GR
-  "+31":  { min: 9,  max: 9  },  // NL
-  "+32":  { min: 9,  max: 9  },  // BE
-  "+33":  { min: 9,  max: 9  },  // FR
-  "+34":  { min: 9,  max: 9  },  // ES
-  "+36":  { min: 9,  max: 9  },  // HU
-  "+39":  { min: 9,  max: 11 },  // IT
-  "+40":  { min: 9,  max: 9  },  // RO
-  "+41":  { min: 9,  max: 9  },  // CH
-  "+43":  { min: 10, max: 13 },  // AT
-  "+44":  { min: 10, max: 10 },  // GB
-  "+45":  { min: 8,  max: 8  },  // DK
-  "+46":  { min: 9,  max: 9  },  // SE
-  "+47":  { min: 8,  max: 8  },  // NO
-  "+48":  { min: 9,  max: 9  },  // PL
-  "+49":  { min: 10, max: 11 },  // DE
-  "+51":  { min: 9,  max: 9  },  // PE
-  "+52":  { min: 10, max: 10 },  // MX
-  "+53":  { min: 8,  max: 8  },  // CU
-  "+54":  { min: 10, max: 11 },  // AR
-  "+55":  { min: 10, max: 11 },  // BR
-  "+56":  { min: 9,  max: 9  },  // CL
-  "+57":  { min: 10, max: 10 },  // CO
-  "+58":  { min: 10, max: 10 },  // VE
-  "+60":  { min: 9,  max: 10 },  // MY
-  "+61":  { min: 9,  max: 9  },  // AU
-  "+62":  { min: 9,  max: 12 },  // ID
-  "+63":  { min: 10, max: 10 },  // PH
-  "+64":  { min: 8,  max: 9  },  // NZ
-  "+65":  { min: 8,  max: 8  },  // SG
-  "+66":  { min: 9,  max: 9  },  // TH
-  "+81":  { min: 10, max: 11 },  // JP
-  "+82":  { min: 9,  max: 10 },  // KR
-  "+84":  { min: 9,  max: 10 },  // VN
-  "+86":  { min: 11, max: 11 },  // CN
-  "+90":  { min: 10, max: 10 },  // TR
-  "+91":  { min: 10, max: 10 },  // IN
-  "+92":  { min: 10, max: 10 },  // PK
-  "+93":  { min: 9,  max: 9  },  // AF
-  "+94":  { min: 9,  max: 9  },  // LK
-  "+95":  { min: 8,  max: 9  },  // MM
-  "+98":  { min: 10, max: 10 },  // IR
-  "+212": { min: 9,  max: 9  },  // MA
-  "+213": { min: 9,  max: 9  },  // DZ
-  "+216": { min: 8,  max: 8  },  // TN
-  "+218": { min: 9,  max: 9  },  // LY
-  "+220": { min: 7,  max: 7  },  // GM
-  "+221": { min: 9,  max: 9  },  // SN
-  "+234": { min: 10, max: 10 },  // NG
-  "+254": { min: 9,  max: 9  },  // KE
-  "+255": { min: 9,  max: 9  },  // TZ
-  "+256": { min: 9,  max: 9  },  // UG
-  "+260": { min: 9,  max: 9  },  // ZM
-  "+263": { min: 9,  max: 9  },  // ZW
-  "+351": { min: 9,  max: 9  },  // PT
-  "+352": { min: 9,  max: 15 },  // LU
-  "+353": { min: 9,  max: 9  },  // IE
-  "+354": { min: 7,  max: 7  },  // IS
-  "+358": { min: 9,  max: 10 },  // FI
-  "+359": { min: 8,  max: 9  },  // BG
-  "+370": { min: 8,  max: 8  },  // LT
-  "+371": { min: 8,  max: 8  },  // LV
-  "+372": { min: 7,  max: 8  },  // EE
-  "+380": { min: 9,  max: 9  },  // UA
-  "+381": { min: 8,  max: 9  },  // RS
-  "+385": { min: 8,  max: 9  },  // HR
-  "+386": { min: 8,  max: 8  },  // SI
-  "+420": { min: 9,  max: 9  },  // CZ
-  "+421": { min: 9,  max: 9  },  // SK
-  "+852": { min: 8,  max: 8  },  // HK
-  "+853": { min: 8,  max: 8  },  // MO
-  "+855": { min: 8,  max: 9  },  // KH
-  "+856": { min: 8,  max: 9  },  // LA
-  "+880": { min: 10, max: 10 },  // BD
-  "+886": { min: 9,  max: 9  },  // TW
-  "+960": { min: 7,  max: 7  },  // MV
-  "+961": { min: 7,  max: 8  },  // LB
-  "+962": { min: 9,  max: 9  },  // JO
-  "+963": { min: 9,  max: 9  },  // SY
-  "+964": { min: 10, max: 10 },  // IQ
-  "+965": { min: 8,  max: 8  },  // KW
-  "+966": { min: 9,  max: 9  },  // SA
-  "+967": { min: 9,  max: 9  },  // YE
-  "+968": { min: 8,  max: 8  },  // OM
-  "+971": { min: 9,  max: 9  },  // AE
-  "+972": { min: 9,  max: 9  },  // IL
-  "+973": { min: 8,  max: 8  },  // BH
-  "+974": { min: 8,  max: 8  },  // QA
-  "+975": { min: 8,  max: 8  },  // BT
-  "+976": { min: 8,  max: 8  },  // MN
-  "+977": { min: 10, max: 10 },  // NP
-};
-
 // ─── Modes ────────────────────────────────────────────────────────────────────
 // "login" | "signup" | "verify"
 
@@ -255,24 +155,14 @@ function Careersignin({ onClose, onSuccess = null }) {
 
     if (m === "signup") {
       const rawMobile = fields.mobile.replace(/[\s\-()]/g, "");
-      const rule = MOBILE_LENGTH_RULES[countryCode];
       if (!rawMobile)
         errs.mobile = "Mobile number is required.";
       else if (!/^\d+$/.test(rawMobile))
         errs.mobile = "Mobile number must contain digits only.";
-      else if (rule) {
-        if (rule.min === rule.max && rawMobile.length !== rule.min)
-          errs.mobile = `Mobile number must be exactly ${rule.min} digits for ${countryCode}.`;
-        else if (rawMobile.length < rule.min)
-          errs.mobile = `Mobile number is too short (min ${rule.min} digits for ${countryCode}).`;
-        else if (rawMobile.length > rule.max)
-          errs.mobile = `Mobile number is too long (max ${rule.max} digits for ${countryCode}).`;
-      } else {
-        if (rawMobile.length < 6)
-          errs.mobile = "Mobile number is too short (min 6 digits).";
-        else if (rawMobile.length > 15)
-          errs.mobile = "Mobile number is too long (max 15 digits).";
-      }
+      else if (rawMobile.length < 6)
+        errs.mobile = "Mobile number is too short (min 6 digits).";
+      else if (rawMobile.length > 15)
+        errs.mobile = "Mobile number is too long (max 15 digits).";
     }
 
     if (!fields.password)
@@ -300,15 +190,8 @@ function Careersignin({ onClose, onSuccess = null }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "mobile") {
-      // Only allow digits, spaces, dashes, parentheses
-      if (value && !/^[\d\s\-()]*$/.test(value)) return;
-      // Block typing beyond country max length
-      const raw = value.replace(/[\s\-()]/g, "");
-      const rule = MOBILE_LENGTH_RULES[countryCode];
-      const maxLen = rule ? rule.max : 15;
-      if (raw.length > maxLen) return;
-    }
+    // Restrict mobile to digits, spaces, dashes, and parentheses only
+    if (name === "mobile" && value && !/^[\d\s\-()\d]*$/.test(value)) return;
     setFormData({ ...formData, [name]: value });
     setError("");
   };
@@ -335,9 +218,6 @@ function Careersignin({ onClose, onSuccess = null }) {
     setCountryCode(code);
     setCcOpen(false);
     setCcSearch("");
-    // Clear mobile when country changes — old digits may violate new rules
-    setFormData(prev => ({ ...prev, mobile: "" }));
-    setTouched(prev => ({ ...prev, mobile: false }));
   };
 
   // Close dropdown on outside click
@@ -757,12 +637,12 @@ function Careersignin({ onClose, onSuccess = null }) {
                     id="signup-mobile"
                     name="mobile"
                     type="tel"
-                    placeholder={`e.g. ${Array(MOBILE_LENGTH_RULES[countryCode]?.max ?? 10).fill(0).map((_, i) => (i === 0 ? 9 : i % 3 === 0 ? 8 : 7)).join("")}`}
+                    placeholder="e.g. 9876543210"
                     value={formData.mobile}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="tel-national"
-                    maxLength={(MOBILE_LENGTH_RULES[countryCode]?.max ?? 15) + 4}
+                    maxLength={15}
                     className={`mobile-number-input${fieldError("mobile") ? " input-error" : ""}`}
                   />
                 </div>
