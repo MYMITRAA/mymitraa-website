@@ -1,11 +1,9 @@
 /* ================= EXECUTION SECTION ================= */
 
 .execution {
-  position: relative;
   width: 100%;
   padding: 120px 0;
   background: white;
-  left:70px;
 }
 
 .execution-container {
@@ -120,14 +118,10 @@
   left: 400px;
 }
 
-/* ================= RIGHT PANEL ================= */
-
 .execution-right {
-  position: relative;
   width: 40%;
   display: flex;
   justify-content: flex-end;
-  right:180px;
 }
 
 .execution-image-box {
@@ -143,106 +137,9 @@
   left: 100px;
 }
 
-/* ── Layer 1: Ambient background pulse ── */
-.exec-bg-pulse {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(108, 99, 255, 0.22) 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: execPulse 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes execPulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.6; }
-  50%       { transform: translate(-50%, -50%) scale(1.2); opacity: 1;   }
-}
-
-/* ── Layer 2: Floating particles ── */
-.exec-particle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.55);
-  pointer-events: none;
-  z-index: 2;
-  animation: execFloat linear infinite;
-}
-
-.exec-p1 {
-  width: 6px;
-  height: 6px;
-  left: 22%;
-  bottom: 12%;
-  animation-duration: 5s;
-  animation-delay: 0s;
-}
-
-.exec-p2 {
-  width: 4px;
-  height: 4px;
-  left: 58%;
-  bottom: 8%;
-  animation-duration: 6.5s;
-  animation-delay: 1.2s;
-}
-
-.exec-p3 {
-  width: 5px;
-  height: 5px;
-  left: 76%;
-  bottom: 18%;
-  animation-duration: 5.8s;
-  animation-delay: 2.4s;
-}
-
-@keyframes execFloat {
-  0%   { transform: translateY(0px);   opacity: 0;   }
-  10%  { opacity: 0.8; }
-  90%  { opacity: 0.6; }
-  100% { transform: translateY(-320px); opacity: 0; }
-}
-
-/* ── Layer 3: Images — enter / exit transitions ── */
-.exec-img {
-  position: absolute;
-  width: 72%;
+.execution-image-box img {
+  width: 70%;
   height: auto;
-  object-fit: contain;
-  z-index: 5;
-
-  /* default hidden state */
-  opacity: 0;
-  transform: translateX(32px) scale(0.94);
-  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-
-/* Active image — slide in from right */
-.exec-img--active {
-  opacity: 1;
-  transform: translateX(0px) scale(1);
-  pointer-events: auto;
-
-  /* subtle idle float on the active image */
-  animation: execImgFloat 4s ease-in-out infinite;
-  animation-delay: 0.45s; /* wait for enter transition to finish */
-}
-
-/* Exit image — slide out to left */
-.exec-img--exit {
-  opacity: 0;
-  transform: translateX(-32px) scale(0.94);
-}
-
-@keyframes execImgFloat {
-  0%, 100% { transform: translateY(0px)   scale(1);    }
-  50%       { transform: translateY(-10px) scale(1.02); }
 }
 
 /* ================= TABLET ================= */
