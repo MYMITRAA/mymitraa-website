@@ -32,7 +32,7 @@ export default function ResourcesContent() {
           across your organization.
         </p>
 
-         <button onClick={() => navigate("/resourcesaugmentation")}>View More</button>
+         <button onClick={() => navigate("/resourceaugmentation")}>View More</button>
 
 
       </div>

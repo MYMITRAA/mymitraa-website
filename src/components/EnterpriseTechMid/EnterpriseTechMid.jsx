@@ -29,7 +29,7 @@ function EnterpriseTechMid() {
           </h2>
           <p className="entechmid__header-desc">
             We optimize enterprise IT ecosystems to ensure peak performance,
-            scalability, and reliability — enabling businesses to operate
+            scalability, and reliability  enabling businesses to operate
             efficiently at scale.
           </p>
         </div>
@@ -48,8 +48,8 @@ function EnterpriseTechMid() {
                 Performance Engineering &amp; Optimization
               </h3>
               <p className="entechmid__overlay-desc">
-                Identify bottlenecks, tune systems, and architect for speed —
-                delivering consistent, high-performance experiences across your
+                Identify bottlenecks, tune systems, and architect for speed 
+                delivering consistent, high performance experiences across your
                 entire enterprise stack.
               </p>
             </div>
@@ -96,7 +96,7 @@ function EnterpriseTechMid() {
               </h3>
               <p className="entechmid__overlay-desc">
                 Manage, scale, and secure your cloud infrastructure with
-                precision — ensuring maximum uptime, cost efficiency, and
+                precision  ensuring maximum uptime, cost efficiency, and
                 seamless performance at every layer.
               </p>
             </div>
@@ -115,7 +115,7 @@ function EnterpriseTechMid() {
           </div>
           <div className="entechmid__banner-right">
             <p className="entechmid__banner-desc">
-              We help enterprises operate at their best — optimizing
+              We help enterprises operate at their best optimizing
               infrastructure, eliminating bottlenecks, and building observable,
               resilient systems that scale with your business and reduce
               operational overhead.

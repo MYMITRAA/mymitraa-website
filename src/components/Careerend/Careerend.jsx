@@ -19,7 +19,7 @@ function CareerEnd() {
         <p className="career-end-desc">
           Our people are at the core of everything we do. Bringing a wealth of
           experience and Perspective to the table, it is these people who help
-          solve some of our clients’ and communities’ greatest challenges—who
+          solve some of our clients’ and communities’ greatest challenges who
           make the real impact that matters.
         </p>
 

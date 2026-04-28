@@ -116,7 +116,7 @@ function EnterpriseAgileDevelopmentmid() {
           <div className="eagilemid__banner-right">
             <p className="eagilemid__banner-desc">
               We empower teams to collaborate efficiently, automate workflows,
-              and continuously deliver value to customers — combining modern
+              and continuously deliver value to customers combining modern
               Agile frameworks with DevOps culture to accelerate your digital
               transformation.
             </p>

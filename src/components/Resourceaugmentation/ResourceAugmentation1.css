@@ -1,27 +1,41 @@
 /* ═══════════════════════════════════════════════════════
    ResourceAugmentation.css
-═══════════════════════════════════════════════════════ */
+   Exactly matches the MiTRAA website screenshot:
+   — Light blue/lavender hero bg
+   — White title section
+   — Two-col What We Do
+   — Lavender Why It Matters cards
+   — White Our Advantage grid
+   — Lavender Domains
+   — White Engagement steps
+   — Lavender CTA
+   ═══════════════════════════════════════════════════════ */
 
+/* ── Google Fonts ─────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
+/* ── Design Tokens ────────────────────────────────────────── */
 :root {
   --ra-white:        #ffffff;
-  --ra-lavender-bg:  #e8eaff;
-  --ra-lavender-mid: #dde0ff;
+  --ra-lavender-bg:  #e8eaff;          /* soft lavender — sections 1, 4, 6, 8 */
+  --ra-lavender-mid: #dde0ff;          /* card backgrounds in Why section     */
   --ra-purple:       rgba(115, 122, 255, 1);
   --ra-purple-soft:  rgba(115, 122, 255, 0.1);
-  --ra-blue-text:    #4a50cc;
+  --ra-blue-text:    #4a50cc;          /* "Advantage" gradient text           */
   --ra-body-dark:    #1a1a3e;
   --ra-body-mid:     #3a3a6a;
   --ra-body-muted:   #6b6b9a;
   --ra-border:       rgba(115, 122, 255, 0.18);
-  --ra-font-h:       'Sora', 'Segoe UI', sans-serif;
-  --ra-font-b:       'DM Sans', 'Segoe UI', sans-serif;
-  --ra-radius:       14px;
-  --ra-radius-lg:    22px;
-  --ra-shadow-card:  0 4px 24px rgba(115, 122, 255, 0.12);
+
+  --ra-font-h:  'Sora', 'Segoe UI', sans-serif;
+  --ra-font-b:  'DM Sans', 'Segoe UI', sans-serif;
+
+  --ra-radius:    14px;
+  --ra-radius-lg: 22px;
+  --ra-shadow-card: 0 4px 24px rgba(115, 122, 255, 0.12);
 }
 
+/* ── Page wrapper ─────────────────────────────────────────── */
 .ra-page {
   font-family: var(--ra-font-b);
   color: var(--ra-body-dark);
@@ -29,14 +43,18 @@
   overflow-x: hidden;
 }
 
+/* ═══════════════════════════════════════
+   SHARED SECTION PADDING
+═══════════════════════════════════════ */
 .ra-sec {
   width: 100%;
   padding: 0 24px;
-  box-sizing: border-box;
 }
 
 /* ═══════════════════════════════════════
    SECTION 1 — Hero Illustration
+   Light lavender gradient background,
+   centered 3D illustration
 ═══════════════════════════════════════ */
 .ra-sec--illus {
   background: linear-gradient(175deg, #c8ccff 0%, #dce0ff 40%, #e8eeff 100%);
@@ -48,14 +66,22 @@
   overflow: hidden;
 }
 
-.ra-illus-svg {
+.ra-illus-img {
   display: block;
+  width: auto;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+}
+
+.ra-illus-svg {
   width: 320px;
   height: 260px;
 }
 
 /* ═══════════════════════════════════════
    SECTION 2 — Title Block
+   White background, centered text
 ═══════════════════════════════════════ */
 .ra-sec--title {
   background: var(--ra-white);
@@ -100,6 +126,7 @@
 
 /* ═══════════════════════════════════════
    SECTION 3 — What We Do
+   White bg, left text + right visual card
 ═══════════════════════════════════════ */
 .ra-sec--whatdo {
   background: var(--ra-white);
@@ -144,9 +171,23 @@
   background: linear-gradient(135deg, #dce1ff, #bcd5fb);
 }
 
+.ra-whatdo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--ra-radius-lg);
+}
+
+.ra-whatdo__img-fallback {
+  display: flex;
+  width: 100%;
+  height: 240px;
+}
+
 /* ═══════════════════════════════════════
    SECTION 4 — Why It Matters
-   4 cards — always 1 row of 4
+   Lavender background (#e8eaff),
+   4 white cards with icon + label
 ═══════════════════════════════════════ */
 .ra-sec--why {
   background: var(--ra-lavender-bg);
@@ -173,19 +214,21 @@
   margin: 0;
 }
 
-/* Exactly 4 equal columns — no orphan cards */
 .ra-why__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 20px;
   max-width: 1100px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .ra-why__card {
   background: var(--ra-white);
   border-radius: var(--ra-radius);
-  padding: 36px 20px 28px;
+  padding: 36px 24px 28px;
+  flex: 1 1 200px;
+  max-width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,7 +262,9 @@
 
 /* ═══════════════════════════════════════
    SECTION 5 — Our Advantage
-   6 cards — 3 per row (2 even rows)
+   White bg, "Our Advantage" heading where
+   "Advantage" is blue gradient text,
+   3-col advantage grid
 ═══════════════════════════════════════ */
 .ra-sec--advantage {
   background: var(--ra-white);
@@ -257,7 +302,6 @@
   max-width: 520px;
 }
 
-/* 3 equal columns — 6 cards = 2 perfectly even rows */
 .ra-adv__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -285,6 +329,8 @@
   font-family: var(--ra-font-h);
   font-size: 1.5rem;
   font-weight: 800;
+  color: var(--ra-lavender-bg);
+  /* We actually want big muted purple number like "01" */
   background: linear-gradient(120deg, #737aff, #a5a9ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -309,8 +355,7 @@
 }
 
 /* ═══════════════════════════════════════
-   SECTION 6 — Domains
-   6 items — 2 per row (3 even rows)
+   SECTION 6 — Domains (lavender bg)
 ═══════════════════════════════════════ */
 .ra-sec--domains {
   background: var(--ra-lavender-bg);
@@ -347,15 +392,14 @@
   margin: 0;
 }
 
-/* 2 equal columns — 6 items = 3 perfectly even rows */
 .ra-domains__list {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  max-width: 1000px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .ra-domains__item {
@@ -365,7 +409,7 @@
   background: var(--ra-white);
   border: 1px solid rgba(115, 122, 255, 0.15);
   border-radius: var(--ra-radius);
-  padding: 16px 22px;
+  padding: 14px 20px;
   font-size: 0.93rem;
   font-weight: 500;
   color: var(--ra-body-dark);
@@ -382,20 +426,10 @@
   font-weight: 700;
   font-size: 1rem;
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  background: var(--ra-purple-soft);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
 }
 
 /* ═══════════════════════════════════════
-   SECTION 7 — Engagement Approach
-   4 steps — 2 per row (2 even rows)
-   Card style instead of vertical timeline
+   SECTION 7 — Engagement (white bg)
 ═══════════════════════════════════════ */
 .ra-sec--engage {
   background: var(--ra-white);
@@ -429,32 +463,22 @@
   margin: 0;
 }
 
-/* 2 equal columns — 4 cards = 2 perfectly even rows */
-.ra-engage__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 860px;
+.ra-engage__steps {
+  max-width: 680px;
   margin: 0 auto;
-}
-
-.ra-engage__card {
   display: flex;
-  gap: 18px;
+  flex-direction: column;
+  position: relative;
+}
+
+.ra-engage__step {
+  display: flex;
+  gap: 22px;
   align-items: flex-start;
-  background: var(--ra-white);
-  border: 1px solid rgba(115, 122, 255, 0.15);
-  border-radius: var(--ra-radius);
-  padding: 28px 24px;
-  transition: box-shadow 0.25s, transform 0.25s;
+  position: relative;
 }
 
-.ra-engage__card:hover {
-  box-shadow: 0 8px 28px rgba(115, 122, 255, 0.14);
-  transform: translateY(-3px);
-}
-
-.ra-engage__card-num {
+.ra-engage__step-num {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -468,21 +492,35 @@
   font-weight: 800;
   color: var(--ra-purple);
   flex-shrink: 0;
+  z-index: 1;
 }
 
-.ra-engage__card-body {
-  flex: 1;
+.ra-engage__step-line {
+  position: absolute;
+  left: 23px;
+  top: 48px;
+  width: 2px;
+  height: 42px;
+  background: linear-gradient(to bottom, rgba(115,122,255,0.4), rgba(115,122,255,0.05));
 }
 
-.ra-engage__card-title {
+.ra-engage__step-body {
+  padding: 8px 0 46px;
+}
+
+.ra-engage__step:last-child .ra-engage__step-body {
+  padding-bottom: 0;
+}
+
+.ra-engage__step-title {
   font-family: var(--ra-font-h);
   font-size: 0.98rem;
   font-weight: 700;
   color: var(--ra-body-dark);
-  margin: 0 0 8px;
+  margin: 0 0 5px;
 }
 
-.ra-engage__card-desc {
+.ra-engage__step-desc {
   font-size: 0.875rem;
   color: var(--ra-body-muted);
   line-height: 1.65;
@@ -490,7 +528,7 @@
 }
 
 /* ═══════════════════════════════════════
-   SECTION 8 — CTA
+   SECTION 8 — CTA (lavender bg)
 ═══════════════════════════════════════ */
 .ra-sec--cta {
   background: var(--ra-lavender-bg);
@@ -564,8 +602,6 @@
 /* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
-
-/* 900px — tablet */
 @media (max-width: 900px) {
   .ra-sec--whatdo {
     flex-direction: column;
@@ -575,55 +611,29 @@
     max-width: 100%;
     width: 100%;
   }
-
-  /* Why: 2×2 */
-  .ra-why__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Advantage: 2+2+2 stays (or collapses to 2 col) */
-  /* already 3 col, fine at 900 */
-
-  /* Domains: stays 2 col */
-  /* Engagement: stays 2 col */
-}
-
-/* 768px */
-@media (max-width: 768px) {
-  /* Advantage: 2 per row (3+3 → 2+2+2) */
   .ra-adv__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 640px — mobile */
 @media (max-width: 640px) {
-  /* Why: 1 col (all cards full width, stacked) */
   .ra-why__grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
   }
-
-  /* Advantage: 1 col */
+  .ra-why__card {
+    max-width: 100%;
+    width: 100%;
+  }
   .ra-adv__grid {
     grid-template-columns: 1fr;
   }
-
-  /* Domains: 1 col */
-  .ra-domains__list {
-    grid-template-columns: 1fr;
-  }
-
-  /* Engagement: 1 col */
-  .ra-engage__grid {
-    grid-template-columns: 1fr;
-  }
-
   .ra-title-h1 {
     font-size: 1.75rem;
   }
-
+  .ra-illus-img,
   .ra-illus-svg {
+    max-width: 80vw;
     width: 80vw;
-    height: auto;
   }
 }

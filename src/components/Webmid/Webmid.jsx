@@ -28,9 +28,9 @@ function Webmid() {
             Web &amp; Application Development at MiTRA Technology
           </h2>
           <p className="webmid__header-desc">
-            We build scalable, secure, and high-performance digital platforms
-            tailored to modern business needs — from intuitive user interfaces
-            to robust backend systems, end-to-end.
+            We build scalable, secure, and high performance digital platforms
+            tailored to modern business needs from intuitive user interfaces
+            to robust backend systems, end to end.
           </p>
         </div>
 
@@ -48,8 +48,8 @@ function Webmid() {
                 Custom Website Development
               </h3>
               <p className="webmid__overlay-desc">
-                Build pixel-perfect, high-performance websites tailored to your
-                brand — combining beautiful UI design with powerful functionality
+                Build pixel perfect, high-performance websites tailored to your
+                brand  combining beautiful UI design with powerful functionality
                 to drive engagement and conversions.
               </p>
             </div>
@@ -96,7 +96,7 @@ function Webmid() {
               </h3>
               <p className="webmid__overlay-desc">
                 Develop powerful, scalable web applications with modern
-                frameworks — delivering fast, reliable, and secure digital
+                frameworks delivering fast, reliable, and secure digital
                 experiences that grow with your business.
               </p>
             </div>
@@ -115,8 +115,8 @@ function Webmid() {
           </div>
           <div className="webmid__banner-right">
             <p className="webmid__banner-desc">
-              We deliver modern web and mobile solutions — from UI/UX design to
-              backend architecture — ensuring every platform we build is fast,
+              We deliver modern web and mobile solutions from UI/UX design to
+              backend architecture  ensuring every platform we build is fast,
               secure, scalable, and aligned with your business goals.
             </p>
             <div className="webmid__banner-stats">

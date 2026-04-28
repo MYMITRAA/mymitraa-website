@@ -89,7 +89,7 @@ function Discover() {
                 <h3>Business Impact</h3>
                 <p>
                   Reduced operational load, faster and smarter decisions,
-                  lower long-term costs, and better customer experiences —
+                  lower long-term costs, and better customer experiences
                   so your teams focus on growth.
                 </p>
               </div>

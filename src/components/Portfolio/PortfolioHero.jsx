@@ -19,7 +19,7 @@ function PortfolioHero() {
           </h1>
 
           <p className="pf-hero__desc">
-            We deliver the right talent on demand — helping you scale teams fast
+            We deliver the right talent on demand  helping you scale teams fast
             without hiring delays, overhead, or risk. Not just resources, but
             capability, accountability, and measurable outcomes.
           </p>
@@ -29,7 +29,7 @@ function PortfolioHero() {
               Explore Our Work
               <span className="pf-hero__cta-arrow">→</span>
             </a>
-            <a href="#contact" className="pf-hero__cta-ghost">
+            <a href="/contact" className="pf-hero__cta-ghost">
               Get in Touch →
             </a>
           </div>

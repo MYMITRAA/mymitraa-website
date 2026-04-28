@@ -13,7 +13,6 @@ import kaust      from "../../assets/organisation/KAUS.png";
 import khalifa    from "../../assets/organisation/Khalifa-logo.png";
 import kingSaud   from "../../assets/organisation/king_saud_university_logo.png";
 import mbzuai     from "../../assets/organisation/Mbzuai_logo.png";
-import metaAI     from "../../assets/organisation/Meta-AI-Logo.jpg";
 import microsoft  from "../../assets/organisation/microsoft-transparent-microsoft.webp";
 import mit        from "../../assets/organisation/MIT.png";
 import nvidia     from "../../assets/organisation/nvidia-logo.png";
@@ -24,8 +23,21 @@ import oxford     from "../../assets/organisation/university-of-oxford-logo.png"
 import JPR        from "../../assets/organisation/JPR.png";
 import AWS        from "../../assets/organisation/AWS.png";
 
+/* ── Partner logos ── */
+const PARTNERS = [
+  { src: ibm,       alt: "IBM" },
+  { src: microsoft, alt: "Microsoft" },
+  { src: openai,    alt: "OpenAI" },
+  { src: JPR,       alt: "JPR" },
+  { src: AWS,       alt: "AWS" },
+  { src: nvidia,    alt: "NVIDIA" },
+];
+
+/* Triple-duplicate for seamless infinite scroll (only 6 items) */
+const PARTNER_TRACK = [...PARTNERS, ...PARTNERS, ...PARTNERS];
+
+/* ── Distinction logos (partners removed) ── */
 const LOGOS = [
-  { src: ibm,        alt: "IBM" },
   { src: iiith,      alt: "IIIT Hyderabad" },
   { src: iisc,       alt: "IISc Bangalore" },
   { src: iitMadras,  alt: "IIT Madras" },
@@ -35,27 +47,16 @@ const LOGOS = [
   { src: khalifa,    alt: "Khalifa University" },
   { src: kingSaud,   alt: "King Saud University" },
   { src: mbzuai,     alt: "MBZUAI" },
-  // { src: metaAI,  alt: "Meta AI" },
-  { src: microsoft,  alt: "Microsoft" },
   { src: mit,        alt: "MIT" },
-  { src: nvidia,     alt: "NVIDIA" },
-  { src: openai,     alt: "OpenAI" },
   { src: qatar,      alt: "Qatar University" },
   { src: stanford,   alt: "Stanford University" },
   { src: oxford,     alt: "University of Oxford" },
-  { src: JPR,        alt: "JPR" },
-  { src: AWS,        alt: "AWS" },
 ];
 
-/* Duplicate for seamless infinite scroll */
 const TRACK = [...LOGOS, ...LOGOS];
 
-function AboutusEnd() {
-  const sliderRef = useRef(null);
-  const trackRef  = useRef(null);
-  const pausedRef = useRef(false);
-
-  /* ── IntersectionObserver: detect items near center ── */
+/* ── Shared slider hook ── */
+function useSlider(sliderRef, trackRef) {
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -63,48 +64,44 @@ function AboutusEnd() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const el = entry.target;
           if (entry.isIntersecting) {
-            el.classList.add("distinction-item--center");
+            entry.target.classList.add("distinction-item--center");
           } else {
-            el.classList.remove("distinction-item--center");
+            entry.target.classList.remove("distinction-item--center");
           }
         });
       },
-      {
-        root: slider,
-        rootMargin: "0px -35% 0px -35%",
-        threshold: 0.5,
-      }
+      { root: slider, rootMargin: "0px -35% 0px -35%", threshold: 0.5 }
     );
 
     const items = slider.querySelectorAll(".distinction-item");
     items.forEach((item) => observer.observe(item));
-
     return () => observer.disconnect();
   }, []);
 
-  /* ── Pause on hover ── */
   const handleMouseEnter = () => {
-    pausedRef.current = true;
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = "paused";
-    }
+    if (trackRef.current) trackRef.current.style.animationPlayState = "paused";
+  };
+  const handleMouseLeave = () => {
+    if (trackRef.current) trackRef.current.style.animationPlayState = "running";
   };
 
-  const handleMouseLeave = () => {
-    pausedRef.current = false;
-    if (trackRef.current) {
-      trackRef.current.style.animationPlayState = "running";
-    }
-  };
+  return { handleMouseEnter, handleMouseLeave };
+}
+
+function AboutusEnd() {
+  const sliderRef        = useRef(null);
+  const trackRef         = useRef(null);
+  const partnerSliderRef = useRef(null);
+  const partnerTrackRef  = useRef(null);
+
+  const distinction = useSlider(sliderRef, trackRef);
+  const partners    = useSlider(partnerSliderRef, partnerTrackRef);
 
   return (
     <section className="about-end">
 
       <div className="about-end-container">
-
-        {/* ── Two-column header: title left, subtitle right ── */}
         <div className="about-end-header">
           <h2>Where Vision Meets Innovation</h2>
           <p>
@@ -113,13 +110,10 @@ function AboutusEnd() {
           </p>
         </div>
 
-        {/* ── Image + Cards ── */}
         <div className="about-end-content">
-
           <div className="about-end-left">
             <img src={leftImage} alt="Vision Illustration" />
           </div>
-
           <div className="about-end-right">
             <div className="about-card vision">
               <h3>Our Vision</h3>
@@ -136,13 +130,39 @@ function AboutusEnd() {
               </p>
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* ── Distinction Slider ── */}
-      <div className="about-distinction">
+      {/* ══ OUR PARTNERS — sliding rectangles ══ */}
+      <div className="about-partners">
+        <div className="partners-header">
+          <h2 className="partners-title">Our Partners</h2>
+          <p className="partners-sub">
+            Trusted industry leaders we collaborate with to deliver excellence.
+          </p>
+        </div>
 
+        <div
+          className="partners-slider"
+          ref={partnerSliderRef}
+          onMouseEnter={partners.handleMouseEnter}
+          onMouseLeave={partners.handleMouseLeave}
+        >
+          <div className="partners-track" ref={partnerTrackRef}>
+            {PARTNER_TRACK.map((logo, i) => (
+              <div className="distinction-item partner-card-item" key={i}>
+                <div className="partner-card">
+                  <img src={logo.src} alt={logo.alt} />
+                  <span className="partner-name">{logo.alt}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ══ DISTINCTION SLIDER ══ */}
+      <div className="about-distinction">
         <div className="distinction-header">
           <h2 className="distinction-title">Our Distinction</h2>
           <p className="distinction-sub">
@@ -153,8 +173,8 @@ function AboutusEnd() {
         <div
           className="distinction-slider"
           ref={sliderRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={distinction.handleMouseEnter}
+          onMouseLeave={distinction.handleMouseLeave}
         >
           <div className="distinction-track" ref={trackRef}>
             {TRACK.map((logo, i) => (
@@ -166,7 +186,6 @@ function AboutusEnd() {
             ))}
           </div>
         </div>
-
       </div>
 
     </section>

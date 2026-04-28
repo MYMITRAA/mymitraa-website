@@ -49,7 +49,7 @@ function CyberSecuritymid() {
               </h3>
               <p className="cybermid__overlay-desc">
                 Implement a robust Zero Trust framework that verifies every
-                user, device, and connection — eliminating implicit trust across
+                user, device, and connection eliminating implicit trust across
                 your entire network.
               </p>
             </div>
@@ -96,7 +96,7 @@ function CyberSecuritymid() {
               </h3>
               <p className="cybermid__overlay-desc">
                 Set up and manage a 24/7 Security Operations Center that
-                monitors, detects, and responds to threats in real time —
+                monitors, detects, and responds to threats in real time 
                 keeping your business always protected.
               </p>
             </div>
@@ -116,8 +116,8 @@ function CyberSecuritymid() {
           <div className="cybermid__banner-right">
             <p className="cybermid__banner-desc">
               We deliver enterprise-grade cybersecurity solutions that protect
-              your digital assets end-to-end — from identity management to cloud
-              compliance — so your business stays secure, trusted, and resilient.
+              your digital assets end to end  from identity management to cloud
+              compliance  so your business stays secure, trusted, and resilient.
             </p>
             <div className="cybermid__banner-stats">
               <div className="cybermid__stat">

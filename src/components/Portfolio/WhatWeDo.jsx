@@ -13,7 +13,7 @@ function WhatWeDo() {
           </h2>
           <p className="pf-wwd__desc">
             We extend your teams with pre-vetted, industry-ready experts across
-            engineering, product, data, cloud, AI, and operations — without
+            engineering, product, data, cloud, AI, and operations without
             the hiring overhead.
           </p>
           <div className="pf-wwd__stats">

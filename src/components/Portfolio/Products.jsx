@@ -47,14 +47,14 @@ const products = [
     name:        "feelzy",
     headline:    "Together we rise, together we heal",
     description:
-      "Feelzy is a digital platform that helps people handle emotions like stress, loneliness, and heartbreak — providing a safe, supportive space where users share their feelings and find community.",
+      "Feelzy is a digital platform that helps people handle emotions like stress, loneliness, and heartbreak providing a safe, supportive space where users share their feelings and find community.",
     features: [
       { label: "Anonymous Support",    desc: "Share feelings privately, without judgement"  },
       { label: "Empathetic Listeners", desc: "Get support from caring, trained people"       },
       { label: "Safe Space",           desc: "Secure and fully confidential environment"     },
     ],
     vision:
-      "We use technology to bring people closer, support emotional well-being, and create meaningful human connections.",
+      "We use technology to bring people closer, support emotional well being, and create meaningful human connections.",
     contact: {
       email:     "support@feelzy.in",
       facebook:  "https://www.facebook.com",
@@ -72,7 +72,7 @@ const products = [
     name:        "JARViiS AI",
     headline:    "The Future of Intelligent Testing",
     description:
-      "JARViiS AI is an AI-based platform that automates testing for websites and applications — helping teams test faster, reduce manual work, and ship with confidence.",
+      "JARViiS AI is an AI based platform that automates testing for websites and applications  helping teams test faster, reduce manual work, and ship with confidence.",
     features: [
       { label: "App Testing",      desc: "Tests web, mobile, and APIs end-to-end"          },
       { label: "Smart Detection",  desc: "Identifies errors and regressions automatically"  },
@@ -80,7 +80,7 @@ const products = [
       { label: "Quality Insights", desc: "Actionable reports to improve performance"        },
     ],
     vision:
-      "JARViiS AI helps teams release software faster with better quality — reducing testing time, improving accuracy, and ensuring smooth, reliable deployments.",
+      "JARViiS AI helps teams release software faster with better quality  reducing testing time, improving accuracy, and ensuring smooth, reliable deployments.",
     contact: null,
   },
   {
@@ -93,7 +93,7 @@ const products = [
     name:        "SeeKMITra",
     headline:    "Every Journey Tells a Story",
     description:
-      "SeeKMITra is a digital platform that captures real-life stories from everyday travel experiences — turning simple journeys into meaningful narratives by connecting people and their moments.",
+      "SeeKMITra is a digital platform that captures real-life stories from everyday travel experiences turning simple journeys into meaningful narratives by connecting people and their moments.",
     features: [
       { label: "Backseat Stories",     desc: "Capture real conversations and experiences during rides" },
       { label: "Community Connection", desc: "Connect people, cities, and cultures"                    },

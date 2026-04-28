@@ -17,7 +17,7 @@ function EnterpriseTechHero() {
           <h1 className="entechhero__title">Enterprise Technology &amp; Performance</h1>
           <p className="entechhero__subtitle">
             Optimize your enterprise IT ecosystem for peak performance,
-            scalability, and reliability — at any scale.
+            scalability, and reliability at any scale.
           </p>
         </div>
       </div>

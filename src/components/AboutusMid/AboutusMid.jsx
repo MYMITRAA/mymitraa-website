@@ -12,7 +12,7 @@ function AboutusMid() {
         <p>
           We are a technology-driven company delivering innovative IT solutions across AI &amp; automation, cloud and hybrid
           infrastructure, cybersecurity, and data analytics. Our focus is on helping businesses improve efficiency, enhance security,
-          and make smarter, data-driven decisions. With a customer-first approach, we build scalable and reliable solutions tailored to
+          and make smarter, data driven decisions. With a customer first approach, we build scalable and reliable solutions tailored to
           modern business needs.
         </p>
       </div>

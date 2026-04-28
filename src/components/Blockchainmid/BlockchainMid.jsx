@@ -49,7 +49,7 @@ function BlockchainMid() {
               </h3>
               <p className="blockmid__overlay-desc">
                 Build secure, self-executing smart contracts that automate
-                agreements and eliminate the need for intermediaries — bringing
+                agreements and eliminate the need for intermediaries  bringing
                 trust directly into your operations.
               </p>
             </div>
@@ -95,8 +95,8 @@ function BlockchainMid() {
                 Decentralized Applications (dApps)
               </h3>
               <p className="blockmid__overlay-desc">
-                Design and deploy dApps on leading blockchain networks —
-                enabling transparent, censorship-resistant, and user-owned
+                Design and deploy dApps on leading blockchain networks 
+                enabling transparent, censorship-resistant, and user owned
                 digital experiences.
               </p>
             </div>
@@ -115,15 +115,15 @@ function BlockchainMid() {
           </div>
           <div className="blockmid__banner-right">
             <p className="blockmid__banner-desc">
-              We help businesses navigate the Web3 landscape — from smart
-              contract architecture to full DeFi and NFT solutions — reducing
+              We help businesses navigate the Web3 landscape from smart
+              contract architecture to full DeFi and NFT solutions  reducing
               dependency on intermediaries and unlocking new revenue streams
               through token economies.
             </p>
             <div className="blockmid__banner-stats">
               <div className="blockmid__stat">
                 <strong className="blockmid__stat-num blockmid__stat-num--accent">100%</strong>
-                <span className="blockmid__stat-label">Tamper-proof Records</span>
+                <span className="blockmid__stat-label">Tamper proof Records</span>
               </div>
               <div className="blockmid__stat">
                 <strong className="blockmid__stat-num">0</strong>

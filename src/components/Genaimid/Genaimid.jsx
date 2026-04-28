@@ -30,7 +30,7 @@ function Genaimid() {
           <p className="genaimid__header-desc">
             We build AI systems that understand, assist, and adapt. From
             intelligent assistants to custom workflows, generative AI cuts
-            manual work and sharpens decisions — unlocking the next generation
+            manual work and sharpens decisions unlocking the next generation
             of intelligent automation.
           </p>
         </div>
@@ -50,7 +50,7 @@ function Genaimid() {
               </h3>
               <p className="genaimid__overlay-desc">
                 Build and fine-tune large language models tailored to your
-                domain — delivering intelligent automation at the core of your
+                domain  delivering intelligent automation at the core of your
                 operations.
               </p>
             </div>
@@ -97,7 +97,7 @@ function Genaimid() {
               </h3>
               <p className="genaimid__overlay-desc">
                 Design intelligent copilots and autonomous agents that integrate
-                seamlessly into your enterprise stack — transforming how teams
+                seamlessly into your enterprise stack transforming how teams
                 work, decide, and grow.
               </p>
             </div>
@@ -117,7 +117,7 @@ function Genaimid() {
           <div className="genaimid__banner-right">
             <p className="genaimid__banner-desc">
               We help organizations transform operations, enhance customer
-              experiences, and drive innovation at scale — through AI solutions
+              experiences, and drive innovation at scale through AI solutions
               that are built for your business, not borrowed from a template.
             </p>
 <div className="genaimid__banner-stats">
