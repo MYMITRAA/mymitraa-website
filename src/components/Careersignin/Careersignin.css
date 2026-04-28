@@ -1,3 +1,4 @@
+/* ── Overlay & container ── */
 .auth-overlay {
   position: fixed;
   inset: 0;
@@ -26,6 +27,11 @@
   margin-left: 20px;
 }
 
+.auth-bird--signup {
+  top: 40px;
+}
+
+/* ── Card ── */
 .auth-card {
   width: 360px;
   background: #f7f7fb;
@@ -57,6 +63,7 @@
   margin-bottom: 20px;
 }
 
+/* ── Fields ── */
 .auth-field {
   text-align: left;
   margin-bottom: 15px;
@@ -77,8 +84,26 @@
   font-size: 13px;
   outline: none;
   box-sizing: border-box;
+  transition: border-color 0.2s;
 }
 
+.auth-field input:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
+}
+
+/* ── Close button ── */
+.auth-close {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  font-size: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ── Forgot ── */
 .forgot {
   display: block;
   font-size: 11px;
@@ -88,6 +113,7 @@
   cursor: pointer;
 }
 
+/* ── Submit button ── */
 .auth-btn {
   width: 100%;
   height: 42px;
@@ -106,6 +132,7 @@
   cursor: not-allowed;
 }
 
+/* ── Switch link ── */
 .auth-switch {
   font-size: 12px;
   margin-top: 12px;
@@ -117,35 +144,7 @@
   font-weight: 500;
 }
 
-.auth-close {
-  position: absolute;
-  top: 30px;
-  right: 50px;
-  font-size: 26px;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.auth-bird--signup {
-  top: 40px;
-}
-
-/* ── Field-level error text ── */
-.field-error {
-  display: block;
-  font-size: 11px;
-  color: #e53935;
-  margin-top: 4px;
-}
-
-/* ── Input error border ── */
-.input-error {
-  border: 1.5px solid #e53935 !important;
-  background: #fff5f5;
-}
-
-/* ── Server-level error / success ── */
+/* ── Alerts ── */
 .auth-error {
   font-size: 12px;
   color: #e53935;
@@ -166,34 +165,174 @@
   margin-bottom: 10px;
 }
 
-/* ── Password strength bar ── */
-.password-strength {
+/* ── Field-level errors ── */
+.field-error {
+  display: block;
+  font-size: 11px;
+  color: #e53935;
+  margin-top: 4px;
+}
+
+.input-error {
+  border: 1.5px solid #e53935 !important;
+  background: #fff5f5;
+}
+
+/* ── Mobile input row ── */
+.mobile-input-wrap {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.mobile-number-input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Country code selector ── */
+.cc-selector {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cc-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #d6d6e8;
+  background: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.2s;
+  color: #333;
+  min-width: 80px;
+}
+
+.cc-trigger:hover,
+.cc-selector--open .cc-trigger {
+  border-color: #6C63FF;
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
+}
+
+.cc-selector--error .cc-trigger {
+  border-color: #e53935;
+  background: #fff5f5;
+}
+
+.cc-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.cc-code {
+  font-size: 12px;
+  font-weight: 500;
+  color: #444;
+}
+
+.cc-caret {
+  font-size: 9px;
+  color: #888;
+  margin-left: 2px;
+}
+
+/* ── Dropdown panel ── */
+.cc-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 220px;
+  background: #fff;
+  border: 1px solid #d6d6e8;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(108,99,255,0.14);
+  z-index: 500;
+  overflow: hidden;
+}
+
+.cc-search-wrap {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f0f8;
+}
+
+.cc-search {
+  width: 100%;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #d6d6e8;
+  padding: 0 10px;
+  font-size: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cc-search:focus {
+  border-color: #6C63FF;
+}
+
+.cc-list {
+  max-height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d6d6e8 transparent;
+}
+
+.cc-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cc-list::-webkit-scrollbar-thumb {
+  background: #d6d6e8;
+  border-radius: 4px;
+}
+
+.cc-option {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 6px;
+  width: 100%;
+  padding: 7px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+  color: #333;
+  transition: background 0.15s;
 }
 
-.strength-bar {
-  flex: 1;
-  height: 4px;
-  border-radius: 4px;
-  transition: background 0.3s ease;
+.cc-option:hover {
+  background: #f3f0ff;
 }
 
-.strength-bar.weak   { background: #e53935; }
-.strength-bar.medium { background: #fb8c00; }
-.strength-bar.strong { background: #43a047; }
-
-.strength-label {
-  font-size: 11px;
+.cc-option--selected {
+  background: #eeecff;
   font-weight: 600;
-  min-width: 40px;
+  color: #6C63FF;
 }
 
-.strength-bar.weak   ~ .strength-label { color: #e53935; }
-.strength-bar.medium ~ .strength-label { color: #fb8c00; }
-.strength-bar.strong ~ .strength-label { color: #43a047; }
+.cc-option-name {
+  flex: 1;
+  font-size: 12px;
+}
+
+.cc-option-code {
+  font-size: 11px;
+  color: #888;
+  font-weight: 500;
+}
+
+.cc-empty {
+  padding: 12px;
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+}
 
 /* ── Password eye toggle ── */
 .auth-password-wrap {
@@ -221,6 +360,81 @@
 
 .auth-eye-btn:hover {
   color: #6C63FF;
+}
+
+/* ── Password strength (4-segment bar) ── */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.strength-bars {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.strength-segment {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: #e0e0ec;
+  transition: background 0.3s ease;
+}
+
+.strength-segment--weak        { background: #e53935; }
+.strength-segment--medium      { background: #fb8c00; }
+.strength-segment--strong      { background: #1e88e5; }
+.strength-segment--very-strong { background: #43a047; }
+
+.strength-label {
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+}
+
+.strength-label--weak        { color: #e53935; }
+.strength-label--medium      { color: #fb8c00; }
+.strength-label--strong      { color: #1e88e5; }
+.strength-label--very-strong { color: #43a047; }
+
+/* ── Password requirements checklist ── */
+.pwd-rules {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pwd-rules li {
+  font-size: 11px;
+  color: #aaa;
+  padding-left: 16px;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.pwd-rules li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-size: 10px;
+  transition: color 0.2s;
+}
+
+.pwd-rules li.pwd-rule--ok {
+  color: #43a047;
+}
+
+.pwd-rules li.pwd-rule--ok::before {
+  content: "✓";
+  color: #43a047;
 }
 
 /* ── OTP verification boxes ── */

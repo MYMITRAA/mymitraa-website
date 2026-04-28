@@ -69,10 +69,10 @@ const products = [
     accentColor: "#4a5af8",
     accentLight: "#eef0ff",
     tagline:     "AI-Powered Testing Platform",
-    name:        "JARVIIS AI",
+    name:        "JARViiS AI",
     headline:    "The Future of Intelligent Testing",
     description:
-      "JARVIIS AI is an AI-based platform that automates testing for websites and applications — helping teams test faster, reduce manual work, and ship with confidence.",
+      "JARViiS AI is an AI-based platform that automates testing for websites and applications — helping teams test faster, reduce manual work, and ship with confidence.",
     features: [
       { label: "App Testing",      desc: "Tests web, mobile, and APIs end-to-end"          },
       { label: "Smart Detection",  desc: "Identifies errors and regressions automatically"  },
@@ -80,7 +80,7 @@ const products = [
       { label: "Quality Insights", desc: "Actionable reports to improve performance"        },
     ],
     vision:
-      "JARVIIS AI helps teams release software faster with better quality — reducing testing time, improving accuracy, and ensuring smooth, reliable deployments.",
+      "JARViiS AI helps teams release software faster with better quality — reducing testing time, improving accuracy, and ensuring smooth, reliable deployments.",
     contact: null,
   },
   {
@@ -90,10 +90,10 @@ const products = [
     accentColor: "#1a1a2e",
     accentLight: "#f0f0f8",
     tagline:     "Mobility & Storytelling Platform",
-    name:        "SeeKMiTra",
+    name:        "SeeKMITra",
     headline:    "Every Journey Tells a Story",
     description:
-      "SeeKMiTra is a digital platform that captures real-life stories from everyday travel experiences — turning simple journeys into meaningful narratives by connecting people and their moments.",
+      "SeeKMITra is a digital platform that captures real-life stories from everyday travel experiences — turning simple journeys into meaningful narratives by connecting people and their moments.",
     features: [
       { label: "Backseat Stories",     desc: "Capture real conversations and experiences during rides" },
       { label: "Community Connection", desc: "Connect people, cities, and cultures"                    },
