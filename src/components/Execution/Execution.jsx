@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./Execution.css";
 
-import about1 from "../../assets/images/about1.png";
-import about2 from "../../assets/images/about22.png";
-import about3 from "../../assets/images/about33.png";
-import about4 from "../../assets/images/about44.png";
+import about1 from "../../assets/images/about1.webp";
+import about2 from "../../assets/images/about22.webp";
+import about3 from "../../assets/images/about33.webp";
+import about4 from "../../assets/images/about44.webp";
 
 const items = [
   {
