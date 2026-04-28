@@ -43,9 +43,9 @@ const AllServiceMid = () => {
     return () => observer.disconnect();
   }, []);
 
-  const projects = useCountUp(10,  "+", 1000, started);
-  const clients  = useCountUp(8,   "+", 1200, started);
-  const repeat   = useCountUp(70,  "%", 1400, started);
+  const projects = useCountUp(10, "+", 1000, started);
+  const clients  = useCountUp(8,  "+", 1200, started);
+  const repeat   = useCountUp(70, "%", 1400, started);
   const delivery = useCountUp(100, "%", 1600, started);
 
   return (
@@ -69,7 +69,7 @@ const AllServiceMid = () => {
             <img src={bird} alt="bot" />
           </div>
 
-          <h3>MAHIBOT</h3>
+          <h3>Zenix</h3>
 
           <div className="bot-tag">
             MY MITRAA CHAT BOT
@@ -105,9 +105,11 @@ const AllServiceMid = () => {
 
         </div>
 
+
         {/* RIGHT SIDE */}
         <div className="why-right">
 
+          {/* Card 1 */}
           <div className="right-card-1">
             <h4>Scalability Issues</h4>
             <p>
@@ -117,6 +119,7 @@ const AllServiceMid = () => {
             </p>
           </div>
 
+          {/* Card 2 */}
           <div className="right-card-2">
             <h4>Scalability Issues</h4>
             <p>
@@ -126,8 +129,9 @@ const AllServiceMid = () => {
             </p>
           </div>
 
+          {/* Card 3 */}
           <div className="right-card-3">
-            <h4>Professional &amp; Creative Team</h4>
+            <h4>Professional & Creative Team</h4>
             <p>
               A professional and creative team delivering innovative ideas,
               strategic solutions, collaboration, expertise, dedication,

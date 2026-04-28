@@ -1,4 +1,4 @@
-import portfolioImg from "../../assets/images/casestudy.jpg";
+import portfolioImg from "../../assets/images/portfoliomegabar.png";
 import { useNavigate } from "react-router-dom";
 import "./PortfolioContent.css"
 

@@ -450,7 +450,7 @@ function Hero() {
           <div className="strip-tabs">
             <button className="active">What We Do</button>
             <button onClick={() => navigate("/execution")}>Inside MITRA</button>
-            <button onClick={() => navigate("/con")}>What We Deliver</button>
+            <button onClick={() => navigate("/service")}>What We Deliver</button>
           </div>
           <button className="strip-btn" onClick={() => navigate("/contact")}>
             Contact Us

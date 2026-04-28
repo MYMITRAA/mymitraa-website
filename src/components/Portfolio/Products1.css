@@ -1,0 +1,402 @@
+/* ============================================================
+   Products We've Built Section — magazine-editorial style
+   ============================================================ */
+
+.portfolio__products {
+  padding: 120px 0 140px;
+  background: var(--white);
+  position: relative;
+}
+
+/* light dot grid texture */
+.portfolio__products::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(90,106,248,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.portfolio__products-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio__products-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 88px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.portfolio__products-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 58px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.02;
+  letter-spacing: -1px;
+}
+
+.portfolio__products-title span {
+  color: var(--indigo);
+  font-style: italic;
+}
+
+.portfolio__products-subtitle {
+  font-size: 15px;
+  color: var(--ink-light);
+  line-height: 1.8;
+  max-width: 380px;
+  align-self: end;
+}
+
+/* ── Products list ── */
+.portfolio__products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.portfolio__products-list > article + article {
+  padding-top: 80px;
+  border-top: 1px solid var(--card-border);
+}
+
+/* ── Single product card ── */
+.portfolio__product-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.portfolio__product-card--reverse {
+  direction: rtl;
+}
+
+.portfolio__product-card--reverse > * {
+  direction: ltr;
+}
+
+/* ── Content side ── */
+.portfolio__product-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__product-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.portfolio__product-logo-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--accent-light, #eef0ff);
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio__product-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.portfolio__product-logo-fallback {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent, #5a6af8);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio__product-logo:not([style*="display: none"]) + .portfolio__product-logo-fallback {
+  display: none;
+}
+
+.portfolio__product-tagline {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent, #5a6af8);
+  margin-bottom: 4px;
+}
+
+.portfolio__product-name {
+  font-family: "Outfit", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.portfolio__product-headline {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.portfolio__product-desc {
+  font-size: 15px;
+  color: var(--ink-light);
+  line-height: 1.85;
+  margin-bottom: 32px;
+}
+
+/* ── Feature list ── */
+.portfolio__product-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 32px;
+}
+
+.portfolio__product-feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(90,106,248,0.08);
+}
+
+.portfolio__product-feature:first-child {
+  border-top: 1px solid rgba(90,106,248,0.08);
+}
+
+.portfolio__product-feature-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #5a6af8);
+  flex-shrink: 0;
+}
+
+.portfolio__product-feature-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 130px;
+}
+
+.portfolio__product-feature-sep {
+  font-size: 13px;
+  color: rgba(107,109,133,0.4);
+}
+
+.portfolio__product-feature-desc {
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+/* ── Vision block ── */
+.portfolio__product-vision {
+  border-left: 2px solid var(--accent, #5a6af8);
+  padding: 12px 18px;
+  background: var(--accent-light, #eef0ff);
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 0;
+}
+
+.portfolio__product-vision-heading {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent, #5a6af8);
+  margin-bottom: 6px;
+}
+
+.portfolio__product-vision-text {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+
+/* ── Contact block ── */
+.portfolio__product-contact {
+  margin-top: 24px;
+  background: var(--ink);
+  border-radius: 18px;
+  padding: 24px 24px 20px;
+}
+
+.portfolio__product-contact-heading {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.portfolio__product-contact-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.portfolio__product-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 4px 0;
+}
+
+.portfolio__product-social:hover {
+  color: var(--white);
+}
+
+.portfolio__product-social svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* ── Visual side ── */
+.portfolio__product-visual {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3.2;
+  background: var(--accent-light, #eef0ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio__product-img-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+
+.portfolio__product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 100%;
+  border-radius: 12px;
+  transition: transform 0.6s var(--ease);
+}
+
+.portfolio__product-visual:hover .portfolio__product-img {
+  transform: scale(1.03);
+}
+
+.portfolio__product-img-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 0;
+}
+
+.portfolio__product-img-placeholder span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent, #5a6af8);
+  opacity: 0.2;
+}
+
+.portfolio__product-img-placeholder small {
+  font-size: 11px;
+  color: var(--accent, #5a6af8);
+  opacity: 0.18;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ── Floating badge ── */
+.portfolio__product-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent, #5a6af8);
+  border-radius: 100px;
+  padding: 6px 14px;
+  z-index: 3;
+}
+
+.portfolio__product-badge span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.portfolio__product-card--reverse .portfolio__product-badge {
+  right: auto;
+  left: 20px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .portfolio__products-container { padding: 0 40px; }
+  .portfolio__products-header    { grid-template-columns: 1fr; gap: 16px; }
+  .portfolio__products-title     { font-size: 44px; }
+
+  .portfolio__product-card,
+  .portfolio__product-card--reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 40px;
+  }
+
+  .portfolio__product-visual { aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 768px) {
+  .portfolio__products-container    { padding: 0 24px; }
+  .portfolio__products-header       { padding-bottom: 36px; margin-bottom: 56px; }
+  .portfolio__product-contact-links { grid-template-columns: 1fr; }
+  .portfolio__product-headline      { font-size: 26px; }
+}
+
+@media (max-width: 540px) {
+  .portfolio__products-title { font-size: 36px; }
+  .portfolio__products-list  { gap: 56px; }
+
+  .portfolio__products-list > article + article { padding-top: 56px; }
+
+  .portfolio__product-feature-label { min-width: 100px; }
+}

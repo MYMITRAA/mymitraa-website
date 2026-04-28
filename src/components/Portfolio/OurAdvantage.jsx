@@ -15,7 +15,7 @@ const CARDS = [
   {
     num: "01",
     title: "Elite Talent",
-    desc: "Proven experts embedded into your team — not just resumes passed through a filter.",
+    desc: "Proven experts embedded into your team  not just resumes passed through a filter.",
     metric: "92%",
     metricLabel: "Retention rate",
     tag: "People-first",
@@ -47,7 +47,7 @@ const CARDS = [
   {
     num: "03",
     title: "Flexible Scale",
-    desc: "Ramp teams up or down instantly based on project demand — zero friction.",
+    desc: "Ramp teams up or down instantly based on project demand  zero friction.",
     metric: "+65%",
     metricLabel: "Productivity boost",
     tag: "Zero friction",

@@ -78,19 +78,24 @@
   box-shadow: var(--shadow-md);
 }
 
-.portfolio__highlight-emoji-wrap {
-  width: 52px;
-  height: 52px;
+/* Image wrapper — replaces emoji wrap */
+.portfolio__highlight-img-wrap {
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-sm);
   background: var(--indigo-soft);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.portfolio__highlight-emoji {
-  font-size: 26px;
-  line-height: 1;
+.portfolio__highlight-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .portfolio__highlight-label {

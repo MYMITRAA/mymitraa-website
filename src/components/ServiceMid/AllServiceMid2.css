@@ -12,38 +12,30 @@
 /* HEADER */
 
 .why-header h2 {
-  position: relative;
   font-weight: 700;
   font-size: 50px;
   line-height: 100%;
   color: #000;
   margin-bottom: 20px;
-  left:100px;
 }
 
 .why-header p {
-  position: relative;
   font-weight: 400;
   font-size: 26px;
   line-height: 40px;
   color: #000;
   max-width: 800px;
-  margin-bottom: 0;
-  left:100px;
+  margin-bottom: 60px;
 }
 
 
 /* GRID LAYOUT — equal 1:1 columns */
 
 .why-grid {
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;                        /* clear breathing room between columns */
+  grid-template-columns: 1fr 1fr;   /* balanced: left = right */
+  gap: 30px;
   align-items: flex-start;
-  margin-top: 100px;  
-  top:100px;
-                /* push both columns down to make room for bird circle overhang */
 }
 
 
@@ -51,7 +43,7 @@
 
 .zenix-card {
   position: relative;
-  top: 50px;                           /* no offset — sits flush under the header */
+  top: 100px;
 
   background: linear-gradient(180deg, #737AFF 0%, #514AD7 100%);
   box-shadow: 0px 0px 8px 0px #DFDDFF;
@@ -63,7 +55,7 @@
   color: white;
   text-align: center;
 
-  width: 100%;
+  width: 100%;           /* fills its 1fr column */
   height: 628px;
 }
 
@@ -149,8 +141,9 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  width: 100%;
-  padding-top: 30px;
+  position: relative;
+  top: 13px;
+  width: 100%;          /* let grid control the width */
 }
 
 
@@ -278,7 +271,7 @@
 
   .zenix-card {
     position: relative;
-
+    top: 0;
     width: 100%;
     max-width: 480px;
     height: auto;
@@ -287,8 +280,7 @@
   }
 
   .why-right {
-    padding-top: 0;
-
+    top: 0;
   }
 }
 

@@ -185,7 +185,7 @@ export default function ChatWidget({ isOpen, onToggle }) {
           <textarea
             ref={textareaRef}
             className="cw-textarea"
-            placeholder="Ask Mitra anything…"
+            placeholder="Ask  anything…"
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKey}
