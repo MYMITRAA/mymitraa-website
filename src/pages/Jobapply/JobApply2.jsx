@@ -20,7 +20,7 @@ const COUNTRIES = [
   "UAE", "Singapore", "Germany", "France", "Japan", "Other",
 ];
 
-const CV_MAX_BYTES = 50 * 1024;
+const CV_MAX_BYTES = 50 * 1024; // 50 KB
 
 const INITIAL_FORM = {
   fullName:    "",
@@ -36,50 +36,51 @@ const INITIAL_FORM = {
 };
 
 const INITIAL_ERRORS = {
-  fullName: "",
-  email:    "",
-  mobile:   "",
-  address:  "",
-  city:     "",
-  state:    "",
-  country:  "",
-  zipCode:  "",
-  cv:       "",
+  fullName:    "",
+  email:       "",
+  mobile:      "",
+  address:     "",
+  city:        "",
+  state:       "",
+  country:     "",
+  zipCode:     "",
+  cv:          "",
 };
 
+/* ── Validators ── */
 const validators = {
-  fullName:  (v) => !v.trim()                           ? "Full name is required."
-                  : v.trim().length < 2                 ? "Name must be at least 2 characters."
-                  : !/^[a-zA-Z\s.'-]+$/.test(v.trim())  ? "Name can only contain letters, spaces, or . ' -"
+  fullName:  (v) => !v.trim()                          ? "Full name is required."
+                  : v.trim().length < 2                ? "Name must be at least 2 characters."
+                  : !/^[a-zA-Z\s.'-]+$/.test(v.trim()) ? "Name can only contain letters, spaces, or . ' -"
                   : "",
 
-  email:     (v) => !v.trim()                                     ? "Email is required."
-                  : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "Enter a valid email address."
+  email:     (v) => !v.trim()                                          ? "Email is required."
+                  : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())      ? "Enter a valid email address."
                   : "",
 
-  mobile:    (v) => !v.trim()           ? "Mobile number is required."
-                  : !/^\d{10}$/.test(v) ? "Mobile must be exactly 10 digits."
+  mobile:    (v) => !v.trim()             ? "Mobile number is required."
+                  : !/^\d{10}$/.test(v)   ? "Mobile must be exactly 10 digits."
                   : "",
 
-  address:   (v) => !v.trim()           ? "Address is required."
-                  : v.trim().length < 5 ? "Enter a complete address."
+  address:   (v) => !v.trim()             ? "Address is required."
+                  : v.trim().length < 5   ? "Enter a complete address."
                   : "",
 
-  city:      (v) => !v.trim()                        ? "City is required."
+  city:      (v) => !v.trim()             ? "City is required."
                   : !/^[a-zA-Z\s]+$/.test(v.trim()) ? "City can only contain letters."
                   : "",
 
-  state:     (v) => !v.trim()                        ? "State is required."
+  state:     (v) => !v.trim()             ? "State is required."
                   : !/^[a-zA-Z\s]+$/.test(v.trim()) ? "State can only contain letters."
                   : "",
 
-  country:   (v) => !v ? "Please select a country." : "",
+  country:   (v) => !v                    ? "Please select a country."      : "",
 
   zipCode:   (v) => !v.trim()             ? "Zip code is required."
                   : !/^\d{4,10}$/.test(v) ? "Enter a valid zip code (4–10 digits)."
                   : "",
 
-  cv:        (f) => !f ? "CV is required. Please upload your CV."
+  cv:        (f) => !f                    ? "CV is required. Please upload your CV."
                   : !["application/pdf",
                       "application/msword",
                       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -106,50 +107,24 @@ const JobApply = ({ job, onBack }) => {
   const [loading,  setLoading]  = useState(false);
   const [success,  setSuccess]  = useState("");
 
-  /* Generic text/select fields */
+  /* Single field change */
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const updated = { ...formData, [name]: value };
+    setFormData(updated);
     if (touched[name]) {
       setErrors((prev) => ({ ...prev, [name]: validators[name](value) }));
     }
   };
 
+  /* Mark field touched on blur and validate */
   const handleBlur = (e) => {
     const { name, value } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
     setErrors((prev) => ({ ...prev, [name]: validators[name](value) }));
   };
 
-  /* Mobile — own handler to avoid synthetic event reconstruction */
-  const handleMobileChange = (e) => {
-    const clean = e.target.value.replace(/\D/g, "").slice(0, 10);
-    setFormData((prev) => ({ ...prev, mobile: clean }));
-    if (touched.mobile) {
-      setErrors((prev) => ({ ...prev, mobile: validators.mobile(clean) }));
-    }
-  };
-
-  const handleMobileBlur = () => {
-    setTouched((prev) => ({ ...prev, mobile: true }));
-    setErrors((prev) => ({ ...prev, mobile: validators.mobile(formData.mobile) }));
-  };
-
-  /* Zip — own handler */
-  const handleZipChange = (e) => {
-    const clean = e.target.value.replace(/\D/g, "").slice(0, 10);
-    setFormData((prev) => ({ ...prev, zipCode: clean }));
-    if (touched.zipCode) {
-      setErrors((prev) => ({ ...prev, zipCode: validators.zipCode(clean) }));
-    }
-  };
-
-  const handleZipBlur = () => {
-    setTouched((prev) => ({ ...prev, zipCode: true }));
-    setErrors((prev) => ({ ...prev, zipCode: validators.zipCode(formData.zipCode) }));
-  };
-
-  /* Country code dropdown */
+  /* Country code selector (not validated, just state) */
   const handleCodeChange = (e) => {
     setFormData((prev) => ({ ...prev, countryCode: e.target.value }));
   };
@@ -164,9 +139,8 @@ const JobApply = ({ job, onBack }) => {
 
   /* Submit */
   const handleSubmit = async () => {
-    const allTouched = Object.keys(INITIAL_ERRORS).reduce(
-      (acc, k) => ({ ...acc, [k]: true }), {}
-    );
+    /* Mark all touched */
+    const allTouched = Object.keys(INITIAL_ERRORS).reduce((acc, k) => ({ ...acc, [k]: true }), {});
     setTouched(allTouched);
 
     const errs = validateAll(formData);
@@ -184,15 +158,15 @@ const JobApply = ({ job, onBack }) => {
 
     try {
       const payload = new FormData();
-      payload.append("full_name", formData.fullName);
-      payload.append("email",     formData.email);
-      payload.append("mobile",    `${formData.countryCode}${formData.mobile}`);
-      payload.append("address",   formData.address);
-      payload.append("city",      formData.city);
-      payload.append("state",     formData.state);
-      payload.append("country",   formData.country);
-      payload.append("zip_code",  formData.zipCode);
-      payload.append("cv",        formData.cv);
+      payload.append("full_name",    formData.fullName);
+      payload.append("email",        formData.email);
+      payload.append("mobile",       `${formData.countryCode}${formData.mobile}`);
+      payload.append("address",      formData.address);
+      payload.append("city",         formData.city);
+      payload.append("state",        formData.state);
+      payload.append("country",      formData.country);
+      payload.append("zip_code",     formData.zipCode);
+      payload.append("cv",           formData.cv);
 
       const res  = await fetch(API.applyJob(job.id), {
         method:  "POST",
@@ -215,8 +189,8 @@ const JobApply = ({ job, onBack }) => {
     }
   };
 
-  /* Field wrapper */
-  const Field = ({ label, required, errorKey, children }) => (
+  /* Helper: field wrapper with label + input + error */
+  const Field = ({ label, required, children, errorKey }) => (
     <div className={`apply-form__group${errors[errorKey] && touched[errorKey] ? " apply-form__group--error" : ""}`}>
       <label className="apply-form__label">
         {label}{required && <span className="apply-form__required"> *</span>}
@@ -249,6 +223,7 @@ const JobApply = ({ job, onBack }) => {
 
         <div className="apply-form">
 
+          {/* Full Name */}
           <Field label="Full Name" required errorKey="fullName">
             <input
               type="text" name="fullName"
@@ -260,6 +235,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
+          {/* Email */}
           <Field label="Email Address" required errorKey="email">
             <input
               type="email" name="email"
@@ -271,6 +247,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
+          {/* Mobile with country code */}
           <Field label="Mobile" required errorKey="mobile">
             <div className="apply-form__mobile-row">
               <select
@@ -284,18 +261,21 @@ const JobApply = ({ job, onBack }) => {
                 ))}
               </select>
               <input
-                type="tel"
-                name="mobile"
+                type="tel" name="mobile"
                 className="apply-form__input apply-form__mobile-input"
                 placeholder="10-digit number"
                 value={formData.mobile}
-                onChange={handleMobileChange}
-                onBlur={handleMobileBlur}
-                inputMode="numeric"
+                maxLength={10}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, "");
+                  handleChange({ target: { name: "mobile", value: val } });
+                }}
+                onBlur={handleBlur}
               />
             </div>
           </Field>
 
+          {/* Address */}
           <Field label="Address" required errorKey="address">
             <input
               type="text" name="address"
@@ -307,6 +287,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
+          {/* City */}
           <Field label="City" required errorKey="city">
             <input
               type="text" name="city"
@@ -318,6 +299,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
+          {/* State */}
           <Field label="State" required errorKey="state">
             <input
               type="text" name="state"
@@ -329,6 +311,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
+          {/* Country */}
           <Field label="Country" required errorKey="country">
             <select
               name="country"
@@ -344,19 +327,23 @@ const JobApply = ({ job, onBack }) => {
             </select>
           </Field>
 
+          {/* Zip Code */}
           <Field label="Zip Code" required errorKey="zipCode">
             <input
-              type="text"
-              name="zipCode"
+              type="text" name="zipCode"
               className="apply-form__input"
               placeholder="Enter zip code"
               value={formData.zipCode}
-              onChange={handleZipChange}
-              onBlur={handleZipBlur}
-              inputMode="numeric"
+              maxLength={10}
+              onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, "");
+                handleChange({ target: { name: "zipCode", value: val } });
+              }}
+              onBlur={handleBlur}
             />
           </Field>
 
+          {/* CV Upload */}
           <Field label="CV" required errorKey="cv">
             <div className="apply-form__file-wrapper">
               <input
