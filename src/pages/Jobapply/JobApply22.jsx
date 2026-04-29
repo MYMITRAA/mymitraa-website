@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./JobApply.css";
 import { API } from "../../config/api";
 
-/* ── Constants ── */
 const COUNTRY_CODES = [
   { code: "+91",  label: "🇮🇳 +91"  },
   { code: "+1",   label: "🇺🇸 +1"   },
   { code: "+44",  label: "🇬🇧 +44"  },
+  { code: "+1",   label: "🇨🇦 +1"   },
   { code: "+61",  label: "🇦🇺 +61"  },
   { code: "+971", label: "🇦🇪 +971" },
   { code: "+65",  label: "🇸🇬 +65"  },
@@ -47,31 +47,38 @@ const INITIAL_ERRORS = {
   cv:       "",
 };
 
-/* ── Validators ── */
 const validators = {
   fullName:  (v) => !v.trim()                           ? "Full name is required."
                   : v.trim().length < 2                 ? "Name must be at least 2 characters."
                   : !/^[a-zA-Z\s.'-]+$/.test(v.trim())  ? "Name can only contain letters, spaces, or . ' -"
                   : "",
+
   email:     (v) => !v.trim()                                     ? "Email is required."
                   : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "Enter a valid email address."
                   : "",
+
   mobile:    (v) => !v.trim()           ? "Mobile number is required."
                   : !/^\d{10}$/.test(v) ? "Mobile must be exactly 10 digits."
                   : "",
+
   address:   (v) => !v.trim()           ? "Address is required."
                   : v.trim().length < 5 ? "Enter a complete address."
                   : "",
+
   city:      (v) => !v.trim()                        ? "City is required."
                   : !/^[a-zA-Z\s]+$/.test(v.trim()) ? "City can only contain letters."
                   : "",
+
   state:     (v) => !v.trim()                        ? "State is required."
                   : !/^[a-zA-Z\s]+$/.test(v.trim()) ? "State can only contain letters."
                   : "",
+
   country:   (v) => !v ? "Please select a country." : "",
+
   zipCode:   (v) => !v.trim()             ? "Zip code is required."
                   : !/^\d{4,10}$/.test(v) ? "Enter a valid zip code (4–10 digits)."
                   : "",
+
   cv:        (f) => !f ? "CV is required. Please upload your CV."
                   : !["application/pdf",
                       "application/msword",
@@ -91,19 +98,6 @@ const validateAll = (formData) => {
 
 const hasErrors = (errs) => Object.values(errs).some(Boolean);
 
-/* ── Field wrapper — defined OUTSIDE component so it never remounts ── */
-const Field = ({ label, required, errorKey, error, touched, children }) => (
-  <div className={`apply-form__group${error && touched ? " apply-form__group--error" : ""}`}>
-    <label className="apply-form__label">
-      {label}{required && <span className="apply-form__required"> *</span>}
-    </label>
-    {children}
-    {touched && error && (
-      <span className="apply-form__error-msg">{error}</span>
-    )}
-  </div>
-);
-
 /* ── Component ── */
 const JobApply = ({ job, onBack }) => {
   const [formData, setFormData] = useState(INITIAL_FORM);
@@ -112,7 +106,7 @@ const JobApply = ({ job, onBack }) => {
   const [loading,  setLoading]  = useState(false);
   const [success,  setSuccess]  = useState("");
 
-  /* Generic text / select */
+  /* Generic text/select fields */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -127,7 +121,7 @@ const JobApply = ({ job, onBack }) => {
     setErrors((prev) => ({ ...prev, [name]: validators[name](value) }));
   };
 
-  /* Mobile */
+  /* Mobile — own handler to avoid synthetic event reconstruction */
   const handleMobileChange = (e) => {
     const clean = e.target.value.replace(/\D/g, "").slice(0, 10);
     setFormData((prev) => ({ ...prev, mobile: clean }));
@@ -141,7 +135,7 @@ const JobApply = ({ job, onBack }) => {
     setErrors((prev) => ({ ...prev, mobile: validators.mobile(formData.mobile) }));
   };
 
-  /* Zip */
+  /* Zip — own handler */
   const handleZipChange = (e) => {
     const clean = e.target.value.replace(/\D/g, "").slice(0, 10);
     setFormData((prev) => ({ ...prev, zipCode: clean }));
@@ -155,12 +149,12 @@ const JobApply = ({ job, onBack }) => {
     setErrors((prev) => ({ ...prev, zipCode: validators.zipCode(formData.zipCode) }));
   };
 
-  /* Country code */
+  /* Country code dropdown */
   const handleCodeChange = (e) => {
     setFormData((prev) => ({ ...prev, countryCode: e.target.value }));
   };
 
-  /* File */
+  /* File upload */
   const handleFileChange = (e) => {
     const file = e.target.files[0] || null;
     setFormData((prev) => ({ ...prev, cv: file }));
@@ -221,6 +215,19 @@ const JobApply = ({ job, onBack }) => {
     }
   };
 
+  /* Field wrapper */
+  const Field = ({ label, required, errorKey, children }) => (
+    <div className={`apply-form__group${errors[errorKey] && touched[errorKey] ? " apply-form__group--error" : ""}`}>
+      <label className="apply-form__label">
+        {label}{required && <span className="apply-form__required"> *</span>}
+      </label>
+      {children}
+      {touched[errorKey] && errors[errorKey] && (
+        <span className="apply-form__error-msg">{errors[errorKey]}</span>
+      )}
+    </div>
+  );
+
   return (
     <div className="apply-page">
       <div className="apply-card">
@@ -242,8 +249,7 @@ const JobApply = ({ job, onBack }) => {
 
         <div className="apply-form">
 
-          <Field label="Full Name" required errorKey="fullName"
-            error={errors.fullName} touched={touched.fullName}>
+          <Field label="Full Name" required errorKey="fullName">
             <input
               type="text" name="fullName"
               className="apply-form__input"
@@ -254,8 +260,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
-          <Field label="Email Address" required errorKey="email"
-            error={errors.email} touched={touched.email}>
+          <Field label="Email Address" required errorKey="email">
             <input
               type="email" name="email"
               className="apply-form__input"
@@ -266,8 +271,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
-          <Field label="Mobile" required errorKey="mobile"
-            error={errors.mobile} touched={touched.mobile}>
+          <Field label="Mobile" required errorKey="mobile">
             <div className="apply-form__mobile-row">
               <select
                 name="countryCode"
@@ -292,8 +296,7 @@ const JobApply = ({ job, onBack }) => {
             </div>
           </Field>
 
-          <Field label="Address" required errorKey="address"
-            error={errors.address} touched={touched.address}>
+          <Field label="Address" required errorKey="address">
             <input
               type="text" name="address"
               className="apply-form__input"
@@ -304,8 +307,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
-          <Field label="City" required errorKey="city"
-            error={errors.city} touched={touched.city}>
+          <Field label="City" required errorKey="city">
             <input
               type="text" name="city"
               className="apply-form__input"
@@ -316,8 +318,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
-          <Field label="State" required errorKey="state"
-            error={errors.state} touched={touched.state}>
+          <Field label="State" required errorKey="state">
             <input
               type="text" name="state"
               className="apply-form__input"
@@ -328,8 +329,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
-          <Field label="Country" required errorKey="country"
-            error={errors.country} touched={touched.country}>
+          <Field label="Country" required errorKey="country">
             <select
               name="country"
               className="apply-form__input apply-form__select"
@@ -344,8 +344,7 @@ const JobApply = ({ job, onBack }) => {
             </select>
           </Field>
 
-          <Field label="Zip Code" required errorKey="zipCode"
-            error={errors.zipCode} touched={touched.zipCode}>
+          <Field label="Zip Code" required errorKey="zipCode">
             <input
               type="text"
               name="zipCode"
@@ -358,8 +357,7 @@ const JobApply = ({ job, onBack }) => {
             />
           </Field>
 
-          <Field label="CV" required errorKey="cv"
-            error={errors.cv} touched={touched.cv}>
+          <Field label="CV" required errorKey="cv">
             <div className="apply-form__file-wrapper">
               <input
                 type="file" name="cv" id="cv-upload"
