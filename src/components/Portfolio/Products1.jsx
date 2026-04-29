@@ -1,9 +1,5 @@
 import "./Products.css";
 
-import feelzyImg    from "../../assets/images/feelzyimage.webp";
-import jarviisImg   from "../../assets/images/jarviisimage.webp";
-import seekmitraImg from "../../assets/images/seekmitraimage3.webp";
-
 /* ── Social Icons ── */
 const EmailIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -47,8 +43,8 @@ const products = [
     theme: "feelzy",
     tagline: "Emotional Wellness Platform",
     name: "feelzy",
-    logoSrc: feelzyImg,
-    productImage: feelzyImg,
+    logoSrc: "/src/assets/images/feelzyimage.webp",
+    productImage: "/src/assets/images/feelzyimage.webp",
     headline: "Together we rise, together we heal",
     description: "Feelzy is a digital platform that helps people handle emotions like stress, loneliness, and heartbreak  providing a safe, supportive space where users share their feelings and find community.",
     features: [
@@ -72,8 +68,8 @@ const products = [
     theme: "jarviis",
     tagline: "AI-Powered Testing Platform",
     name: "JARViiS AI",
-    logoSrc: jarviisImg,
-    productImage: jarviisImg,
+    logoSrc: "/src/assets/images/jarviisimage.webp",
+    productImage: "/src/assets/images/jarviisimage.webp",
     headline: "The Future of Intelligent Testing",
     description: "JARViiS AI automates testing for websites and applications helping teams test faster, reduce manual work, and ship with confidence.",
     features: [
@@ -93,8 +89,8 @@ const products = [
     theme: "seekmitra",
     tagline: "Mobility & Storytelling Platform",
     name: "SeekMITra",
-    logoSrc: seekmitraImg,
-    productImage: seekmitraImg,
+    logoSrc: "/src/assets/images/seekmitraimage3.webp",
+    productImage: "/src/assets/images/seekmitraimage3.webp",
     headline: "Every Journey Tells a Story",
     description: "SeekMITra captures real-life stories from everyday travel experiences turning simple journeys into meaningful narratives by connecting people and their moments.",
     features: [
