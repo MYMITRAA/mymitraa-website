@@ -149,7 +149,7 @@ export default function ResourceAugmentation() {
             teams and workflows.
           </p>
           <div className="ra-hero__actions">
-            <a href="/contact"   className="ra-btn ra-btn--fill">Build Your Team <ArrowRight /></a>
+            <a href="/contact"   className="ra-btn ra-btn--fill">Build Your Team </a>
             <a href="/portfolio" className="ra-btn ra-btn--ghost">View Portfolio</a>
           </div>
         </div>
