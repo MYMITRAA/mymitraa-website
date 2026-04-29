@@ -5,7 +5,7 @@
   width: 100%;
   padding: 120px 0;
   background: white;
-  left: 70px;
+  left:70px;
 }
 
 .execution-container {
@@ -67,8 +67,6 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  user-select: none;
-  width: 100%;
 }
 
 .execution-header h3 {
@@ -85,9 +83,6 @@
   display: flex;
   flex-shrink: 0;
   margin-left: 12px;
-  /* Make chevron a bigger tap target on mobile */
-  padding: 4px;
-  cursor: pointer;
 }
 
 .chevron.rotate {
@@ -125,19 +120,14 @@
   left: 400px;
 }
 
-/* ================= RIGHT PANEL (desktop) ================= */
+/* ================= RIGHT PANEL ================= */
 
 .execution-right {
   position: relative;
   width: 40%;
   display: flex;
   justify-content: flex-end;
-  right: 180px;
-}
-
-/* Mobile image panel — hidden on desktop */
-.execution-image-mobile {
-  display: none;
+  right:180px;
 }
 
 .execution-image-box {
@@ -211,19 +201,21 @@
 }
 
 @keyframes execFloat {
-  0%   { transform: translateY(0px);    opacity: 0;   }
+  0%   { transform: translateY(0px);   opacity: 0;   }
   10%  { opacity: 0.8; }
   90%  { opacity: 0.6; }
-  100% { transform: translateY(-320px); opacity: 0;   }
+  100% { transform: translateY(-320px); opacity: 0; }
 }
 
-/* ── Layer 3: Images ── */
+/* ── Layer 3: Images — enter / exit transitions ── */
 .exec-img {
   position: absolute;
   width: 72%;
   height: auto;
   object-fit: contain;
   z-index: 5;
+
+  /* default hidden state */
   opacity: 0;
   transform: translateX(32px) scale(0.94);
   transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
@@ -231,14 +223,18 @@
   pointer-events: none;
 }
 
+/* Active image — slide in from right */
 .exec-img--active {
   opacity: 1;
   transform: translateX(0px) scale(1);
   pointer-events: auto;
+
+  /* subtle idle float on the active image */
   animation: execImgFloat 4s ease-in-out infinite;
-  animation-delay: 0.45s;
+  animation-delay: 0.45s; /* wait for enter transition to finish */
 }
 
+/* Exit image — slide out to left */
 .exec-img--exit {
   opacity: 0;
   transform: translateX(-32px) scale(0.94);
@@ -312,7 +308,6 @@
 @media (max-width: 768px) {
   .execution {
     padding: 60px 0;
-    left: 0; /* remove desktop offset */
   }
 
   .execution-container {
@@ -324,38 +319,30 @@
     font-size: 26px;
     line-height: 34px;
     letter-spacing: -0.5px;
-    margin-bottom: 28px; /* tighter — image comes right after */
-  }
-
-  /* Show mobile image block below title */
-  .execution-image-mobile {
-    display: flex;
-    justify-content: center;
-    width: 100%;
     margin-bottom: 36px;
   }
 
-  .execution-image-mobile .execution-image-box {
-    width: 100%;
-    max-width: 340px;
-    height: 300px;
-    left: 0;
-    border-radius: 20px;
-  }
-
-  /* Main content: accordion only, no side-by-side */
   .execution-content {
     flex-direction: column;
-    gap: 0;
+    gap: 36px;
   }
 
   .execution-left {
     width: 100%;
   }
 
-  /* Hide the desktop right panel on mobile */
   .execution-right {
-    display: none;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .execution-image-box {
+    width: 100%;
+    max-width: 320px;
+    height: 340px;
+    left: 0;
+    margin: 0 auto;
+    border-radius: 20px;
   }
 
   .execution-footer {
@@ -397,9 +384,9 @@
     line-height: 30px;
   }
 
-  .execution-image-mobile .execution-image-box {
-    max-width: 100%;
-    height: 260px;
+  .execution-image-box {
+    max-width: 280px;
+    height: 300px;
   }
 
   .execution-answer p {

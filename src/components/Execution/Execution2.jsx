@@ -57,27 +57,6 @@ function Execution() {
           Execution is our <span>Culture</span>, Every decision ends in <span>Delivery</span>
         </h2>
 
-        {/* ── Mobile Image Panel (shown only on mobile, below title) ── */}
-        <div className="execution-image-mobile">
-          <div className="execution-image-box">
-            <div className="exec-bg-pulse" />
-            <div className="exec-particle exec-p1" />
-            <div className="exec-particle exec-p2" />
-            <div className="exec-particle exec-p3" />
-            {items.map((item, index) => (
-              <img
-                key={index}
-                src={item.image}
-                alt={item.title}
-                className={`exec-img
-                  ${activeIndex === index ? "exec-img--active" : ""}
-                  ${prevIndex === index ? "exec-img--exit" : ""}
-                `}
-              />
-            ))}
-          </div>
-        </div>
-
         <div className="execution-content">
 
           {/* ── Left: Accordion ── */}
@@ -87,15 +66,7 @@ function Execution() {
                 key={index}
                 className={`execution-item ${activeIndex === index ? "active" : ""}`}
               >
-                {/* Entire header row is clickable, including chevron */}
-                <div
-                  className="execution-header"
-                  onClick={() => toggleItem(index)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && toggleItem(index)}
-                  aria-expanded={activeIndex === index}
-                >
+                <div className="execution-header" onClick={() => toggleItem(index)}>
                   <h3>{item.title}</h3>
                   <span className={`chevron ${activeIndex === index ? "rotate" : ""}`}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -114,13 +85,19 @@ function Execution() {
             </p>
           </div>
 
-          {/* ── Right: Animated Image Panel (desktop only) ── */}
+          {/* ── Right: Animated Image Panel ── */}
           <div className="execution-right">
             <div className="execution-image-box">
+
+              {/* Ambient background pulse */}
               <div className="exec-bg-pulse" />
+
+              {/* Floating particles */}
               <div className="exec-particle exec-p1" />
               <div className="exec-particle exec-p2" />
               <div className="exec-particle exec-p3" />
+
+              {/* Images — one per accordion item */}
               {items.map((item, index) => (
                 <img
                   key={index}
@@ -132,6 +109,7 @@ function Execution() {
                   `}
                 />
               ))}
+
             </div>
           </div>
 
