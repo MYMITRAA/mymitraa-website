@@ -1,28 +1,31 @@
 /* ════════════════════════════════════════════════════════════
    ResourceAugmentation.css
+   Color pattern: lavender gradient hero → white → lavender →
+   white → lavender → white → lavender → white
+   Exact MiTRAA palette from screenshot.
 ════════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 /* ── Tokens ─────────────────────────────────────────────── */
 :root {
-  --white:          #ffffff;
-  --lav:            #e8eaff;
-  --lav-mid:        #dde0ff;
-  --lav-card:       #f0f1ff;
-  --purple:         #737aff;
-  --purple-soft:    rgba(115,122,255,0.1);
-  --purple-border:  rgba(115,122,255,0.18);
-  --blue-dark:      #4a50cc;
-  --text-dark:      #1a1a3e;
-  --text-mid:       #3a3a6a;
-  --text-muted:     #6b6b9a;
-  --shadow-sm:      0 4px 20px rgba(115,122,255,0.1);
-  --shadow-md:      0 8px 32px rgba(115,122,255,0.15);
-  --radius:         14px;
-  --radius-lg:      22px;
-  --font-h:         'Sora', 'Segoe UI', sans-serif;
-  --font-b:         'DM Sans', 'Segoe UI', sans-serif;
+  --white:         #ffffff;
+  --lav:           #e8eaff;          /* lavender section bg    */
+  --lav-mid:       #dde0ff;          /* card / element fill    */
+  --lav-card:      #f0f1ff;          /* subtle card on white   */
+  --purple:        #737aff;
+  --purple-soft:   rgba(115,122,255,0.1);
+  --purple-border: rgba(115,122,255,0.18);
+  --blue-dark:     #4a50cc;
+  --text-dark:     #1a1a3e;
+  --text-mid:      #3a3a6a;
+  --text-muted:    #6b6b9a;
+  --shadow-sm:     0 4px 20px rgba(115,122,255,0.1);
+  --shadow-md:     0 8px 32px rgba(115,122,255,0.15);
+  --radius:        14px;
+  --radius-lg:     22px;
+  --font-h:        'Sora', 'Segoe UI', sans-serif;
+  --font-b:        'DM Sans', 'Segoe UI', sans-serif;
 }
 
 /* ── Reset ──────────────────────────────────────────────── */
@@ -35,11 +38,18 @@
 .ra-page *, .ra-page *::before, .ra-page *::after { box-sizing: border-box; }
 
 /* ── Section shells ─────────────────────────────────────── */
-.ra-sec { width: 100%; padding: 80px 24px; }
-.ra-sec--white    { background: var(--white); }
+.ra-sec {
+  width: 100%;
+  padding: 80px 24px;
+}
+.ra-sec--white   { background: var(--white); }
 .ra-sec--lavender { background: var(--lav); }
 
-.ra-inner { max-width: 1100px; margin: 0 auto; }
+/* inner max-width wrapper */
+.ra-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
 /* ── Shared typography ──────────────────────────────────── */
 .ra-section-label {
@@ -79,7 +89,7 @@
   background-clip: text;
 }
 
-/* ── Pill ───────────────────────────────────────────────── */
+/* ── Pill label ─────────────────────────────────────────── */
 .ra-pill {
   display: inline-block;
   font-size: 0.75rem;
@@ -93,8 +103,13 @@
   margin-bottom: 20px;
 }
 
-/* ── Badges ─────────────────────────────────────────────── */
-.ra-model-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+/* ── Badges (model) ─────────────────────────────────────── */
+.ra-model-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
 .ra-badge {
   font-size: 0.8rem;
   font-weight: 600;
@@ -125,13 +140,21 @@
   color: #fff;
   box-shadow: 0 4px 18px rgba(115,122,255,0.38);
 }
-.ra-btn--fill:hover { background: #5a61e8; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(115,122,255,0.48); }
+.ra-btn--fill:hover {
+  background: #5a61e8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(115,122,255,0.48);
+}
 .ra-btn--ghost {
   background: transparent;
   color: var(--purple);
   border: 2px solid var(--purple-border);
 }
-.ra-btn--ghost:hover { background: var(--purple-soft); border-color: var(--purple); transform: translateY(-2px); }
+.ra-btn--ghost:hover {
+  background: var(--purple-soft);
+  border-color: var(--purple);
+  transform: translateY(-2px);
+}
 
 /* ════════════════════════════════════════
    HERO
@@ -142,8 +165,13 @@
   align-items: center;
   gap: 56px;
   padding: 80px 24px 72px;
+  max-width: 100%;
 }
-.ra-hero__content { flex: 1; max-width: 560px; margin: 0 auto 0 calc((100% - 1100px) / 2); }
+.ra-hero__content {
+  flex: 1;
+  max-width: 560px;
+  margin: 0 auto 0 calc((100% - 1100px) / 2);
+}
 .ra-hero__h1 {
   font-family: var(--font-h);
   font-size: clamp(2.6rem, 6vw, 4.4rem);
@@ -153,16 +181,42 @@
   margin: 0 0 18px;
   color: var(--text-dark);
 }
-.ra-hero__tagline { font-size: 0.88rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; margin: 0 0 20px; }
-.ra-hero__body { font-size: 0.95rem; line-height: 1.75; color: var(--text-mid); margin: 0 0 12px; }
+.ra-hero__tagline {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+}
+.ra-hero__body {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-mid);
+  margin: 0 0 12px;
+}
 .ra-hero__body strong { color: var(--text-dark); }
-.ra-hero__actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
-.ra-hero__visual { flex: 1; max-width: 480px; margin-right: calc((100% - 1100px) / 2); }
-.ra-hero__visual-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.ra-hero__actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+/* hero visual */
+.ra-hero__visual {
+  flex: 1;
+  max-width: 480px;
+  margin-right: calc((100% - 1100px) / 2);
+}
+.ra-hero__visual-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
 .ra-hero__svg { width: 100%; height: auto; display: block; }
 
 /* ════════════════════════════════════════
-   KEY HIGHLIGHTS
+   KEY HIGHLIGHTS — 2-col checklist
 ════════════════════════════════════════ */
 .ra-highlights-grid {
   display: grid;
@@ -181,37 +235,79 @@
 .ra-highlight-item svg { flex-shrink: 0; margin-top: 2px; }
 
 /* ════════════════════════════════════════
-   TWO COLUMN LAYOUT
+   TWO COLUMN LAYOUT (Dedicated model & Engagement)
 ════════════════════════════════════════ */
-.ra-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.ra-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
 .ra-two-col--flip .ra-two-col__text { order: 1; }
 .ra-two-col--flip .ra-steps         { order: 2; }
 
-/* dashboard */
-.ra-dashboard { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--purple-border); overflow: hidden; box-shadow: var(--shadow-md); }
-.ra-dashboard__bar { display: flex; align-items: center; gap: 6px; padding: 12px 18px; background: var(--lav-mid); border-bottom: 1px solid var(--purple-border); }
+/* dashboard mockup */
+.ra-dashboard {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--purple-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.ra-dashboard__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 18px;
+  background: var(--lav-mid);
+  border-bottom: 1px solid var(--purple-border);
+}
 .ra-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.ra-dot--r { background: #f87171; } .ra-dot--y { background: #fbbf24; } .ra-dot--g { background: #34d399; }
-.ra-dashboard__bar-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.04em; margin-left: 6px; }
-.ra-dashboard__body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.ra-dot--r { background: #f87171; }
+.ra-dot--y { background: #fbbf24; }
+.ra-dot--g { background: #34d399; }
+.ra-dashboard__bar-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-left: 6px;
+}
+.ra-dashboard__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .ra-team-row {
-  display: flex; align-items: center; gap: 12px; padding: 10px 14px;
-  background: var(--lav-card); border: 1px solid var(--purple-border); border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--lav-card);
+  border: 1px solid var(--purple-border);
+  border-radius: var(--radius);
   animation: slideRowIn 0.45s ease both;
 }
-@keyframes slideRowIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
-.ra-team-row__av { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.84rem; color: #fff; flex-shrink: 0; }
+@keyframes slideRowIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.ra-team-row__av {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.84rem; color: #fff; flex-shrink: 0;
+}
 .ra-team-row__info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
 .ra-team-row__name { font-size: 0.86rem; font-weight: 600; color: var(--text-dark); }
 .ra-team-row__loc  { font-size: 0.7rem; color: var(--text-muted); }
-.ra-team-row__badge { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.05em; color: #34d399; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.28); padding: 3px 10px; border-radius: 99px; }
+.ra-team-row__badge {
+  font-size: 0.67rem; font-weight: 700; letter-spacing: 0.05em;
+  color: #34d399; background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.28); padding: 3px 10px; border-radius: 99px;
+}
 
 /* ════════════════════════════════════════
-   DOMAINS GRID — 7 cards balanced
-   ─────────────────────────────────────
-   4-column grid.
-   Row 1: cards 1-4 (each span 1) → fills 4 cols ✓
-   Row 2: cards 5-6 (span 1 each) + card 7 (span 2) → 1+1+2 = 4 cols ✓
+   DOMAINS GRID — 7 icon cards
 ════════════════════════════════════════ */
 .ra-domains-grid {
   display: grid;
@@ -219,7 +315,6 @@
   gap: 16px;
   margin-top: 40px;
 }
-
 .ra-domain-card {
   background: var(--lav-card);
   border: 1px solid var(--purple-border);
@@ -231,23 +326,21 @@
   gap: 14px;
   transition: transform 0.22s, box-shadow 0.22s, background 0.22s;
 }
-.ra-domain-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); background: var(--lav-mid); }
-.ra-domain-card__icon  { width: 28px; height: 28px; }
-.ra-domain-card__label { font-size: 0.83rem; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
-
-/* Last card spans 2 columns — fills the gap on row 2 */
-.ra-domain-card--wide {
-  grid-column: span 2;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
+.ra-domain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+  background: var(--lav-mid);
 }
-.ra-domain-card--wide .ra-domain-card__label { font-size: 0.9rem; }
+.ra-domain-card__icon { width: 28px; height: 28px; }
+.ra-domain-card__label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
 
 /* ════════════════════════════════════════
-   INDUSTRY GRID — 7 cards balanced
-   Same 4-col logic as domains above.
-   Row 1: cards 1-4. Row 2: card5 + card6 + card7(span2) ✓
+   INDUSTRY GRID
 ════════════════════════════════════════ */
 .ra-industry-grid {
   display: grid;
@@ -255,7 +348,6 @@
   gap: 16px;
   margin-top: 40px;
 }
-
 .ra-industry-card {
   background: var(--white);
   border: 1px solid var(--purple-border);
@@ -267,47 +359,39 @@
   gap: 14px;
   transition: transform 0.22s, box-shadow 0.22s;
 }
-.ra-industry-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
-.ra-industry-card__icon  { width: 28px; height: 28px; }
-.ra-industry-card__label { font-size: 0.83rem; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
-
-/* Last card spans 2 columns — fills the gap on row 2 */
-.ra-industry-card--wide {
-  grid-column: span 2;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
+.ra-industry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
 }
-.ra-industry-card--wide .ra-industry-card__label { font-size: 0.9rem; }
+.ra-industry-card__icon  { width: 28px; height: 28px; }
+.ra-industry-card__label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
 
 /* ════════════════════════════════════════
-   KEY BENEFITS — 5 cards balanced
-   ─────────────────────────────────────
-   6-column base grid.
-   Cards 01-03: each span 2  → row 1 = 2+2+2 = 6 cols ✓
-   Cards 04-05: each span 3  → row 2 = 3+3   = 6 cols ✓
-   The .ra-benefit-card--half class marks cards 04-05.
+   KEY BENEFITS — numbered cards (5-col)
 ════════════════════════════════════════ */
 .ra-benefits-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-top: 40px;
 }
-
+/* 5th card center-align on last row */
 .ra-benefit-card {
-  grid-column: span 2;
   background: var(--lav-card);
   border: 1px solid var(--purple-border);
   border-radius: var(--radius);
   padding: 28px 24px;
   transition: transform 0.22s, box-shadow 0.22s;
 }
-.ra-benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
-
-/* Last 2 cards span 3 cols each — perfectly fills row 2 */
-.ra-benefit-card--half { grid-column: span 3; }
-
+.ra-benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
 .ra-benefit-card__num {
   display: block;
   font-family: var(--font-h);
@@ -320,11 +404,22 @@
   margin-bottom: 10px;
   line-height: 1;
 }
-.ra-benefit-card__title { font-family: var(--font-h); font-size: 0.98rem; font-weight: 700; color: var(--text-dark); margin: 0 0 8px; }
-.ra-benefit-card__desc  { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+.ra-benefit-card__title {
+  font-family: var(--font-h);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 8px;
+}
+.ra-benefit-card__desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
 
 /* ════════════════════════════════════════
-   BUSINESS VALUE — 5 stat cards (even)
+   BUSINESS VALUE — 5 stat cards
 ════════════════════════════════════════ */
 .ra-value-grid {
   display: grid;
@@ -340,7 +435,10 @@
   text-align: center;
   transition: transform 0.22s, box-shadow 0.22s;
 }
-.ra-value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+.ra-value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
 .ra-value-card__stat {
   display: block;
   font-family: var(--font-h);
@@ -353,32 +451,57 @@
   margin-bottom: 10px;
   line-height: 1;
 }
-.ra-value-card__label { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); line-height: 1.45; margin: 0; }
+.ra-value-card__label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
 
 /* ════════════════════════════════════════
-   ENGAGEMENT STEPS
+   ENGAGEMENT STEPS — vertical timeline
 ════════════════════════════════════════ */
-.ra-steps { display: flex; flex-direction: column; position: relative; }
-.ra-step  { display: flex; gap: 20px; align-items: flex-start; position: relative; }
+.ra-steps {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.ra-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+}
 .ra-step__num {
-  width: 46px; height: 46px; border-radius: 50%;
-  background: var(--purple-soft); border: 2px solid rgba(115,122,255,0.3);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--purple-soft);
+  border: 2px solid rgba(115,122,255,0.3);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-h); font-size: 0.82rem; font-weight: 800;
-  color: var(--purple); flex-shrink: 0; z-index: 1;
+  color: var(--purple);
+  flex-shrink: 0; z-index: 1;
 }
 .ra-step__line {
-  position: absolute; left: 22px; top: 46px;
+  position: absolute;
+  left: 22px; top: 46px;
   width: 2px; height: 40px;
   background: linear-gradient(to bottom, rgba(115,122,255,0.35), rgba(115,122,255,0.04));
 }
 .ra-step__body { padding: 8px 0 44px; }
 .ra-step:last-child .ra-step__body { padding-bottom: 0; }
-.ra-step__title { font-family: var(--font-h); font-size: 0.96rem; font-weight: 700; color: var(--text-dark); margin: 0 0 4px; }
-.ra-step__desc  { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+.ra-step__title {
+  font-family: var(--font-h); font-size: 0.96rem; font-weight: 700;
+  color: var(--text-dark); margin: 0 0 4px;
+}
+.ra-step__desc {
+  font-size: 0.875rem; color: var(--text-muted);
+  line-height: 1.65; margin: 0;
+}
 
 /* ════════════════════════════════════════
-   WHY MITRAA
+   WHY MITRAA — checklist
 ════════════════════════════════════════ */
 .ra-why-list {
   display: grid;
@@ -387,25 +510,60 @@
   max-width: 780px;
   margin: 24px auto 0;
 }
-.ra-why-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.93rem; font-weight: 500; color: var(--text-mid); line-height: 1.55; }
+.ra-why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
 .ra-why-item svg { flex-shrink: 0; margin-top: 2px; }
 
 /* ════════════════════════════════════════
    CTA
 ════════════════════════════════════════ */
 .ra-sec--cta { padding-top: 100px; padding-bottom: 100px; }
-.ra-cta-inner { text-align: center; max-width: 640px; margin: 0 auto; }
-.ra-cta__h2 { font-family: var(--font-h); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.12; margin: 0 0 20px; color: var(--text-dark); }
-.ra-cta__sub { font-size: 0.96rem; color: var(--text-muted); line-height: 1.75; margin: 0 0 8px; }
-.ra-cta__sub--em { font-style: italic; font-weight: 500; color: var(--text-mid); margin-bottom: 36px; }
-.ra-cta__actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.ra-cta-inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.ra-cta__h2 {
+  font-family: var(--font-h);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.12;
+  margin: 0 0 20px;
+  color: var(--text-dark);
+}
+.ra-cta__sub {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin: 0 0 8px;
+}
+.ra-cta__sub--em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 36px;
+}
+.ra-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
 /* ════════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .ra-hero { flex-direction: column; gap: 40px; }
-  .ra-hero__content, .ra-hero__visual { max-width: 100%; margin: 0 auto; }
+  .ra-hero__content,
+  .ra-hero__visual { max-width: 100%; margin: 0 auto; }
   .ra-two-col { grid-template-columns: 1fr; gap: 40px; }
   .ra-two-col--flip .ra-two-col__text { order: 1; }
   .ra-two-col--flip .ra-steps         { order: 2; }
@@ -413,21 +571,9 @@
 }
 
 @media (max-width: 768px) {
-  /* Domains: 2-col. 7 cards → 3 rows of 2 + 1 wide.
-     Reset wide span so last card is just full-width (span 2 of 2). */
-  .ra-domains-grid  { grid-template-columns: repeat(2, 1fr); }
-  .ra-domain-card--wide { grid-column: span 2; }
-
-  /* Industries: same */
-  .ra-industry-grid { grid-template-columns: repeat(2, 1fr); }
-  .ra-industry-card--wide { grid-column: span 2; }
-
-  /* Benefits: 2-col 4-col base.
-     Cards 01-04 span 2, card 05 spans 4 (full width). */
-  .ra-benefits-grid { grid-template-columns: repeat(4, 1fr); }
-  .ra-benefit-card       { grid-column: span 2; }
-  .ra-benefit-card--half { grid-column: span 2; }
-
+  .ra-domains-grid,
+  .ra-industry-grid   { grid-template-columns: repeat(2, 1fr); }
+  .ra-benefits-grid   { grid-template-columns: repeat(2, 1fr); }
   .ra-highlights-grid { grid-template-columns: 1fr; }
   .ra-why-list        { grid-template-columns: 1fr; }
   .ra-value-grid      { grid-template-columns: repeat(2, 1fr); }
@@ -435,17 +581,10 @@
 
 @media (max-width: 480px) {
   .ra-sec { padding: 60px 16px; }
-
-  .ra-domains-grid  { grid-template-columns: 1fr; }
-  .ra-domain-card--wide { grid-column: span 1; flex-direction: column; }
-
-  .ra-industry-grid { grid-template-columns: 1fr; }
-  .ra-industry-card--wide { grid-column: span 1; flex-direction: column; }
-
-  .ra-benefits-grid { grid-template-columns: 1fr; }
-  .ra-benefit-card, .ra-benefit-card--half { grid-column: span 1; }
-
-  .ra-value-grid { grid-template-columns: repeat(2, 1fr); }
-  .ra-hero__h1   { font-size: 2.2rem; }
-  .ra-hero__actions { flex-direction: column; }
+  .ra-domains-grid,
+  .ra-industry-grid  { grid-template-columns: 1fr; }
+  .ra-benefits-grid  { grid-template-columns: 1fr; }
+  .ra-value-grid     { grid-template-columns: repeat(2, 1fr); }
+  .ra-hero__h1       { font-size: 2.2rem; }
+  .ra-hero__actions  { flex-direction: column; }
 }

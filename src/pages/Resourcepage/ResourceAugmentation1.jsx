@@ -18,6 +18,7 @@ const ArrowRight = () => (
   </svg>
 );
 
+/* domain / industry icons */
 const icons = {
   fullstack:    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="6" width="24" height="16" rx="3" stroke="#737aff" strokeWidth="1.8" fill="rgba(115,122,255,0.1)"/><path d="M9 14L6 11L9 8" stroke="#737aff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M19 14L22 11L19 8" stroke="#737aff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M16 7L12 15" stroke="#9196ff" strokeWidth="1.8" strokeLinecap="round"/></svg>,
   cloud:        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 20a5 5 0 0 1 0-10 7 7 0 0 1 13.4 2 4 4 0 0 1-1.4 7.8H8z" stroke="#737aff" strokeWidth="1.8" fill="rgba(115,122,255,0.1)"/><path d="M11 17l3-3 3 3M14 14v5" stroke="#9196ff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
@@ -36,79 +37,63 @@ const icons = {
 };
 
 /* ─────────────────────────────────────────────────────────────
-   DATA  —  NO hyphens anywhere
+   DATA
 ───────────────────────────────────────────────────────────── */
 const highlights = [
   "Dedicated IT resources aligned to your domain needs",
   "Expertise across all IT sectors and technologies",
-  "Flexible engagement models: short term and long term",
+  "Flexible engagement models (short-term & long-term)",
   "Rapid onboarding with minimal turnaround time",
-  "Pre vetted, highly skilled professionals",
+  "Pre-vetted, highly skilled professionals",
   "Seamless integration with your internal teams",
   "Scalable resources based on project demand",
-  "Cost effective alternative to full time hiring",
-  "End to end support from deployment to delivery",
+  "Cost-effective alternative to full-time hiring",
+  "End-to-end support from deployment to delivery",
   "Strong focus on quality, performance, and accountability",
   "Support for startups, SMBs, and enterprise clients",
   "Continuous monitoring and performance optimization",
 ];
 
-/*
-  DOMAINS — 7 items in a 4-col grid → 4 + 3 = orphan last row.
-  Fix: use 4 cols. Last card gets class "ra-domain-card--wide" → col-span 2,
-  so row 2 becomes: [card5][card6][card7-wide] filling all 4 cols perfectly.
-  Layout: row1 = 4 cards, row2 = card5 + card6 + card7(spans 2) = 4 cols ✓
-*/
 const domains = [
-  { icon: icons.fullstack,     label: "Full Stack, Frontend and Backend Development" },
-  { icon: icons.cloud,         label: "Cloud, DevOps and Infrastructure" },
-  { icon: icons.security,      label: "Cybersecurity and Compliance" },
-  { icon: icons.data,          label: "Data Engineering, AI and Machine Learning" },
-  { icon: icons.qa,            label: "QA and Automation Testing" },
-  { icon: icons.design,        label: "UI/UX Design and Product Engineering" },
-  { icon: icons.erp,           label: "ERP, CRM and Enterprise Applications",  wide: true },
+  { icon: icons.fullstack,     label: "Full Stack, Frontend & Backend Development" },
+  { icon: icons.cloud,         label: "Cloud, DevOps & Infrastructure" },
+  { icon: icons.security,      label: "Cybersecurity & Compliance" },
+  { icon: icons.data,          label: "Data Engineering, AI & Machine Learning" },
+  { icon: icons.qa,            label: "QA & Automation Testing" },
+  { icon: icons.design,        label: "UI/UX Design & Product Engineering" },
+  { icon: icons.erp,           label: "ERP, CRM & Enterprise Applications" },
 ];
 
-/*
-  INDUSTRIES — 7 items, same 4-col grid, same fix.
-  row1 = 4, row2 = [card5][card6][card7-wide(span2)] = 4 cols ✓
-*/
 const industries = [
-  { icon: icons.banking,       label: "Banking and Financial Services" },
-  { icon: icons.health,        label: "Healthcare and Life Sciences" },
-  { icon: icons.retail,        label: "Retail and E-commerce" },
-  { icon: icons.manufacturing, label: "Manufacturing and Supply Chain" },
+  { icon: icons.banking,       label: "Banking & Financial Services" },
+  { icon: icons.health,        label: "Healthcare & Life Sciences" },
+  { icon: icons.retail,        label: "Retail & E-commerce" },
+  { icon: icons.manufacturing, label: "Manufacturing & Supply Chain" },
   { icon: icons.telecom,       label: "Telecommunications" },
-  { icon: icons.startup,       label: "Startups and SMBs" },
-  { icon: icons.enterprise,    label: "Enterprise and Government Projects", wide: true },
+  { icon: icons.startup,       label: "Startups & SMBs" },
+  { icon: icons.enterprise,    label: "Enterprise & Government Projects" },
 ];
 
-/*
-  BENEFITS — 5 items in a 3-col grid → 3 + 2 = orphan last row.
-  Fix: use 3 cols. Last two cards each get col-span 1.5 equivalent.
-  Easiest clean approach: make the grid 6 cols, normal cards span 2,
-  last two cards span 3 each → row1 = 3×(span2) = 6, row2 = 2×(span3) = 6 ✓
-*/
 const benefits = [
-  { num: "01", title: "Rapid Scalability",     desc: "Quickly scale your team up or down based on project demands without long term commitments." },
-  { num: "02", title: "Access to Top Talent",  desc: "Gain access to pre vetted, highly skilled professionals with proven expertise in specific domains." },
-  { num: "03", title: "Cost Efficiency",        desc: "Reduce recruitment, training, and operational overhead while maintaining high quality output." },
-  { num: "04", title: "Seamless Integration",  desc: "Our resources integrate effortlessly into your processes, tools, and culture.", half: true },
-  { num: "05", title: "Faster Time to Market", desc: "Accelerate project delivery with experienced professionals who can start contributing from day one.", half: true },
+  { num: "01", title: "Rapid Scalability",      desc: "Quickly scale your team up or down based on project demands without long-term commitments." },
+  { num: "02", title: "Access to Top Talent",   desc: "Gain access to pre-vetted, highly skilled professionals with proven expertise in specific domains." },
+  { num: "03", title: "Cost Efficiency",         desc: "Reduce recruitment, training, and operational overhead while maintaining high-quality output." },
+  { num: "04", title: "Seamless Integration",   desc: "Our resources integrate effortlessly into your processes, tools, and culture." },
+  { num: "05", title: "Faster Time-to-Market",  desc: "Accelerate project delivery with experienced professionals who can start contributing from day one." },
 ];
 
 const businessValue = [
-  { label: "Faster time to market",                        stat: "2x" },
-  { label: "Reduced hiring and operational overhead",      stat: "60%" },
-  { label: "Improved project efficiency and delivery speed",stat: "40%" },
-  { label: "Access to niche and specialized skill sets",   stat: "200+" },
-  { label: "Enhanced flexibility and scalability",         stat: "∞" },
+  { label: "Faster time-to-market",                       stat: "2×" },
+  { label: "Reduced hiring & operational overhead",       stat: "60%" },
+  { label: "Improved project efficiency & delivery speed",stat: "40%" },
+  { label: "Access to niche and specialized skill sets",  stat: "200+" },
+  { label: "Enhanced flexibility and scalability",        stat: "∞" },
 ];
 
 const steps = [
-  { num: "01", title: "Requirement Analysis",    desc: "Understand your technical and domain specific needs in depth before we begin." },
-  { num: "02", title: "Talent Matching",          desc: "Identify and deploy the best fit resources from our curated, vetted talent pool." },
-  { num: "03", title: "Onboarding and Integration", desc: "Ensure smooth alignment with your existing team, tools, and workflows." },
+  { num: "01", title: "Requirement Analysis",    desc: "Understand your technical and domain-specific needs in depth before we begin." },
+  { num: "02", title: "Talent Matching",          desc: "Identify and deploy the best-fit resources from our curated, vetted talent pool." },
+  { num: "03", title: "Onboarding & Integration", desc: "Ensure smooth alignment with your existing team, tools, and workflows." },
   { num: "04", title: "Performance Management",   desc: "Continuous monitoring and optimization to maintain delivery standards." },
   { num: "05", title: "Scalable Support",         desc: "Flexible engagement that adapts as your project requirements evolve." },
 ];
@@ -117,7 +102,7 @@ const whyMitraa = [
   "Strong focus on quality, reliability, and domain expertise",
   "Flexible engagement models tailored to your business",
   "Proven capability to support startups to large enterprises",
-  "Commitment to long term partnership and success",
+  "Commitment to long-term partnership and success",
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -127,7 +112,9 @@ export default function ResourceAugmentation() {
   return (
     <div className="ra-page">
 
-      {/* ══ HERO ══ */}
+      {/* ══════════════════════════════════════════
+          HERO — lavender gradient bg + 3D visual
+      ══════════════════════════════════════════ */}
       <section className="ra-hero">
         <div className="ra-hero__content">
           <span className="ra-pill">Premium IT Staffing Solutions</span>
@@ -143,8 +130,8 @@ export default function ResourceAugmentation() {
             accelerate delivery, and bridge skill gaps through our premium Resource Augmentation services.
           </p>
           <p className="ra-hero__body">
-            In today's dynamic digital landscape, businesses require <strong>agile, skilled, and domain specific
-            talent</strong> without the overhead of long term hiring cycles. We provide <strong>dedicated IT
+            In today's dynamic digital landscape, businesses require <strong>agile, skilled, and domain-specific
+            talent</strong> without the overhead of long-term hiring cycles. We provide <strong>dedicated IT
             professionals</strong> tailored to your project needs, ensuring seamless integration with your existing
             teams and workflows.
           </p>
@@ -154,9 +141,11 @@ export default function ResourceAugmentation() {
           </div>
         </div>
 
+        {/* 3D illustration right side */}
         <div className="ra-hero__visual">
           <div className="ra-hero__visual-card">
             <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="ra-hero__svg">
+              {/* bg */}
               <rect width="380" height="300" rx="20" fill="url(#heroCardBg)" />
               <defs>
                 <linearGradient id="heroCardBg" x1="0" y1="0" x2="380" y2="300" gradientUnits="userSpaceOnUse">
@@ -164,24 +153,31 @@ export default function ResourceAugmentation() {
                   <stop offset="1" stopColor="#c8d8fb" />
                 </linearGradient>
               </defs>
+              {/* wave */}
               <path d="M0 200 Q95 165 190 200 Q285 235 380 200 L380 300 L0 300Z" fill="rgba(115,122,255,0.18)"/>
               <path d="M0 225 Q95 195 190 225 Q285 255 380 225 L380 300 L0 300Z" fill="rgba(115,122,255,0.1)"/>
+              {/* folder */}
               <rect x="60" y="110" width="170" height="120" rx="14" fill="#c7caff"/>
               <rect x="60" y="98"  width="72"  height="28"  rx="10" fill="#b0b5f8"/>
               <rect x="50" y="124" width="180" height="108" rx="14" fill="#dde0ff"/>
+              {/* doc lines */}
               <rect x="80" y="150" width="96" height="9" rx="4" fill="rgba(115,122,255,0.4)"/>
               <rect x="80" y="167" width="76" height="7" rx="3" fill="rgba(115,122,255,0.25)"/>
               <rect x="80" y="181" width="86" height="7" rx="3" fill="rgba(115,122,255,0.25)"/>
+              {/* shield */}
               <path d="M236 54 L274 68 L274 106 Q274 140 236 160 Q198 140 198 106 L198 68Z" fill="#7c82ff"/>
               <path d="M236 64 L266 76 L266 108 Q266 136 236 154 Q206 136 206 108 L206 76Z" fill="#a5a9ff"/>
               <path d="M222 108 L233 122 L254 90" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              {/* cloud */}
               <ellipse cx="98"  cy="112" rx="30" ry="20" fill="white" opacity="0.9"/>
               <ellipse cx="78"  cy="122" rx="20" ry="15" fill="white" opacity="0.9"/>
               <ellipse cx="116" cy="122" rx="20" ry="15" fill="white" opacity="0.9"/>
+              {/* stats pill */}
               <rect x="26" y="178" width="110" height="32" rx="16" fill="white" opacity="0.85"/>
               <circle cx="46" cy="194" r="8" fill="#737aff"/>
               <rect x="60" y="188" width="60" height="6"  rx="3" fill="#c5c8ff"/>
               <rect x="60" y="198" width="42" height="5"  rx="2.5" fill="#dde0ff"/>
+              {/* mini badge */}
               <rect x="246" y="172" width="100" height="30" rx="15" fill="white" opacity="0.85"/>
               <rect x="262" y="180" width="68" height="6" rx="3" fill="#737aff"/>
               <rect x="262" y="190" width="48" height="5" rx="2.5" fill="#c5c8ff"/>
@@ -190,7 +186,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ KEY HIGHLIGHTS ══ */}
+      {/* ══════════════════════════════════════════
+          KEY HIGHLIGHTS — white bg, 2-col checklist
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--white">
         <div className="ra-inner">
           <div className="ra-section-label">Key Highlights</div>
@@ -209,7 +207,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ DEDICATED RESOURCE MODEL ══ */}
+      {/* ══════════════════════════════════════════
+          DEDICATED RESOURCE MODEL — lavender bg, two-col
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--lavender">
         <div className="ra-inner ra-two-col">
           <div className="ra-two-col__text">
@@ -220,20 +220,21 @@ export default function ResourceAugmentation() {
             </h2>
             <p className="ra-body-text">
               We assign <strong>fully dedicated professionals</strong> who work as an extension of your internal
-              team ensuring ownership, accountability, and continuity on every project.
+              team — ensuring ownership, accountability, and continuity on every project.
             </p>
             <p className="ra-body-text">
-              We specialize in delivering <strong>highly skilled, domain focused IT resources</strong> across
+              We specialize in delivering <strong>highly skilled, domain-focused IT resources</strong> across
               industries and technologies. Our augmentation model enables you to <strong>onboard the right talent
               at the right time</strong>, aligned with your business goals.
             </p>
             <div className="ra-model-badges">
-              <span className="ra-badge">Short term Engagements</span>
-              <span className="ra-badge">Long term Engagements</span>
-              <span className="ra-badge">Project based</span>
-              <span className="ra-badge">Full time Dedicated</span>
+              <span className="ra-badge">Short-term Engagements</span>
+              <span className="ra-badge">Long-term Engagements</span>
+              <span className="ra-badge">Project-based</span>
+              <span className="ra-badge">Full-time Dedicated</span>
             </div>
           </div>
+          {/* visual dashboard mockup */}
           <div className="ra-two-col__visual">
             <div className="ra-dashboard">
               <div className="ra-dashboard__bar">
@@ -242,11 +243,11 @@ export default function ResourceAugmentation() {
               </div>
               <div className="ra-dashboard__body">
                 {[
-                  { role: "React Engineer",  color: "#737aff", },
-                  { role: "DevOps Lead",      color: "#5ee7d0", },
-                  { role: "ML Specialist",    color: "#a78bfa", },
-                  { role: "QA Automation",    color: "#60a5fa", },
-                  { role: "UI/UX Designer",   color: "#f472b6", },
+                  { role: "React Engineer",    color: "#737aff", status: "Active" },
+                  { role: "DevOps Lead",        color: "#5ee7d0", status: "Active" },
+                  { role: "ML Specialist",      color: "#a78bfa", status: "Active" },
+                  { role: "QA Automation",      color: "#60a5fa", status: "Active" },
+                  { role: "UI/UX Designer",     color: "#f472b6", status: "Active" },
                 ].map((r, i) => (
                   <div className="ra-team-row" key={r.role} style={{ animationDelay: `${i * 0.12}s` }}>
                     <div className="ra-team-row__av" style={{ background: r.color }}>{r.role[0]}</div>
@@ -263,23 +264,22 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ DOMAINS & SKILLS — 7 cards, 4-col grid, last card spans 2 ══ */}
+      {/* ══════════════════════════════════════════
+          DOMAINS & SKILLS — white bg, icon grid
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--white">
         <div className="ra-inner">
-          <div className="ra-section-label">Domains and Skills Coverage</div>
+          <div className="ra-section-label">Domains & Skills Coverage</div>
           <h2 className="ra-section-h2 ra-center">
             Multi-domain <span className="ra-blue-text">expertise</span>
           </h2>
           <p className="ra-body-text ra-center ra-max560">
-            Our talent pool spans across all major IT domains from software engineering to AI/ML,
+            Our talent pool spans across all major IT domains — from software engineering to AI/ML,
             cloud infrastructure to enterprise applications.
           </p>
           <div className="ra-domains-grid">
             {domains.map((d) => (
-              <div
-                className={`ra-domain-card${d.wide ? " ra-domain-card--wide" : ""}`}
-                key={d.label}
-              >
+              <div className="ra-domain-card" key={d.label}>
                 <div className="ra-domain-card__icon">{d.icon}</div>
                 <span className="ra-domain-card__label">{d.label}</span>
               </div>
@@ -288,7 +288,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ INDUSTRY COVERAGE — 7 cards, 4-col grid, last card spans 2 ══ */}
+      {/* ══════════════════════════════════════════
+          INDUSTRY COVERAGE — lavender bg, icon grid
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--lavender">
         <div className="ra-inner">
           <div className="ra-section-label">Industry Coverage</div>
@@ -301,10 +303,7 @@ export default function ResourceAugmentation() {
           </p>
           <div className="ra-industry-grid">
             {industries.map((ind) => (
-              <div
-                className={`ra-industry-card${ind.wide ? " ra-industry-card--wide" : ""}`}
-                key={ind.label}
-              >
+              <div className="ra-industry-card" key={ind.label}>
                 <div className="ra-industry-card__icon">{ind.icon}</div>
                 <span className="ra-industry-card__label">{ind.label}</span>
               </div>
@@ -313,7 +312,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ KEY BENEFITS — 5 cards, 6-col base, first 3 span 2, last 2 span 3 ══ */}
+      {/* ══════════════════════════════════════════
+          KEY BENEFITS — white bg, numbered cards
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--white">
         <div className="ra-inner">
           <div className="ra-section-label">Key Benefits</div>
@@ -322,10 +323,7 @@ export default function ResourceAugmentation() {
           </h2>
           <div className="ra-benefits-grid">
             {benefits.map((b) => (
-              <div
-                className={`ra-benefit-card${b.half ? " ra-benefit-card--half" : ""}`}
-                key={b.num}
-              >
+              <div className="ra-benefit-card" key={b.num}>
                 <span className="ra-benefit-card__num">{b.num}</span>
                 <h3 className="ra-benefit-card__title">{b.title}</h3>
                 <p className="ra-benefit-card__desc">{b.desc}</p>
@@ -335,7 +333,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ BUSINESS VALUE ══ */}
+      {/* ══════════════════════════════════════════
+          BUSINESS VALUE — lavender bg, stat strip
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--lavender">
         <div className="ra-inner">
           <div className="ra-section-label">Business Value</div>
@@ -353,9 +353,12 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ ENGAGEMENT APPROACH ══ */}
+      {/* ══════════════════════════════════════════
+          ENGAGEMENT APPROACH — white bg, timeline
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--white">
         <div className="ra-inner ra-two-col ra-two-col--flip">
+          {/* left: heading + text */}
           <div className="ra-two-col__text">
             <div className="ra-section-label">Engagement Approach</div>
             <h2 className="ra-section-h2">
@@ -364,12 +367,13 @@ export default function ResourceAugmentation() {
             </h2>
             <p className="ra-body-text">
               A structured, transparent process that gets the right professional working with your team as fast
-              as possible with continuous support throughout.
+              as possible — with continuous support throughout.
             </p>
             <a href="/contact" className="ra-btn ra-btn--fill" style={{ marginTop: "24px", display: "inline-flex" }}>
               Start the Process <ArrowRight />
             </a>
           </div>
+          {/* right: steps */}
           <div className="ra-steps">
             {steps.map((s, i) => (
               <div className="ra-step" key={s.num}>
@@ -385,7 +389,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ WHY MITRAA ══ */}
+      {/* ══════════════════════════════════════════
+          WHY MITRAA — lavender bg, checklist + pill grid
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--lavender">
         <div className="ra-inner">
           <div className="ra-section-label">Why Choose MiTRAA</div>
@@ -403,7 +409,9 @@ export default function ResourceAugmentation() {
         </div>
       </section>
 
-      {/* ══ CTA ══ */}
+      {/* ══════════════════════════════════════════
+          CTA — white bg
+      ══════════════════════════════════════════ */}
       <section className="ra-sec ra-sec--white ra-sec--cta">
         <div className="ra-inner ra-cta-inner">
           <h2 className="ra-cta__h2">
