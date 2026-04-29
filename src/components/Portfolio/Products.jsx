@@ -56,7 +56,7 @@ const products = [
       { label: "Empathetic Listeners", desc: "Get support from caring, trained people" },
       { label: "Safe Space",           desc: "Secure and fully confidential environment" },
     ],
-    vision: "We use technology to bring people closer, support emotional well-being, and create meaningful human connections.",
+    vision: "We use technology to bring people closer, support emotional well being, and create meaningful human connections.",
     accentColor: "#ff2d78",
     badgeLabel: "Wellness",
     num: "01",
@@ -70,7 +70,7 @@ const products = [
   {
     id: "jarviis",
     theme: "jarviis",
-    tagline: "AI-Powered Testing Platform",
+    tagline: "AI Powered Testing Platform",
     name: "JARViiS AI",
     logoSrc: jarviisImg,
     productImage: jarviisImg,
@@ -96,7 +96,7 @@ const products = [
     logoSrc: seekmitraImg,
     productImage: seekmitraImg,
     headline: "Every Journey Tells a Story",
-    description: "SeekMITra captures real-life stories from everyday travel experiences turning simple journeys into meaningful narratives by connecting people and their moments.",
+    description: "SeekMITra captures real life stories from everyday travel experiences turning simple journeys into meaningful narratives by connecting people and their moments.",
     features: [
       { label: "Backseat Stories",     desc: "Capture real conversations and experiences during rides" },
       { label: "Community Connection", desc: "Connect people, cities, and cultures" },
@@ -121,7 +121,7 @@ function Products() {
           <h2 className="prd-header__title">Products We've <em>Built</em></h2>
         </div>
         <p className="prd-header__sub">
-          Real solutions, real impact — a selection of products we have designed,
+          Real solutions, real impact  a selection of products we have designed,
           developed, and launched for our partners.
         </p>
       </div>

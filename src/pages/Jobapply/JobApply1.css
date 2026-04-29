@@ -20,27 +20,6 @@
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
 }
 
-/* ---------- Back Button ---------- */
-.apply-card__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: none;
-  border: none;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: #5b5bd6;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 20px;
-  font-family: inherit;
-  transition: color 0.2s ease;
-}
-
-.apply-card__back:hover {
-  color: #4a4ac4;
-}
-
 /* ---------- Title & Meta ---------- */
 .apply-card__title {
   font-size: 26px;
@@ -55,17 +34,6 @@
   color: #666;
   text-align: center;
   margin: 0 0 32px;
-}
-
-/* ---------- Success Banner ---------- */
-.apply-success {
-  color: #166534;
-  background: #dcfce7;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13.5px;
-  margin-bottom: 16px;
 }
 
 /* ---------- Form ---------- */
@@ -87,12 +55,6 @@
   color: #333;
 }
 
-.apply-form__required {
-  color: #b91c1c;
-  margin-left: 2px;
-}
-
-/* ---------- Input ---------- */
 .apply-form__input {
   height: 44px;
   padding: 0 14px;
@@ -103,7 +65,7 @@
   background: #ffffff;
   outline: none;
   font-family: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -117,32 +79,6 @@
   box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.1);
 }
 
-/* Error state on input */
-.apply-form__group--error .apply-form__input {
-  border-color: #f87171;
-  background: #fff8f8;
-}
-
-.apply-form__group--error .apply-form__input:focus {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-/* ---------- Error Message ---------- */
-.apply-form__error-msg {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: #b91c1c;
-  margin-top: 2px;
-}
-
-.apply-form__error-msg::before {
-  content: "⚠";
-  font-size: 11px;
-}
-
 /* ---------- Select ---------- */
 .apply-form__select {
   appearance: none;
@@ -152,34 +88,6 @@
   background-position: right 14px center;
   padding-right: 36px;
   cursor: pointer;
-}
-
-/* ---------- Mobile Row ---------- */
-.apply-form__mobile-row {
-  display: flex;
-  gap: 8px;
-}
-
-.apply-form__code-select {
-  width: 120px;
-  flex-shrink: 0;
-  padding-right: 32px;
-}
-
-.apply-form__mobile-input {
-  flex: 1;
-  min-width: 0;
-}
-
-/* Error state on mobile row children */
-.apply-form__group--error .apply-form__mobile-row .apply-form__input {
-  border-color: #f87171;
-  background: #fff8f8;
-}
-
-.apply-form__group--error .apply-form__mobile-row .apply-form__input:focus {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 /* ---------- File Upload ---------- */
@@ -194,45 +102,22 @@
 .apply-form__file-label {
   display: flex;
   align-items: center;
-  gap: 8px;
   height: 44px;
   padding: 0 14px;
-  border: 1px dashed #dde1ea;
+  border: 1px solid #dde1ea;
   border-radius: 8px;
   font-size: 13.5px;
   color: #aab0be;
-  background: #fafafa;
+  background: #ffffff;
   cursor: pointer;
   font-family: inherit;
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease;
   box-sizing: border-box;
   width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .apply-form__file-label:hover {
   border-color: #5b5bd6;
-  background: #f5f5ff;
-}
-
-.apply-form__file-label--filled {
-  color: #333;
-  border-color: #a5b4fc;
-  background: #f5f5ff;
-  border-style: solid;
-}
-
-.apply-form__file-icon {
-  font-size: 15px;
-  flex-shrink: 0;
-}
-
-/* Error state on file label */
-.apply-form__group--error .apply-form__file-label {
-  border-color: #f87171;
-  background: #fff8f8;
 }
 
 /* ---------- Submit Button ---------- */
@@ -248,16 +133,11 @@
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.2s ease, opacity 0.2s ease;
+  transition: background 0.2s ease;
 }
 
-.apply-form__submit-btn:hover:not(:disabled) {
+.apply-form__submit-btn:hover {
   background: #4a4ac4;
-}
-
-.apply-form__submit-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
 /* ---------- Responsive ---------- */
@@ -269,8 +149,23 @@
   .apply-card__title {
     font-size: 22px;
   }
+}
 
-  .apply-form__code-select {
-    width: 100px;
-  }
+
+.apply-error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}
+
+.apply-success {
+  color: #166534;
+  background: #dcfce7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  margin-bottom: 8px;
 }
