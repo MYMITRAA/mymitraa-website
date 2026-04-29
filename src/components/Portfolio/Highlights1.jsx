@@ -1,15 +1,10 @@
 import "./Highlights.css";
 
-import highlight1 from "../../assets/images/phighlight1.webp";
-import highlight2 from "../../assets/images/phighlight2.webp";
-import highlight3 from "../../assets/images/phighlight3.webp";
-import highlight4 from "../../assets/images/phighlight4.webp";
-
 const highlights = [
-  { img: highlight1, label: "Enterprise SaaS platforms"   },
-  { img: highlight2, label: "AI-powered automation tools" },
-  { img: highlight3, label: "Fintech applications"        },
-  { img: highlight4, label: "E-commerce projects"         },
+  { img: "/src/assets/images/phighlight1.webp", label: "Enterprise SaaS platforms"   },
+  { img: "/src/assets/images/phighlight2.webp", label: "AI-powered automation tools" },
+  { img: "/src/assets/images/phighlight3.webp", label: "Fintech applications"        },
+  { img: "/src/assets/images/phighlight4.webp", label: "E-commerce projects"         },
 ];
 
 function Highlights() {
