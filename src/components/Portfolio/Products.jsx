@@ -3,6 +3,9 @@ import "./Products.css";
 import feelzyImg    from "../../assets/images/feelzyimage.webp";
 import jarviisImg   from "../../assets/images/jarviisimage.webp";
 import seekmitraImg from "../../assets/images/seekmitraimage3.webp";
+import seekmitralogo from "../../assets/logo/transparent_logo_seekmitra.png";
+import jarviislogo from "../../assets/logo/jarviis_logo_transparent_hd.png";
+import feelzylogo from "../../assets/logo/feezly_logo_hd.png";
 
 /* ── Social Icons ── */
 const EmailIcon = () => (
@@ -47,7 +50,7 @@ const products = [
     theme: "feelzy",
     tagline: "Emotional Wellness Platform",
     name: "feelzy",
-    logoSrc: feelzyImg,
+    logoSrc: feelzylogo,
     productImage: feelzyImg,
     headline: "Together we rise, together we heal",
     description: "Feelzy is a digital platform that helps people handle emotions like stress, loneliness, and heartbreak  providing a safe, supportive space where users share their feelings and find community.",
@@ -72,7 +75,7 @@ const products = [
     theme: "jarviis",
     tagline: "AI Powered Testing Platform",
     name: "JARViiS AI",
-    logoSrc: jarviisImg,
+    logoSrc: jarviislogo,
     productImage: jarviisImg,
     headline: "The Future of Intelligent Testing",
     description: "JARViiS AI automates testing for websites and applications helping teams test faster, reduce manual work, and ship with confidence.",
@@ -93,7 +96,7 @@ const products = [
     theme: "seekmitra",
     tagline: "Mobility & Storytelling Platform",
     name: "SeekMITra",
-    logoSrc: seekmitraImg,
+    logoSrc: seekmitralogo,
     productImage: seekmitraImg,
     headline: "Every Journey Tells a Story",
     description: "SeekMITra captures real life stories from everyday travel experiences turning simple journeys into meaningful narratives by connecting people and their moments.",

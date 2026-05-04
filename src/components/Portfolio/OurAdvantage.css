@@ -202,7 +202,6 @@
   font-weight: 500;
   color: #52576b;
 }
-
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .adv__card { width: clamp(400px, 52vw, 560px); }
@@ -217,6 +216,26 @@
 }
 
 @media (max-width: 720px) {
+  /* ── Remove background image, use matching solid color ── */
+  .adv {
+    background: #e8eaf5;          /* pale lavender-white — matches card glass tint */
+    background-image: none;
+    background-attachment: scroll;
+    height: auto;                 /* let content dictate height, no more 400vh */
+  }
+
+  /* ── Cards stack closer together ── */
+  .adv__cards-viewport {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 48px 16px 64px;
+  }
+
+  .adv__card-wrap {
+    height: auto;                 /* remove full-vh height per card */
+  }
+
   .adv__card-wrap--left,
   .adv__card-wrap--right {
     justify-content: center;
@@ -225,8 +244,11 @@
   }
 
   .adv__card {
-    width: min(360px, 90vw);
+    width: min(400px, 92vw);
     padding: 30px 24px 26px;
+    /* Slightly less blur on mobile for better performance */
+    backdrop-filter: blur(24px) saturate(110%);
+    -webkit-backdrop-filter: blur(24px) saturate(110%);
   }
 
   .adv__card-title  { font-size: 20px; }

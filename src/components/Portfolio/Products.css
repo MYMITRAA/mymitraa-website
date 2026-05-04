@@ -619,7 +619,7 @@
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — 1100px
    ============================================================ */
 
 @media (max-width: 1100px) {
@@ -635,65 +635,188 @@
   .prd-card__headline { font-size: 24px; }
 }
 
+/* ============================================================
+   RESPONSIVE — 900px (Tablet / Mobile switch to stacked)
+   ============================================================ */
+
 @media (max-width: 900px) {
   .prd-section { padding: 80px 0 100px; }
 
-  .prd-header,
-  .prd-list {
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-
-  .prd-header {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 60px;
-  }
-
-  .prd-header__title { font-size: 38px; }
-
-  .prd-card,
-  .prd-card--flip {
-    grid-template-columns: 1fr;
-    direction: ltr;
-    min-height: auto;
-  }
-
-  .prd-card--flip > * { direction: ltr; }
-
-  /* On mobile the flip overlay direction should also flip */
-  .prd-card--jarviis .prd-card__visual-overlay {
-    background:
-      linear-gradient(to right, transparent 60%, #0f0a00 100%),
-      linear-gradient(to top, rgba(15, 10, 0, 0.55) 0%, transparent 40%);
-  }
-
-  .prd-card__visual { min-height: 340px; }
-
-  .prd-card__content { padding: 40px 36px 36px; }
-  .prd-card__top-accent { left: 36px; right: 36px; }
-
-  .prd-card--flip .prd-card__badge  { left: 26px; right: auto; }
-  .prd-card--flip .prd-card__number { right: 26px; left: auto; }
-}
-
-@media (max-width: 600px) {
   .prd-header,
   .prd-list {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .prd-header__title { font-size: 30px; }
+  .prd-header {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 52px;
+  }
 
-  .prd-card__content    { padding: 30px 24px 26px; }
-  .prd-card__top-accent { left: 24px; right: 24px; }
-  .prd-card__headline   { font-size: 21px; }
-  .prd-card__name       { font-size: 20px; }
-  .prd-card__logo-box   { width: 64px; height: 64px; }
+  .prd-header__title { font-size: 38px; }
+  .prd-header__sub { max-width: 100%; }
 
-  .prd-card__feature-label { min-width: 110px; }
-  .prd-card__contact-grid  { grid-template-columns: 1fr; }
-  .prd-card__visual        { min-height: 260px; }
-  .prd-list                { gap: 36px; }
+  /* ── Stack all cards vertically, reset flip direction ── */
+  .prd-card,
+  .prd-card--flip {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    direction: ltr;
+    min-height: auto;
+  }
+
+  .prd-card--flip > * {
+    direction: ltr;
+  }
+
+  /* ── Full image: use aspect-ratio so it shows completely ── */
+  .prd-card__visual {
+    /* Let the image dictate height — no fixed min-height */
+    min-height: unset;
+    width: 100%;
+    /* 16:10 ratio gives a wide cinematic view of the screenshot */
+    aspect-ratio: 16 / 10;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Make the image fill the box fully and show from top */
+  .prd-card__product-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* Fix the overlay gradient direction for stacked cards */
+  .prd-card--feelzy .prd-card__visual-overlay {
+    background:
+      linear-gradient(to bottom, transparent 55%, #13060e 100%),
+      linear-gradient(to top, rgba(19, 6, 14, 0.3) 0%, transparent 30%);
+  }
+
+  .prd-card--jarviis .prd-card__visual-overlay {
+    background:
+      linear-gradient(to bottom, transparent 55%, #0f0a00 100%),
+      linear-gradient(to top, rgba(15, 10, 0, 0.3) 0%, transparent 30%);
+  }
+
+  .prd-card--seekmitra .prd-card__visual-overlay {
+    background:
+      linear-gradient(to bottom, transparent 55%, #0b0620 100%),
+      linear-gradient(to top, rgba(11, 6, 32, 0.3) 0%, transparent 30%);
+  }
+
+  /* Badge always top-left on mobile */
+  .prd-card__badge,
+  .prd-card--flip .prd-card__badge {
+    top: 18px;
+    left: 18px;
+    right: auto;
+  }
+
+  /* Number always bottom-right on mobile */
+  .prd-card__number,
+  .prd-card--flip .prd-card__number {
+    bottom: 14px;
+    right: 20px;
+    left: auto;
+    font-size: 64px;
+  }
+
+  /* Content panel */
+  .prd-card__content {
+    padding: 36px 28px 32px;
+  }
+
+  .prd-card__top-accent {
+    left: 28px;
+    right: 28px;
+  }
+
+  .prd-card__headline { font-size: 22px; }
+  .prd-card__logo-box { width: 68px; height: 68px; }
+}
+
+/* ============================================================
+   RESPONSIVE — 600px (Small mobile)
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .prd-section { padding: 60px 0 80px; }
+
+  .prd-header,
+  .prd-list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .prd-header { margin-bottom: 40px; }
+  .prd-header__title { font-size: 30px; letter-spacing: -0.5px; }
+
+  /* On very small screens use a taller ratio to show more of the screenshot */
+  .prd-card__visual {
+    aspect-ratio: 4 / 3;
+  }
+
+  .prd-card__content {
+    padding: 28px 20px 24px;
+  }
+
+  .prd-card__top-accent {
+    left: 20px;
+    right: 20px;
+  }
+
+  .prd-card__number { font-size: 52px; }
+  .prd-card__headline { font-size: 19px; }
+  .prd-card__name { font-size: 20px; }
+  .jarviis-name { font-size: 18px !important; }
+  .prd-card__logo-box { width: 58px; height: 58px; border-radius: 14px; }
+  .prd-card__top { gap: 14px; margin-bottom: 20px; }
+
+  .prd-card__desc { font-size: 13.5px; }
+
+  /* Feature label min-width reduce for narrow screens */
+  .prd-card__feature-label { min-width: 110px; font-size: 12.5px; }
+  .prd-card__feature-desc  { font-size: 12.5px; }
+
+  /* Contact grid single column */
+  .prd-card__contact-grid { grid-template-columns: 1fr; }
+
+  .prd-list { gap: 28px; }
+}
+
+/* ============================================================
+   RESPONSIVE — 400px (Extra small / iPhone SE)
+   ============================================================ */
+
+@media (max-width: 400px) {
+  .prd-header__title { font-size: 26px; }
+
+  /* Tall ratio — essentially portrait mode, shows full screenshot */
+  .prd-card__visual {
+    aspect-ratio: 3 / 4;
+  }
+
+  .prd-card__content { padding: 24px 16px 20px; }
+  .prd-card__top-accent { left: 16px; right: 16px; }
+
+  .prd-card__feature {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .prd-card__feature-label {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .prd-card__feature-desc {
+    padding-left: 30px; /* align under label, after icon */
+    width: 100%;
+  }
 }

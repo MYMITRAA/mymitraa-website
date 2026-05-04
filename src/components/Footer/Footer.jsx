@@ -82,7 +82,7 @@ function Footer() {
                 <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
                   <img src={facebook} alt="Facebook" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href="https://x.com/MitraTechPvtLtd" target="_blank" rel="noopener noreferrer">
                   <img src={twitter} alt="Twitter / X" />
                 </a>
               </div>
@@ -122,7 +122,7 @@ function Footer() {
             </div>
 
             <div className="footer-office-card">
-              <div className="footer-office-badge footer-office-badge--zone">Central Zone</div>
+              <div className="footer-office-badge footer-office-badge--zone">South A Zone</div>
               <div className="footer-office-header">
                 <PinIcon />
                 <span className="footer-office-city">Hyderabad, Telangana</span>
@@ -135,7 +135,7 @@ function Footer() {
             </div>
 
             <div className="footer-office-card">
-              <div className="footer-office-badge footer-office-badge--zone">South Zone</div>
+              <div className="footer-office-badge footer-office-badge--zone">South B Zone</div>
               <div className="footer-office-header">
                 <PinIcon />
                 <span className="footer-office-city">Malappuram, Kerala</span>
@@ -162,7 +162,7 @@ function Footer() {
               <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
                 <img src={facebook} alt="Facebook" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/MitraTechPvtLtd" target="_blank" rel="noopener noreferrer">
                 <img src={twitter} alt="Twitter / X" />
               </a>
             </div>
