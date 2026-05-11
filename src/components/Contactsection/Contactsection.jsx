@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import "./ContactSection.css";
+import "./Contactsection.css";
 
 // ─── Country Codes ────────────────────────────────────────────────────────────
 const COUNTRY_CODES = [
