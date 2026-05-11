@@ -13,8 +13,8 @@ const PARTICLE_COUNT = 38;
 
 /* ── Auto mood cycle: [mood, duration(ms)] ── */
 const MOOD_CYCLE = [
-  ["normal",  1500],
-  ["happy",   2500],
+  ["happy",  1500],
+  ["excited",   1500],
   ["normal",  2000],
   ["excited", 1800],
   ["normal",  2200],

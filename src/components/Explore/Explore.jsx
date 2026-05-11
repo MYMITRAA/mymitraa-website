@@ -14,15 +14,14 @@ function Explore() {
         <div className="explore-content">
 
           <h2 className="explore-title">
-            Engineering the Moral Foundation of <br />
+            Engineering the Moral Foundation of
             the Intelligent World
           </h2>
 
           <p className="explore-description">
-            We are building ethical, explainable, and accountable frameworks to <br />
-            guide physical AI as it moves into the real world placing <br />
-            humanity, trust, and responsibility at the core of <br />
-            intelligence.
+            We are building ethical, explainable, and accountable frameworks to
+            guide physical AI as it moves into the real world placing
+            humanity, trust, and responsibility at the core of intelligence.
           </p>
 
           <button className="explore-btn" onClick={() => navigate("/agi")}>Explore</button>

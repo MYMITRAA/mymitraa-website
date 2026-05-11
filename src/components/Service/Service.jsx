@@ -131,7 +131,7 @@ function Services() {
               </div>
               <h3>Cyber Security</h3>
               <p>
-                Security isn't an add-on; it's embedded into everything we design,
+                Security isn't an add on; it's embedded into everything we design,
                 build, and deliver.
               </p>
             </div>

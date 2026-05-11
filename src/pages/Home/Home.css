@@ -1,4 +1,14 @@
 /* =============================================
+   GLOBAL OVERFLOW FIX — prevents horizontal scroll
+   ============================================= */
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* =============================================
    STICKY FLOATING BIRD — fixed to viewport
    ============================================= */
 

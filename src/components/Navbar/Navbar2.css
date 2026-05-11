@@ -31,7 +31,7 @@ body {
 
 .navbar-container {
   width: 100%;
-  padding: 0 24px;
+  padding: 0 24px; /* was 40px */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,7 +55,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 24px; /* was 45px */
 }
 
 .nav-links a {
@@ -84,7 +84,7 @@ body {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 12px; /* was 18px */
 }
 
 .icon-circle {
@@ -97,23 +97,11 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.icon-circle:hover {
-  border-color: #514AD7;
-  box-shadow: 0 0 0 3px rgba(81, 74, 215, 0.12);
-}
-
-.icon-circle--active {
-  border-color: #514AD7;
-  background: rgba(81, 74, 215, 0.07);
-  box-shadow: 0 0 0 3px rgba(81, 74, 215, 0.14);
 }
 
 .icon-circle img {
-  width: 20px;
-  height: 20px;
+  width: 38px;
+  height: 38px;
 }
 
 /* Sign Button */
@@ -164,130 +152,6 @@ body {
 .menu-toggle.open span:nth-child(1) { transform: rotate(45deg)  translateY(8px);  }
 .menu-toggle.open span:nth-child(2) { opacity: 0; }
 .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
-
-/* ================= LANGUAGE DROPDOWN ================= */
-
-.lang-wrapper {
-  position: relative;
-}
-
-.lang-dropdown {
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  width: 240px;
-  background: #ffffff;
-  border: 1px solid rgba(81, 74, 215, 0.18);
-  border-radius: 14px;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.07),
-    0 16px 40px -4px rgba(81, 74, 215, 0.16);
-  z-index: 2000;
-  overflow: hidden;
-  animation: langDropIn 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes langDropIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.lang-dropdown__header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #888;
-  border-bottom: 1px solid rgba(81, 74, 215, 0.1);
-}
-
-.lang-dropdown__list {
-  list-style: none;
-  margin: 0;
-  padding: 6px 0;
-  max-height: 300px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(81, 74, 215, 0.2) transparent;
-}
-
-.lang-dropdown__list::-webkit-scrollbar {
-  width: 4px;
-}
-
-.lang-dropdown__list::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.lang-dropdown__list::-webkit-scrollbar-thumb {
-  background: rgba(81, 74, 215, 0.2);
-  border-radius: 4px;
-}
-
-.lang-dropdown__item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  position: relative;
-}
-
-.lang-dropdown__item:hover {
-  background: rgba(81, 74, 215, 0.06);
-}
-
-.lang-dropdown__item--active {
-  background: rgba(81, 74, 215, 0.08);
-}
-
-.lang-label {
-  font-size: 13.5px;
-  font-weight: 500;
-  color: #2c2c2c;
-  flex: 1;
-}
-
-.lang-dropdown__item--active .lang-label {
-  color: #514AD7;
-  font-weight: 600;
-}
-
-.lang-native {
-  font-size: 12px;
-  color: #999;
-}
-
-.lang-dropdown__item--active .lang-native {
-  color: #8b85e0;
-}
-
-.lang-check {
-  font-size: 13px;
-  color: #514AD7;
-  font-weight: 700;
-  margin-left: 4px;
-}
-
-.lang-dropdown__footer {
-  padding: 9px 16px;
-  font-size: 11px;
-  color: #aaa;
-  border-top: 1px solid rgba(81, 74, 215, 0.1);
-  text-align: center;
-  background: #fafafa;
-}
 
 /* ================= MAC / MEDIUM SCREENS ================= */
 
@@ -340,13 +204,6 @@ body {
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-  }
-
-  /* Dropdown shifts left on mobile so it doesn't clip */
-  .lang-dropdown {
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 
@@ -422,14 +279,69 @@ body {
   font-size: 14px;
 }
 
+
 /* ===== DESKTOP: show nav-right, hide mobile-auth ===== */
 @media (min-width: 769px) {
-  .nav-right    { display: flex; }
-  .mobile-auth  { display: none; }
+  .nav-right    { display: flex; }   /* already exists, just confirming */
+  .mobile-auth  { display: none; }   /* ✅ hide mobile auth on desktop */
 }
 
 /* ===== MOBILE: hide nav-right, show mobile-auth ===== */
 @media (max-width: 768px) {
-  .nav-right    { display: none; }
+  .nav-right    { display: none; }   /* already exists */
   .mobile-auth  { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+}
+
+/* ===== USER SECTION (desktop) ===== */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-greeting {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c2c2c;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-btn {
+  height: 34px;
+  padding: 0 16px;
+  background: transparent;
+  color: #514AD7;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid #514AD7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #514AD7;
+  color: white;
+}
+
+/* ===== MOBILE USER SECTION ===== */
+.mobile-user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-user-section .user-greeting {
+  font-size: 15px;
+  max-width: 100%;
+}
+
+.mobile-user-section .logout-btn {
+  width: 120px;
+  height: 38px;
+  font-size: 14px;
 }

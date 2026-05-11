@@ -87,12 +87,6 @@
   margin-bottom: 44px;
   color: rgba(255,255,255,0.72);
   max-width: 440px;
-
-  /* Justify both sides, last line left-aligned */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 .hero-btn {
@@ -232,13 +226,7 @@
   }
 
   .hero-title { font-size: 32px; }
-
-  .hero-desc {
-    font-size: 15px;
-    /* On tablet centered layout, switch to center-justify */
-    text-align: justify;
-    text-align-last: center;
-  }
+  .hero-desc  { font-size: 15px; }
 
   .flying-robot { width: 140px; height: 140px; }
 }
@@ -249,13 +237,7 @@
 @media (max-width: 600px) {
   .hero-container { padding: 80px 20px 40px; }
   .hero-title { font-size: 26px; }
-
-  .hero-desc {
-    font-size: 14px;
-    text-align: justify;
-    text-align-last: left;
-  }
-
+  .hero-desc  { font-size: 14px; }
   .hero-tag   { font-size: 11px; padding: 7px 14px; }
 
   .strip-container { padding: 0 20px; }

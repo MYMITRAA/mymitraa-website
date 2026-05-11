@@ -8,11 +8,32 @@ import linkedin from "../../assets/images/linkedin.svg";
 import facebook from "../../assets/images/facebook.svg";
 import twitter from "../../assets/images/x.svg";
 import footerRectangle from "../../assets/images/footerrectangle.svg";
+import whatsapp from "../../assets/images/whatsapp.png";
 
 const PinIcon = () => (
   <svg className="footer-pin" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M8 0C4.13 0 1 3.13 1 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 8 4.5a2.5 2.5 0 0 1 0 5z" fill="#6c63ff"/>
   </svg>
+);
+
+const SocialIcons = () => (
+  <div className="social-icons">
+    <a href="https://www.instagram.com/mitra.technologypvtltd?igsh=ZGRuNjJhempzbnRv" target="_blank" rel="noopener noreferrer">
+      <img src={instagram} alt="Instagram" />
+    </a>
+    <a href="https://www.linkedin.com/company/mitra-technology-pvt-ltd/" target="_blank" rel="noopener noreferrer">
+      <img src={linkedin} alt="LinkedIn" />
+    </a>
+    <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
+      <img src={facebook} alt="Facebook" />
+    </a>
+    <a href="https://x.com/MitraTechPvtLtd" target="_blank" rel="noopener noreferrer">
+      <img src={twitter} alt="Twitter / X" />
+    </a>
+    <a href="https://whatsapp.com/channel/0029VbCDjPB9mrGj7VqUaZ3H" target="_blank" rel="noopener noreferrer">
+      <img src={whatsapp} alt="WhatsApp" />
+    </a>
+  </div>
 );
 
 function Footer() {
@@ -38,11 +59,38 @@ function Footer() {
                 Your big dreams deserve the right strategy. Fill out the form,
                 pick a time that works for you, and let's connect!
               </p>
-              <div className="footer-contact-inline">
+              {/* <div className="footer-contact-inline">
                 <a href="tel:+919938330784">+91 9938330784</a>
-                <a href="mailto:info@mitratechgroup.com">info@mitratechgroup.com</a>
-              </div>
-            </div>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&to=info@mitratechgroup.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  info@mitratechgroup.com
+                </a>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&to=support@mitratechgroup.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  support@mitratechgroup.com
+                </a>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&to=mitraaceo@mitratechgroup.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  mitraaceo@mitratechgroup.com
+                </a>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&to=contact@mitratechgroup.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  contact@mitratechgroup.com
+                </a>
+              </div>*/}
+            </div> 
 
             {/* Services */}
             <div className="footer-column">
@@ -72,20 +120,7 @@ function Footer() {
             {/* Follow Us — desktop */}
             <div className="footer-column footer-social-desktop">
               <h4>Follow Us</h4>
-              <div className="social-icons">
-                <a href="https://www.instagram.com/mitra.technologypvtltd?igsh=ZGRuNjJhempzbnRv" target="_blank" rel="noopener noreferrer">
-                  <img src={instagram} alt="Instagram" />
-                </a>
-                <a href="https://www.linkedin.com/company/mitra-technology-pvt-ltd/" target="_blank" rel="noopener noreferrer">
-                  <img src={linkedin} alt="LinkedIn" />
-                </a>
-                <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
-                  <img src={facebook} alt="Facebook" />
-                </a>
-                <a href="https://x.com/MitraTechPvtLtd" target="_blank" rel="noopener noreferrer">
-                  <img src={twitter} alt="Twitter / X" />
-                </a>
-              </div>
+              <SocialIcons />
             </div>
 
           </div>
@@ -152,20 +187,7 @@ function Footer() {
           {/* ── Follow Us — mobile only ── */}
           <div className="footer-social-mobile">
             <h4>Follow Us</h4>
-            <div className="social-icons">
-              <a href="https://www.instagram.com/mitra.technologypvtltd?igsh=ZGRuNjJhempzbnRv" target="_blank" rel="noopener noreferrer">
-                <img src={instagram} alt="Instagram" />
-              </a>
-              <a href="https://www.linkedin.com/company/mitra-technology-pvt-ltd/" target="_blank" rel="noopener noreferrer">
-                <img src={linkedin} alt="LinkedIn" />
-              </a>
-              <a href="https://www.facebook.com/people/Mitra-Technology-Pvt-Ltd/61583635949784/" target="_blank" rel="noopener noreferrer">
-                <img src={facebook} alt="Facebook" />
-              </a>
-              <a href="https://x.com/MitraTechPvtLtd" target="_blank" rel="noopener noreferrer">
-                <img src={twitter} alt="Twitter / X" />
-              </a>
-            </div>
+            <SocialIcons />
           </div>
 
           {/* ── Copyright ── */}

@@ -62,12 +62,11 @@
   border-radius: 2px;
 }
 
+/* ── Header row ── */
 .execution-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  user-select: none;
   width: 100%;
 }
 
@@ -78,22 +77,82 @@
   line-height: 28px;
   color: rgba(14, 23, 38, 1);
   margin: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  flex: 1;
 }
 
+.execution-header h3:hover {
+  color: #514AD7;
+}
+
+/* ── Chevron — now a <button> ── */
 .chevron {
-  transition: transform 0.3s ease;
+  /* Reset browser button defaults */
+  appearance: none;
+  -webkit-appearance: none;
+  background: #F0EFFF;
+  border: 1.5px solid #C4BEFF;
+  outline: none;
+
+  /* Size & shape */
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   margin-left: 12px;
-  /* Make chevron a bigger tap target on mobile */
-  padding: 4px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   cursor: pointer;
+
+  /* Icon color */
+  color: #514AD7;
+
+  /* Transitions */
+  transition:
+    transform 0.3s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+
+  /* Ensure it's always on top and clickable */
+  position: relative;
+  z-index: 10;
 }
 
+.chevron:hover {
+  background: #E0DDFF;
+  border-color: #9B95FF;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
+}
+
+.chevron:active {
+  transform: scale(0.9);
+  background: #C4BEFF;
+}
+
+/* Open state */
 .chevron.rotate {
   transform: rotate(180deg);
+  background: #6C63FF;
+  border-color: #6C63FF;
+  color: #ffffff;
 }
 
+.chevron.rotate:hover {
+  background: #514AD7;
+  border-color: #514AD7;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.18);
+  transform: rotate(180deg) scale(1.05);
+}
+
+.chevron.rotate:active {
+  transform: rotate(180deg) scale(0.9);
+}
+
+/* ── Answer panel ── */
 .execution-answer {
   max-height: 0;
   overflow: hidden;
@@ -132,7 +191,7 @@
   width: 40%;
   display: flex;
   justify-content: flex-end;
-  right: 180px;
+  /* FIXED: removed "right: 180px" — it shifted the panel left, overlapping the accordion and blocking chevron clicks */
 }
 
 /* Mobile image panel — hidden on desktop */
@@ -150,7 +209,8 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
-  left: 100px;
+  /* FIXED: removed "left: 100px" — combined with right: 180px above, the box
+     was shifted ~280px into the accordion area, intercepting pointer events */
 }
 
 /* ── Layer 1: Ambient background pulse ── */
@@ -183,32 +243,9 @@
   animation: execFloat linear infinite;
 }
 
-.exec-p1 {
-  width: 6px;
-  height: 6px;
-  left: 22%;
-  bottom: 12%;
-  animation-duration: 5s;
-  animation-delay: 0s;
-}
-
-.exec-p2 {
-  width: 4px;
-  height: 4px;
-  left: 58%;
-  bottom: 8%;
-  animation-duration: 6.5s;
-  animation-delay: 1.2s;
-}
-
-.exec-p3 {
-  width: 5px;
-  height: 5px;
-  left: 76%;
-  bottom: 18%;
-  animation-duration: 5.8s;
-  animation-delay: 2.4s;
-}
+.exec-p1 { width: 6px; height: 6px; left: 22%; bottom: 12%; animation-duration: 5s;   animation-delay: 0s;   }
+.exec-p2 { width: 4px; height: 4px; left: 58%; bottom:  8%; animation-duration: 6.5s; animation-delay: 1.2s; }
+.exec-p3 { width: 5px; height: 5px; left: 76%; bottom: 18%; animation-duration: 5.8s; animation-delay: 2.4s; }
 
 @keyframes execFloat {
   0%   { transform: translateY(0px);    opacity: 0;   }
@@ -252,59 +289,20 @@
 /* ================= TABLET ================= */
 
 @media (max-width: 1280px) {
-  .execution-container {
-    padding: 0 40px;
-  }
-
-  .execution-content {
-    gap: 80px;
-  }
-
-  .execution-image-box {
-    left: 0;
-    width: 340px;
-    height: 400px;
-  }
-
-  .execution-footer {
-    left: 0;
-  }
+  .execution-container { padding: 0 40px; }
+  .execution-content   { gap: 80px; }
+  .execution-image-box { left: 0; width: 340px; height: 400px; }
+  .execution-footer    { left: 0; }
 }
 
 @media (max-width: 1024px) {
-  .execution-container {
-    padding: 0 40px;
-  }
-
-  .execution-content {
-    gap: 48px;
-  }
-
-  .execution-title {
-    font-size: 36px;
-    line-height: 46px;
-    margin-bottom: 60px;
-  }
-
-  .execution-left {
-    width: 55%;
-  }
-
-  .execution-right {
-    width: 45%;
-    justify-content: center;
-  }
-
-  .execution-image-box {
-    left: 0;
-    width: 300px;
-    height: 360px;
-  }
-
-  .execution-footer {
-    left: 0;
-    margin-top: 60px;
-  }
+  .execution-container { padding: 0 40px; }
+  .execution-content   { gap: 48px; }
+  .execution-title     { font-size: 36px; line-height: 46px; margin-bottom: 60px; }
+  .execution-left      { width: 55%; }
+  .execution-right     { width: 45%; justify-content: center; }
+  .execution-image-box { left: 0; width: 300px; height: 360px; }
+  .execution-footer    { left: 0; margin-top: 60px; }
 }
 
 /* ================= MOBILE ================= */
@@ -312,7 +310,7 @@
 @media (max-width: 768px) {
   .execution {
     padding: 60px 0;
-    left: 0; /* remove desktop offset */
+    left: 0;
   }
 
   .execution-container {
@@ -324,10 +322,9 @@
     font-size: 26px;
     line-height: 34px;
     letter-spacing: -0.5px;
-    margin-bottom: 28px; /* tighter — image comes right after */
+    margin-bottom: 28px;
   }
 
-  /* Show mobile image block below title */
   .execution-image-mobile {
     display: flex;
     justify-content: center;
@@ -343,20 +340,13 @@
     border-radius: 20px;
   }
 
-  /* Main content: accordion only, no side-by-side */
   .execution-content {
     flex-direction: column;
     gap: 0;
   }
 
-  .execution-left {
-    width: 100%;
-  }
-
-  /* Hide the desktop right panel on mobile */
-  .execution-right {
-    display: none;
-  }
+  .execution-left  { width: 100%; }
+  .execution-right { display: none; }
 
   .execution-footer {
     position: static;
@@ -366,47 +356,29 @@
     left: 0;
   }
 
-  .execution-header h3 {
-    font-size: 16px;
-    line-height: 24px;
-  }
+  .execution-header h3 { font-size: 16px; line-height: 24px; }
+  .execution-answer p  { font-size: 14px; line-height: 22px; }
+  .execution-item        { padding: 22px 0; }
+  .execution-item.active { padding-left: 18px; }
 
-  .execution-answer p {
-    font-size: 14px;
-    line-height: 22px;
-  }
-
-  .execution-item {
-    padding: 22px 0;
-  }
-
-  .execution-item.active {
-    padding-left: 18px;
+  /* Bigger tap target on mobile */
+  .chevron {
+    width: 40px;
+    height: 40px;
   }
 }
 
 /* ================= SMALL MOBILE ================= */
 
 @media (max-width: 480px) {
-  .execution-container {
-    padding: 0 16px;
-  }
-
-  .execution-title {
-    font-size: 22px;
-    line-height: 30px;
-  }
+  .execution-container { padding: 0 16px; }
+  .execution-title     { font-size: 22px; line-height: 30px; }
 
   .execution-image-mobile .execution-image-box {
     max-width: 100%;
     height: 260px;
   }
 
-  .execution-answer p {
-    font-size: 13px;
-  }
-
-  .execution-header h3 {
-    font-size: 15px;
-  }
+  .execution-answer p  { font-size: 13px; }
+  .execution-header h3 { font-size: 15px; }
 }

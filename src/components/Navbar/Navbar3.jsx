@@ -124,7 +124,7 @@ function Navbar({ hidden, slideIndex }) {
           </div>
 
           {/* Nav Links */}
-          {!isLandingPage && (
+          {!isLandingPage && !isAGICountdown && (
             <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
 
               <div
@@ -235,7 +235,7 @@ function Navbar({ hidden, slideIndex }) {
           </div>
 
           {/* Hamburger */}
-          {!isLandingPage && (
+          {!isLandingPage && !isAGICountdown && (
             <div
               className={`menu-toggle ${menuOpen ? "open" : ""}`}
               onClick={() => setMenuOpen(!menuOpen)}

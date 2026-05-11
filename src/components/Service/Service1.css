@@ -103,12 +103,6 @@
   font-size: 15px;
   line-height: 24px;
   color: #6b6b75;
-
-  /* Justify both sides, last line left-aligned */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 /* Button */
@@ -172,7 +166,10 @@
   z-index: 1;
 }
 
+
 /* Overlay Content */
+
+
 
 .feature-overlay {
   position: absolute;
@@ -182,6 +179,8 @@
   z-index: 2;
   color: white;
 }
+
+
 
 .feature-overlay h3 {
   font-size: 28px;
@@ -193,12 +192,6 @@
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 20px;
-
-  /* Justify both sides, last line left-aligned */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 .feature-btn {

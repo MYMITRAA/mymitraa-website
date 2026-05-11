@@ -57,7 +57,7 @@ function Execution() {
           Execution is our <span>Culture</span>, Every decision ends in <span>Delivery</span>
         </h2>
 
-        {/* ── Mobile Image Panel (shown only on mobile, below title) ── */}
+        {/* ── Mobile Image Panel ── */}
         <div className="execution-image-mobile">
           <div className="execution-image-box">
             <div className="exec-bg-pulse" />
@@ -87,22 +87,30 @@ function Execution() {
                 key={index}
                 className={`execution-item ${activeIndex === index ? "active" : ""}`}
               >
-                {/* Entire header row is clickable, including chevron */}
-                <div
-                  className="execution-header"
-                  onClick={() => toggleItem(index)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && toggleItem(index)}
-                  aria-expanded={activeIndex === index}
-                >
-                  <h3>{item.title}</h3>
-                  <span className={`chevron ${activeIndex === index ? "rotate" : ""}`}>
+                <div className="execution-header">
+                  {/* Title — clickable */}
+                  <h3 onClick={() => toggleItem(index)}>{item.title}</h3>
+
+                  {/* Chevron — its own explicit onClick */}
+                  <button
+                    type="button"
+                    className={`chevron ${activeIndex === index ? "rotate" : ""}`}
+                    onClick={() => toggleItem(index)}
+                    aria-label={activeIndex === index ? "Collapse" : "Expand"}
+                    aria-expanded={activeIndex === index}
+                  >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9L12 15L18 9" stroke="#060821" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path
+                        d="M6 9L12 15L18 9"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
-                  </span>
+                  </button>
                 </div>
+
                 <div className={`execution-answer ${activeIndex === index ? "show" : ""}`}>
                   <p>{item.content}</p>
                 </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 /* ================= CONTACT SECTION ================= */
 
 .contact-section {
@@ -49,19 +51,85 @@
   gap: 20px;
 }
 
+/* ── Info item (each row) ── */
 .info-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   font-size: 16px;
   color: #0e1726;
   font-family: "Inter", sans-serif;
 }
 
-.info-item img {
+.info-icon {
+  font-size: 22px;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  margin-top: 1px;
+}
+
+/* Phone link */
+.info-link {
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  color: #0e1726;
+  text-decoration: none;
+  line-height: 26px;
+  transition: color 0.25s;
+}
+
+.info-link:hover {
+  color: #514AD7;
+}
+
+/* ── Email list block ── */
+.info-item--emails {
+  align-items: flex-start;
+}
+
+.info-email-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.info-email-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #E8E4FF;
+  background: #F8F7FF;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.info-email-link:hover {
+  background: #EDE9FF;
+  border-color: #B8B0FF;
+}
+
+.email-label {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  color: #514AD7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #E8E4FF;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  min-width: 52px;
+  text-align: center;
+}
+
+.email-address {
+  font-size: 13.5px;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  font-weight: 400;
 }
 
 /* ================= RIGHT ================= */
@@ -114,10 +182,23 @@
   border-color: #514AD7;
 }
 
+.form-group input.input-error,
+.form-group textarea.input-error {
+  border-color: #e53e3e !important;
+  background: #fff5f5;
+}
+
 .form-group textarea {
   height: 120px;
   padding-top: 14px;
   resize: none;
+}
+
+.error-msg {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: #e53e3e;
+  margin-top: 5px;
 }
 
 /* ================= PHONE GROUP ================= */
@@ -144,11 +225,39 @@
   cursor: pointer;
   flex-shrink: 0;
   font-size: 14px;
+  position: relative;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
 }
 
-.country-code img {
-  width: 20px;
-  height: 14px;
+/* Country Code Dropdown */
+.cc-dropdown {
+  position: absolute;
+  top: 58px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 100;
+  min-width: 200px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.cc-option {
+  padding: 10px 14px;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0e1726;
+}
+
+.cc-option:hover {
+  background: #f6f7fb;
 }
 
 /* ================= FORM BOTTOM ================= */
@@ -174,6 +283,23 @@
   text-decoration: underline;
 }
 
+.attached-file {
+  font-size: 12px;
+  color: #514AD7;
+  font-family: "Inter", sans-serif;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.remove-file {
+  cursor: pointer;
+  color: #e53e3e;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .proposal-btn {
   width: 155.56px;
   height: 40px;
@@ -192,59 +318,59 @@
   white-space: nowrap;
 }
 
-.proposal-btn:hover {
+.proposal-btn:hover:not(:disabled) {
   opacity: 0.9;
 }
 
-/* ================= TABLET ================= */
+.proposal-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  z-index: 9999;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  animation: slideIn 0.3s ease;
+}
+
+.toast.success { background: #38a169; }
+.toast.error   { background: #e53e3e; }
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ================= TABLET 1280 ================= */
 
 @media (max-width: 1280px) {
-  .contact-container {
-    gap: 80px;
-    padding: 0 40px;
-  }
+  .contact-container { gap: 80px; padding: 0 40px; }
 }
 
 @media (max-width: 1024px) {
-  .contact-section {
-    padding: 80px 0;
-  }
-
-  .contact-container {
-    padding: 0 30px;
-    gap: 48px;
-  }
-
-  .contact-title {
-    font-size: 34px;
-    line-height: 44px;
-  }
-
-  .contact-left {
-    width: 48%;
-  }
-
-  .contact-right {
-    width: 52%;
-  }
+  .contact-section { padding: 80px 0; }
+  .contact-container { padding: 0 30px; gap: 48px; }
+  .contact-title { font-size: 34px; line-height: 44px; }
+  .contact-left { width: 48%; }
+  .contact-right { width: 52%; }
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE 768 ================= */
 
 @media (max-width: 768px) {
-  .contact-section {
-    padding: 0;
-    background-color: #F6F7FB;
-  }
+  .contact-section { padding: 0; background-color: #F6F7FB; }
+  .contact-container { flex-direction: column; padding: 0; gap: 0; box-sizing: border-box; }
 
-  .contact-container {
-    flex-direction: column;
-    padding: 0;
-    gap: 0;
-    box-sizing: border-box;
-  }
-
-  /* ── LEFT PANEL: hero-style with gradient ── */
   .contact-left {
     width: 100%;
     flex-shrink: unset;
@@ -253,57 +379,71 @@
     box-sizing: border-box;
   }
 
-  .contact-title {
-    font-size: 26px;
-    line-height: 38px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 14px;
-  }
+  .contact-title { font-size: 26px; line-height: 38px; font-weight: 600; color: #ffffff; margin-bottom: 14px; }
+  .contact-title br { display: none; }
+  .contact-subtext { font-size: 14px; line-height: 24px; color: rgba(255,255,255,0.78); margin-bottom: 36px; max-width: 100%; }
 
-  /* Remove the <br> effect on small screens */
-  .contact-title br {
-    display: none;
-  }
-
-  .contact-subtext {
-    font-size: 14px;
-    line-height: 24px;
-    color: rgba(255, 255, 255, 0.78);
-    margin-bottom: 36px;
-    max-width: 100%;
-  }
-
-  /* Info items on the purple banner */
   .contact-info {
     gap: 0;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255,255,255,0.12);
     border-radius: 16px;
     overflow: hidden;
   }
 
+  /* Phone rows */
   .info-item {
     font-size: 14px;
     color: #ffffff;
-    gap: 14px;
+    gap: 12px;
     padding: 14px 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    align-items: center;
   }
 
-  .info-item:last-child {
-    border-bottom: none;
+  .info-item:last-child { border-bottom: none; }
+
+  .info-link {
+    color: #ffffff;
+    font-size: 14px;
   }
 
-  .info-item p {
-    margin: 0;
+  .info-link:hover { color: rgba(255,255,255,0.75); }
+
+  /* Email block on mobile — override card style to match purple bg */
+  .info-item--emails {
+    padding: 16px 18px;
+    align-items: flex-start;
   }
 
-  .info-item img {
-    width: 22px;
-    height: 22px;
+  .info-email-list {
+    gap: 7px;
   }
 
-  /* ── RIGHT PANEL: clean white card ── */
+  .info-email-link {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.22);
+    padding: 7px 11px;
+    border-radius: 8px;
+  }
+
+  .info-email-link:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .email-label {
+    background: rgba(255,255,255,0.25);
+    color: #ffffff;
+    font-size: 10px;
+    min-width: 46px;
+  }
+
+  .email-address {
+    color: rgba(255,255,255,0.9);
+    font-size: 12.5px;
+  }
+
+  /* Right panel */
   .contact-right {
     width: 100%;
     flex-shrink: unset;
@@ -312,7 +452,6 @@
     box-sizing: border-box;
   }
 
-  /* Section label above the form */
   .contact-right::before {
     content: "Send us a message";
     display: block;
@@ -324,143 +463,54 @@
     letter-spacing: -0.3px;
   }
 
-  .contact-form {
-    gap: 20px;
-  }
+  .contact-form { gap: 20px; }
 
-  .form-group label {
-    font-size: 13px;
-    font-weight: 500;
-    color: #444;
-    margin-bottom: 7px;
-    letter-spacing: 0.1px;
-  }
+  .form-group label { font-size: 13px; font-weight: 500; color: #444; margin-bottom: 7px; letter-spacing: 0.1px; }
 
   .form-group input,
   .form-group textarea {
-    height: 52px;
-    font-size: 14px;
-    border-radius: 12px;
-    border: 1.5px solid #EBEBEB;
-    background: #FAFAFA;
-    color: #0e1726;
-    padding: 0 16px;
+    height: 52px; font-size: 14px; border-radius: 12px;
+    border: 1.5px solid #EBEBEB; background: #FAFAFA; color: #0e1726; padding: 0 16px;
   }
 
   .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: #b0b0b0;
-  }
+  .form-group textarea::placeholder { color: #b0b0b0; }
 
   .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: #514AD7;
-    background: #ffffff;
-  }
+  .form-group textarea:focus { border-color: #514AD7; background: #ffffff; }
 
-  .form-group textarea {
-    height: 120px;
-    padding-top: 14px;
-  }
+  .form-group textarea { height: 120px; padding-top: 14px; }
 
-  /* Phone row */
-  .phone-group {
-    gap: 10px;
-  }
+  .phone-group { gap: 10px; }
+  .country-code { width: 72px; height: 52px; border-radius: 12px; background: #EBEBEB; font-size: 13px; gap: 5px; }
 
-  .country-code {
-    width: 72px;
-    height: 52px;
-    border-radius: 12px;
-    background: #EBEBEB;
-    font-size: 13px;
-    gap: 5px;
-  }
-
-  .country-code img {
-    width: 20px;
-    height: 14px;
-  }
-
-  /* Attach + button */
-  .form-bottom {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-    margin-top: 4px;
-  }
+  .form-bottom { flex-direction: column; align-items: stretch; gap: 16px; margin-top: 4px; }
 
   .attach {
-    justify-content: center;
-    font-size: 13px;
-    color: #666;
-    padding: 13px 0;
-    border: 1.5px dashed #D0D0D0;
-    border-radius: 12px;
-    background: #FAFAFA;
-    gap: 8px;
+    justify-content: center; font-size: 13px; color: #666;
+    padding: 13px 0; border: 1.5px dashed #D0D0D0; border-radius: 12px; background: #FAFAFA; gap: 8px;
   }
-
-  .attach span {
-    text-decoration: none;
-    font-weight: 500;
-    color: #514AD7;
-  }
+  .attach span { text-decoration: none; font-weight: 500; color: #514AD7; }
 
   .proposal-btn {
-    width: 100%;
-    height: 54px;
-    border-radius: 14px;
-    font-size: 15px;
-    font-weight: 600;
+    width: 100%; height: 54px; border-radius: 14px; font-size: 15px; font-weight: 600;
     letter-spacing: 0.1px;
     background: linear-gradient(135deg, #6C63FF 0%, #514AD7 100%);
-    box-shadow: 0 6px 24px rgba(81, 74, 215, 0.28);
+    box-shadow: 0 6px 24px rgba(81,74,215,0.28);
   }
-
-  .proposal-btn:hover {
-    opacity: 0.92;
-    box-shadow: 0 8px 28px rgba(81, 74, 215, 0.36);
-  }
+  .proposal-btn:hover:not(:disabled) { opacity: 0.92; box-shadow: 0 8px 28px rgba(81,74,215,0.36); }
 }
 
-/* ================= SMALL MOBILE ================= */
+/* ================= SMALL MOBILE 480 ================= */
 
 @media (max-width: 480px) {
-  .contact-left {
-    padding: 44px 20px 38px;
-  }
-
-  .contact-title {
-    font-size: 23px;
-    line-height: 34px;
-  }
-
-  .contact-right {
-    padding: 30px 20px 44px;
-  }
-
-  .contact-form {
-    gap: 18px;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    height: 50px;
-    font-size: 14px;
-  }
-
-  .form-group textarea {
-    height: 110px;
-  }
-
-  .country-code {
-    width: 68px;
-    height: 50px;
-  }
-
-  .proposal-btn {
-    height: 52px;
-    font-size: 15px;
-  }
+  .contact-left { padding: 44px 20px 38px; }
+  .contact-title { font-size: 23px; line-height: 34px; }
+  .contact-right { padding: 30px 20px 44px; }
+  .contact-form { gap: 18px; }
+  .form-group input, .form-group textarea { height: 50px; font-size: 14px; }
+  .form-group textarea { height: 110px; }
+  .country-code { width: 68px; height: 50px; }
+  .proposal-btn { height: 52px; font-size: 15px; }
+  .email-address { font-size: 11.5px; }
 }

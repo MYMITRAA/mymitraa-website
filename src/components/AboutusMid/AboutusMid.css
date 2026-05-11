@@ -11,6 +11,7 @@
 .about-top {
   padding: 100px 80px 80px;
   max-width: 1400px;
+  margin: 0 auto;
 }
 
 .about-top h1 {
@@ -28,8 +29,10 @@
   line-height: 32px;
   color: rgba(133, 132, 135, 1);
   max-width: 1000px;
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 0;   /* remove auto centering */
 }
-
 
 /* ── CREATIVE IMAGE — full bleed, no side padding ── */
 

@@ -14,7 +14,7 @@ function Aboutushero() {
         <div className="about-line"></div>
 
         <div className="about-text">
-          <h1>Who We Are</h1>
+          <h1>Who Are we</h1>
           <p>Shape your future with confidence</p>
         </div>
       </div>

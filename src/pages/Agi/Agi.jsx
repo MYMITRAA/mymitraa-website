@@ -50,7 +50,7 @@ export default function Agi() {
           <h2>Why This Matters Now</h2>
           <p className="why-desc">
             Physical AI systems represent a fundamental shift in how artificial intelligence affects our
-            lives. The stakes—and the complexity—are entirely different.
+            lives. The stakes and the complexity are entirely different.
           </p>
           <div className="why-grid">
             <div className="why-card">

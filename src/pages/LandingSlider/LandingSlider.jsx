@@ -7,7 +7,7 @@ import Landing1 from "../../components/LandingSlide1/LandingSlide1";
 import Landing2 from "../../components/LandingSlide2/LandingSlide2";
 import Landing3 from "../../components/LandingSlide3/LandingSlide3";
 
-const SLIDE_DURATION = 2500;
+const SLIDE_DURATION = 5000;
 const TOTAL_SLIDES = 3;
 
 export default function Landing() {

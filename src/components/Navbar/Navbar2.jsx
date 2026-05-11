@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import mitraaLogo from "../../assets/logo/fulllogo.svg";
@@ -16,62 +16,21 @@ const SLIDE_NAVBAR_COLORS = [
   "rgba(242, 213, 181, 0.82)",
 ];
 
-const LANGUAGES = [
-  { code: "en", label: "English",    native: "English"    },
-  { code: "ar", label: "Arabic",     native: "العربية"    },
-  { code: "zh", label: "Chinese",    native: "中文"        },
-  { code: "nl", label: "Dutch",      native: "Nederlands" },
-  { code: "fr", label: "French",     native: "Français"   },
-  { code: "de", label: "German",     native: "Deutsch"    },
-  { code: "hi", label: "Hindi",      native: "हिन्दी"      },
-  { code: "id", label: "Indonesian", native: "Bahasa Indonesia" },
-  { code: "it", label: "Italian",    native: "Italiano"   },
-  { code: "ja", label: "Japanese",   native: "日本語"      },
-  { code: "ko", label: "Korean",     native: "한국어"      },
-  { code: "ml", label: "Malayalam",  native: "മലയാളം"     },
-  { code: "pl", label: "Polish",     native: "Polski"     },
-  { code: "pt", label: "Portuguese", native: "Português"  },
-  { code: "ru", label: "Russian",    native: "Русский"    },
-  { code: "es", label: "Spanish",    native: "Español"    },
-  { code: "sv", label: "Swedish",    native: "Svenska"    },
-  { code: "ta", label: "Tamil",      native: "தமிழ்"      },
-  { code: "tr", label: "Turkish",    native: "Türkçe"     },
-  { code: "uk", label: "Ukrainian",  native: "Українська" },
-];
-
 function Navbar({ hidden, slideIndex }) {
 
   const [showModal,          setShowModal]          = useState(false);
   const [menuOpen,           setMenuOpen]           = useState(false);
   const [showMegaMenu,       setShowMegaMenu]       = useState(false);
   const [authUser,           setAuthUser]           = useState(null);
-  const [showLogoutConfirm,  setShowLogoutConfirm]  = useState(false);
-  const [showLangDropdown,   setShowLangDropdown]   = useState(false);
-  const [selectedLang,       setSelectedLang]       = useState("en");
+  const [showLogoutConfirm,  setShowLogoutConfirm]  = useState(false); // ✅ NEW
 
-  const langRef    = useRef(null);
-  const location   = useLocation();
-  const navigate   = useNavigate();
-
-  const isLandingPage  = location.pathname === "/";
-  const isAGICountdown = location.pathname === "/agi-countdown";
+  const location      = useLocation();
+  const navigate      = useNavigate();
+  const isLandingPage = location.pathname === "/";
 
   const navbarBg = isLandingPage && slideIndex !== undefined
     ? SLIDE_NAVBAR_COLORS[slideIndex] ?? SLIDE_NAVBAR_COLORS[0]
-    : isAGICountdown
-      ? "#ffffff"
-      : undefined;
-
-  /* ── close lang dropdown when clicking outside ── */
-  useEffect(() => {
-    const handler = (e) => {
-      if (langRef.current && !langRef.current.contains(e.target)) {
-        setShowLangDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+    : undefined;
 
   const syncAuth = () => {
     const token = localStorage.getItem("token");
@@ -80,16 +39,17 @@ function Navbar({ hidden, slideIndex }) {
   };
 
   useEffect(() => {
-    syncAuth();
-    window.addEventListener("userLoggedIn", syncAuth);
-    return () => window.removeEventListener("userLoggedIn", syncAuth);
-  }, []);
+  syncAuth();
+  window.addEventListener("userLoggedIn", syncAuth);
+  return () => window.removeEventListener("userLoggedIn", syncAuth);
+}, []);
 
   const handleModalClose = () => {
     setShowModal(false);
     syncAuth();
   };
 
+  // ✅ Now only called after confirmation
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
@@ -100,16 +60,8 @@ function Navbar({ hidden, slideIndex }) {
     navigate("/");
   };
 
-  const handleSelectLang = (code) => {
-    setSelectedLang(code);
-    setShowLangDropdown(false);
-    // 🌐 Hook into your i18n system here, e.g. i18n.changeLanguage(code)
-  };
-
   useEffect(() => { setMenuOpen(false);     }, [location]);
   useEffect(() => { setShowMegaMenu(false); }, [location]);
-
-  const activeLang = LANGUAGES.find((l) => l.code === selectedLang);
 
   return (
     <>
@@ -119,11 +71,11 @@ function Navbar({ hidden, slideIndex }) {
       >
         <div className="navbar-container">
 
-          <div className="navbar-left" onClick={() => navigate("/home")} style={{ cursor: "pointer" }}>
-            <img src={mitraaLogo} alt="MiTRAA Logo" className="logo-full" />
-          </div>
+         <div className="navbar-left" onClick={() => navigate("/home")} style={{ cursor: "pointer" }}>
+  <img src={mitraaLogo} alt="MiTRAA Logo" className="logo-full" />
+</div>
 
-          {/* Nav Links */}
+          {/* Nav Links — desktop & mobile */}
           {!isLandingPage && (
             <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
 
@@ -153,7 +105,7 @@ function Navbar({ hidden, slideIndex }) {
                     <span className="user-greeting">👋 {authUser.name}</span>
                     <button
                       className="logout-btn"
-                      onClick={() => { setShowLogoutConfirm(true); setMenuOpen(false); }}
+                      onClick={() => { setShowLogoutConfirm(true); setMenuOpen(false); }} // ✅
                     >
                       Logout
                     </button>
@@ -172,48 +124,13 @@ function Navbar({ hidden, slideIndex }) {
             </nav>
           )}
 
-          {/* Desktop right section */}
+          {/* Desktop-only right section */}
           <div className="nav-right">
             <div className="icon-circle">
               <img src={search} alt="search" />
             </div>
-
-            {/* 🌐 Globe / Language picker */}
-            <div className="lang-wrapper" ref={langRef}>
-              <div
-                className={`icon-circle ${showLangDropdown ? "icon-circle--active" : ""}`}
-                onClick={() => setShowLangDropdown((v) => !v)}
-                title="Select language"
-              >
-                <img src={globe} alt="language" />
-              </div>
-
-              {showLangDropdown && (
-                <div className="lang-dropdown">
-                  <div className="lang-dropdown__header">
-                    <span>🌐</span>
-                    <span>Select Language</span>
-                  </div>
-                  <ul className="lang-dropdown__list">
-                    {LANGUAGES.map((lang) => (
-                      <li
-                        key={lang.code}
-                        className={`lang-dropdown__item ${selectedLang === lang.code ? "lang-dropdown__item--active" : ""}`}
-                        onClick={() => handleSelectLang(lang.code)}
-                      >
-                        <span className="lang-label">{lang.label}</span>
-                        <span className="lang-native">{lang.native}</span>
-                        {selectedLang === lang.code && (
-                          <span className="lang-check">✓</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="lang-dropdown__footer">
-                    {activeLang?.label} selected
-                  </div>
-                </div>
-              )}
+            <div className="icon-circle">
+              <img src={globe} alt="globe" />
             </div>
 
             {authUser ? (
@@ -221,7 +138,7 @@ function Navbar({ hidden, slideIndex }) {
                 <span className="user-greeting">👋 {authUser.name}</span>
                 <button
                   className="logout-btn"
-                  onClick={() => setShowLogoutConfirm(true)}
+                  onClick={() => setShowLogoutConfirm(true)} // ✅
                 >
                   Logout
                 </button>
@@ -249,7 +166,7 @@ function Navbar({ hidden, slideIndex }) {
         </div>
       </header>
 
-      {/* Logout confirmation modal */}
+      {/* ✅ Logout confirmation modal */}
       {showLogoutConfirm && (
         <div
           style={{

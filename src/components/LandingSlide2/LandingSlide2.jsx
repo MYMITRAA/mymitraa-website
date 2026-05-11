@@ -99,10 +99,9 @@ export default function LandingSlide2({ currentSlide = 1, totalSlides = 3, onDot
           <h1 className="ml2__h1 ml2__anim ml2__anim--1">Company Overview</h1>
           <h3 className="ml2__h3 ml2__anim ml2__anim--2">Built for the AI-First Enterprise</h3>
           <p  className="ml2__p  ml2__anim ml2__anim--3">
-            Accelerating Business with Intelligent Automation.
-            How our AI-driven solutions helped enterprises streamline operations,
-            improve decision-making, and reduce time-to-market through smart
-            automation and data intelligence.
+           Accelerating Business with Intelligent Automation. Our AI driven solutions 
+           help enterprises streamline operations, improve decision making, and reduce 
+           time to market through smart automation and cutting edge data intelligence.
           </p>
           <div className="ml2__btn-wrap ml2__anim ml2__anim--4">
             <button

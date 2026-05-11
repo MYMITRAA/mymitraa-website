@@ -169,13 +169,9 @@
   font-size: 12px;
   line-height: 18px;
   color: rgba(255,255,255,0.85);
+  text-align: left;
+  position: static;
   margin: 0;
-
-  /* Justify */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 /* ================= LEFT BOTTOM CARD ================= */
@@ -240,13 +236,8 @@
   font-weight: 400;
   line-height: 17px;
   font-family: "Helvetica Neue", sans-serif;
+  position: static;
   margin: 0;
-
-  /* Justify */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 /* ================= CENTER CARD (Bird) ================= */
@@ -284,10 +275,10 @@
 
 .center-space .bird-closed {
   position: absolute;
-  height: 680px;
+  height: 680px;        /* larger to compensate for smaller canvas */
   max-width: none;
-  bottom: -10px;
-  left: -65px;
+  bottom: -10px;        /* push down to align feet */
+  left: -65px;         /* shift left to match body position */
   transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
   transform-origin: bottom center;
 }
@@ -295,7 +286,6 @@
 .center-space:hover img {
   transform: scale(1.06) translateY(-10px);
 }
-
 /* ================= TOP RIGHT CARD ================= */
 
 .discover-card.top-right {
@@ -346,17 +336,8 @@
   font-size: 15px;
   line-height: 24px;
   color: rgba(100, 99, 112, 1);
-  margin: 0 0 8px 0;
-
-  /* Justify */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-}
-
-.top-right-text p:last-child {
-  margin-bottom: 0;
+  position: static;
+  margin: 0;
 }
 
 .top-right-image {
@@ -424,12 +405,6 @@
   line-height: 24px;
   color: rgba(255,255,255,0.80);
   margin: 0;
-
-  /* Justify */
-  text-align: justify;
-  text-align-last: left;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 .bottom-right-image {
@@ -574,6 +549,7 @@
       linear-gradient(180deg, #f0f1f8 0%, #f6f7fb 100%);
   }
 
+  /* Kill all desktop hover transforms on mobile */
   .discover-card:hover,
   .center-space:hover {
     transform: none;
@@ -600,6 +576,7 @@
     box-sizing: border-box;
   }
 
+  /* Flex column stack */
   .discover-grid {
     display: flex;
     flex-direction: column;
@@ -607,6 +584,7 @@
     width: 100%;
   }
 
+  /* ── BASE CARD RESET ── */
   .discover-card {
     width: 100%;
     max-width: 100%;
@@ -617,11 +595,12 @@
     display: block;
   }
 
+  /* Hide center bird */
   .center-space {
     display: none;
   }
 
-  /* ── TOP CARD ── */
+  /* ── TOP CARD (Problem We Solve) ── */
   .discover-card.top-card {
     grid-column: unset;
     grid-row: unset;
@@ -674,15 +653,15 @@
   .top-card-text p {
     font-size: 14px;
     line-height: 23px;
+    text-align: left;
     color: rgba(255,255,255,0.88);
     position: static;
     font-weight: 400;
     margin: 0;
-    text-align: justify;
-    text-align-last: left;
+    opacity: 1;
   }
 
-  /* ── BOTTOM CARD ── */
+  /* ── BOTTOM CARD (AI in Action) ── */
   .discover-card.bottom-card {
     grid-column: unset;
     grid-row: unset;
@@ -739,14 +718,13 @@
     font-size: 14px;
     line-height: 23px;
     color: #5a5a6e;
+    text-align: left;
     position: static;
     font-weight: 400;
     margin: 0;
-    text-align: justify;
-    text-align-last: left;
   }
 
-  /* ── TOP RIGHT CARD ── */
+  /* ── TOP RIGHT CARD (How We Think) ── */
   .discover-card.top-right {
     grid-column: unset;
     grid-row: unset;
@@ -811,20 +789,14 @@
     color: #5a5a6e;
     position: static;
     font-weight: 400;
-    margin: 0 0 8px 0;
-    text-align: justify;
-    text-align-last: left;
-  }
-
-  .top-right-text p:last-child {
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .top-right-image {
     display: none;
   }
 
-  /* ── BOTTOM RIGHT CARD ── */
+  /* ── BOTTOM RIGHT CARD (Business Impact) ── */
   .discover-card.bottom-right {
     grid-column: unset;
     grid-row: unset;
@@ -889,8 +861,6 @@
     font-weight: 400;
     margin: 0;
     position: static;
-    text-align: justify;
-    text-align-last: left;
   }
 
   .bottom-right-image {

@@ -4,10 +4,10 @@ import leftImage from "../../assets/images/aboutendimg.svg";
 
 /* ── All org logos ── */
 import ibm        from "../../assets/organisation/IBM-Logo.wine.svg";
-import iiith      from "../../assets/organisation/IIIThyderabad.jpeg";
-import iisc       from "../../assets/organisation/IISCbangaluru.jpg";
+import iiith      from "../../assets/organisation/iithyderabad.png";
+import iisc       from "../../assets/organisation/iisc_banglore.png";
 import iitMadras  from "../../assets/organisation/IIT_Madras_Logo.svg";
-import iitJodhpur from "../../assets/organisation/IITjodhpur.jpg";
+import iitJodhpur from "../../assets/organisation/iitjodhpur.png";
 import iitropar   from "../../assets/organisation/IITropar.svg";
 import kaust      from "../../assets/organisation/KAUS.png";
 import khalifa    from "../../assets/organisation/Khalifa-logo.png";
@@ -36,7 +36,7 @@ const PARTNERS = [
 /* Triple-duplicate for seamless infinite scroll (only 6 items) */
 const PARTNER_TRACK = [...PARTNERS, ...PARTNERS, ...PARTNERS];
 
-/* ── Distinction logos (partners removed) ── */
+/* ── Distinction logos ── */
 const LOGOS = [
   { src: iiith,      alt: "IIIT Hyderabad" },
   { src: iisc,       alt: "IISc Bangalore" },
@@ -55,29 +55,51 @@ const LOGOS = [
 
 const TRACK = [...LOGOS, ...LOGOS];
 
-/* ── Shared slider hook ── */
+/**
+ * useSlider — rAF-based center highlight.
+ *
+ * Every animation frame we measure each item's midpoint against the
+ * slider's midpoint. The single closest item gets --center; all others lose it.
+ * This is reliable regardless of CSS animation direction or speed.
+ */
 function useSlider(sliderRef, trackRef) {
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("distinction-item--center");
-          } else {
-            entry.target.classList.remove("distinction-item--center");
-          }
-        });
-      },
-      { root: slider, rootMargin: "0px -35% 0px -35%", threshold: 0.5 }
-    );
+    let rafId;
+    let lastCenterIdx = -1;
 
-    const items = slider.querySelectorAll(".distinction-item");
-    items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
-  }, []);
+    const tick = () => {
+      const items = slider.querySelectorAll(".distinction-item");
+      if (!items.length) { rafId = requestAnimationFrame(tick); return; }
+
+      const sliderRect = slider.getBoundingClientRect();
+      const sliderMidX = sliderRect.left + sliderRect.width / 2;
+
+      let minDist    = Infinity;
+      let centerIdx  = -1;
+
+      items.forEach((item, idx) => {
+        const rect     = item.getBoundingClientRect();
+        const itemMidX = rect.left + rect.width / 2;
+        const dist     = Math.abs(itemMidX - sliderMidX);
+        if (dist < minDist) { minDist = dist; centerIdx = idx; }
+      });
+
+      if (centerIdx !== lastCenterIdx) {
+        items.forEach((item, idx) => {
+          item.classList.toggle("distinction-item--center", idx === centerIdx);
+        });
+        lastCenterIdx = centerIdx;
+      }
+
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, []); // sliderRef is stable — no deps needed
 
   const handleMouseEnter = () => {
     if (trackRef.current) trackRef.current.style.animationPlayState = "paused";
@@ -133,7 +155,7 @@ function AboutusEnd() {
         </div>
       </div>
 
-      {/* ══ OUR PARTNERS — sliding rectangles ══ */}
+      {/* ══ OUR PARTNERS — slides right-to-left (reversed) ══ */}
       <div className="about-partners">
         <div className="partners-header">
           <h2 className="partners-title">Our Partners</h2>
@@ -161,7 +183,7 @@ function AboutusEnd() {
         </div>
       </div>
 
-      {/* ══ DISTINCTION SLIDER ══ */}
+      {/* ══ DISTINCTION SLIDER — slides left-to-right (forward) ══ */}
       <div className="about-distinction">
         <div className="distinction-header">
           <h2 className="distinction-title">Our Distinction</h2>
