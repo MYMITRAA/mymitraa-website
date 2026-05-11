@@ -236,16 +236,12 @@
   will-change: transform;
 }
 
-/* ══════════════════════════════════════════
-   ELLIPSE — FIXED: bottom-anchored so it
-   centers around the robot on all screens
-══════════════════════════════════════════ */
-
+/* Ellipse glow disc */
 .ls1__ellipse {
   position: absolute;
   left: 50%;
-  bottom: 0;                          /* anchor to bottom like the robot */
-  transform: translate(-50%, 15%);   /* nudge down so glow sits behind robot body */
+  top: 50%;
+  transform: translate(-50%, -45%);
   width: 750px;
   height: 700px;
   pointer-events: none;
@@ -257,8 +253,8 @@
 }
 
 @keyframes ls1-ellipse-pulse {
-  0%   { opacity: 0.45; transform: translate(-50%, 15%) scale(1); }
-  100% { opacity: 0.70; transform: translate(-50%, 15%) scale(1.06); }
+  0%   { opacity: 0.45; transform: translate(-50%, -45%) scale(1); }
+  100% { opacity: 0.70; transform: translate(-50%, -45%) scale(1.06); }
 }
 
 /* Robot container */

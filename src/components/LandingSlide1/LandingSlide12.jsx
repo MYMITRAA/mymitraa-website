@@ -153,14 +153,14 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
             transform: `translate(${parallax.x * 0.6}px, ${parallax.y * 0.6}px)`,
           }}
         >
-          {/* ellipse glow — FIX: bottom-anchored transform */}
+          {/* ellipse glow */}
           <img
             src={ellipse}
             alt=""
             className="ls1__ellipse"
             aria-hidden="true"
             style={{
-              transform: `translate(-50%, 15%) translate(${parallax.x * 0.3}px, ${parallax.y * 0.3}px)`,
+              transform: `translate(-50%, -45%) translate(${parallax.x * 0.3}px, ${parallax.y * 0.3}px)`,
             }}
           />
 
@@ -199,6 +199,7 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
             title={`Slide ${i + 1}`}
           />
         ))}
+        
       </div>
 
     </section>
