@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Bussinesssignin.css";
-import bird from "../../assets/images/birdimage.jpg"; 
+import bird from "../../assets/images/bird1.webp";
 import logo from "../../assets/logo/icon-blue.svg";
 import mitra from "../../assets/logo/mitraa.svg";
 

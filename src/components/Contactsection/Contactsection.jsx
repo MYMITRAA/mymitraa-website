@@ -37,11 +37,11 @@ function validate(fields, file) {
 
 // ─── Email addresses ──────────────────────────────────────────────────────────
 const EMAILS = [
-  { label: "info",      address: "info@mitratechgroup.com" },
-  { label: "support",   address: "support@mitratechgroup.com" },
-  { label: "CEO",       address: "mitraaceo@mitratechgroup.com" },
-  { label: "contact",   address: "contact@mitratechgroup.com" },
   { label : "hr",       address: "hr@mitratechgroup.com" },
+  { label: "CEO",       address: "mitraaceo@mitratechgroup.com" },
+  { label: "info",      address: "info@mitratechgroup.com" },
+  { label: "contact",   address: "contact@mitratechgroup.com" },
+  { label: "support",   address: "support@mitratechgroup.com" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
