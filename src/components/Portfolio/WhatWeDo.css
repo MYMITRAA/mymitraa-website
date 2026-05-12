@@ -95,6 +95,8 @@
   line-height: 1.85;
   margin: 0;
   max-width: 380px;
+  text-align: justify;
+
 }
 
 /* stat pills */

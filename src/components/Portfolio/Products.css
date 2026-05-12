@@ -101,6 +101,7 @@
   max-width: 370px;
   align-self: end;
   margin: 0;
+  text-align: justify;
 }
 
 /* ============================================================
@@ -305,6 +306,7 @@
   color: rgba(255, 255, 255, 0.48);
   line-height: 1.9;
   margin-bottom: 26px;
+  text-align: justify;
 }
 
 /* ── Divider ── */

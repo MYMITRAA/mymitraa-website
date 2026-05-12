@@ -1,5 +1,5 @@
 import "./AboutusMid.css";
-import Aboutmidimg from "../../assets/images/aboutusimg.png";
+import Aboutmidimg from "../../assets/images/aboutusmidimage22.png";
 import rightImage from "../../assets/images/aboutusimg2.png";
 
 function AboutusMid() {

@@ -154,7 +154,8 @@
   color: var(--text-dark);
 }
 .ra-hero__tagline { font-size: 0.88rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; margin: 0 0 20px; }
-.ra-hero__body { font-size: 0.95rem; line-height: 1.75; color: var(--text-mid); margin: 0 0 12px; }
+.ra-hero__body { font-size: 0.95rem; line-height: 1.75; color: var(--text-mid); margin: 0 0 12px;
+                       text-align: justify; }
 .ra-hero__body strong { color: var(--text-dark); }
 .ra-hero__actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
 .ra-hero__visual { flex: 1; max-width: 480px; margin-right: calc((100% - 1100px) / 2); }

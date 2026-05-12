@@ -14,9 +14,9 @@ function useSnowflakes() {
     Array.from({ length: SNOW_COUNT }, (_, i) => ({
       id:       i,
       x:        Math.random() * 110 - 5,
-      size:     1.2 + Math.random() * 2.2,
-      opacity:  0.45 + Math.random() * 0.45,
-      fallDur:  18 + Math.random() * 18,
+      size:     1.2 + Math.random() * 2.2,       // tiny: 1.2–3.4px
+      opacity:  0.45 + Math.random() * 0.45,     // 0.45–0.90 — visible but not heavy
+      fallDur:  18 + Math.random() * 18,          // 18–36s — very slow drift
       swayDur:  4  + Math.random() * 6,
       swayAmp:  18 + Math.random() * 38,
       delay:    -(Math.random() * 20),
@@ -125,6 +125,7 @@ export default function LandingSlide2({ currentSlide = 1, totalSlides = 3, onDot
             title={`Slide ${i + 1}`}
           />
         ))}
+     
       </div>
 
     </section>

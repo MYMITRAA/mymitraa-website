@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./MVP.css";
 
-/* ── Product Image Imports ── */
+/* ── Image Imports ── */
 import imgCICD        from "../../assets/Mvp/mvp-cicd-optimizer.webp";
 import imgFailure     from "../../assets/Mvp/mvp-failure-prediction.webp";
 import imgGitOps      from "../../assets/Mvp/mvp-gitops-drift.webp";
@@ -20,32 +20,6 @@ import imgChaos       from "../../assets/Mvp/mvp-chaos-engineering.webp";
 import imgKPIDash     from "../../assets/Mvp/mvp-kpi-dashboard.webp";
 import imgAIOps       from "../../assets/Mvp/mvp-aiops-cloud.webp";
 import imgMultiCloud  from "../../assets/Mvp/mvp-multicloud-optimizer.webp";
-
-/* ── Meme Image Imports ── */
-import meme1  from "../../assets/Mvp/MVP1111.webp";
-import meme2  from "../../assets/Mvp/MVP2222.webp";
-import meme3  from "../../assets/Mvp/MVP3333.webp";
-import meme4  from "../../assets/Mvp/MVP4444.webp";
-import meme5  from "../../assets/Mvp/MVP5555.webp";
-import meme6  from "../../assets/Mvp/MVP6666.webp";
-import meme7  from "../../assets/Mvp/MVP7777.webp";
-import meme8  from "../../assets/Mvp/MVP8888.webp";
-import meme9  from "../../assets/Mvp/MVP9999.webp";
-import meme10 from "../../assets/Mvp/MVP1010.webp";
-import meme11 from "../../assets/Mvp/MVP11111111.webp";
-import meme12 from "../../assets/Mvp/MVP1111.webp";
-import meme13 from "../../assets/Mvp/MVP1111.webp";
-import meme14 from "../../assets/Mvp/MVP1111.webp";
-import meme15 from "../../assets/Mvp/MVP1111.webp";
-import meme16 from "../../assets/Mvp/MVP1111.webp";
-import meme17 from "../../assets/Mvp/MVP1111.webp";
-import meme18 from "../../assets/Mvp/MVP1111.webp";
-
-const MEMES = [
-  meme1, meme2, meme3, meme4, meme5, meme6,
-  meme7, meme8, meme9, meme10, meme11, meme12,
-  meme13, meme14, meme15, meme16, meme17, meme18,
-];
 
 /* ── Category config ── */
 const CATEGORIES = [
@@ -286,65 +260,26 @@ function useInView(threshold = 0.1) {
   return [ref, inView];
 }
 
-/* ── Meme Modal ── */
-function MemeModal({ memeImg, mvpName, accentColor, onClose }) {
-  // Close on Escape key
-  useEffect(() => {
-    const handler = (e) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [onClose]);
-
-  return (
-    <div className="fp-meme-backdrop" onClick={onClose}>
-      <div
-        className="fp-meme-modal"
-        onClick={(e) => e.stopPropagation()}
-        style={{ "--meme-accent": accentColor }}
-      >
-        {/* Close button */}
-        <button className="fp-meme-close" onClick={onClose} aria-label="Close meme">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </button>
-
-        {/* Label */}
-        <p className="fp-meme-label" style={{ color: accentColor }}>
-          ✦ Know More — {mvpName}
-        </p>
-
-        {/* Meme image */}
-        <div className="fp-meme-img-wrap">
-          <img src={memeImg} alt={`${mvpName} meme`} className="fp-meme-img" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── Slider Component ── */
 function MVPSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animating, setAnimating]       = useState(false);
-  const [direction, setDirection]       = useState("next");
-  const [imgHovered, setImgHovered]     = useState(false);
-  const [memeOpen, setMemeOpen]         = useState(false);
-  const [headerRef, headerIn]           = useInView(0.1);
+  const [animating, setAnimating] = useState(false);
+  const [direction, setDirection] = useState("next");
+  const [headerRef, headerIn] = useInView(0.1);
 
-  const mvp     = MVPS[currentIndex];
-  const col     = CAT_STYLE[mvp.category] || CAT_STYLE.executive;
+  const mvp = MVPS[currentIndex];
+  const col = CAT_STYLE[mvp.category] || CAT_STYLE.executive;
   const catLabel = CATEGORIES.find(c => c.id === mvp.category)?.label || mvp.category;
 
   const goTo = useCallback((nextIndex, dir = "next") => {
-    if (animating || memeOpen) return;   // pause slider when meme is open
+    if (animating) return;
     setAnimating(true);
     setDirection(dir);
     setTimeout(() => {
       setCurrentIndex(nextIndex);
       setAnimating(false);
     }, 700);
-  }, [animating, memeOpen]);
+  }, [animating]);
 
   const goPrev = useCallback(() => {
     const prev = (currentIndex - 1 + MVPS.length) % MVPS.length;
@@ -356,184 +291,143 @@ function MVPSlider() {
     goTo(next, "next");
   }, [currentIndex, goTo]);
 
-  // Auto-play — paused when meme modal is open
+  // Auto-play
   useEffect(() => {
-    if (memeOpen) return;
     const timer = setInterval(() => { goNext(); }, 3700);
     return () => clearInterval(timer);
-  }, [goNext, memeOpen]);
+  }, [goNext]);
 
   // Keyboard navigation
   useEffect(() => {
     const handler = (e) => {
-      if (memeOpen) return;
-      if (e.key === "ArrowLeft")  goPrev();
+      if (e.key === "ArrowLeft") goPrev();
       if (e.key === "ArrowRight") goNext();
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [goPrev, goNext, memeOpen]);
-
-  const handleOpenMeme = () => {
-    setMemeOpen(true);
-    setImgHovered(false);
-  };
-
-  const handleCloseMeme = () => {
-    setMemeOpen(false);
-  };
+  }, [goPrev, goNext]);
 
   return (
-    <>
-      <div className="fp-section">
-        {/* Ambient glow */}
-        <div className="fp-glow" style={{ "--glow-color": col.dot }} />
+    <div className="fp-section">
+      {/* Ambient glow */}
+      <div className="fp-glow" style={{ "--glow-color": col.dot }} />
 
-        {/* ── Compact inline header ── */}
-        <div
-          ref={headerRef}
-          className={`fp-header ${headerIn ? "fp-header--in" : ""}`}
-        >
-          <div className="fp-header-row">
-            <p className="fp-eyebrow">
-              <span className="fp-eyebrow-line" />
-              Future Platforms
+      {/* ── Compact inline header ── */}
+      <div
+        ref={headerRef}
+        className={`fp-header ${headerIn ? "fp-header--in" : ""}`}
+      >
+        <div className="fp-header-row">
+          <p className="fp-eyebrow">
+            <span className="fp-eyebrow-line" />
+            Future Platforms
+          </p>
+          <div className="fp-title-inline">
+            <h2 className="fp-title">
+              Beyond what <em>we've built</em>
+            </h2>
+            <p className="fp-subtitle">
+              Each platform solves a distinct DevOps crisis  explore them one by one.
             </p>
-            <div className="fp-title-inline">
-              <h2 className="fp-title">
-                Beyond what <em>we've built</em>
-              </h2>
-              <p className="fp-subtitle">
-                Each platform solves a distinct DevOps crisis  explore them one by one.
-              </p>
-            </div>
           </div>
-        </div>
-
-        {/* Slider */}
-        <div className="fp-slider-wrap">
-          <div className="fp-slider">
-
-            {/* ── Left: Text ── */}
-            <div
-              className={`fp-slide-left ${animating ? `fp-slide-left--exit-${direction}` : "fp-slide-left--enter"}`}
-              key={`left-${currentIndex}`}
-            >
-              <div className="fp-slide-meta">
-                <span
-                  className="fp-slide-cat"
-                  style={{ background: `${col.dot}18`, color: col.dot, borderColor: `${col.dot}40` }}
-                >
-                  <span className="fp-slide-cat-dot" style={{ background: col.dot }} />
-                  {catLabel}
-                </span>
-                <span className="fp-slide-index">
-                  {String(currentIndex + 1).padStart(2, "0")} / {String(MVPS.length).padStart(2, "0")}
-                </span>
-              </div>
-
-              <h3 className="fp-slide-name">{mvp.name}</h3>
-              <p className="fp-slide-tagline">{mvp.tagline}</p>
-              <div className="fp-slide-divider" style={{ background: col.dot }} />
-              <p className="fp-slide-desc">{mvp.solution}</p>
-
-              <div className="fp-slide-metric" style={{ borderColor: `${col.dot}30`, background: `${col.dot}0c` }}>
-                <span className="fp-slide-metric-value" style={{ color: col.dot }}>
-                  ✦ {mvp.metric}
-                </span>
-              </div>
-
-              <div className="fp-slide-compare">
-                <div className="fp-slide-compare-item fp-slide-compare-item--before">
-                  <span className="fp-slide-compare-label">Before</span>
-                  <span className="fp-slide-compare-val">{mvp.before.value}</span>
-                </div>
-                <div className="fp-slide-compare-arrow" style={{ color: col.dot }}>→</div>
-                <div className="fp-slide-compare-item fp-slide-compare-item--after">
-                  <span className="fp-slide-compare-label" style={{ color: col.dot }}>After</span>
-                  <span className="fp-slide-compare-val fp-slide-compare-val--after" style={{ color: col.dot }}>
-                    {mvp.after.value}
-                  </span>
-                </div>
-              </div>
-
-              <div className="fp-slide-integrations">
-                {mvp.integrations.map((t, i) => (
-                  <span key={i} className="fp-slide-tag">{t}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Right: Image with hover overlay ── */}
-            <div
-              className={`fp-slide-right ${animating ? `fp-slide-right--exit-${direction}` : "fp-slide-right--enter"}`}
-              key={`right-${currentIndex}`}
-            >
-              <div
-                className="fp-slide-img-frame"
-                style={{ "--accent": col.dot }}
-                onMouseEnter={() => setImgHovered(true)}
-                onMouseLeave={() => setImgHovered(false)}
-              >
-                {/* Product image */}
-                <img src={mvp.img} alt={mvp.name} className="fp-slide-img" />
-                <div className="fp-slide-img-shine" />
-
-                {/* Hover overlay with Know More button */}
-                <div className={`fp-img-overlay ${imgHovered ? "fp-img-overlay--visible" : ""}`}>
-                  <button
-                    className="fp-know-more-btn"
-                    style={{ "--btn-accent": col.dot, borderColor: col.dot, color: col.dot }}
-                    onClick={handleOpenMeme}
-                  >
-                    <span className="fp-know-more-icon">✦</span>
-                    Know More
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Nav buttons */}
-          <button className="fp-nav fp-nav--prev" onClick={goPrev} aria-label="Previous" style={{ "--accent": col.dot }}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button className="fp-nav fp-nav--next" onClick={goNext} aria-label="Next" style={{ "--accent": col.dot }}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-        {/* Dot indicators */}
-        <div className="fp-dots">
-          {MVPS.map((m, i) => {
-            const dotCol = CAT_STYLE[m.category]?.dot || "#737aff";
-            return (
-              <button
-                key={i}
-                className={`fp-dot ${i === currentIndex ? "fp-dot--active" : ""}`}
-                onClick={() => goTo(i, i > currentIndex ? "next" : "prev")}
-                aria-label={`Go to slide ${i + 1}`}
-                style={i === currentIndex ? { background: dotCol, transform: "scale(1.4)" } : {}}
-              />
-            );
-          })}
         </div>
       </div>
 
-      {/* ── Meme Modal (rendered outside slider so it's always on top) ── */}
-      {memeOpen && (
-        <MemeModal
-          memeImg={MEMES[currentIndex]}
-          mvpName={mvp.name}
-          accentColor={col.dot}
-          onClose={handleCloseMeme}
-        />
-      )}
-    </>
+      {/* Slider */}
+      <div className="fp-slider-wrap">
+        <div className="fp-slider">
+
+          {/* ── Left: Text ── */}
+          <div
+            className={`fp-slide-left ${animating ? `fp-slide-left--exit-${direction}` : "fp-slide-left--enter"}`}
+            key={`left-${currentIndex}`}
+          >
+            <div className="fp-slide-meta">
+              <span
+                className="fp-slide-cat"
+                style={{ background: `${col.dot}18`, color: col.dot, borderColor: `${col.dot}40` }}
+              >
+                <span className="fp-slide-cat-dot" style={{ background: col.dot }} />
+                {catLabel}
+              </span>
+              <span className="fp-slide-index">
+                {String(currentIndex + 1).padStart(2, "0")} / {String(MVPS.length).padStart(2, "0")}
+              </span>
+            </div>
+
+            <h3 className="fp-slide-name">{mvp.name}</h3>
+            <p className="fp-slide-tagline">{mvp.tagline}</p>
+            <div className="fp-slide-divider" style={{ background: col.dot }} />
+            <p className="fp-slide-desc">{mvp.solution}</p>
+
+            <div className="fp-slide-metric" style={{ borderColor: `${col.dot}30`, background: `${col.dot}0c` }}>
+              <span className="fp-slide-metric-value" style={{ color: col.dot }}>
+                ✦ {mvp.metric}
+              </span>
+            </div>
+
+            <div className="fp-slide-compare">
+              <div className="fp-slide-compare-item fp-slide-compare-item--before">
+                <span className="fp-slide-compare-label">Before</span>
+                <span className="fp-slide-compare-val">{mvp.before.value}</span>
+              </div>
+              <div className="fp-slide-compare-arrow" style={{ color: col.dot }}>→</div>
+              <div className="fp-slide-compare-item fp-slide-compare-item--after">
+                <span className="fp-slide-compare-label" style={{ color: col.dot }}>After</span>
+                <span className="fp-slide-compare-val fp-slide-compare-val--after" style={{ color: col.dot }}>
+                  {mvp.after.value}
+                </span>
+              </div>
+            </div>
+
+            <div className="fp-slide-integrations">
+              {mvp.integrations.map((t, i) => (
+                <span key={i} className="fp-slide-tag">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right: Image ── */}
+          <div
+            className={`fp-slide-right ${animating ? `fp-slide-right--exit-${direction}` : "fp-slide-right--enter"}`}
+            key={`right-${currentIndex}`}
+          >
+            <div className="fp-slide-img-frame" style={{ "--accent": col.dot }}>
+              <img src={mvp.img} alt={mvp.name} className="fp-slide-img" />
+              <div className="fp-slide-img-shine" />
+            </div>
+          </div>
+        </div>
+
+        {/* Nav buttons */}
+        <button className="fp-nav fp-nav--prev" onClick={goPrev} aria-label="Previous" style={{ "--accent": col.dot }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+        <button className="fp-nav fp-nav--next" onClick={goNext} aria-label="Next" style={{ "--accent": col.dot }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="fp-dots">
+        {MVPS.map((m, i) => {
+          const dotCol = CAT_STYLE[m.category]?.dot || "#737aff";
+          return (
+            <button
+              key={i}
+              className={`fp-dot ${i === currentIndex ? "fp-dot--active" : ""}`}
+              onClick={() => goTo(i, i > currentIndex ? "next" : "prev")}
+              aria-label={`Go to slide ${i + 1}`}
+              style={i === currentIndex ? { background: dotCol, transform: "scale(1.4)" } : {}}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
