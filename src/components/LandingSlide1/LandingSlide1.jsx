@@ -125,7 +125,7 @@ export default function LandingSlide1({ currentSlide = 0, totalSlides = 3, onDot
         {/* ── LEFT — Text ── */}
         <div className="ls1__text">
           <h2 className="ls1__subtitle ls1__anim ls1__anim--1">Powering Businesses with</h2>
-          <h1 className="ls1__title ls1__anim ls1__anim--2">ARTIFICIAL INTELLIGENCE</h1>
+          <h1 className="ls1__title ls1__anim ls1__anim--2">ARTIFICIAL <br /> INTELLIGENCE</h1>
 
           <div className="ls1__tagline ls1__anim ls1__anim--3">
             {["IDEA", "INNOVATION", "IMPLEMENTATION", "IMPACT"].map((word, i, arr) => (
