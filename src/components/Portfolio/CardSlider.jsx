@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./CardSlider.css";
+import { useLang } from "../../context/LanguageContext";
 
 import WhatWeDo1 from "../../assets/images/whatwedo1.webp";
 import WhatWeDo2 from "../../assets/images/whatwedo2.webp";
@@ -7,60 +8,94 @@ import WhatWeDo3 from "../../assets/images/whatwedo3.webp";
 import WhatWeDo4 from "../../assets/images/whatwedo4.webp";
 import WhatWeDo5 from "../../assets/images/whatwedo5.webp";
 
-const sliderCards = [
-  {
-    img: WhatWeDo1,
-    tag: "Intelligent Automation",
-    title: "AI Automation",
-    desc: "Eliminate bottlenecks and free your team from repetitive tasks with intelligent AI workflows built for scale.",
-    detail: "Custom pipelines · NLP · Process mining",
-    stat: "3× faster",
-    statLabel: "operational speed",
-  },
-  {
-    img: WhatWeDo2,
-    tag: "Talent On Demand",
-    title: "Expert Teams",
-    desc: "Pre vetted, industry ready professionals deployed within 48 hours no hiring delays, no overhead.",
-    detail: "Engineering · Product · Data · Cloud",
-    stat: "200+",
-    statLabel: "experts deployed",
-  },
-  {
-    img: WhatWeDo3,
-    tag: "Data Intelligence",
-    title: "Smart Decisions",
-    desc: "Turn raw data into actionable insights with real time dashboards, predictive models, and AI driven analytics.",
-    detail: "BI dashboards · ML models · KPI tracking",
-    stat: "40%",
-    statLabel: "faster decisions",
-  },
-  {
-    img: WhatWeDo4,
-    tag: "Infrastructure",
-    title: "Scalable Systems",
-    desc: "Architecture built to grow with you from MVP to enterprise grade without rearchitecting from scratch.",
-    detail: "Cloud · DevOps · Microservices · APIs",
-    stat: "99.9%",
-    statLabel: "uptime guaranteed",
-  },
-  {
-    img: WhatWeDo5,
-    tag: "Resource Optimization",
-    title: "Cost Efficiency",
-    desc: "Reduce operational costs while improving output quality through smart resource allocation and automation.",
-    detail: "Cost audits · ROI tracking · Lean ops",
-    stat: "60%",
-    statLabel: "avg. cost reduction",
-  },
-];
+const IMAGES = [WhatWeDo1, WhatWeDo2, WhatWeDo3, WhatWeDo4, WhatWeDo5];
 
+/* ─── Translations ───────────────────────────────────────────────── */
+const TEXT = {
+  en: {
+    cards: [
+      {
+        tag: "Intelligent Automation", title: "AI Automation",
+        desc: "Eliminate bottlenecks and free your team from repetitive tasks with intelligent AI workflows built for scale.",
+        detail: "Custom pipelines · NLP · Process mining",
+        stat: "3× faster", statLabel: "operational speed",
+      },
+      {
+        tag: "Talent On Demand", title: "Expert Teams",
+        desc: "Pre vetted, industry ready professionals deployed within 48 hours no hiring delays, no overhead.",
+        detail: "Engineering · Product · Data · Cloud",
+        stat: "200+", statLabel: "experts deployed",
+      },
+      {
+        tag: "Data Intelligence", title: "Smart Decisions",
+        desc: "Turn raw data into actionable insights with real time dashboards, predictive models, and AI driven analytics.",
+        detail: "BI dashboards · ML models · KPI tracking",
+        stat: "40%", statLabel: "faster decisions",
+      },
+      {
+        tag: "Infrastructure", title: "Scalable Systems",
+        desc: "Architecture built to grow with you from MVP to enterprise grade without rearchitecting from scratch.",
+        detail: "Cloud · DevOps · Microservices · APIs",
+        stat: "99.9%", statLabel: "uptime guaranteed",
+      },
+      {
+        tag: "Resource Optimization", title: "Cost Efficiency",
+        desc: "Reduce operational costs while improving output quality through smart resource allocation and automation.",
+        detail: "Cost audits · ROI tracking · Lean ops",
+        stat: "60%", statLabel: "avg. cost reduction",
+      },
+    ],
+  },
+  ar: {
+    cards: [
+      {
+        tag: "الأتمتة الذكية", title: "أتمتة الذكاء الاصطناعي",
+        desc: "تخلص من الاختناقات وحرر فريقك من المهام المتكررة بسير عمل ذكاء اصطناعي مصممة للتوسع.",
+        detail: "خطوط أنابيب مخصصة · معالجة اللغة · تحليل العمليات",
+        stat: "3× أسرع", statLabel: "السرعة التشغيلية",
+      },
+      {
+        tag: "كفاءات عند الطلب", title: "فرق من الخبراء",
+        desc: "محترفون مدققون ومستعدون للصناعة يُنشرون خلال 48 ساعة — دون تأخير في التوظيف أو تكاليف إضافية.",
+        detail: "هندسة · منتج · بيانات · سحابة",
+        stat: "+200", statLabel: "خبير تم نشره",
+      },
+      {
+        tag: "ذكاء البيانات", title: "قرارات ذكية",
+        desc: "حوّل البيانات الخام إلى رؤى قابلة للتنفيذ مع لوحات تحكم فورية ونماذج تنبؤية وتحليلات مدعومة بالذكاء الاصطناعي.",
+        detail: "لوحات BI · نماذج ML · تتبع KPI",
+        stat: "40%", statLabel: "قرارات أسرع",
+      },
+      {
+        tag: "البنية التحتية", title: "أنظمة قابلة للتوسع",
+        desc: "بنية مصممة للنمو معك — من MVP إلى المستوى المؤسسي دون إعادة بناء من الصفر.",
+        detail: "سحابة · DevOps · ميكروسيرفيس · APIs",
+        stat: "99.9%", statLabel: "وقت تشغيل مضمون",
+      },
+      {
+        tag: "تحسين الموارد", title: "كفاءة التكلفة",
+        desc: "قلل التكاليف التشغيلية مع تحسين جودة المخرجات من خلال التخصيص الذكي للموارد والأتمتة.",
+        detail: "تدقيق التكاليف · تتبع العائد · العمليات الرشيقة",
+        stat: "60%", statLabel: "متوسط تخفيض التكلفة",
+      },
+    ],
+  },
+};
+
+const getText = (lang) => TEXT[lang] ?? TEXT["en"];
+
+/* ─── Component ──────────────────────────────────────────────────── */
 function CardSlider() {
-  const [current, setCurrent]       = useState(0);
+  const [current,     setCurrent]     = useState(0);
   const [textVisible, setTextVisible] = useState(true);
   const timerRef  = useRef(null);
   const pausedRef = useRef(false);
-  const total     = sliderCards.length;
+
+  const { lang } = useLang();
+  const t        = getText(lang);
+  const total    = t.cards.length;
+
+  const sliderCards = t.cards.map((card, i) => ({ ...card, img: IMAGES[i] }));
 
   const goTo = useCallback((nextIdx) => {
     const next = ((nextIdx % total) + total) % total;
@@ -93,7 +128,7 @@ function CardSlider() {
 
   const handleNext = () => { goTo(current + 1); resetTimer(); };
   const handlePrev = () => { goTo(current - 1); resetTimer(); };
-  const handleDot  = (i) => { goTo(i);           resetTimer(); };
+  const handleDot  = (i) => { goTo(i);          resetTimer(); };
 
   const card = sliderCards[current];
   const pad  = (n) => String(n).padStart(2, "0");
@@ -111,7 +146,7 @@ function CardSlider() {
       {/* THE CARD */}
       <div className="wwd-card">
 
-        {/* All images stacked — full card background */}
+        {/* All images stacked */}
         {sliderCards.map((c, i) => (
           <img
             key={i}
@@ -121,10 +156,8 @@ function CardSlider() {
           />
         ))}
 
-        {/* Dark gradient overlay for readability */}
         <div className="wwd-card__overlay" />
 
-        {/* Glass text panel — fades with text */}
         <div className={`wwd-card__glass-panel ${textVisible ? "wwd-card__glass-panel--visible" : "wwd-card__glass-panel--hidden"}`}>
 
           <div className="wwd-card__top">
@@ -161,7 +194,6 @@ function CardSlider() {
           </div>
 
         </div>
-
       </div>
 
       {/* Dots */}

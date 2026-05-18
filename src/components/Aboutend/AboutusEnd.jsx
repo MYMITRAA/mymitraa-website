@@ -1,5 +1,6 @@
 import "./AboutusEnd.css";
 import { useEffect, useRef } from "react";
+import { useLang } from "../../context/LanguageContext";
 import leftImage from "../../assets/images/aboutendimg.svg";
 
 /* ── All org logos ── */
@@ -23,6 +24,36 @@ import oxford     from "../../assets/organisation/university-of-oxford-logo.png"
 import JPR        from "../../assets/organisation/JPR.png";
 import AWS        from "../../assets/organisation/AWS.png";
 
+/* ── Translations ───────────────────────────────────────────────── */
+const TEXT = {
+  en: {
+    header_h2:    "Where Vision Meets Innovation",
+    header_p:     "We design intelligent systems guided by a clear vision and focused mission. Built to adapt, scale, and deliver lasting business value as your needs evolve.",
+    vision_h3:    "Our Vision",
+    vision_p:     "Create intelligent systems that grow with your business. As your needs evolve, the system adapts without rework, chaos, or heavy rebuilds.",
+    mission_h3:   "Our Mission",
+    mission_p:    "To build intelligent AI solutions that simplify work, enhance decision making, and drive real business impact through innovation.",
+    partners_h2:  "Our Partners",
+    partners_sub: "Trusted industry leaders we collaborate with to deliver excellence.",
+    distinct_h2:  "Our Distinction",
+    distinct_sub: "Individuals and Organizations we showcase or have worked with.",
+  },
+  ar: {
+    header_h2:    "حيث تلتقي الرؤية بالابتكار",
+    header_p:     "نصمم أنظمة ذكية موجهة برؤية واضحة ورسالة محددة، مبنية للتكيف والتوسع وتقديم قيمة أعمال دائمة مع تطور احتياجاتك.",
+    vision_h3:    "رؤيتنا",
+    vision_p:     "إنشاء أنظمة ذكية تنمو مع أعمالك. مع تطور احتياجاتك، يتكيف النظام دون إعادة عمل أو فوضى أو إعادة بناء مكلفة.",
+    mission_h3:   "مهمتنا",
+    mission_p:    "بناء حلول ذكاء اصطناعي ذكية تُبسّط العمل، وتعزز اتخاذ القرار، وتحقق تأثيراً حقيقياً على الأعمال من خلال الابتكار.",
+    partners_h2:  "شركاؤنا",
+    partners_sub: "قادة الصناعة الموثوقون الذين نتعاون معهم لتقديم التميز.",
+    distinct_h2:  "تميّزنا",
+    distinct_sub: "الأفراد والمؤسسات الذين نعرضهم أو عملنا معهم.",
+  },
+};
+
+const getText = (lang) => TEXT[lang] ?? TEXT["en"];
+
 /* ── Partner logos ── */
 const PARTNERS = [
   { src: ibm,       alt: "IBM" },
@@ -33,7 +64,6 @@ const PARTNERS = [
   { src: nvidia,    alt: "NVIDIA" },
 ];
 
-/* Triple-duplicate for seamless infinite scroll (only 6 items) */
 const PARTNER_TRACK = [...PARTNERS, ...PARTNERS, ...PARTNERS];
 
 /* ── Distinction logos ── */
@@ -55,13 +85,7 @@ const LOGOS = [
 
 const TRACK = [...LOGOS, ...LOGOS];
 
-/**
- * useSlider — rAF-based center highlight.
- *
- * Every animation frame we measure each item's midpoint against the
- * slider's midpoint. The single closest item gets --center; all others lose it.
- * This is reliable regardless of CSS animation direction or speed.
- */
+/* ── useSlider — unchanged ── */
 function useSlider(sliderRef, trackRef) {
   useEffect(() => {
     const slider = sliderRef.current;
@@ -77,8 +101,8 @@ function useSlider(sliderRef, trackRef) {
       const sliderRect = slider.getBoundingClientRect();
       const sliderMidX = sliderRect.left + sliderRect.width / 2;
 
-      let minDist    = Infinity;
-      let centerIdx  = -1;
+      let minDist   = Infinity;
+      let centerIdx = -1;
 
       items.forEach((item, idx) => {
         const rect     = item.getBoundingClientRect();
@@ -99,7 +123,7 @@ function useSlider(sliderRef, trackRef) {
 
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
-  }, []); // sliderRef is stable — no deps needed
+  }, []);
 
   const handleMouseEnter = () => {
     if (trackRef.current) trackRef.current.style.animationPlayState = "paused";
@@ -111,11 +135,15 @@ function useSlider(sliderRef, trackRef) {
   return { handleMouseEnter, handleMouseLeave };
 }
 
+/* ── Component ──────────────────────────────────────────────────── */
 function AboutusEnd() {
   const sliderRef        = useRef(null);
   const trackRef         = useRef(null);
   const partnerSliderRef = useRef(null);
   const partnerTrackRef  = useRef(null);
+
+  const { lang } = useLang();
+  const t        = getText(lang);
 
   const distinction = useSlider(sliderRef, trackRef);
   const partners    = useSlider(partnerSliderRef, partnerTrackRef);
@@ -125,11 +153,8 @@ function AboutusEnd() {
 
       <div className="about-end-container">
         <div className="about-end-header">
-          <h2>Where Vision Meets Innovation</h2>
-          <p>
-            We design intelligent systems guided by a clear vision and focused mission.
-            Built to adapt, scale, and deliver lasting business value as your needs evolve.
-          </p>
+          <h2>{t.header_h2}</h2>
+          <p>{t.header_p}</p>
         </div>
 
         <div className="about-end-content">
@@ -138,39 +163,32 @@ function AboutusEnd() {
           </div>
           <div className="about-end-right">
             <div className="about-card vision">
-              <h3>Our Vision</h3>
-              <p>
-                Create intelligent systems that grow with your business. As your
-                needs evolve, the system adapts without rework, chaos, or heavy rebuilds.
-              </p>
+              <h3>{t.vision_h3}</h3>
+              <p>{t.vision_p}</p>
             </div>
             <div className="about-card mission">
-              <h3>Our Mission</h3>
-              <p>
-                To build intelligent AI solutions that simplify work, enhance decision
-                making, and drive real business impact through innovation.
-              </p>
+              <h3>{t.mission_h3}</h3>
+              <p>{t.mission_p}</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ══ OUR PARTNERS — slides right-to-left (reversed) ══ */}
+      {/* ══ OUR PARTNERS ══ */}
       <div className="about-partners">
         <div className="partners-header">
-          <h2 className="partners-title">Our Partners</h2>
-          <p className="partners-sub">
-            Trusted industry leaders we collaborate with to deliver excellence.
-          </p>
+          <h2 className="partners-title">{t.partners_h2}</h2>
+          <p className="partners-sub">{t.partners_sub}</p>
         </div>
 
         <div
           className="partners-slider"
           ref={partnerSliderRef}
+          dir="ltr"
           onMouseEnter={partners.handleMouseEnter}
           onMouseLeave={partners.handleMouseLeave}
         >
-          <div className="partners-track" ref={partnerTrackRef}>
+          <div className="partners-track" ref={partnerTrackRef} style={{ direction: "ltr" }}>
             {PARTNER_TRACK.map((logo, i) => (
               <div className="distinction-item partner-card-item" key={i}>
                 <div className="partner-card">
@@ -183,22 +201,21 @@ function AboutusEnd() {
         </div>
       </div>
 
-      {/* ══ DISTINCTION SLIDER — slides left-to-right (forward) ══ */}
+      {/* ══ DISTINCTION SLIDER ══ */}
       <div className="about-distinction">
         <div className="distinction-header">
-          <h2 className="distinction-title">Our Distinction</h2>
-          <p className="distinction-sub">
-            Individuals and Organizations we showcase or have worked with.
-          </p>
+          <h2 className="distinction-title">{t.distinct_h2}</h2>
+          <p className="distinction-sub">{t.distinct_sub}</p>
         </div>
 
         <div
           className="distinction-slider"
           ref={sliderRef}
+          dir="ltr"
           onMouseEnter={distinction.handleMouseEnter}
           onMouseLeave={distinction.handleMouseLeave}
         >
-          <div className="distinction-track" ref={trackRef}>
+          <div className="distinction-track" ref={trackRef} style={{ direction: "ltr" }}>
             {TRACK.map((logo, i) => (
               <div className="distinction-item" key={i}>
                 <div className="distinction-circle">

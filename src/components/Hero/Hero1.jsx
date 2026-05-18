@@ -1,37 +1,10 @@
 import "./Hero.css";
 import React, { useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLang } from "../../context/LanguageContext";
 
 import heroBg    from "../../assets/images/aiglobebghero.webp";
 import aisign    from "../../assets/images/aisign.svg";
 import flyingBot from "../../assets/images/flyingbot.webp";
-
-/* ─── Translations ───────────────────────────────────────────────── */
-const HERO_TEXT = {
-  en: {
-    tag:      "Where Intelligence Meets the Real World",
-    title1:   "We Build AI That Lives Beyond the Screen for our",
-    titleSpan:"Digital Partner",
-    desc:     "We build smart systems that bring AI into the real world, designed for people and businesses, scalable by design, and focused on practical, lasting impact.",
-    contact:  "Contact Us",
-    tab1:     "What We Do",
-    tab2:     "Inside MITRA",
-    tab3:     "What We Deliver",
-  },
-  ar: {
-    tag:      "حيث يلتقي الذكاء بالعالم الحقيقي",
-    title1:   "نبني ذكاءً اصطناعياً يتجاوز الشاشة لـ",
-    titleSpan:"شريكنا الرقمي",
-    desc:     "نبني أنظمة ذكية تجلب الذكاء الاصطناعي إلى العالم الحقيقي، مصممة للناس والشركات، قابلة للتوسع، وتركز على التأثير العملي الدائم.",
-    contact:  "تواصل معنا",
-    tab1:     "ما نقدمه",
-    tab2:     "داخل ميترا",
-    tab3:     "ما نوفره",
-  },
-};
-
-const getText = (lang) => HERO_TEXT[lang] ?? HERO_TEXT["en"];
 
 /* ─── Floating particles — cloud-like drifting movement ─────────── */
 function Particles() {
@@ -443,9 +416,6 @@ function FlyingRobot({ imgSrc }) {
 /* ─── Hero ───────────────────────────────────────────────────────── */
 function Hero() {
   const navigate = useNavigate();
-  const { lang } = useLang();
-  const t = getText(lang);
-
   return (
     <>
       <section className="hero" style={{ backgroundImage: `url(${heroBg})` }}>
@@ -454,17 +424,19 @@ function Hero() {
           <div className="hero-left">
             <div className="hero-tag">
               <img src={aisign} alt="AI Sign" />
-              {t.tag}
+              Where Intelligence Meets the Real World
             </div>
             <h1 className="hero-title">
-              {t.title1}{" "}
-              <span>{t.titleSpan}</span>
+              We Build AI That Lives Beyond the Screen for our{" "}
+              <span>Digital Partner</span>
             </h1>
             <p className="hero-desc">
-              {t.desc}
+              We build smart systems that bring AI into the real world,
+              designed for people and businesses, scalable by design,
+              and focused on practical, lasting impact.
             </p>
             <button className="hero-btn" onClick={() => navigate("/contact")}>
-              {t.contact}
+              Contact Us
             </button>
           </div>
           <div className="hero-right" aria-hidden="true" />
@@ -476,12 +448,12 @@ function Hero() {
       <div className="hero-strip">
         <div className="strip-container">
           <div className="strip-tabs">
-            <button className="active">{t.tab1}</button>
-            <button onClick={() => navigate("/execution")}>{t.tab2}</button>
-            <button onClick={() => navigate("/service")}>{t.tab3}</button>
+            <button className="active">What We Do</button>
+            <button onClick={() => navigate("/execution")}>Inside MITRA</button>
+            <button onClick={() => navigate("/service")}>What We Deliver</button>
           </div>
           <button className="strip-btn" onClick={() => navigate("/contact")}>
-            {t.contact}
+            Contact Us
           </button>
         </div>
       </div>

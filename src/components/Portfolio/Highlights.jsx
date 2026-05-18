@@ -1,31 +1,67 @@
 import "./Highlights.css";
+import { useLang } from "../../context/LanguageContext";
 
 import highlight1 from "../../assets/images/phighlight1.webp";
 import highlight2 from "../../assets/images/phighlight2.webp";
 import highlight3 from "../../assets/images/phighlight3.webp";
 import highlight4 from "../../assets/images/phighlight4.webp";
 
-const highlights = [
-  { img: highlight1, label: "Enterprise SaaS platforms"   },
-  { img: highlight2, label: "AI-powered automation tools" },
-  { img: highlight3, label: "Fintech applications"        },
-  { img: highlight4, label: "E-commerce projects"         },
-];
+const IMAGES = [highlight1, highlight2, highlight3, highlight4];
 
+/* ─── Translations ───────────────────────────────────────────────── */
+const TEXT = {
+  en: {
+    sectionLabel: "Portfolio Highlights",
+    title1:       "Industries",
+    title2:       "We've Shaped",
+    desc:         "A snapshot of the domains and industries where we've delivered measurable, lasting impact for our partners.",
+    quote:        '"Positioned as a strategic partner, not just a vendor — we become an extension of your team."',
+    highlights: [
+      "Enterprise SaaS platforms",
+      "AI-powered automation tools",
+      "Fintech applications",
+      "E-commerce projects",
+    ],
+  },
+  ar: {
+    sectionLabel: "أبرز أعمالنا",
+    title1:       "القطاعات",
+    title2:       "التي شكّلناها",
+    desc:         "لمحة عن المجالات والصناعات التي حققنا فيها تأثيراً ملموساً ودائماً لشركائنا.",
+    quote:        '"نضع أنفسنا كشريك استراتيجي، لا مجرد مورد — نحن امتداد حقيقي لفريقك."',
+    highlights: [
+      "منصات SaaS المؤسسية",
+      "أدوات الأتمتة المدعومة بالذكاء الاصطناعي",
+      "تطبيقات التكنولوجيا المالية",
+      "مشاريع التجارة الإلكترونية",
+    ],
+  },
+};
+
+const getText = (lang) => TEXT[lang] ?? TEXT["en"];
+
+/* ─── Component ──────────────────────────────────────────────────── */
 function Highlights() {
+  const { lang } = useLang();
+  const t        = getText(lang);
+
+  const highlights = t.highlights.map((label, i) => ({
+    img: IMAGES[i],
+    label,
+  }));
+
   return (
     <section className="portfolio__highlights">
       <div className="portfolio__highlights-container">
         <div className="portfolio__highlights-header">
           <div>
-            <span className="section-label">Portfolio Highlights</span>
+            <span className="section-label">{t.sectionLabel}</span>
             <h2 className="portfolio__highlights-title">
-              Industries<br />We've Shaped
+              {t.title1}<br />{t.title2}
             </h2>
           </div>
           <p className="portfolio__highlights-desc">
-            A snapshot of the domains and industries where we've delivered
-            measurable, lasting impact for our partners.
+            {t.desc}
           </p>
         </div>
         <div className="portfolio__highlights-grid">
@@ -43,8 +79,7 @@ function Highlights() {
           ))}
         </div>
         <p className="portfolio__positioning">
-          "Positioned as a strategic partner, not just a vendor 
-          we become an extension of your team."
+          {t.quote}
         </p>
       </div>
     </section>

@@ -9,6 +9,7 @@ import search     from "../../assets/images/search.svg";
 
 import Signinmodel from "../Signinmodel/Signinmodel";
 import MegaMenu    from "../Megamenu/MegaMenu";
+import { useLang } from "../../Context/LanguageContext";
 
 const SLIDE_NAVBAR_COLORS = [
   "rgba(81, 51, 204, 0.18)",
@@ -40,7 +41,7 @@ const LANGUAGES = [
 ];
 
 function Navbar({ hidden, slideIndex }) {
-
+  const { changeLang } = useLang();
   const [showModal,          setShowModal]          = useState(false);
   const [menuOpen,           setMenuOpen]           = useState(false);
   const [showMegaMenu,       setShowMegaMenu]       = useState(false);
@@ -103,7 +104,7 @@ function Navbar({ hidden, slideIndex }) {
   const handleSelectLang = (code) => {
     setSelectedLang(code);
     setShowLangDropdown(false);
-    // 🌐 Hook into your i18n system here, e.g. i18n.changeLanguage(code)
+    changeLang(code);
   };
 
   useEffect(() => { setMenuOpen(false);     }, [location]);

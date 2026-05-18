@@ -1,8 +1,26 @@
-
 import "./Aboutushero.css";
 import aboutBg from "../../assets/images/aboutusbg.jpg";
+import { useLang } from "../../context/LanguageContext";
 
+/* ─── Translations ───────────────────────────────────────────────── */
+const TEXT = {
+  en: {
+    h1: "Who Are we",
+    p:  "Shape your future with confidence",
+  },
+  ar: {
+    h1: "من نحن",
+    p:  "شكّل مستقبلك بثقة",
+  },
+};
+
+const getText = (lang) => TEXT[lang] ?? TEXT["en"];
+
+/* ─── Component ──────────────────────────────────────────────────── */
 function Aboutushero() {
+  const { lang } = useLang();
+  const t = getText(lang);
+
   return (
     <section
       className="about-hero"
@@ -14,12 +32,11 @@ function Aboutushero() {
         <div className="about-line"></div>
 
         <div className="about-text">
-          <h1>Who Are we</h1>
-          <p>Shape your future with confidence</p>
+          <h1>{t.h1}</h1>
+          <p>{t.p}</p>
         </div>
       </div>
     </section>
-    
   );
 }
 

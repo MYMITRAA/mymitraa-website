@@ -1,12 +1,52 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AllServiceMid.css";
+import { useLang } from "../../context/LanguageContext";
 
-import bird from "../../assets/images/Mascot3.webp";
+import bird  from "../../assets/images/Mascot3.webp";
 import team1 from "../../assets/images/team1image.svg";
 import team2 from "../../assets/images/team1image.svg";
 import team3 from "../../assets/images/team1image.svg";
 import team4 from "../../assets/images/team1image.svg";
 
+/* ─── Translations ───────────────────────────────────────────────── */
+const TEXT = {
+  en: {
+    why_h2:       "Why Choose Us",
+    why_p:        "Design and manage data pipelines and analytics systems to turn raw data into actionable business insights.",
+    bot_name:     "MAHIBOT",
+    bot_tag:      "MY MITRAA CHAT BOT",
+    stat1_label:  "Projects Delivered",
+    stat2_label:  "Active Clients",
+    stat3_label:  "Repeat Engagements",
+    stat4_label:  "Commitment to On-Time Delivery",
+    card1_h4:     "Scalability Issues",
+    card1_p:      "Scalability issues arise when systems fail to handle growing users, data, or workloads efficiently, causing performance drops and downtime.",
+    card2_h4:     "Scalability Issues",
+    card2_p:      "Scalability issues arise when systems fail to handle growing users, data, or workloads efficiently, causing performance drops and downtime.",
+    card3_h4:     "Professional & Creative Team",
+    card3_p:      "A professional and creative team delivering innovative ideas, strategic solutions, collaboration, expertise, dedication, and measurable results.",
+  },
+  ar: {
+    why_h2:       "لماذا تختارنا",
+    why_p:        "نصمم وندير خطوط بيانات وأنظمة تحليلات لتحويل البيانات الخام إلى رؤى أعمال قابلة للتنفيذ.",
+    bot_name:     "ماهي بوت",
+    bot_tag:      "روبوت دردشة MY MITRAA",
+    stat1_label:  "مشروع تم تسليمه",
+    stat2_label:  "عملاء نشطون",
+    stat3_label:  "تعاملات متكررة",
+    stat4_label:  "التزام بالتسليم في الوقت المحدد",
+    card1_h4:     "مشكلات التوسع",
+    card1_p:      "تنشأ مشكلات التوسع عندما تفشل الأنظمة في التعامل مع المستخدمين والبيانات وأعباء العمل المتزايدة بكفاءة، مما يسبب انخفاض الأداء والتوقف.",
+    card2_h4:     "مشكلات التوسع",
+    card2_p:      "تنشأ مشكلات التوسع عندما تفشل الأنظمة في التعامل مع المستخدمين والبيانات وأعباء العمل المتزايدة بكفاءة، مما يسبب انخفاض الأداء والتوقف.",
+    card3_h4:     "فريق محترف وإبداعي",
+    card3_p:      "فريق محترف ومبدع يقدم أفكاراً مبتكرة وحلولاً استراتيجية وتعاوناً وخبرة وتفانياً ونتائج قابلة للقياس.",
+  },
+};
+
+const getText = (lang) => TEXT[lang] ?? TEXT["en"];
+
+/* ─── useCountUp — unchanged ────────────────────────────────────── */
 function useCountUp(target, suffix, duration, started) {
   const [value, setValue] = useState(0);
 
@@ -25,9 +65,13 @@ function useCountUp(target, suffix, duration, started) {
   return value + suffix;
 }
 
+/* ─── Component ──────────────────────────────────────────────────── */
 const AllServiceMid = () => {
   const [started, setStarted] = useState(false);
   const cardRef = useRef(null);
+
+  const { lang } = useLang();
+  const t        = getText(lang);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,11 +97,8 @@ const AllServiceMid = () => {
 
       {/* Header */}
       <div className="why-header">
-        <h2>Why Choose Us</h2>
-        <p>
-          Design and manage data pipelines and analytics systems to turn raw
-          data into actionable business insights.
-        </p>
+        <h2>{t.why_h2}</h2>
+        <p>{t.why_p}</p>
       </div>
 
       <div className="why-grid">
@@ -69,70 +110,57 @@ const AllServiceMid = () => {
             <img src={bird} alt="bot" />
           </div>
 
-          <h3>MAHIBOT</h3>
+          <h3>{t.bot_name}</h3>
 
           <div className="bot-tag">
-            MY MITRAA CHAT BOT
+            {t.bot_tag}
           </div>
 
           <div className="stats">
 
             <div className="stat">
               <h2>{projects}</h2>
-              <p>Projects Delivered</p>
+              <p>{t.stat1_label}</p>
             </div>
 
             <div className="divider"></div>
 
             <div className="stat">
               <h2>{clients}</h2>
-              <p>Active Clients</p>
+              <p>{t.stat2_label}</p>
             </div>
 
             <div className="stat">
               <h2>{repeat}</h2>
-              <p>Repeat Engagements</p>
+              <p>{t.stat3_label}</p>
             </div>
 
             <div className="divider"></div>
 
             <div className="stat">
               <h2>{delivery}</h2>
-              <p>Commitment to On-Time Delivery</p>
+              <p>{t.stat4_label}</p>
             </div>
 
           </div>
-
         </div>
 
         {/* RIGHT SIDE */}
         <div className="why-right">
 
           <div className="right-card-1">
-            <h4>Scalability Issues</h4>
-            <p>
-              Scalability issues arise when systems fail to handle growing
-              users, data, or workloads efficiently, causing performance
-              drops and downtime.
-            </p>
+            <h4>{t.card1_h4}</h4>
+            <p>{t.card1_p}</p>
           </div>
 
           <div className="right-card-2">
-            <h4>Scalability Issues</h4>
-            <p>
-              Scalability issues arise when systems fail to handle growing
-              users, data, or workloads efficiently, causing performance
-              drops and downtime.
-            </p>
+            <h4>{t.card2_h4}</h4>
+            <p>{t.card2_p}</p>
           </div>
 
           <div className="right-card-3">
-            <h4>Professional &amp; Creative Team</h4>
-            <p>
-              A professional and creative team delivering innovative ideas,
-              strategic solutions, collaboration, expertise, dedication,
-              and measurable results.
-            </p>
+            <h4>{t.card3_h4}</h4>
+            <p>{t.card3_p}</p>
 
             <div className="team-row">
               <img src={team1} alt="team" />

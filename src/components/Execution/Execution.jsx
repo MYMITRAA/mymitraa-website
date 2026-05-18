@@ -1,42 +1,79 @@
 import { useState } from "react";
 import "./Execution.css";
+import { useLang } from "../../context/LanguageContext";
 
 import about1 from "../../assets/images/about1.webp";
 import about2 from "../../assets/images/about22.webp";
 import about3 from "../../assets/images/about33.webp";
 import about4 from "../../assets/images/about44.webp";
 
-const items = [
-  {
-    title: "Why We Exist",
-    image: about1,
-    content:
-      "We exist to simplify complexity. Businesses are surrounded by tools, data, and systems, yet clarity is often missing. Our purpose is to create intelligent systems that quietly support decisions, reduce pressure on teams, and make growth feel manageable instead of overwhelming.",
+/* ─── Translations ───────────────────────────────────────────────── */
+const EXECUTION_TEXT = {
+  en: {
+    title1:  "Execution is our",
+    span1:   "Culture",
+    title2:  ", Every decision ends in",
+    span2:   "Delivery",
+    footer:  "MiTRA is where thoughtful engineering meets meaningful impact.",
+    items: [
+      {
+        title:   "Why We Exist",
+        content: "We exist to simplify complexity. Businesses are surrounded by tools, data, and systems, yet clarity is often missing. Our purpose is to create intelligent systems that quietly support decisions, reduce pressure on teams, and make growth feel manageable instead of overwhelming.",
+      },
+      {
+        title:   "Our Mindset",
+        content: "We believe clarity beats complexity. Our mindset is rooted in precision, responsibility, and building systems that truly serve people.",
+      },
+      {
+        title:   "Our Values in Action",
+        content: "We value transparency, accountability, and long-term impact. Every solution we design is built to create measurable results.",
+      },
+      {
+        title:   "Our Role in Your Journey",
+        content: "We partner with you to simplify operations, strengthen decisions, and ensure technology works quietly behind your success.",
+      },
+    ],
   },
-  {
-    title: "Our Mindset",
-    image: about2,
-    content:
-      "We believe clarity beats complexity. Our mindset is rooted in precision, responsibility, and building systems that truly serve people.",
+  ar: {
+    title1:  "التنفيذ هو",
+    span1:   "ثقافتنا",
+    title2:  "، وكل قرار ينتهي بـ",
+    span2:   "التسليم",
+    footer:  "ميترا هو المكان الذي يلتقي فيه الهندسة المدروسة بالتأثير الحقيقي.",
+    items: [
+      {
+        title:   "لماذا نحن موجودون",
+        content: "نحن موجودون لتبسيط التعقيد. الشركات محاطة بالأدوات والبيانات والأنظمة، لكن الوضوح غالباً ما يكون غائباً. هدفنا هو إنشاء أنظمة ذكية تدعم القرارات بهدوء، وتُخفف الضغط عن الفرق، وتجعل النمو أمراً قابلاً للإدارة بدلاً من أن يكون ساحقاً.",
+      },
+      {
+        title:   "عقليتنا",
+        content: "نؤمن بأن الوضوح يتغلب على التعقيد. عقليتنا متجذرة في الدقة والمسؤولية وبناء أنظمة تخدم الناس حقاً.",
+      },
+      {
+        title:   "قيمنا في العمل",
+        content: "نقدّر الشفافية والمساءلة والتأثير طويل الأمد. كل حل نصممه مبني لتحقيق نتائج قابلة للقياس.",
+      },
+      {
+        title:   "دورنا في رحلتك",
+        content: "نتشارك معك لتبسيط العمليات، وتعزيز القرارات، وضمان أن تعمل التكنولوجيا بهدوء خلف نجاحك.",
+      },
+    ],
   },
-  {
-    title: "Our Values in Action",
-    image: about3,
-    content:
-      "We value transparency, accountability, and long-term impact. Every solution we design is built to create measurable results.",
-  },
-  {
-    title: "Our Role in Your Journey",
-    image: about4,
-    content:
-      "We partner with you to simplify operations, strengthen decisions, and ensure technology works quietly behind your success.",
-  },
-];
+};
+
+const getText = (lang) => EXECUTION_TEXT[lang] ?? EXECUTION_TEXT["en"];
+
+/* ─── Component ──────────────────────────────────────────────────── */
+const images = [about1, about2, about3, about4];
 
 function Execution() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(null);
-  const [animating, setAnimating] = useState(false);
+  const [prevIndex,   setPrevIndex]   = useState(null);
+  const [animating,   setAnimating]   = useState(false);
+
+  const { lang } = useLang();
+  const t = getText(lang);
+  const items = t.items.map((item, i) => ({ ...item, image: images[i] }));
 
   const toggleItem = (index) => {
     if (index === activeIndex || animating) return;
@@ -54,7 +91,7 @@ function Execution() {
       <div className="execution-container">
 
         <h2 className="execution-title">
-          Execution is our <span>Culture</span>, Every decision ends in <span>Delivery</span>
+          {t.title1} <span>{t.span1}</span>{t.title2} <span>{t.span2}</span>
         </h2>
 
         {/* ── Mobile Image Panel ── */}
@@ -71,7 +108,7 @@ function Execution() {
                 alt={item.title}
                 className={`exec-img
                   ${activeIndex === index ? "exec-img--active" : ""}
-                  ${prevIndex === index ? "exec-img--exit" : ""}
+                  ${prevIndex  === index ? "exec-img--exit"   : ""}
                 `}
               />
             ))}
@@ -88,10 +125,7 @@ function Execution() {
                 className={`execution-item ${activeIndex === index ? "active" : ""}`}
               >
                 <div className="execution-header">
-                  {/* Title — clickable */}
                   <h3 onClick={() => toggleItem(index)}>{item.title}</h3>
-
-                  {/* Chevron — its own explicit onClick */}
                   <button
                     type="button"
                     className={`chevron ${activeIndex === index ? "rotate" : ""}`}
@@ -117,9 +151,7 @@ function Execution() {
               </div>
             ))}
 
-            <p className="execution-footer">
-              MiTRA is where thoughtful engineering meets meaningful impact.
-            </p>
+            <p className="execution-footer">{t.footer}</p>
           </div>
 
           {/* ── Right: Animated Image Panel (desktop only) ── */}
@@ -136,7 +168,7 @@ function Execution() {
                   alt={item.title}
                   className={`exec-img
                     ${activeIndex === index ? "exec-img--active" : ""}
-                    ${prevIndex === index ? "exec-img--exit" : ""}
+                    ${prevIndex  === index ? "exec-img--exit"   : ""}
                   `}
                 />
               ))}
