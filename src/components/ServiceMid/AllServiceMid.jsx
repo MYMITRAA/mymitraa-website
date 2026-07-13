@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AllServiceMid.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import bird  from "../../assets/images/Mascot3.webp";
 import team1 from "../../assets/images/team1image.svg";
