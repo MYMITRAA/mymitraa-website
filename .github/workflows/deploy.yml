@@ -8,8 +8,11 @@ on:
 jobs:
   deploy:
     runs-on: 
+     
       - self-hosted
-      - mitra  # 🔥 IMPORTANT Changee
+        - Linux
+        - X64
+
 
     steps:
       - name: Checkout code
