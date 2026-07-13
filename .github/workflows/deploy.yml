@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted   # 🔥 IMPORTANT Changee
+    runs-on: self-hosted   # 🔥 IMPORTANT Change
 
     steps:
       - name: Checkout code
