@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Discover.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 import birdimage from "../../assets/images/bird1.webp";
 import birdEyeClosed from "../../assets/images/birdeyeclosed.webp";
 import brainImage from "../../assets/images/aihandai.webp";
