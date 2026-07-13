@@ -1,7 +1,7 @@
 import "./Hero.css";
 import React, { useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import heroBg    from "../../assets/images/aiglobebghero.webp";
 import aisign    from "../../assets/images/aisign.svg";
