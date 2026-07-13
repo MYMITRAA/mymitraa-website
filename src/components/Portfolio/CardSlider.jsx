@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./CardSlider.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import WhatWeDo1 from "../../assets/images/whatwedo1.webp";
 import WhatWeDo2 from "../../assets/images/whatwedo2.webp";
