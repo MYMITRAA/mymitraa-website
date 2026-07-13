@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Execution.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import about1 from "../../assets/images/about1.webp";
 import about2 from "../../assets/images/about22.webp";
