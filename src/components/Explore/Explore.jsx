@@ -1,7 +1,7 @@
 import "./Explore.css";
 import treeBg from "../../assets/images/treebg.jpg";
 import { useNavigate } from "react-router-dom";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 /* ─── Translations ───────────────────────────────────────────────── */
 const EXPLORE_TEXT = {
