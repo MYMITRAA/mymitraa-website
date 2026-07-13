@@ -1,0 +1,38 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: 
+      - mitra  # 🔥 IMPORTANT Change
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Nginx
+        run: |
+          echo "Cleaning old files..."
+          rm -rf /var/www/app/current/*
+
+          echo "Copying new build..."
+          cp -r dist/* /var/www/app/current/
+
+      - name: Reload Nginx
+        run: |
+          sudo systemctl reload nginx
