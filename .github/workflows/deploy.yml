@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: 
+      - self-hosted
       - mitra  # 🔥 IMPORTANT Changee
 
     steps:
