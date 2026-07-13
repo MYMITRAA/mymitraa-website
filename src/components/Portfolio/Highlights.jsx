@@ -1,5 +1,5 @@
 import "./Highlights.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import highlight1 from "../../assets/images/phighlight1.webp";
 import highlight2 from "../../assets/images/phighlight2.webp";
