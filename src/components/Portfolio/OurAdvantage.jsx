@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import "./OurAdvantage.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 /* ── Translations ───────────────────────────────────────────────── */
 const TEXT = {
