@@ -1,5 +1,5 @@
 import "./Hero.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 /* ─── Translations ───────────────────────────────────────────────── */
 const TEXT = {
