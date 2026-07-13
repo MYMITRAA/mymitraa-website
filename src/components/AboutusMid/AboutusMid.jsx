@@ -1,7 +1,7 @@
 import "./AboutusMid.css";
 import Aboutmidimg from "../../assets/images/aboutusmidimage22.png";
 import rightImage from "../../assets/images/aboutusimg2.png";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 /* ─── Translations ───────────────────────────────────────────────── */
 const TEXT = {
