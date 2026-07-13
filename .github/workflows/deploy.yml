@@ -7,12 +7,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: 
-     
+    runs-on:
       - self-hosted
-        - Linux
-        - X64
-
+      - Linux
+      - X64
 
     steps:
       - name: Checkout code
