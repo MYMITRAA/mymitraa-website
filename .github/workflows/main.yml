@@ -7,8 +7,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: 
-      - mitra  # 🔥 IMPORTANT Change
+    runs-on:
+      - self-hosted
+      - Linux
+      - X64
 
     steps:
       - name: Checkout code
@@ -28,11 +30,10 @@ jobs:
       - name: Deploy to Nginx
         run: |
           echo "Cleaning old files..."
-          rm -rf /var/www/app/current/*
+          sudo rm -rf /var/www/app/current/*
 
           echo "Copying new build..."
-          cp -r dist/* /var/www/app/current/
+          sudo cp -r dist/* /var/www/app/current/
 
       - name: Reload Nginx
-        run: |
-          sudo systemctl reload nginx
+        run: sudo systemctl reload nginx
