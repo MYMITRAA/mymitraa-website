@@ -1,5 +1,5 @@
 import "./Products.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import feelzyImg     from "../../assets/images/feelzyimage.webp";
 import jarviisImg    from "../../assets/images/jarviisimage.webp";
