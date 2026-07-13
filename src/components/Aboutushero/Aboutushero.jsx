@@ -1,6 +1,6 @@
 import "./Aboutushero.css";
 import aboutBg from "../../assets/images/aboutusbg.jpg";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 /* ─── Translations ───────────────────────────────────────────────── */
 const TEXT = {
