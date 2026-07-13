@@ -1,6 +1,6 @@
 import "./AboutusEnd.css";
 import { useEffect, useRef } from "react";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 import leftImage from "../../assets/images/aboutendimg.svg";
 
 /* ── All org logos ── */
