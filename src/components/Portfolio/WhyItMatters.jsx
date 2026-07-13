@@ -1,5 +1,5 @@
 import "./WhyItMatters.css";
-import { useLang } from "../../context/LanguageContext";
+import { useLang } from "../../Context/LanguageContext";
 
 import TalentIcon from "../../assets/images/portfolio1.webp";
 import HiringIcon from "../../assets/images/portfolio2.webp";
