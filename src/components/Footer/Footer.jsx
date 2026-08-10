@@ -18,7 +18,7 @@ const PinIcon = () => (
 
 const SocialIcons = () => (
   <div className="social-icons">
-    <a href="https://www.instagram.com/mitra.technologypvtltd?igsh=ZGRuNjJhempzbnRv" target="_blank" rel="noopener noreferrer">
+    <a href="https://https://www.instagram.com/mymitraa/" target="_blank" rel="noopener noreferrer">
       <img src={instagram} alt="Instagram" />
     </a>
     <a href="https://www.linkedin.com/company/mitra-technology-pvt-ltd/" target="_blank" rel="noopener noreferrer">
