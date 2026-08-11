@@ -30,10 +30,10 @@ jobs:
       - name: Deploy to Nginx
         run: |
           echo "Cleaning old files..."
-          rm -rf /var/www/html/*
+          sudo rm -rf /var/www/html/*
 
           echo "Copying new build..."
-          cp -r dist/* /var/www/html/
+          sudo cp -r dist/* /var/www/html/
 
       - name: Reload Nginx
         run: |
