@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on:
       - self-hosted
-      -  Linux
+      - Linux
       - X64
 
     steps:
@@ -30,10 +30,55 @@ jobs:
       - name: Deploy to Nginx
         run: |
           echo "Cleaning old files..."
-          sudo rm -rf /var/www/app/current/*
+          sudo rm -rf /var/www/html/*
 
           echo "Copying new build..."
-          sudo cp -r dist/* /var/www/app/current/
+          sudo cp -r dist/* /var/www/html/
+
+      # ============================================================
+      # HTTPS / SSL SETUP
+      # NOTE:
+      # Certificate is already installed on the server.
+      # Certbot also configured automatic certificate renewal.
+      #
+      # DO NOT run this on every deployment.
+      # Kept commented for future reference.
+      # ============================================================
+
+      # - name: Install Certbot
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install certbot python3-certbot-nginx -y
+
+      # - name: Configure HTTPS
+      #   run: |
+	  #     sudo certbot --nginx \
+	  # 	  -d mitratechgroup.com 
+      #     sudo certbot --nginx \
+      #       -d mitratechgroup.com \
+      #       -d www.mitratechgroup.com
+
+      # ============================================================
+      # OPTIONAL: Check certificate renewal
+      # Use only when you want to test automatic renewal.
+      # ============================================================
+
+      # - name: Test SSL Certificate Renewal
+      #   run: |
+      #     sudo certbot renew --dry-run
+
+      - name: Validate Nginx configuration
+        run: |
+          sudo nginx -t
 
       - name: Reload Nginx
-        run: sudo systemctl reload nginx
+        run: |
+          sudo systemctl reload nginx
+
+      # ============================================================
+      # OPTIONAL: Verify HTTPS after deployment
+      # ============================================================
+
+      # - name: Verify HTTPS
+      #   run: |
+      #     curl -I https://mitratechgroup.com
