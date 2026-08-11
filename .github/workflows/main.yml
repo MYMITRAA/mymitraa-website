@@ -8,7 +8,9 @@ on:
 jobs:
   deploy:
     runs-on:
-      - pri-runer
+      - self-hosted
+      -  Linux
+      - X64
 
     steps:
       - name: Checkout code
